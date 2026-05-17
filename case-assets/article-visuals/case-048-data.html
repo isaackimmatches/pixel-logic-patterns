@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-48-data | 배너 CTR 예측 로직</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f7fbff;color:#111827}.av48d-mapper{height:100vh;padding:26px;display:grid;grid-template-rows:86px 1fr;gap:18px}.av48d-mapper header{display:flex;align-items:center;gap:18px;border:2px solid #111827;border-radius:24px;background:#ffffff;padding:0 24px;box-shadow:8px 8px 0 #111827}.av48d-mapper h1{font-size:34px;margin:0;letter-spacing:-.04em}.av48d-mapper strong{color:#2563eb}.av48d-mapper header span{margin-left:auto;font-weight:950;letter-spacing:.16em}.av48d-flow{min-height:0;display:grid;grid-template-columns:260px 1fr 280px;gap:18px}.av48d-flow aside, .av48d-table{border:2px solid #111827;border-radius:26px;background:#ffffff;box-shadow:8px 8px 0 #111827}.av48d-flow aside{padding:16px;display:grid;gap:10px;align-content:start}.av48d-flow button{height:64px;border:1px solid #9bd4ff;border-radius:16px;background:#f7fbff;text-align:left;padding:11px 14px;font-weight:950;color:#111827}.av48d-flow button em{display:block;font-size:12px;color:#2563eb;font-style:normal;margin-top:4px}.av48d-table{overflow:hidden}.head, .av48d-table div:not(.head){display:grid;grid-template-columns:1.1fr 1.1fr 1fr .7fr .7fr}.head{height:58px;background:#111827;color:#ffffff;align-items:center;padding:0 16px;font-size:12px;text-transform:uppercase}.av48d-table div:not(.head){height:58px;align-items:center;border-bottom:1px solid #9bd4ff;padding:0 16px;color:#111827}.av48d-table mark{border-radius:999px;background:#9bd4ff;color:#111827;padding:7px 10px;font-weight:950}.right .av48d-metric{border:1px solid #9bd4ff;border-radius:18px;padding:14px}.right .av48d-metric span{display:block;color:#111827;opacity:.72;font-size:12px}.right .av48d-metric b{font-size:28px}.right .av48d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#2563eb;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av48d-mapper">
+            <header><strong>Nova CX</strong><h1>Performance Control Tower</h1><span>DATA INTAKE</span></header>
+            <section class="av48d-flow">
+                <aside><button>광고 API<em>2976</em></button><button>전환 이벤트<em>3180</em></button><button>소재 버전<em>3384</em></button><button>예산 캡<em>3588</em></button></aside>
+                <article class="av48d-table">
+                    <div class="head"><b>source_key</b><b>clean_rule</b><b>owner</b><b>refresh</b><b>status</b></div>
+                    <div><span>키워드-480</span><span>CTR 예측</span><span>퍼포먼스 마케팅팀</span><span>realtime</span><mark>review</mark></div><div><span>소재-481</span><span>CPC 변동</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>valid</mark></div><div><span>세그먼트-482</span><span>피로도</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>valid</mark></div><div><span>예산-483</span><span>증분 ROAS</span><span>퍼포먼스 마케팅팀</span><span>realtime</span><mark>valid</mark></div><div><span>키워드-484</span><span>CTR 예측</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>review</mark></div><div><span>소재-485</span><span>CPC 변동</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>valid</mark></div><div><span>세그먼트-486</span><span>피로도</span><span>퍼포먼스 마케팅팀</span><span>realtime</span><mark>valid</mark></div><div><span>예산-487</span><span>증분 ROAS</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>valid</mark></div><div><span>키워드-488</span><span>CTR 예측</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>review</mark></div>
+                </article>
+                <aside class="right">
+        <article class="av48d-metric">
+            <span>CTR 예측</span>
+            <b data-meter>85%</b>
+            <i style="--w:62%"></i>
+        </article>
+        <article class="av48d-metric">
+            <span>CPC 변동</span>
+            <b data-meter>96%</b>
+            <i style="--w:75%"></i>
+        </article>
+        <article class="av48d-metric">
+            <span>피로도</span>
+            <b data-meter>78%</b>
+            <i style="--w:88%"></i>
+        </article>
+        <article class="av48d-metric">
+            <span>증분 ROAS</span>
+            <b data-meter>89%</b>
+            <i style="--w:61%"></i>
+        </article></aside>
+            </section>
+        </main>
+<script>
+
+const av48dmeters=[...document.querySelectorAll("[data-meter]")];
+let av48dtick=0;
+setInterval(()=>{
+  av48dtick++;
+  av48dmeters.forEach((el,i)=>el.textContent=(62+((av48dtick*3+i*9+48)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

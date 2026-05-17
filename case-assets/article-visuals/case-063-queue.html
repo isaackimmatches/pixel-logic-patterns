@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-63-queue | 안전점검 OCR</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#0f172a;color:#ffffff}.av63q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#0ea5e955,transparent 34%),#0f172a}.av63q-command aside,.av63q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av63q-command aside{padding:22px}. av63q-command h1{font-size:34px;line-height:1.04;margin:0}. av63q-command p{color:#bae6fd;line-height:1.7}.av63q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av63q-metric b{font-size:26px}. av63q-metric span{display:block}. av63q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#0ea5e9;margin-top:9px}.av63q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#0ea5e9;transform-origin:0 0;animation:av63qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#bae6fd;box-shadow:0 0 0 8px #bae6fd33}@keyframes av63qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av63q-command">
+            <aside><h1>Factory Signal Monitor</h1><p>안전점검 OCR 실시간 처리 로그</p>
+        <article class="av63q-metric">
+            <span>설비 편차</span>
+            <b data-meter>74%</b>
+            <i style="--w:77%"></i>
+        </article>
+        <article class="av63q-metric">
+            <span>불량 픽셀</span>
+            <b data-meter>85%</b>
+            <i style="--w:90%"></i>
+        </article>
+        <article class="av63q-metric">
+            <span>라인 병목</span>
+            <b data-meter>96%</b>
+            <i style="--w:63%"></i>
+        </article>
+        <article class="av63q-metric">
+            <span>정비 우선순위</span>
+            <b data-meter>78%</b>
+            <i style="--w:76%"></i>
+        </article></aside>
+            <main id="av63q-stream"></main>
+            <div class="radar"><i style="--x:19%;--y:79%"></i><i style="--x:42%;--y:46%"></i><i style="--x:65%;--y:77%"></i><i style="--x:26%;--y:44%"></i><i style="--x:49%;--y:75%"></i><i style="--x:72%;--y:42%"></i><i style="--x:33%;--y:73%"></i><i style="--x:56%;--y:40%"></i><i style="--x:79%;--y:71%"></i></div>
+        </section>
+<script>
+const av63qs=document.getElementById("av63q-stream");const av63qlogs=["작업지시 추천 queued","설비 편차 threshold crossed","owner=공장 운영팀","sla.check passed","handoff ticket 63-A"];let av63qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av63qlogs[av63qn++%av63qlogs.length];av63qs.prepend(p);while(av63qs.children.length>26)av63qs.lastElementChild.remove();},430);
+const av63qmeters=[...document.querySelectorAll("[data-meter]")];
+let av63qtick=0;
+setInterval(()=>{
+  av63qtick++;
+  av63qmeters.forEach((el,i)=>el.textContent=(62+((av63qtick*3+i*9+63)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

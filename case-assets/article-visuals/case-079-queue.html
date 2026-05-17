@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-79-queue | 병원 예약 콜 요약</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#111827;color:#ffffff}.av79q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#2563eb55,transparent 34%),#111827}.av79q-command aside,.av79q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av79q-command aside{padding:22px}. av79q-command h1{font-size:34px;line-height:1.04;margin:0}. av79q-command p{color:#9bd4ff;line-height:1.7}.av79q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av79q-metric b{font-size:26px}. av79q-metric span{display:block}. av79q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#2563eb;margin-top:9px}.av79q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#2563eb;transform-origin:0 0;animation:av79qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#9bd4ff;box-shadow:0 0 0 8px #9bd4ff33}@keyframes av79qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av79q-command">
+            <aside><h1>병원 예약 AX Console</h1><p>병원 예약 콜 요약 실시간 처리 로그</p>
+        <article class="av79q-metric">
+            <span>이상치</span>
+            <b data-meter>70%</b>
+            <i style="--w:93%"></i>
+        </article>
+        <article class="av79q-metric">
+            <span>우선순위</span>
+            <b data-meter>81%</b>
+            <i style="--w:66%"></i>
+        </article>
+        <article class="av79q-metric">
+            <span>자동 처리율</span>
+            <b data-meter>92%</b>
+            <i style="--w:79%"></i>
+        </article>
+        <article class="av79q-metric">
+            <span>검수 필요</span>
+            <b data-meter>74%</b>
+            <i style="--w:92%"></i>
+        </article></aside>
+            <main id="av79q-stream"></main>
+            <div class="radar"><i style="--x:35%;--y:31%"></i><i style="--x:58%;--y:62%"></i><i style="--x:19%;--y:29%"></i><i style="--x:42%;--y:60%"></i><i style="--x:65%;--y:27%"></i><i style="--x:26%;--y:58%"></i><i style="--x:49%;--y:25%"></i><i style="--x:72%;--y:56%"></i><i style="--x:33%;--y:23%"></i></div>
+        </section>
+<script>
+const av79qs=document.getElementById("av79q-stream");const av79qlogs=["자동 실행 queued","이상치 threshold crossed","owner=운영 자동화팀","sla.check passed","handoff ticket 79-A"];let av79qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av79qlogs[av79qn++%av79qlogs.length];av79qs.prepend(p);while(av79qs.children.length>26)av79qs.lastElementChild.remove();},430);
+const av79qmeters=[...document.querySelectorAll("[data-meter]")];
+let av79qtick=0;
+setInterval(()=>{
+  av79qtick++;
+  av79qmeters.forEach((el,i)=>el.textContent=(62+((av79qtick*3+i*9+79)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

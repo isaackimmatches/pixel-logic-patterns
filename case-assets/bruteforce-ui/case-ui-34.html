@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-34 | 영상 프레임 하이라이트 자동 추출</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#fff1f4;color:#2a1721}
+.cu34{height:100vh;padding:25px;gap:20px;background:radial-gradient(circle at 89% 46%, #ffc4d166, transparent 28%), linear-gradient(#ffe4e655 1px, transparent 1px), linear-gradient(90deg, #ffe4e655 1px, transparent 1px);background-size:auto,40px 40px,40px 40px}
+.cu34 > *{min-width:0}
+.cu34-hero,.cu34-visual,.cu34-meters,.cu34-board,.cu34-log,.cu34-nav{border:2px solid #2a1721;border-radius:24px;background:#ffffff;box-shadow:10px 10px 0 #2a1721;overflow:hidden}
+.cu34-hero{padding:24px}.cu34-hero p{margin:0;color:#e11d48;font-weight:950;letter-spacing:.06em}.cu34-hero h1{margin:10px 0 6px;font-size:50px;line-height:.98;letter-spacing:-.055em}.cu34-hero strong{display:block;color:#2a1721;opacity:.72}
+.cu34-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu34-nav span{border:1px solid #ffc4d1;border-radius:14px;background:#fff1f4;padding:12px;font-weight:950;font-size:13px}.cu34-nav span.on{background:#2a1721;color:#ffffff}
+.cu34-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu34-meter{border:1px solid #ffc4d1;border-radius:16px;padding:13px}.cu34-meter span{display:block;font-size:12px;color:#2a1721;opacity:.72}.cu34-meter b{font-size:26px}.cu34-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#e11d48;margin-top:8px}
+.cu34-board{padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-content:start}.cu34-board article{border:1px solid #ffc4d1;border-radius:16px;background:#fff1f4;padding:13px;min-height:82px}.cu34-board b{display:block;font-size:13px}.cu34-board span{display:block;margin-top:10px;color:#2a1721;opacity:.65;font-size:12px}.cu34-board em{display:block;margin-top:12px;color:#e11d48;font-style:normal;font-weight:950}
+.cu34-visual{position:relative;padding:18px}.cu34-log{background:#2a1721;color:#ffc4d1;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu34-nav{grid-row:1/4}.screen-a .cu34-hero{grid-column:2}.screen-a .cu34-visual{grid-column:2;grid-row:2/4}.screen-a .cu34-meters{grid-column:3;grid-row:1/3}.screen-a .cu34-board{grid-column:3;grid-row:3}.screen-a .cu34-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu34-hero{grid-column:1}.screen-b .cu34-meters{grid-column:2}.screen-b .cu34-visual{grid-column:1/3;grid-row:2}.screen-b .cu34-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu34-board{grid-column:3;grid-row:1/3}.screen-b .cu34-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu34-visual{grid-column:1;grid-row:1/5}.screen-c .cu34-hero{grid-column:2;grid-row:1}.screen-c .cu34-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu34-board{grid-column:2;grid-row:3}.screen-c .cu34-meters{grid-column:2;grid-row:4}.screen-c .cu34-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu34-nav{grid-row:1/3}.screen-d .cu34-board{grid-column:2;grid-row:1}.screen-d .cu34-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu34-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu34-meters{grid-column:2;grid-row:2}.screen-d .cu34-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu34-hero{grid-row:1}.screen-e .cu34-visual{grid-column:2;grid-row:1/4}.screen-e .cu34-log{grid-column:3;grid-row:1/3}.screen-e .cu34-board{grid-column:1;grid-row:2}.screen-e .cu34-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu34-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu34-meters{grid-column:1;grid-row:1/4}.screen-f .cu34-hero{grid-column:2;grid-row:1}.screen-f .cu34-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu34-visual{grid-column:2;grid-row:3}.screen-f .cu34-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu34-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu34-log{grid-row:1/3}.screen-g .cu34-hero{grid-column:2}.screen-g .cu34-visual{grid-column:2;grid-row:2}.screen-g .cu34-board{grid-column:3;grid-row:1}.screen-g .cu34-meters{grid-column:3;grid-row:2}.screen-g .cu34-nav{display:none}
+.cu34-asset{position:absolute;inset:0;background:#2a1721;overflow:hidden}.cu34-asset i{position:absolute;left:var(--x);top:var(--y);width:44px;height:44px;border-radius:14px;background:#e11d48;opacity:.72}.cu34-asset i.sel{background:#ffc4d1;box-shadow:0 0 0 10px #ffc4d133}.cu34-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#2a1721;border-radius:999px;padding:12px 15px}
+.cu34-radar{width:100%;height:100%}.cu34-radar circle{fill:none;stroke:#ffc4d1;stroke-width:3}.cu34-radar rect{fill:#ffffff;stroke:#2a1721;stroke-width:3}.cu34-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#2a1721}
+.cu34-supply{width:100%;height:100%;background:#fff1f4}.cu34-supply path{fill:none;stroke:#e11d48;stroke-width:10;stroke-dasharray:14 10}.cu34-supply circle{fill:#ffffff;stroke:#2a1721;stroke-width:5}.cu34-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#2a1721}
+.cu34-trading{height:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cu34-trading article{position:relative;border:1px solid #ffc4d1;border-radius:16px;background:#fff1f4;padding:12px}.cu34-trading small{font-weight:950;color:#e11d48}.cu34-trading b{display:block;font-size:22px;margin-top:8px}.cu34-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#ffc4d1,#e11d48)}
+.cu34-stars{width:100%;height:100%;background:#2a1721;border-radius:18px}.cu34-stars line{stroke:#ffc4d1;stroke-width:1;opacity:.45}.cu34-stars circle{fill:#ffc4d1}.cu34-stars circle.hot{fill:#e11d48}.cu34-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu34-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu34-document section,.cu34-document aside{border:1px solid #ffc4d1;border-radius:18px;background:#fff1f4;padding:22px}.cu34-document p{height:13px;border-radius:99px;background:#ffc4d1;margin:0 0 16px}.cu34-document p.mark{background:#e11d48;box-shadow:0 0 0 8px #ffc4d177}.cu34-document b{display:block;border-bottom:1px solid #ffc4d1;padding:14px 0;color:#e11d48}
+.cu34-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu34-voice>div{display:flex;align-items:center;gap:7px}.cu34-voice i{flex:1;border-radius:99px;background:#e11d48}.cu34-voice aside{border:1px solid #ffc4d1;border-radius:18px;background:#fff1f4;padding:16px}.cu34-voice p{border-bottom:1px solid #ffc4d1;padding-bottom:12px}.cu34-voice b,.cu34-voice span{display:block}
+.cu34-factory{height:100%;display:grid;grid-template-columns:repeat(12,1fr);gap:9px}.cu34-factory i{border-radius:10px;background:#ffe4e6;border:1px solid #ffc4d1}.cu34-factory i.warn{background:#f59e0b}.cu34-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu34-people-graph{position:absolute;inset:0;background:#ffffff}.cu34-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #2a1721;border-radius:999px;background:#fff1f4;padding:10px 12px;text-align:center}.cu34-people-graph b{display:block;font-size:12px}.cu34-people-graph span{color:#e11d48;font-weight:950}.cu34-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#ffc4d1;transform:rotate(var(--r));transform-origin:left center}
+.cu34-control{height:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.cu34-control article{border:1px solid #ffc4d1;border-radius:16px;background:#fff1f4;padding:14px}.cu34-control b,.cu34-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu34 screen-g"><aside class="cu34-log" id="cu34log"></aside><div class="cu34-hero"><p>Nova CX · CASE 034</p><h1>Creative Asset Forge</h1><strong>영상 프레임 하이라이트 자동 추출</strong></div><section class="cu34-visual"><div class="cu34-asset">
+            <i class="" style="--x:22%;--y:4%"></i><i class="" style="--x:59%;--y:57%"></i><i class="" style="--x:8%;--y:32%"></i><i class="" style="--x:45%;--y:7%"></i><i class="sel" style="--x:82%;--y:60%"></i><i class="" style="--x:31%;--y:35%"></i><i class="" style="--x:68%;--y:10%"></i><i class="" style="--x:17%;--y:63%"></i><i class="" style="--x:54%;--y:38%"></i><i class="sel" style="--x:3%;--y:13%"></i><i class="" style="--x:40%;--y:66%"></i><i class="" style="--x:77%;--y:41%"></i><i class="" style="--x:26%;--y:16%"></i><i class="" style="--x:63%;--y:69%"></i><i class="sel" style="--x:12%;--y:44%"></i><i class="" style="--x:49%;--y:19%"></i><i class="" style="--x:86%;--y:72%"></i><i class="" style="--x:35%;--y:47%"></i>
+            <b>버전 비교</b>
+        </div></section><section class="cu34-board"><article><b>에셋-034-0</b><span>톤 불일치</span><em data-live>92%</em></article><article><b>레이어-034-1</b><span>권리 위험</span><em data-live>64%</em></article><article><b>프레임-034-2</b><span>자동 생성</span><em data-live>75%</em></article><article><b>채널-034-3</b><span>검수 요청</span><em data-live>86%</em></article><article><b>에셋-034-4</b><span>버전 비교</span><em data-live>58%</em></article><article><b>레이어-034-5</b><span>배포</span><em data-live>69%</em></article><article><b>프레임-034-6</b><span>마스킹 경계</span><em data-live>80%</em></article><article><b>채널-034-7</b><span>프레임 변화</span><em data-live>91%</em></article><article><b>에셋-034-8</b><span>톤 불일치</span><em data-live>63%</em></article><article><b>레이어-034-9</b><span>권리 위험</span><em data-live>74%</em></article></section><div class="cu34-meters"><article class="cu34-meter"><span>버전 비교</span><b data-live>82%</b><i style="--w:82%"></i></article><article class="cu34-meter"><span>배포</span><b data-live>91%</b><i style="--w:91%"></i></article><article class="cu34-meter"><span>마스킹 경계</span><b data-live>63%</b><i style="--w:63%"></i></article><article class="cu34-meter"><span>프레임 변화</span><b data-live>72%</b><i style="--w:72%"></i></article><article class="cu34-meter"><span>톤 불일치</span><b data-live>81%</b><i style="--w:81%"></i></article></div><nav class="cu34-nav"><span class="">원본 에셋</span><span class="">브랜드 가이드</span><span class="">채널 규격</span><span class="">권리 DB</span><span class="on">자동 생성</span></nav></main>
+<script>
+
+
+const cu34Live=[...document.querySelectorAll("[data-live]")];
+let cu34Frame=0;
+setInterval(()=>{cu34Frame++;cu34Live.forEach((el,i)=>{el.textContent=(58+((cu34Frame*3+i*7+34)%39))+"%";});},1200);
+
+const cu34Log=document.getElementById("cu34log");
+if(cu34Log){
+  const rows=["마스킹 경계","프레임 변화","톤 불일치","권리 위험","자동 생성","검수 요청","버전 비교","배포","원본 에셋","브랜드 가이드","채널 규격","권리 DB"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu34Log.prepend(p);while(cu34Log.children.length>18)cu34Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

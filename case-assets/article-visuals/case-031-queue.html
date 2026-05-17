@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-31-queue | 광고소재 버전 관리</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#1f2937;color:#ffffff}.av31q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#f9731655,transparent 34%),#1f2937}.av31q-command aside,.av31q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av31q-command aside{padding:22px}. av31q-command h1{font-size:34px;line-height:1.04;margin:0}. av31q-command p{color:#ffd3b6;line-height:1.7}.av31q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av31q-metric b{font-size:26px}. av31q-metric span{display:block}. av31q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#f97316;margin-top:9px}.av31q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#f97316;transform-origin:0 0;animation:av31qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#ffd3b6;box-shadow:0 0 0 8px #ffd3b633}@keyframes av31qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av31q-command">
+            <aside><h1>Creative Asset Studio</h1><p>광고소재 버전 관리 실시간 처리 로그</p>
+        <article class="av31q-metric">
+            <span>피사체 경계</span>
+            <b data-meter>82%</b>
+            <i style="--w:85%"></i>
+        </article>
+        <article class="av31q-metric">
+            <span>프레임 변화</span>
+            <b data-meter>93%</b>
+            <i style="--w:58%"></i>
+        </article>
+        <article class="av31q-metric">
+            <span>톤 불일치</span>
+            <b data-meter>75%</b>
+            <i style="--w:71%"></i>
+        </article>
+        <article class="av31q-metric">
+            <span>저작권 위험</span>
+            <b data-meter>86%</b>
+            <i style="--w:84%"></i>
+        </article></aside>
+            <main id="av31q-stream"></main>
+            <div class="radar"><i style="--x:49%;--y:47%"></i><i style="--x:72%;--y:78%"></i><i style="--x:33%;--y:45%"></i><i style="--x:56%;--y:76%"></i><i style="--x:79%;--y:43%"></i><i style="--x:40%;--y:74%"></i><i style="--x:63%;--y:41%"></i><i style="--x:24%;--y:72%"></i><i style="--x:47%;--y:39%"></i></div>
+        </section>
+<script>
+const av31qs=document.getElementById("av31q-stream");const av31qlogs=["자동 마스킹 queued","피사체 경계 threshold crossed","owner=콘텐츠 제작팀","sla.check passed","handoff ticket 31-A"];let av31qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av31qlogs[av31qn++%av31qlogs.length];av31qs.prepend(p);while(av31qs.children.length>26)av31qs.lastElementChild.remove();},430);
+const av31qmeters=[...document.querySelectorAll("[data-meter]")];
+let av31qtick=0;
+setInterval(()=>{
+  av31qtick++;
+  av31qmeters.forEach((el,i)=>el.textContent=(62+((av31qtick*3+i*9+31)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

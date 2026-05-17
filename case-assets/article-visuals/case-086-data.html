@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-86-data | 세금계산서 매칭</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#effaf5;color:#10251d}.av86d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#b7f3d466 1px,transparent 1px),linear-gradient(90deg,#b7f3d466 1px,transparent 1px);background-size:42px 42px}.av86d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av86d-hub header p{margin:0;color:#10b981;font-weight:950}.av86d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av86d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av86d-hub path{stroke:#10b981;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av86d-hub circle{fill:#ffffff;stroke:#10251d;stroke-width:4}.core{fill:#10b981!important}. av86d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#10251d}.av86d-hub .core+text{fill:#ffffff;font-size:18px}.av86d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #10251d;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #10251d;padding:18px;display:grid;gap:14px;align-content:start}.av86d-metric{border:1px solid #b7f3d4;border-radius:18px;padding:16px}.av86d-metric span{display:block;color:#10251d;opacity:.72}.av86d-metric b{font-size:30px}.av86d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#10b981;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av86d-hub">
+            <header><p>Sable Factory</p><h1>Document Risk Workbench</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L168 284" /><path d="M600 350 L265 355" /><path d="M600 350 L362 426" /><path d="M600 350 L459 497" /><path d="M600 350 L556 568" /><path d="M600 350 L653 639" /><path d="M600 350 L750 130" /><path d="M600 350 L847 201" /><path d="M600 350 L944 272" /><path d="M600 350 L1041 343" /><path d="M600 350 L108 414" /><path d="M600 350 L205 485" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">문서</text>
+                <g transform="translate(168,284)"><circle r="30" /><text>PDF 원본</text></g><g transform="translate(265,355)"><circle r="36" /><text>거래처 원장</text></g><g transform="translate(362,426)"><circle r="42" /><text>승인 이력</text></g><g transform="translate(459,497)"><circle r="48" /><text>표준 조항집</text></g><g transform="translate(556,568)"><circle r="30" /><text>PDF 원본</text></g><g transform="translate(653,639)"><circle r="36" /><text>거래처 원장</text></g><g transform="translate(750,130)"><circle r="42" /><text>승인 이력</text></g><g transform="translate(847,201)"><circle r="48" /><text>표준 조항집</text></g><g transform="translate(944,272)"><circle r="30" /><text>PDF 원본</text></g><g transform="translate(1041,343)"><circle r="36" /><text>거래처 원장</text></g><g transform="translate(108,414)"><circle r="42" /><text>승인 이력</text></g><g transform="translate(205,485)"><circle r="48" /><text>표준 조항집</text></g>
+            </svg>
+            <aside>
+        <article class="av86d-metric">
+            <span>핵심 조항</span>
+            <b data-meter>90%</b>
+            <i style="--w:60%"></i>
+        </article>
+        <article class="av86d-metric">
+            <span>금액 불일치</span>
+            <b data-meter>72%</b>
+            <i style="--w:73%"></i>
+        </article>
+        <article class="av86d-metric">
+            <span>권한 예외</span>
+            <b data-meter>83%</b>
+            <i style="--w:86%"></i>
+        </article>
+        <article class="av86d-metric">
+            <span>검토 위험도</span>
+            <b data-meter>94%</b>
+            <i style="--w:59%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av86dmeters=[...document.querySelectorAll("[data-meter]")];
+let av86dtick=0;
+setInterval(()=>{
+  av86dtick++;
+  av86dmeters.forEach((el,i)=>el.textContent=(62+((av86dtick*3+i*9+86)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

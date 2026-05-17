@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-11-queue | 시즌 재고 알림</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#211a36;color:#ffffff}.av11q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#7c3aed55,transparent 34%),#211a36}.av11q-command aside,.av11q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av11q-command aside{padding:22px}. av11q-command h1{font-size:34px;line-height:1.04;margin:0}. av11q-command p{color:#d8b4fe;line-height:1.7}.av11q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av11q-metric b{font-size:26px}. av11q-metric span{display:block}. av11q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#7c3aed;margin-top:9px}.av11q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#7c3aed;transform-origin:0 0;animation:av11qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#d8b4fe;box-shadow:0 0 0 8px #d8b4fe33}@keyframes av11qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av11q-command">
+            <aside><h1>Inventory Forecast Console</h1><p>시즌 재고 알림 실시간 처리 로그</p>
+        <article class="av11q-metric">
+            <span>품절 예상시점</span>
+            <b data-meter>87%</b>
+            <i style="--w:65%"></i>
+        </article>
+        <article class="av11q-metric">
+            <span>과재고 지수</span>
+            <b data-meter>69%</b>
+            <i style="--w:78%"></i>
+        </article>
+        <article class="av11q-metric">
+            <span>대체 SKU</span>
+            <b data-meter>80%</b>
+            <i style="--w:91%"></i>
+        </article>
+        <article class="av11q-metric">
+            <span>센터 간 이동량</span>
+            <b data-meter>91%</b>
+            <i style="--w:64%"></i>
+        </article></aside>
+            <main id="av11q-stream"></main>
+            <div class="radar"><i style="--x:29%;--y:27%"></i><i style="--x:52%;--y:58%"></i><i style="--x:75%;--y:25%"></i><i style="--x:36%;--y:56%"></i><i style="--x:59%;--y:23%"></i><i style="--x:20%;--y:54%"></i><i style="--x:43%;--y:21%"></i><i style="--x:66%;--y:52%"></i><i style="--x:27%;--y:19%"></i></div>
+        </section>
+<script>
+const av11qs=document.getElementById("av11q-stream");const av11qlogs=["발주량 추천 queued","품절 예상시점 threshold crossed","owner=SCM 운영팀","sla.check passed","handoff ticket 11-A"];let av11qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av11qlogs[av11qn++%av11qlogs.length];av11qs.prepend(p);while(av11qs.children.length>26)av11qs.lastElementChild.remove();},430);
+const av11qmeters=[...document.querySelectorAll("[data-meter]")];
+let av11qtick=0;
+setInterval(()=>{
+  av11qtick++;
+  av11qmeters.forEach((el,i)=>el.textContent=(62+((av11qtick*3+i*9+11)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

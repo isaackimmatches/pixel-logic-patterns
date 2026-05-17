@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-95 | 프로젝트 리스크 예측</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f4f6ff;color:#1f2333}.cu95-risk{height:100vh;display:grid;grid-template-columns:330px 1fr 360px;gap:20px;padding:24px}aside,.gantt,.radial{border:2px solid #1f2333;border-radius:30px;background:#fff;box-shadow:8px 8px 0 #1f2333}aside{padding:24px}aside h1{font-size:36px;line-height:1.03;margin:0}.gantt{padding:24px;display:grid;gap:14px}.gantt div{position:relative;height:54px;border-bottom:1px solid #c7d2fe}.gantt b{position:absolute;left:0;top:12px}.gantt i{position:absolute;left:var(--l);width:var(--w);top:10px;height:28px;border-radius:999px;background:#4f46e5}.gantt em{position:absolute;right:0;top:12px;font-style:normal;color:#4f46e5;font-weight:950}.radial{display:grid;place-items:center}.radial svg{width:88%}.radial path{stroke:#c7d2fe;stroke-width:3}.radial circle{fill:#4f46e5;stroke:#1f2333;stroke-width:5}.radial text{text-anchor:middle;fill:white;font-weight:950;font-size:38px}.cu95-meter{border:1px solid #c7d2fe;border-radius:18px;padding:14px;margin-top:14px}.cu95-meter b{font-size:28px}.cu95-meter span{display:block}.cu95-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#4f46e5}
+</style>
+</head>
+<body>
+<main class="cu95-risk">
+            <aside><h1>Project Risk Forecaster</h1><p>프로젝트 리스크 예측</p><article class="cu95-meter"><span>복구 캠페인</span><b data-live>91%</b><i style="--w:91%"></i></article><article class="cu95-meter"><span>이탈 위험</span><b data-live>63%</b><i style="--w:63%"></i></article><article class="cu95-meter"><span>권한 이상</span><b data-live>72%</b><i style="--w:72%"></i></article><article class="cu95-meter"><span>응답 지연</span><b data-live>81%</b><i style="--w:81%"></i></article></aside>
+            <section class="gantt"><div><b>PM</b><i style="--l:8%;--w:37%"></i><em>이탈 위험</em></div><div><b>Design</b><i style="--l:15%;--w:48%"></i><em>권한 이상</em></div><div><b>API</b><i style="--l:22%;--w:59%"></i><em>응답 지연</em></div><div><b>QA</b><i style="--l:29%;--w:30%"></i><em>리텐션 점수</em></div><div><b>Deploy</b><i style="--l:36%;--w:41%"></i><em>이탈 위험</em></div><div><b>PM</b><i style="--l:43%;--w:52%"></i><em>권한 이상</em></div><div><b>Design</b><i style="--l:8%;--w:23%"></i><em>응답 지연</em></div><div><b>API</b><i style="--l:15%;--w:34%"></i><em>리텐션 점수</em></div><div><b>QA</b><i style="--l:22%;--w:45%"></i><em>이탈 위험</em></div></section>
+            <section class="radial"><svg viewBox="0 0 420 420"><path d="M210 210 L305 210"/><path d="M210 210 L290.4346665274927 277.49269901708664"/><path d="M210 210 L229.969540431697 323.2528915964039"/><path d="M210 210 L147.50000000000003 318.25317547305485"/><path d="M210 210 L83.14149619390238 256.1727193489653"/><path d="M210 210 L73.74456998604327 160.40707921777806"/><path d="M210 210 L132.49999999999994 75.76606241341204"/><path d="M210 210 L238.65194931504345 47.50672075298567"/><path d="M210 210 L344.0577775458211 97.51216830485558"/><circle cx="210" cy="210" r="86"/><text x="210" y="218">RISK</text></svg></section>
+        </main>
+<script>
+
+const cu95Live=[...document.querySelectorAll("[data-live]")];
+let cu95Frame=0;
+setInterval(()=>{cu95Frame++;cu95Live.forEach((el,i)=>{el.textContent=(58+((cu95Frame*3+i*7+95)%39))+"%";});},1200);
+
+</script>
+</body>
+</html>

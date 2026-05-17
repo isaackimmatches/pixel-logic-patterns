@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-22-data | 오픈마켓 등록 자동화</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f5f3ff;color:#211a36}.av22d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#d8b4fe66 1px,transparent 1px),linear-gradient(90deg,#d8b4fe66 1px,transparent 1px);background-size:42px 42px}.av22d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av22d-hub header p{margin:0;color:#7c3aed;font-weight:950}.av22d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av22d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av22d-hub path{stroke:#7c3aed;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av22d-hub circle{fill:#ffffff;stroke:#211a36;stroke-width:4}.core{fill:#7c3aed!important}. av22d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#211a36}.av22d-hub .core+text{fill:#ffffff;font-size:18px}.av22d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #211a36;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #211a36;padding:18px;display:grid;gap:14px;align-content:start}.av22d-metric{border:1px solid #d8b4fe;border-radius:18px;padding:16px}.av22d-metric span{display:block;color:#211a36;opacity:.72}.av22d-metric b{font-size:30px}.av22d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#7c3aed;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av22d-hub">
+            <header><p>Modo Beauty</p><h1>오픈마켓 등록 AX Console</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L366 168" /><path d="M600 350 L463 239" /><path d="M600 350 L560 310" /><path d="M600 350 L657 381" /><path d="M600 350 L754 452" /><path d="M600 350 L851 523" /><path d="M600 350 L948 594" /><path d="M600 350 L1045 665" /><path d="M600 350 L112 156" /><path d="M600 350 L209 227" /><path d="M600 350 L306 298" /><path d="M600 350 L403 369" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">SKU</text>
+                <g transform="translate(366,168)"><circle r="30" /><text>상품 DB</text></g><g transform="translate(463,239)"><circle r="36" /><text>주문 로그</text></g><g transform="translate(560,310)"><circle r="42" /><text>리뷰 텍스트</text></g><g transform="translate(657,381)"><circle r="48" /><text>재고 원장</text></g><g transform="translate(754,452)"><circle r="30" /><text>상품 DB</text></g><g transform="translate(851,523)"><circle r="36" /><text>주문 로그</text></g><g transform="translate(948,594)"><circle r="42" /><text>리뷰 텍스트</text></g><g transform="translate(1045,665)"><circle r="48" /><text>재고 원장</text></g><g transform="translate(112,156)"><circle r="30" /><text>상품 DB</text></g><g transform="translate(209,227)"><circle r="36" /><text>주문 로그</text></g><g transform="translate(306,298)"><circle r="42" /><text>리뷰 텍스트</text></g><g transform="translate(403,369)"><circle r="48" /><text>재고 원장</text></g>
+            </svg>
+            <aside>
+        <article class="av22d-metric">
+            <span>이상치</span>
+            <b data-meter>77%</b>
+            <i style="--w:76%"></i>
+        </article>
+        <article class="av22d-metric">
+            <span>우선순위</span>
+            <b data-meter>88%</b>
+            <i style="--w:89%"></i>
+        </article>
+        <article class="av22d-metric">
+            <span>자동 처리율</span>
+            <b data-meter>70%</b>
+            <i style="--w:62%"></i>
+        </article>
+        <article class="av22d-metric">
+            <span>검수 필요</span>
+            <b data-meter>81%</b>
+            <i style="--w:75%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av22dmeters=[...document.querySelectorAll("[data-meter]")];
+let av22dtick=0;
+setInterval(()=>{
+  av22dtick++;
+  av22dmeters.forEach((el,i)=>el.textContent=(62+((av22dtick*3+i*9+22)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

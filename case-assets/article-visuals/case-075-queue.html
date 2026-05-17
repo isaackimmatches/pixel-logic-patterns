@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-75-queue | 에너지 사용량 최적화</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#10251d;color:#ffffff}.av75q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#10b98155,transparent 34%),#10251d}.av75q-command aside,.av75q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av75q-command aside{padding:22px}. av75q-command h1{font-size:34px;line-height:1.04;margin:0}. av75q-command p{color:#b7f3d4;line-height:1.7}.av75q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av75q-metric b{font-size:26px}. av75q-metric span{display:block}. av75q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#10b981;margin-top:9px}.av75q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#10b981;transform-origin:0 0;animation:av75qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#b7f3d4;box-shadow:0 0 0 8px #b7f3d433}@keyframes av75qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av75q-command">
+            <aside><h1>Factory Signal Monitor</h1><p>에너지 사용량 최적화 실시간 처리 로그</p>
+        <article class="av75q-metric">
+            <span>설비 편차</span>
+            <b data-meter>71%</b>
+            <i style="--w:89%"></i>
+        </article>
+        <article class="av75q-metric">
+            <span>불량 픽셀</span>
+            <b data-meter>82%</b>
+            <i style="--w:62%"></i>
+        </article>
+        <article class="av75q-metric">
+            <span>라인 병목</span>
+            <b data-meter>93%</b>
+            <i style="--w:75%"></i>
+        </article>
+        <article class="av75q-metric">
+            <span>정비 우선순위</span>
+            <b data-meter>75%</b>
+            <i style="--w:88%"></i>
+        </article></aside>
+            <main id="av75q-stream"></main>
+            <div class="radar"><i style="--x:31%;--y:27%"></i><i style="--x:54%;--y:58%"></i><i style="--x:77%;--y:25%"></i><i style="--x:38%;--y:56%"></i><i style="--x:61%;--y:23%"></i><i style="--x:22%;--y:54%"></i><i style="--x:45%;--y:21%"></i><i style="--x:68%;--y:52%"></i><i style="--x:29%;--y:19%"></i></div>
+        </section>
+<script>
+const av75qs=document.getElementById("av75q-stream");const av75qlogs=["작업지시 추천 queued","설비 편차 threshold crossed","owner=공장 운영팀","sla.check passed","handoff ticket 75-A"];let av75qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av75qlogs[av75qn++%av75qlogs.length];av75qs.prepend(p);while(av75qs.children.length>26)av75qs.lastElementChild.remove();},430);
+const av75qmeters=[...document.querySelectorAll("[data-meter]")];
+let av75qtick=0;
+setInterval(()=>{
+  av75qtick++;
+  av75qmeters.forEach((el,i)=>el.textContent=(62+((av75qtick*3+i*9+75)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-91 | 회원탈퇴 예측</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#fff1f4;color:#2a1721}.cu91-churn{height:100vh;display:grid;grid-template-columns:300px 1fr 310px;grid-template-rows:76px 1fr;gap:18px;padding:22px}.cu91-churn nav{grid-column:1/4;border:2px solid #2a1721;border-radius:24px;background:#fff;box-shadow:8px 8px 0 #2a1721;display:flex;align-items:center;gap:18px;padding:0 22px}.cu91-churn nav b{font-size:24px;color:#e11d48}.cu91-churn nav em{margin-left:auto;font-style:normal}.cohort,.curve,aside{border:2px solid #2a1721;border-radius:28px;background:#fff;box-shadow:8px 8px 0 #2a1721}.cohort{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;padding:18px}.cohort i{border-radius:12px;background:#ffe4e6}.cohort i.risk{background:#e11d48}.cohort i.save{background:#7c3aed}.curve{position:relative;padding:28px}.curve h1{font-size:42px;margin:0;position:absolute;left:34px;top:34px}.curve svg{position:absolute;inset:92px 36px 34px 36px;width:calc(100% - 72px);height:calc(100% - 126px)}.curve path{fill:none;stroke:#e11d48;stroke-width:10;stroke-linecap:round}.curve path.base{stroke:#c7d2fe;stroke-width:6}aside{padding:18px}.cu91-meter{border:1px solid #ffc4d1;border-radius:18px;padding:14px;margin-bottom:12px}.cu91-meter b{font-size:28px}.cu91-meter span{display:block}.cu91-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#e11d48}
+</style>
+</head>
+<body>
+<main class="cu91-churn">
+            <nav><b>Churn Lens</b><span>회원탈퇴 예측</span><em>Nova CX</em></nav>
+            <section class="cohort"><i class="risk"></i><i class="risk"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="risk"></i><i class="risk"></i><i class=""></i><i class="save"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="risk"></i><i class="risk"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="save"></i><i class=""></i><i class="risk"></i><i class="risk"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="risk"></i><i class="risk"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="risk"></i><i class="risk"></i><i class=""></i><i class=""></i><i class="save"></i><i class=""></i><i class=""></i><i class=""></i><i class="risk"></i><i class="risk"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="save"></i></section>
+            <section class="curve"><svg viewBox="0 0 760 430"><path d="M30 360 C170 220 250 280 340 170 S570 110 720 70"/><path class="base" d="M30 390 C180 370 300 330 430 270 S620 185 730 150"/></svg><h1>회원 이탈 생존곡선</h1></section>
+            <aside><article class="cu91-meter"><span>권한 변경</span><b data-live>71%</b><i style="--w:71%"></i></article><article class="cu91-meter"><span>알림 발송</span><b data-live>80%</b><i style="--w:80%"></i></article><article class="cu91-meter"><span>담당 배정</span><b data-live>89%</b><i style="--w:89%"></i></article><article class="cu91-meter"><span>권한 조정</span><b data-live>61%</b><i style="--w:61%"></i></article><article class="cu91-meter"><span>복구 캠페인</span><b data-live>70%</b><i style="--w:70%"></i></article></aside>
+        </main>
+<script>
+
+const cu91Live=[...document.querySelectorAll("[data-live]")];
+let cu91Frame=0;
+setInterval(()=>{cu91Frame++;cu91Live.forEach((el,i)=>{el.textContent=(58+((cu91Frame*3+i*7+91)%39))+"%";});},1200);
+
+</script>
+</body>
+</html>

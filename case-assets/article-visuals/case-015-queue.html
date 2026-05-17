@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-15-queue | 경쟁사 상품 속성 수집</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#1f2333;color:#ffffff}.av15q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#4f46e555,transparent 34%),#1f2333}.av15q-command aside,.av15q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av15q-command aside{padding:22px}. av15q-command h1{font-size:34px;line-height:1.04;margin:0}. av15q-command p{color:#c7d2fe;line-height:1.7}.av15q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av15q-metric b{font-size:26px}. av15q-metric span{display:block}. av15q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#4f46e5;margin-top:9px}.av15q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#4f46e5;transform-origin:0 0;animation:av15qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#c7d2fe;box-shadow:0 0 0 8px #c7d2fe33}@keyframes av15qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av15q-command">
+            <aside><h1>경쟁사 상품 AX Console</h1><p>경쟁사 상품 속성 수집 실시간 처리 로그</p>
+        <article class="av15q-metric">
+            <span>이상치</span>
+            <b data-meter>86%</b>
+            <i style="--w:69%"></i>
+        </article>
+        <article class="av15q-metric">
+            <span>우선순위</span>
+            <b data-meter>68%</b>
+            <i style="--w:82%"></i>
+        </article>
+        <article class="av15q-metric">
+            <span>자동 처리율</span>
+            <b data-meter>79%</b>
+            <i style="--w:55%"></i>
+        </article>
+        <article class="av15q-metric">
+            <span>검수 필요</span>
+            <b data-meter>90%</b>
+            <i style="--w:68%"></i>
+        </article></aside>
+            <main id="av15q-stream"></main>
+            <div class="radar"><i style="--x:33%;--y:31%"></i><i style="--x:56%;--y:62%"></i><i style="--x:79%;--y:29%"></i><i style="--x:40%;--y:60%"></i><i style="--x:63%;--y:27%"></i><i style="--x:24%;--y:58%"></i><i style="--x:47%;--y:25%"></i><i style="--x:70%;--y:56%"></i><i style="--x:31%;--y:23%"></i></div>
+        </section>
+<script>
+const av15qs=document.getElementById("av15q-stream");const av15qlogs=["자동 실행 queued","이상치 threshold crossed","owner=커머스 운영팀","sla.check passed","handoff ticket 15-A"];let av15qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av15qlogs[av15qn++%av15qlogs.length];av15qs.prepend(p);while(av15qs.children.length>26)av15qs.lastElementChild.remove();},430);
+const av15qmeters=[...document.querySelectorAll("[data-meter]")];
+let av15qtick=0;
+setInterval(()=>{
+  av15qtick++;
+  av15qmeters.forEach((el,i)=>el.textContent=(62+((av15qtick*3+i*9+15)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

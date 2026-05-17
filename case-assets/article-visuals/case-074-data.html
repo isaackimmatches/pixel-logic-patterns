@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-74-data | 유지보수 티켓 분류</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f8fafc;color:#0f172a}.av74d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#bae6fd66 1px,transparent 1px),linear-gradient(90deg,#bae6fd66 1px,transparent 1px);background-size:42px 42px}.av74d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av74d-hub header p{margin:0;color:#0ea5e9;font-weight:950}.av74d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av74d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av74d-hub path{stroke:#0ea5e9;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av74d-hub circle{fill:#ffffff;stroke:#0f172a;stroke-width:4}.core{fill:#0ea5e9!important}. av74d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#0f172a}.av74d-hub .core+text{fill:#ffffff;font-size:18px}.av74d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #0f172a;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #0f172a;padding:18px;display:grid;gap:14px;align-content:start}.av74d-metric{border:1px solid #bae6fd;border-radius:18px;padding:16px}.av74d-metric span{display:block;color:#0f172a;opacity:.72}.av74d-metric b{font-size:30px}.av74d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#0ea5e9;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av74d-hub">
+            <header><p>Brewline Foods</p><h1>Factory Signal Monitor</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L1042 516" /><path d="M600 350 L109 587" /><path d="M600 350 L206 658" /><path d="M600 350 L303 149" /><path d="M600 350 L400 220" /><path d="M600 350 L497 291" /><path d="M600 350 L594 362" /><path d="M600 350 L691 433" /><path d="M600 350 L788 504" /><path d="M600 350 L885 575" /><path d="M600 350 L982 646" /><path d="M600 350 L1079 137" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">라인</text>
+                <g transform="translate(1042,516)"><circle r="30" /><text>MES 로그</text></g><g transform="translate(109,587)"><circle r="36" /><text>센서 스트림</text></g><g transform="translate(206,658)"><circle r="42" /><text>검사 이미지</text></g><g transform="translate(303,149)"><circle r="48" /><text>작업지시서</text></g><g transform="translate(400,220)"><circle r="30" /><text>MES 로그</text></g><g transform="translate(497,291)"><circle r="36" /><text>센서 스트림</text></g><g transform="translate(594,362)"><circle r="42" /><text>검사 이미지</text></g><g transform="translate(691,433)"><circle r="48" /><text>작업지시서</text></g><g transform="translate(788,504)"><circle r="30" /><text>MES 로그</text></g><g transform="translate(885,575)"><circle r="36" /><text>센서 스트림</text></g><g transform="translate(982,646)"><circle r="42" /><text>검사 이미지</text></g><g transform="translate(1079,137)"><circle r="48" /><text>작업지시서</text></g>
+            </svg>
+            <aside>
+        <article class="av74d-metric">
+            <span>설비 편차</span>
+            <b data-meter>93%</b>
+            <i style="--w:88%"></i>
+        </article>
+        <article class="av74d-metric">
+            <span>불량 픽셀</span>
+            <b data-meter>75%</b>
+            <i style="--w:61%"></i>
+        </article>
+        <article class="av74d-metric">
+            <span>라인 병목</span>
+            <b data-meter>86%</b>
+            <i style="--w:74%"></i>
+        </article>
+        <article class="av74d-metric">
+            <span>정비 우선순위</span>
+            <b data-meter>68%</b>
+            <i style="--w:87%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av74dmeters=[...document.querySelectorAll("[data-meter]")];
+let av74dtick=0;
+setInterval(()=>{
+  av74dtick++;
+  av74dmeters.forEach((el,i)=>el.textContent=(62+((av74dtick*3+i*9+74)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

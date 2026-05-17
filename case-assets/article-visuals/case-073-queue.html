@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-73-queue | 품질검사 리포트 자동화</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#fff7ed;color:#1f2937}.av73q-tickets{height:100vh;display:grid;grid-template-rows:80px 1fr;grid-template-columns:1fr 310px;gap:18px;padding:22px}.av73q-tickets header{grid-column:1/3;border:2px solid #1f2937;border-radius:24px;background:#ffffff;box-shadow:8px 8px 0 #1f2937;display:flex;align-items:center;gap:18px;padding:0 22px}.av73q-tickets h1{font-size:32px;margin:0}.av73q-tickets header span{margin-left:auto;color:#f97316;font-weight:950}.av73q-tickets main{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}. av73q-tickets article,.av73q-tickets aside{border:2px solid #1f2937;border-radius:22px;background:#ffffff;box-shadow:6px 6px 0 #1f2937}.av73q-tickets article{padding:16px}. av73q-tickets article.urgent{background:#ffd3b6}.av73q-tickets article b{display:block;font-size:15px}. av73q-tickets article span{display:block;color:#1f2937;opacity:.68;margin:12px 0}. av73q-tickets article em{font-style:normal;color:#f97316;font-weight:950}.av73q-tickets aside{padding:18px}.av73q-metric{border:1px solid #ffd3b6;border-radius:18px;padding:14px;margin-bottom:12px}.av73q-metric b{font-size:28px}. av73q-metric span{display:block}. av73q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#f97316;margin-top:9px}
+</style>
+</head>
+<body>
+<div class="av73q-tickets">
+        <header><h1>Factory Signal Monitor Ticket Router</h1><span>공장 운영팀</span></header>
+        <main><article class="urgent"><b>라인-073-0</b><span>설비 편차</span><em>작업지시 추천</em></article><article class=""><b>설비-073-1</b><span>불량 픽셀</span><em>정비 티켓</em></article><article class=""><b>LOT-073-2</b><span>라인 병목</span><em>라인 정지 알림</em></article><article class=""><b>검사-073-3</b><span>정비 우선순위</span><em>품질 리포트</em></article><article class=""><b>라인-073-4</b><span>설비 편차</span><em>작업지시 추천</em></article><article class="urgent"><b>설비-073-5</b><span>불량 픽셀</span><em>정비 티켓</em></article><article class=""><b>LOT-073-6</b><span>라인 병목</span><em>라인 정지 알림</em></article><article class=""><b>검사-073-7</b><span>정비 우선순위</span><em>품질 리포트</em></article><article class=""><b>라인-073-8</b><span>설비 편차</span><em>작업지시 추천</em></article><article class=""><b>설비-073-9</b><span>불량 픽셀</span><em>정비 티켓</em></article><article class="urgent"><b>LOT-073-10</b><span>라인 병목</span><em>라인 정지 알림</em></article><article class=""><b>검사-073-11</b><span>정비 우선순위</span><em>품질 리포트</em></article><article class=""><b>라인-073-12</b><span>설비 편차</span><em>작업지시 추천</em></article><article class=""><b>설비-073-13</b><span>불량 픽셀</span><em>정비 티켓</em></article><article class=""><b>LOT-073-14</b><span>라인 병목</span><em>라인 정지 알림</em></article><article class="urgent"><b>검사-073-15</b><span>정비 우선순위</span><em>품질 리포트</em></article><article class=""><b>라인-073-16</b><span>설비 편차</span><em>작업지시 추천</em></article><article class=""><b>설비-073-17</b><span>불량 픽셀</span><em>정비 티켓</em></article></main>
+        <aside>
+        <article class="av73q-metric">
+            <span>설비 편차</span>
+            <b data-meter>86%</b>
+            <i style="--w:87%"></i>
+        </article>
+        <article class="av73q-metric">
+            <span>불량 픽셀</span>
+            <b data-meter>68%</b>
+            <i style="--w:60%"></i>
+        </article>
+        <article class="av73q-metric">
+            <span>라인 병목</span>
+            <b data-meter>79%</b>
+            <i style="--w:73%"></i>
+        </article>
+        <article class="av73q-metric">
+            <span>정비 우선순위</span>
+            <b data-meter>90%</b>
+            <i style="--w:86%"></i>
+        </article></aside>
+    </div>
+<script>
+
+const av73qmeters=[...document.querySelectorAll("[data-meter]")];
+let av73qtick=0;
+setInterval(()=>{
+  av73qtick++;
+  av73qmeters.forEach((el,i)=>el.textContent=(62+((av73qtick*3+i*9+73)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

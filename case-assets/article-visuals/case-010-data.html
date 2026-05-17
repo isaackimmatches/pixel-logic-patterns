@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-10-data | 개인화 메인 진열</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#fff1f4;color:#2a1721}.av10d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#ffc4d166 1px,transparent 1px),linear-gradient(90deg,#ffc4d166 1px,transparent 1px);background-size:42px 42px}.av10d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av10d-hub header p{margin:0;color:#e11d48;font-weight:950}.av10d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av10d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av10d-hub path{stroke:#e11d48;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av10d-hub circle{fill:#ffffff;stroke:#2a1721;stroke-width:4}.core{fill:#e11d48!important}. av10d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#2a1721}.av10d-hub .core+text{fill:#ffffff;font-size:18px}.av10d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #2a1721;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #2a1721;padding:18px;display:grid;gap:14px;align-content:start}.av10d-metric{border:1px solid #ffc4d1;border-radius:18px;padding:16px}.av10d-metric span{display:block;color:#2a1721;opacity:.72}.av10d-metric b{font-size:30px}.av10d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#e11d48;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av10d-hub">
+            <header><p>Verse Legal</p><h1>개인화 메인 AX Console</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L210 400" /><path d="M600 350 L307 471" /><path d="M600 350 L404 542" /><path d="M600 350 L501 613" /><path d="M600 350 L598 684" /><path d="M600 350 L695 175" /><path d="M600 350 L792 246" /><path d="M600 350 L889 317" /><path d="M600 350 L986 388" /><path d="M600 350 L1083 459" /><path d="M600 350 L150 530" /><path d="M600 350 L247 601" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">SKU</text>
+                <g transform="translate(210,400)"><circle r="30" /><text>상품 DB</text></g><g transform="translate(307,471)"><circle r="36" /><text>주문 로그</text></g><g transform="translate(404,542)"><circle r="42" /><text>리뷰 텍스트</text></g><g transform="translate(501,613)"><circle r="48" /><text>재고 원장</text></g><g transform="translate(598,684)"><circle r="30" /><text>상품 DB</text></g><g transform="translate(695,175)"><circle r="36" /><text>주문 로그</text></g><g transform="translate(792,246)"><circle r="42" /><text>리뷰 텍스트</text></g><g transform="translate(889,317)"><circle r="48" /><text>재고 원장</text></g><g transform="translate(986,388)"><circle r="30" /><text>상품 DB</text></g><g transform="translate(1083,459)"><circle r="36" /><text>주문 로그</text></g><g transform="translate(150,530)"><circle r="42" /><text>리뷰 텍스트</text></g><g transform="translate(247,601)"><circle r="48" /><text>재고 원장</text></g>
+            </svg>
+            <aside>
+        <article class="av10d-metric">
+            <span>이상치</span>
+            <b data-meter>80%</b>
+            <i style="--w:64%"></i>
+        </article>
+        <article class="av10d-metric">
+            <span>우선순위</span>
+            <b data-meter>91%</b>
+            <i style="--w:77%"></i>
+        </article>
+        <article class="av10d-metric">
+            <span>자동 처리율</span>
+            <b data-meter>73%</b>
+            <i style="--w:90%"></i>
+        </article>
+        <article class="av10d-metric">
+            <span>검수 필요</span>
+            <b data-meter>84%</b>
+            <i style="--w:63%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av10dmeters=[...document.querySelectorAll("[data-meter]")];
+let av10dtick=0;
+setInterval(()=>{
+  av10dtick++;
+  av10dmeters.forEach((el,i)=>el.textContent=(62+((av10dtick*3+i*9+10)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

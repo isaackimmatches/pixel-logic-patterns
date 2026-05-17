@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-59-queue | 다국어 상세페이지 로컬라이징</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#1f2937;color:#ffffff}.av59q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#f9731655,transparent 34%),#1f2937}.av59q-command aside,.av59q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av59q-command aside{padding:22px}. av59q-command h1{font-size:34px;line-height:1.04;margin:0}. av59q-command p{color:#ffd3b6;line-height:1.7}.av59q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av59q-metric b{font-size:26px}. av59q-metric span{display:block}. av59q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#f97316;margin-top:9px}.av59q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#f97316;transform-origin:0 0;animation:av59qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#ffd3b6;box-shadow:0 0 0 8px #ffd3b633}@keyframes av59qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av59q-command">
+            <aside><h1>다국어 상세페이지 AX Console</h1><p>다국어 상세페이지 로컬라이징 실시간 처리 로그</p>
+        <article class="av59q-metric">
+            <span>이상치</span>
+            <b data-meter>75%</b>
+            <i style="--w:73%"></i>
+        </article>
+        <article class="av59q-metric">
+            <span>우선순위</span>
+            <b data-meter>86%</b>
+            <i style="--w:86%"></i>
+        </article>
+        <article class="av59q-metric">
+            <span>자동 처리율</span>
+            <b data-meter>68%</b>
+            <i style="--w:59%"></i>
+        </article>
+        <article class="av59q-metric">
+            <span>검수 필요</span>
+            <b data-meter>79%</b>
+            <i style="--w:72%"></i>
+        </article></aside>
+            <main id="av59q-stream"></main>
+            <div class="radar"><i style="--x:77%;--y:75%"></i><i style="--x:38%;--y:42%"></i><i style="--x:61%;--y:73%"></i><i style="--x:22%;--y:40%"></i><i style="--x:45%;--y:71%"></i><i style="--x:68%;--y:38%"></i><i style="--x:29%;--y:69%"></i><i style="--x:52%;--y:36%"></i><i style="--x:75%;--y:67%"></i></div>
+        </section>
+<script>
+const av59qs=document.getElementById("av59q-stream");const av59qlogs=["자동 실행 queued","이상치 threshold crossed","owner=브랜드 운영팀","sla.check passed","handoff ticket 59-A"];let av59qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av59qlogs[av59qn++%av59qlogs.length];av59qs.prepend(p);while(av59qs.children.length>26)av59qs.lastElementChild.remove();},430);
+const av59qmeters=[...document.querySelectorAll("[data-meter]")];
+let av59qtick=0;
+setInterval(()=>{
+  av59qtick++;
+  av59qmeters.forEach((el,i)=>el.textContent=(62+((av59qtick*3+i*9+59)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

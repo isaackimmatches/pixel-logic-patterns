@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-90-data | 콜센터 상담 요약</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f7fbff;color:#111827}.av90d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#9bd4ff66 1px,transparent 1px),linear-gradient(90deg,#9bd4ff66 1px,transparent 1px);background-size:42px 42px}.av90d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av90d-hub header p{margin:0;color:#2563eb;font-weight:950}.av90d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av90d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av90d-hub path{stroke:#2563eb;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av90d-hub circle{fill:#ffffff;stroke:#111827;stroke-width:4}.core{fill:#2563eb!important}. av90d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#111827}.av90d-hub .core+text{fill:#ffffff;font-size:18px}.av90d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #111827;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #111827;padding:18px;display:grid;gap:14px;align-content:start}.av90d-metric{border:1px solid #9bd4ff;border-radius:18px;padding:16px}.av90d-metric span{display:block;color:#111827;opacity:.72}.av90d-metric b{font-size:30px}.av90d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#2563eb;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av90d-hub">
+            <header><p>MUSE CONTENT</p><h1>Conversation Intelligence Desk</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L220 400" /><path d="M600 350 L317 471" /><path d="M600 350 L414 542" /><path d="M600 350 L511 613" /><path d="M600 350 L608 684" /><path d="M600 350 L705 175" /><path d="M600 350 L802 246" /><path d="M600 350 L899 317" /><path d="M600 350 L996 388" /><path d="M600 350 L1093 459" /><path d="M600 350 L160 530" /><path d="M600 350 L257 601" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">콜</text>
+                <g transform="translate(220,400)"><circle r="30" /><text>상담 녹취</text></g><g transform="translate(317,471)"><circle r="36" /><text>CRM 프로필</text></g><g transform="translate(414,542)"><circle r="42" /><text>문의 이력</text></g><g transform="translate(511,613)"><circle r="48" /><text>지식베이스</text></g><g transform="translate(608,684)"><circle r="30" /><text>상담 녹취</text></g><g transform="translate(705,175)"><circle r="36" /><text>CRM 프로필</text></g><g transform="translate(802,246)"><circle r="42" /><text>문의 이력</text></g><g transform="translate(899,317)"><circle r="48" /><text>지식베이스</text></g><g transform="translate(996,388)"><circle r="30" /><text>상담 녹취</text></g><g transform="translate(1093,459)"><circle r="36" /><text>CRM 프로필</text></g><g transform="translate(160,530)"><circle r="42" /><text>문의 이력</text></g><g transform="translate(257,601)"><circle r="48" /><text>지식베이스</text></g>
+            </svg>
+            <aside>
+        <article class="av90d-metric">
+            <span>의도 분류</span>
+            <b data-meter>89%</b>
+            <i style="--w:64%"></i>
+        </article>
+        <article class="av90d-metric">
+            <span>감정 변화</span>
+            <b data-meter>71%</b>
+            <i style="--w:77%"></i>
+        </article>
+        <article class="av90d-metric">
+            <span>재문의 확률</span>
+            <b data-meter>82%</b>
+            <i style="--w:90%"></i>
+        </article>
+        <article class="av90d-metric">
+            <span>품질 점수</span>
+            <b data-meter>93%</b>
+            <i style="--w:63%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av90dmeters=[...document.querySelectorAll("[data-meter]")];
+let av90dtick=0;
+setInterval(()=>{
+  av90dtick++;
+  av90dmeters.forEach((el,i)=>el.textContent=(62+((av90dtick*3+i*9+90)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-64-data | 작업지시 추천</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f5f3ff;color:#211a36}.av64d-mapper{height:100vh;padding:26px;display:grid;grid-template-rows:86px 1fr;gap:18px}.av64d-mapper header{display:flex;align-items:center;gap:18px;border:2px solid #211a36;border-radius:24px;background:#ffffff;padding:0 24px;box-shadow:8px 8px 0 #211a36}.av64d-mapper h1{font-size:34px;margin:0;letter-spacing:-.04em}.av64d-mapper strong{color:#7c3aed}.av64d-mapper header span{margin-left:auto;font-weight:950;letter-spacing:.16em}.av64d-flow{min-height:0;display:grid;grid-template-columns:260px 1fr 280px;gap:18px}.av64d-flow aside, .av64d-table{border:2px solid #211a36;border-radius:26px;background:#ffffff;box-shadow:8px 8px 0 #211a36}.av64d-flow aside{padding:16px;display:grid;gap:10px;align-content:start}.av64d-flow button{height:64px;border:1px solid #d8b4fe;border-radius:16px;background:#f5f3ff;text-align:left;padding:11px 14px;font-weight:950;color:#211a36}.av64d-flow button em{display:block;font-size:12px;color:#7c3aed;font-style:normal;margin-top:4px}.av64d-table{overflow:hidden}.head, .av64d-table div:not(.head){display:grid;grid-template-columns:1.1fr 1.1fr 1fr .7fr .7fr}.head{height:58px;background:#211a36;color:#ffffff;align-items:center;padding:0 16px;font-size:12px;text-transform:uppercase}.av64d-table div:not(.head){height:58px;align-items:center;border-bottom:1px solid #d8b4fe;padding:0 16px;color:#211a36}.av64d-table mark{border-radius:999px;background:#d8b4fe;color:#211a36;padding:7px 10px;font-weight:950}.right .av64d-metric{border:1px solid #d8b4fe;border-radius:18px;padding:14px}.right .av64d-metric span{display:block;color:#211a36;opacity:.72;font-size:12px}.right .av64d-metric b{font-size:28px}.right .av64d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#7c3aed;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av64d-mapper">
+            <header><strong>Verse Legal</strong><h1>Factory Signal Monitor</h1><span>DATA INTAKE</span></header>
+            <section class="av64d-flow">
+                <aside><button>MES 로그<em>3568</em></button><button>센서 스트림<em>3772</em></button><button>검사 이미지<em>3976</em></button><button>작업지시서<em>4180</em></button></aside>
+                <article class="av64d-table">
+                    <div class="head"><b>source_key</b><b>clean_rule</b><b>owner</b><b>refresh</b><b>status</b></div>
+                    <div><span>라인-640</span><span>설비 편차</span><span>공장 운영팀</span><span>realtime</span><mark>review</mark></div><div><span>설비-641</span><span>불량 픽셀</span><span>공장 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>LOT-642</span><span>라인 병목</span><span>공장 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>검사-643</span><span>정비 우선순위</span><span>공장 운영팀</span><span>realtime</span><mark>valid</mark></div><div><span>라인-644</span><span>설비 편차</span><span>공장 운영팀</span><span>15 min</span><mark>review</mark></div><div><span>설비-645</span><span>불량 픽셀</span><span>공장 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>LOT-646</span><span>라인 병목</span><span>공장 운영팀</span><span>realtime</span><mark>valid</mark></div><div><span>검사-647</span><span>정비 우선순위</span><span>공장 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>라인-648</span><span>설비 편차</span><span>공장 운영팀</span><span>15 min</span><mark>review</mark></div>
+                </article>
+                <aside class="right">
+        <article class="av64d-metric">
+            <span>설비 편차</span>
+            <b data-meter>81%</b>
+            <i style="--w:78%"></i>
+        </article>
+        <article class="av64d-metric">
+            <span>불량 픽셀</span>
+            <b data-meter>92%</b>
+            <i style="--w:91%"></i>
+        </article>
+        <article class="av64d-metric">
+            <span>라인 병목</span>
+            <b data-meter>74%</b>
+            <i style="--w:64%"></i>
+        </article>
+        <article class="av64d-metric">
+            <span>정비 우선순위</span>
+            <b data-meter>85%</b>
+            <i style="--w:77%"></i>
+        </article></aside>
+            </section>
+        </main>
+<script>
+
+const av64dmeters=[...document.querySelectorAll("[data-meter]")];
+let av64dtick=0;
+setInterval(()=>{
+  av64dtick++;
+  av64dmeters.forEach((el,i)=>el.textContent=(62+((av64dtick*3+i*9+64)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

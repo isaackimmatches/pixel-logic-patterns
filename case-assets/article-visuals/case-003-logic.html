@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-03-logic | SKU 이미지 누락·중복 탐지</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f4f6ff;color:#1f2333}.av03l-nodes{height:100vh;padding:24px;display:grid;grid-template-rows:90px 1fr;gap:18px}.av03l-nodes header{display:flex;align-items:center;gap:18px;border-radius:28px;background:#1f2333;color:#ffffff;padding:0 24px}.av03l-nodes h1{font-size:30px;margin:0}.av03l-nodes code{margin-left:auto;background:#ffffff;color:#1f2333;border-radius:14px;padding:12px 14px}.av03l-nodes section{display:grid;grid-template-columns:1fr 290px;gap:18px}.av03l-nodes svg,.av03l-nodes aside{border:2px solid #1f2333;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #1f2333}.av03l-nodes path{fill:none;stroke:#c7d2fe;stroke-width:5;stroke-dasharray:12 10}. av03l-nodes rect{fill:#f4f6ff;stroke:#1f2333;stroke-width:3}. av03l-nodes text{text-anchor:middle;dominant-baseline:middle;font-size:13px;font-weight:950;fill:#1f2333}.av03l-nodes aside{padding:18px;display:grid;gap:14px;align-content:start}.av03l-metric{border:1px solid #c7d2fe;border-radius:18px;padding:14px}.av03l-metric b{font-size:26px}. av03l-metric span{display:block;font-size:12px}. av03l-metric i{display:block;width:var(--w);height:8px;background:#4f46e5;border-radius:99px;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av03l-nodes">
+            <header><b>Aster Commerce</b><h1>Creative Asset Studio Logic Builder</h1><code>quality = edge_iou + brand_fit - rights_risk</code></header>
+            <section><svg viewBox="0 0 1080 600">
+                <path d="M120 100 C260 90, 360 180, 430 160" /><path d="M430 100 C510 90, 580 180, 640 160" /><path d="M740 100 C760 90, 800 180, 850 160" /><path d="M120 250 C260 230, 360 310, 430 280" /><path d="M430 250 C510 230, 580 310, 640 280" /><path d="M740 250 C760 230, 800 310, 850 280" /><path d="M120 400 C260 370, 360 440, 430 400" /><path d="M430 400 C510 370, 580 440, 640 400" /><path d="M740 400 C760 370, 800 440, 850 400" /><path d="M120 550 C260 510, 360 570, 430 520" />
+                <g transform="translate(120,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>원본 에셋</text></g><g transform="translate(430,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>브랜드 가이드</text></g><g transform="translate(740,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>채널 규격</text></g><g transform="translate(120,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>권리 DB</text></g><g transform="translate(430,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>피사체 경계</text></g><g transform="translate(740,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>프레임 변화</text></g><g transform="translate(120,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>톤 불일치</text></g><g transform="translate(430,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>저작권 위험</text></g><g transform="translate(740,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>자동 마스킹</text></g><g transform="translate(120,550)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>하이라이트 추출</text></g>
+            </svg><aside>
+        <article class="av03l-metric">
+            <span>피사체 경계</span>
+            <b data-meter>89%</b>
+            <i style="--w:57%"></i>
+        </article>
+        <article class="av03l-metric">
+            <span>프레임 변화</span>
+            <b data-meter>71%</b>
+            <i style="--w:70%"></i>
+        </article>
+        <article class="av03l-metric">
+            <span>톤 불일치</span>
+            <b data-meter>82%</b>
+            <i style="--w:83%"></i>
+        </article>
+        <article class="av03l-metric">
+            <span>저작권 위험</span>
+            <b data-meter>93%</b>
+            <i style="--w:56%"></i>
+        </article></aside></section>
+        </main>
+<script>
+
+const av03lmeters=[...document.querySelectorAll("[data-meter]")];
+let av03ltick=0;
+setInterval(()=>{
+  av03ltick++;
+  av03lmeters.forEach((el,i)=>el.textContent=(62+((av03ltick*3+i*9+3)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

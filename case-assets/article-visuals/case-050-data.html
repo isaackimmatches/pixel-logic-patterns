@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-50-data | 리타게팅 제외 룰</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f5f3ff;color:#211a36}.av50d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#d8b4fe66 1px,transparent 1px),linear-gradient(90deg,#d8b4fe66 1px,transparent 1px);background-size:42px 42px}.av50d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av50d-hub header p{margin:0;color:#7c3aed;font-weight:950}.av50d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av50d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av50d-hub path{stroke:#7c3aed;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av50d-hub circle{fill:#ffffff;stroke:#211a36;stroke-width:4}.core{fill:#7c3aed!important}. av50d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#211a36}.av50d-hub .core+text{fill:#ffffff;font-size:18px}.av50d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #211a36;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #211a36;padding:18px;display:grid;gap:14px;align-content:start}.av50d-metric{border:1px solid #d8b4fe;border-radius:18px;padding:16px}.av50d-metric span{display:block;color:#211a36;opacity:.72}.av50d-metric b{font-size:30px}.av50d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#7c3aed;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av50d-hub">
+            <header><p>Sable Factory</p><h1>Performance Control Tower</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L730 400" /><path d="M600 350 L827 471" /><path d="M600 350 L924 542" /><path d="M600 350 L1021 613" /><path d="M600 350 L88 684" /><path d="M600 350 L185 175" /><path d="M600 350 L282 246" /><path d="M600 350 L379 317" /><path d="M600 350 L476 388" /><path d="M600 350 L573 459" /><path d="M600 350 L670 530" /><path d="M600 350 L767 601" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">키워드</text>
+                <g transform="translate(730,400)"><circle r="30" /><text>광고 API</text></g><g transform="translate(827,471)"><circle r="36" /><text>전환 이벤트</text></g><g transform="translate(924,542)"><circle r="42" /><text>소재 버전</text></g><g transform="translate(1021,613)"><circle r="48" /><text>예산 캡</text></g><g transform="translate(88,684)"><circle r="30" /><text>광고 API</text></g><g transform="translate(185,175)"><circle r="36" /><text>전환 이벤트</text></g><g transform="translate(282,246)"><circle r="42" /><text>소재 버전</text></g><g transform="translate(379,317)"><circle r="48" /><text>예산 캡</text></g><g transform="translate(476,388)"><circle r="30" /><text>광고 API</text></g><g transform="translate(573,459)"><circle r="36" /><text>전환 이벤트</text></g><g transform="translate(670,530)"><circle r="42" /><text>소재 버전</text></g><g transform="translate(767,601)"><circle r="48" /><text>예산 캡</text></g>
+            </svg>
+            <aside>
+        <article class="av50d-metric">
+            <span>CTR 예측</span>
+            <b data-meter>70%</b>
+            <i style="--w:64%"></i>
+        </article>
+        <article class="av50d-metric">
+            <span>CPC 변동</span>
+            <b data-meter>81%</b>
+            <i style="--w:77%"></i>
+        </article>
+        <article class="av50d-metric">
+            <span>피로도</span>
+            <b data-meter>92%</b>
+            <i style="--w:90%"></i>
+        </article>
+        <article class="av50d-metric">
+            <span>증분 ROAS</span>
+            <b data-meter>74%</b>
+            <i style="--w:63%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av50dmeters=[...document.querySelectorAll("[data-meter]")];
+let av50dtick=0;
+setInterval(()=>{
+  av50dtick++;
+  av50dmeters.forEach((el,i)=>el.textContent=(62+((av50dtick*3+i*9+50)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

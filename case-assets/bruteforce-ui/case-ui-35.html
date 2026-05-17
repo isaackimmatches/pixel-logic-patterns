@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-35 | 숏폼 자막·챕터 자동화</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#f8fafc;color:#0f172a}
+.cu35{height:100vh;padding:26px;gap:14px;background:radial-gradient(circle at 84% 45%, #bae6fd66, transparent 28%), linear-gradient(#e0f2fe55 1px, transparent 1px), linear-gradient(90deg, #e0f2fe55 1px, transparent 1px);background-size:auto,41px 41px,41px 41px}
+.cu35 > *{min-width:0}
+.cu35-hero,.cu35-visual,.cu35-meters,.cu35-board,.cu35-log,.cu35-nav{border:2px solid #0f172a;border-radius:25px;background:#ffffff;box-shadow:6px 6px 0 #0f172a;overflow:hidden}
+.cu35-hero{padding:24px}.cu35-hero p{margin:0;color:#0ea5e9;font-weight:950;letter-spacing:.06em}.cu35-hero h1{margin:10px 0 6px;font-size:51px;line-height:.98;letter-spacing:-.055em}.cu35-hero strong{display:block;color:#0f172a;opacity:.72}
+.cu35-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu35-nav span{border:1px solid #bae6fd;border-radius:14px;background:#f8fafc;padding:12px;font-weight:950;font-size:13px}.cu35-nav span.on{background:#0f172a;color:#ffffff}
+.cu35-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu35-meter{border:1px solid #bae6fd;border-radius:16px;padding:13px}.cu35-meter span{display:block;font-size:12px;color:#0f172a;opacity:.72}.cu35-meter b{font-size:26px}.cu35-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#0ea5e9;margin-top:8px}
+.cu35-board{padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-content:start}.cu35-board article{border:1px solid #bae6fd;border-radius:16px;background:#f8fafc;padding:13px;min-height:83px}.cu35-board b{display:block;font-size:13px}.cu35-board span{display:block;margin-top:10px;color:#0f172a;opacity:.65;font-size:12px}.cu35-board em{display:block;margin-top:12px;color:#0ea5e9;font-style:normal;font-weight:950}
+.cu35-visual{position:relative;padding:18px}.cu35-log{background:#0f172a;color:#bae6fd;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu35-nav{grid-row:1/4}.screen-a .cu35-hero{grid-column:2}.screen-a .cu35-visual{grid-column:2;grid-row:2/4}.screen-a .cu35-meters{grid-column:3;grid-row:1/3}.screen-a .cu35-board{grid-column:3;grid-row:3}.screen-a .cu35-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu35-hero{grid-column:1}.screen-b .cu35-meters{grid-column:2}.screen-b .cu35-visual{grid-column:1/3;grid-row:2}.screen-b .cu35-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu35-board{grid-column:3;grid-row:1/3}.screen-b .cu35-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu35-visual{grid-column:1;grid-row:1/5}.screen-c .cu35-hero{grid-column:2;grid-row:1}.screen-c .cu35-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu35-board{grid-column:2;grid-row:3}.screen-c .cu35-meters{grid-column:2;grid-row:4}.screen-c .cu35-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu35-nav{grid-row:1/3}.screen-d .cu35-board{grid-column:2;grid-row:1}.screen-d .cu35-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu35-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu35-meters{grid-column:2;grid-row:2}.screen-d .cu35-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu35-hero{grid-row:1}.screen-e .cu35-visual{grid-column:2;grid-row:1/4}.screen-e .cu35-log{grid-column:3;grid-row:1/3}.screen-e .cu35-board{grid-column:1;grid-row:2}.screen-e .cu35-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu35-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu35-meters{grid-column:1;grid-row:1/4}.screen-f .cu35-hero{grid-column:2;grid-row:1}.screen-f .cu35-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu35-visual{grid-column:2;grid-row:3}.screen-f .cu35-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu35-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu35-log{grid-row:1/3}.screen-g .cu35-hero{grid-column:2}.screen-g .cu35-visual{grid-column:2;grid-row:2}.screen-g .cu35-board{grid-column:3;grid-row:1}.screen-g .cu35-meters{grid-column:3;grid-row:2}.screen-g .cu35-nav{display:none}
+.cu35-asset{position:absolute;inset:0;background:#0f172a;overflow:hidden}.cu35-asset i{position:absolute;left:var(--x);top:var(--y);width:45px;height:45px;border-radius:15px;background:#0ea5e9;opacity:.72}.cu35-asset i.sel{background:#bae6fd;box-shadow:0 0 0 10px #bae6fd33}.cu35-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#0f172a;border-radius:999px;padding:12px 15px}
+.cu35-radar{width:100%;height:100%}.cu35-radar circle{fill:none;stroke:#bae6fd;stroke-width:3}.cu35-radar rect{fill:#ffffff;stroke:#0f172a;stroke-width:3}.cu35-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#0f172a}
+.cu35-supply{width:100%;height:100%;background:#f8fafc}.cu35-supply path{fill:none;stroke:#0ea5e9;stroke-width:10;stroke-dasharray:14 10}.cu35-supply circle{fill:#ffffff;stroke:#0f172a;stroke-width:5}.cu35-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#0f172a}
+.cu35-trading{height:100%;display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.cu35-trading article{position:relative;border:1px solid #bae6fd;border-radius:16px;background:#f8fafc;padding:12px}.cu35-trading small{font-weight:950;color:#0ea5e9}.cu35-trading b{display:block;font-size:22px;margin-top:8px}.cu35-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#bae6fd,#0ea5e9)}
+.cu35-stars{width:100%;height:100%;background:#0f172a;border-radius:18px}.cu35-stars line{stroke:#bae6fd;stroke-width:1;opacity:.45}.cu35-stars circle{fill:#bae6fd}.cu35-stars circle.hot{fill:#0ea5e9}.cu35-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu35-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu35-document section,.cu35-document aside{border:1px solid #bae6fd;border-radius:18px;background:#f8fafc;padding:22px}.cu35-document p{height:13px;border-radius:99px;background:#bae6fd;margin:0 0 16px}.cu35-document p.mark{background:#0ea5e9;box-shadow:0 0 0 8px #bae6fd77}.cu35-document b{display:block;border-bottom:1px solid #bae6fd;padding:14px 0;color:#0ea5e9}
+.cu35-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu35-voice>div{display:flex;align-items:center;gap:7px}.cu35-voice i{flex:1;border-radius:99px;background:#0ea5e9}.cu35-voice aside{border:1px solid #bae6fd;border-radius:18px;background:#f8fafc;padding:16px}.cu35-voice p{border-bottom:1px solid #bae6fd;padding-bottom:12px}.cu35-voice b,.cu35-voice span{display:block}
+.cu35-factory{height:100%;display:grid;grid-template-columns:repeat(8,1fr);gap:9px}.cu35-factory i{border-radius:10px;background:#e0f2fe;border:1px solid #bae6fd}.cu35-factory i.warn{background:#f59e0b}.cu35-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu35-people-graph{position:absolute;inset:0;background:#ffffff}.cu35-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #0f172a;border-radius:999px;background:#f8fafc;padding:10px 12px;text-align:center}.cu35-people-graph b{display:block;font-size:12px}.cu35-people-graph span{color:#0ea5e9;font-weight:950}.cu35-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#bae6fd;transform:rotate(var(--r));transform-origin:left center}
+.cu35-control{height:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cu35-control article{border:1px solid #bae6fd;border-radius:16px;background:#f8fafc;padding:14px}.cu35-control b,.cu35-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu35 screen-a"><nav class="cu35-nav"><span class="on">원본 에셋</span><span class="">브랜드 가이드</span><span class="">채널 규격</span><span class="">권리 DB</span><span class="">자동 생성</span></nav><div class="cu35-hero"><p>Pioneer Ops · CASE 035</p><h1>Creative Asset Forge</h1><strong>숏폼 자막·챕터 자동화</strong></div><section class="cu35-visual"><div class="cu35-asset">
+            <i class="sel" style="--x:33%;--y:11%"></i><i class="" style="--x:70%;--y:64%"></i><i class="" style="--x:19%;--y:39%"></i><i class="" style="--x:56%;--y:14%"></i><i class="" style="--x:5%;--y:67%"></i><i class="sel" style="--x:42%;--y:42%"></i><i class="" style="--x:79%;--y:17%"></i><i class="" style="--x:28%;--y:70%"></i><i class="" style="--x:65%;--y:45%"></i><i class="" style="--x:14%;--y:20%"></i><i class="sel" style="--x:51%;--y:73%"></i><i class="" style="--x:0%;--y:48%"></i><i class="" style="--x:37%;--y:23%"></i><i class="" style="--x:74%;--y:76%"></i><i class="" style="--x:23%;--y:51%"></i><i class="sel" style="--x:60%;--y:26%"></i><i class="" style="--x:9%;--y:1%"></i><i class="" style="--x:46%;--y:54%"></i>
+            <b>배포</b>
+        </div></section><div class="cu35-meters"><article class="cu35-meter"><span>배포</span><b data-live>87%</b><i style="--w:87%"></i></article><article class="cu35-meter"><span>마스킹 경계</span><b data-live>96%</b><i style="--w:96%"></i></article><article class="cu35-meter"><span>프레임 변화</span><b data-live>68%</b><i style="--w:68%"></i></article><article class="cu35-meter"><span>톤 불일치</span><b data-live>77%</b><i style="--w:77%"></i></article><article class="cu35-meter"><span>권리 위험</span><b data-live>86%</b><i style="--w:86%"></i></article><article class="cu35-meter"><span>원본 에셋</span><b data-live>95%</b><i style="--w:95%"></i></article></div><section class="cu35-board"><article><b>에셋-035-0</b><span>권리 위험</span><em data-live>93%</em></article><article><b>레이어-035-1</b><span>자동 생성</span><em data-live>65%</em></article><article><b>프레임-035-2</b><span>검수 요청</span><em data-live>76%</em></article><article><b>채널-035-3</b><span>버전 비교</span><em data-live>87%</em></article><article><b>에셋-035-4</b><span>배포</span><em data-live>59%</em></article><article><b>레이어-035-5</b><span>마스킹 경계</span><em data-live>70%</em></article></section><aside class="cu35-log" id="cu35log"></aside></main>
+<script>
+
+
+const cu35Live=[...document.querySelectorAll("[data-live]")];
+let cu35Frame=0;
+setInterval(()=>{cu35Frame++;cu35Live.forEach((el,i)=>{el.textContent=(58+((cu35Frame*3+i*7+35)%39))+"%";});},1200);
+
+const cu35Log=document.getElementById("cu35log");
+if(cu35Log){
+  const rows=["마스킹 경계","프레임 변화","톤 불일치","권리 위험","자동 생성","검수 요청","버전 비교","배포","원본 에셋","브랜드 가이드","채널 규격","권리 DB"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu35Log.prepend(p);while(cu35Log.children.length>18)cu35Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

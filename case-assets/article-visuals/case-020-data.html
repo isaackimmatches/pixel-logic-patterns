@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-20-data | 크로스셀 추천</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f7fbff;color:#111827}.av20d-mapper{height:100vh;padding:26px;display:grid;grid-template-rows:86px 1fr;gap:18px}.av20d-mapper header{display:flex;align-items:center;gap:18px;border:2px solid #111827;border-radius:24px;background:#ffffff;padding:0 24px;box-shadow:8px 8px 0 #111827}.av20d-mapper h1{font-size:34px;margin:0;letter-spacing:-.04em}.av20d-mapper strong{color:#2563eb}.av20d-mapper header span{margin-left:auto;font-weight:950;letter-spacing:.16em}.av20d-flow{min-height:0;display:grid;grid-template-columns:260px 1fr 280px;gap:18px}.av20d-flow aside, .av20d-table{border:2px solid #111827;border-radius:26px;background:#ffffff;box-shadow:8px 8px 0 #111827}.av20d-flow aside{padding:16px;display:grid;gap:10px;align-content:start}.av20d-flow button{height:64px;border:1px solid #9bd4ff;border-radius:16px;background:#f7fbff;text-align:left;padding:11px 14px;font-weight:950;color:#111827}.av20d-flow button em{display:block;font-size:12px;color:#2563eb;font-style:normal;margin-top:4px}.av20d-table{overflow:hidden}.head, .av20d-table div:not(.head){display:grid;grid-template-columns:1.1fr 1.1fr 1fr .7fr .7fr}.head{height:58px;background:#111827;color:#ffffff;align-items:center;padding:0 16px;font-size:12px;text-transform:uppercase}.av20d-table div:not(.head){height:58px;align-items:center;border-bottom:1px solid #9bd4ff;padding:0 16px;color:#111827}.av20d-table mark{border-radius:999px;background:#9bd4ff;color:#111827;padding:7px 10px;font-weight:950}.right .av20d-metric{border:1px solid #9bd4ff;border-radius:18px;padding:14px}.right .av20d-metric span{display:block;color:#111827;opacity:.72;font-size:12px}.right .av20d-metric b{font-size:28px}.right .av20d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#2563eb;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av20d-mapper">
+            <header><strong>Brewline Foods</strong><h1>크로스셀 추천 AX Console</h1><span>DATA INTAKE</span></header>
+            <section class="av20d-flow">
+                <aside><button>상품 DB<em>1940</em></button><button>주문 로그<em>2144</em></button><button>리뷰 텍스트<em>2348</em></button><button>재고 원장<em>2552</em></button></aside>
+                <article class="av20d-table">
+                    <div class="head"><b>source_key</b><b>clean_rule</b><b>owner</b><b>refresh</b><b>status</b></div>
+                    <div><span>SKU-200</span><span>이상치</span><span>커머스 운영팀</span><span>realtime</span><mark>review</mark></div><div><span>주문-201</span><span>우선순위</span><span>커머스 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>리뷰-202</span><span>자동 처리율</span><span>커머스 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>매장-203</span><span>검수 필요</span><span>커머스 운영팀</span><span>realtime</span><mark>valid</mark></div><div><span>SKU-204</span><span>이상치</span><span>커머스 운영팀</span><span>15 min</span><mark>review</mark></div><div><span>주문-205</span><span>우선순위</span><span>커머스 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>리뷰-206</span><span>자동 처리율</span><span>커머스 운영팀</span><span>realtime</span><mark>valid</mark></div><div><span>매장-207</span><span>검수 필요</span><span>커머스 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>SKU-208</span><span>이상치</span><span>커머스 운영팀</span><span>15 min</span><mark>review</mark></div>
+                </article>
+                <aside class="right">
+        <article class="av20d-metric">
+            <span>이상치</span>
+            <b data-meter>92%</b>
+            <i style="--w:74%"></i>
+        </article>
+        <article class="av20d-metric">
+            <span>우선순위</span>
+            <b data-meter>74%</b>
+            <i style="--w:87%"></i>
+        </article>
+        <article class="av20d-metric">
+            <span>자동 처리율</span>
+            <b data-meter>85%</b>
+            <i style="--w:60%"></i>
+        </article>
+        <article class="av20d-metric">
+            <span>검수 필요</span>
+            <b data-meter>96%</b>
+            <i style="--w:73%"></i>
+        </article></aside>
+            </section>
+        </main>
+<script>
+
+const av20dmeters=[...document.querySelectorAll("[data-meter]")];
+let av20dtick=0;
+setInterval(()=>{
+  av20dtick++;
+  av20dmeters.forEach((el,i)=>el.textContent=(62+((av20dtick*3+i*9+20)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

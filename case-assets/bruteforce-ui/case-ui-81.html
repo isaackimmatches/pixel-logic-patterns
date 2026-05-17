@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-81 | 대출 상담 분류</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#fff7ed;color:#1f2937}
+.cu81{height:100vh;padding:18px;gap:18px;background:radial-gradient(circle at 28% 26%, #ffd3b666, transparent 28%), linear-gradient(#ffedd555 1px, transparent 1px), linear-gradient(90deg, #ffedd555 1px, transparent 1px);background-size:auto,45px 45px,45px 45px}
+.cu81 > *{min-width:0}
+.cu81-hero,.cu81-visual,.cu81-meters,.cu81-board,.cu81-log,.cu81-nav{border:2px solid #1f2937;border-radius:29px;background:#ffffff;box-shadow:7px 7px 0 #1f2937;overflow:hidden}
+.cu81-hero{padding:24px}.cu81-hero p{margin:0;color:#f97316;font-weight:950;letter-spacing:.06em}.cu81-hero h1{margin:10px 0 6px;font-size:43px;line-height:.98;letter-spacing:-.055em}.cu81-hero strong{display:block;color:#1f2937;opacity:.72}
+.cu81-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu81-nav span{border:1px solid #ffd3b6;border-radius:14px;background:#fff7ed;padding:12px;font-weight:950;font-size:13px}.cu81-nav span.on{background:#1f2937;color:#ffffff}
+.cu81-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu81-meter{border:1px solid #ffd3b6;border-radius:16px;padding:13px}.cu81-meter span{display:block;font-size:12px;color:#1f2937;opacity:.72}.cu81-meter b{font-size:26px}.cu81-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#f97316;margin-top:8px}
+.cu81-board{padding:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;align-content:start}.cu81-board article{border:1px solid #ffd3b6;border-radius:16px;background:#fff7ed;padding:13px;min-height:95px}.cu81-board b{display:block;font-size:13px}.cu81-board span{display:block;margin-top:10px;color:#1f2937;opacity:.65;font-size:12px}.cu81-board em{display:block;margin-top:12px;color:#f97316;font-style:normal;font-weight:950}
+.cu81-visual{position:relative;padding:18px}.cu81-log{background:#1f2937;color:#ffd3b6;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu81-nav{grid-row:1/4}.screen-a .cu81-hero{grid-column:2}.screen-a .cu81-visual{grid-column:2;grid-row:2/4}.screen-a .cu81-meters{grid-column:3;grid-row:1/3}.screen-a .cu81-board{grid-column:3;grid-row:3}.screen-a .cu81-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu81-hero{grid-column:1}.screen-b .cu81-meters{grid-column:2}.screen-b .cu81-visual{grid-column:1/3;grid-row:2}.screen-b .cu81-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu81-board{grid-column:3;grid-row:1/3}.screen-b .cu81-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu81-visual{grid-column:1;grid-row:1/5}.screen-c .cu81-hero{grid-column:2;grid-row:1}.screen-c .cu81-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu81-board{grid-column:2;grid-row:3}.screen-c .cu81-meters{grid-column:2;grid-row:4}.screen-c .cu81-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu81-nav{grid-row:1/3}.screen-d .cu81-board{grid-column:2;grid-row:1}.screen-d .cu81-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu81-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu81-meters{grid-column:2;grid-row:2}.screen-d .cu81-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu81-hero{grid-row:1}.screen-e .cu81-visual{grid-column:2;grid-row:1/4}.screen-e .cu81-log{grid-column:3;grid-row:1/3}.screen-e .cu81-board{grid-column:1;grid-row:2}.screen-e .cu81-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu81-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu81-meters{grid-column:1;grid-row:1/4}.screen-f .cu81-hero{grid-column:2;grid-row:1}.screen-f .cu81-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu81-visual{grid-column:2;grid-row:3}.screen-f .cu81-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu81-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu81-log{grid-row:1/3}.screen-g .cu81-hero{grid-column:2}.screen-g .cu81-visual{grid-column:2;grid-row:2}.screen-g .cu81-board{grid-column:3;grid-row:1}.screen-g .cu81-meters{grid-column:3;grid-row:2}.screen-g .cu81-nav{display:none}
+.cu81-asset{position:absolute;inset:0;background:#1f2937;overflow:hidden}.cu81-asset i{position:absolute;left:var(--x);top:var(--y);width:63px;height:43px;border-radius:19px;background:#f97316;opacity:.72}.cu81-asset i.sel{background:#ffd3b6;box-shadow:0 0 0 10px #ffd3b633}.cu81-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#1f2937;border-radius:999px;padding:12px 15px}
+.cu81-radar{width:100%;height:100%}.cu81-radar circle{fill:none;stroke:#ffd3b6;stroke-width:3}.cu81-radar rect{fill:#ffffff;stroke:#1f2937;stroke-width:3}.cu81-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2937}
+.cu81-supply{width:100%;height:100%;background:#fff7ed}.cu81-supply path{fill:none;stroke:#f97316;stroke-width:10;stroke-dasharray:14 10}.cu81-supply circle{fill:#ffffff;stroke:#1f2937;stroke-width:5}.cu81-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2937}
+.cu81-trading{height:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.cu81-trading article{position:relative;border:1px solid #ffd3b6;border-radius:16px;background:#fff7ed;padding:12px}.cu81-trading small{font-weight:950;color:#f97316}.cu81-trading b{display:block;font-size:22px;margin-top:8px}.cu81-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#ffd3b6,#f97316)}
+.cu81-stars{width:100%;height:100%;background:#1f2937;border-radius:18px}.cu81-stars line{stroke:#ffd3b6;stroke-width:1;opacity:.45}.cu81-stars circle{fill:#ffd3b6}.cu81-stars circle.hot{fill:#f97316}.cu81-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu81-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu81-document section,.cu81-document aside{border:1px solid #ffd3b6;border-radius:18px;background:#fff7ed;padding:22px}.cu81-document p{height:13px;border-radius:99px;background:#ffd3b6;margin:0 0 16px}.cu81-document p.mark{background:#f97316;box-shadow:0 0 0 8px #ffd3b677}.cu81-document b{display:block;border-bottom:1px solid #ffd3b6;padding:14px 0;color:#f97316}
+.cu81-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu81-voice>div{display:flex;align-items:center;gap:7px}.cu81-voice i{flex:1;border-radius:99px;background:#f97316}.cu81-voice aside{border:1px solid #ffd3b6;border-radius:18px;background:#fff7ed;padding:16px}.cu81-voice p{border-bottom:1px solid #ffd3b6;padding-bottom:12px}.cu81-voice b,.cu81-voice span{display:block}
+.cu81-factory{height:100%;display:grid;grid-template-columns:repeat(9,1fr);gap:9px}.cu81-factory i{border-radius:10px;background:#ffedd5;border:1px solid #ffd3b6}.cu81-factory i.warn{background:#f59e0b}.cu81-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu81-people-graph{position:absolute;inset:0;background:#ffffff}.cu81-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #1f2937;border-radius:999px;background:#fff7ed;padding:10px 12px;text-align:center}.cu81-people-graph b{display:block;font-size:12px}.cu81-people-graph span{color:#f97316;font-weight:950}.cu81-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#ffd3b6;transform:rotate(var(--r));transform-origin:left center}
+.cu81-control{height:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.cu81-control article{border:1px solid #ffd3b6;border-radius:16px;background:#fff7ed;padding:14px}.cu81-control b,.cu81-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu81 screen-e"><div class="cu81-hero"><p>Mosaic Beauty · CASE 081</p><h1>Document Risk Workbench</h1><strong>대출 상담 분류</strong></div><section class="cu81-visual"><div class="cu81-document">
+            <section><p class="" style="width:92%"></p><p class="mark" style="width:85%"></p><p class="" style="width:78%"></p><p class="" style="width:71%"></p><p class="" style="width:64%"></p><p class="mark" style="width:57%"></p><p class="" style="width:92%"></p><p class="" style="width:85%"></p><p class="" style="width:78%"></p><p class="mark" style="width:71%"></p><p class="" style="width:64%"></p><p class="" style="width:57%"></p><p class="" style="width:92%"></p></section>
+            <aside><b>01 핵심 조항</b><b>02 금액 불일치</b><b>03 권한 예외</b><b>04 검토 위험도</b></aside>
+        </div></section><aside class="cu81-log" id="cu81log"></aside><section class="cu81-board"><article><b>문서-081-0</b><span>금액 불일치</span><em data-live>61%</em></article><article><b>조항-081-1</b><span>권한 예외</span><em data-live>72%</em></article><article><b>금액-081-2</b><span>검토 위험도</span><em data-live>83%</em></article><article><b>거래처-081-3</b><span>조항 추출</span><em data-live>94%</em></article><article><b>문서-081-4</b><span>검토자 지정</span><em data-live>66%</em></article><article><b>조항-081-5</b><span>반려 사유</span><em data-live>77%</em></article><article><b>금액-081-6</b><span>승인 큐</span><em data-live>88%</em></article></section><nav class="cu81-nav"><span class="">PDF 원본</span><span class="on">거래처 원장</span><span class="">승인 이력</span><span class="">표준 조항집</span><span class="">조항 추출</span></nav><div class="cu81-meters"><article class="cu81-meter"><span>검토자 지정</span><b data-live>95%</b><i style="--w:95%"></i></article><article class="cu81-meter"><span>반려 사유</span><b data-live>67%</b><i style="--w:67%"></i></article><article class="cu81-meter"><span>승인 큐</span><b data-live>76%</b><i style="--w:76%"></i></article><article class="cu81-meter"><span>핵심 조항</span><b data-live>85%</b><i style="--w:85%"></i></article></div></main>
+<script>
+
+
+const cu81Live=[...document.querySelectorAll("[data-live]")];
+let cu81Frame=0;
+setInterval(()=>{cu81Frame++;cu81Live.forEach((el,i)=>{el.textContent=(58+((cu81Frame*3+i*7+81)%39))+"%";});},1200);
+
+const cu81Log=document.getElementById("cu81log");
+if(cu81Log){
+  const rows=["핵심 조항","금액 불일치","권한 예외","검토 위험도","조항 추출","검토자 지정","반려 사유","승인 큐","PDF 원본","거래처 원장","승인 이력","표준 조항집"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu81Log.prepend(p);while(cu81Log.children.length>18)cu81Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

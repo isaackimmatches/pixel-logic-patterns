@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-68 | 창고 피킹 경로 최적화</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#f7f2ea;color:#261b14}
+.cu68{height:100vh;padding:23px;gap:19px;background:radial-gradient(circle at 18% 66%, #fed7aa66, transparent 28%), linear-gradient(#ffedd555 1px, transparent 1px), linear-gradient(90deg, #ffedd555 1px, transparent 1px);background-size:auto,46px 46px,46px 46px}
+.cu68 > *{min-width:0}
+.cu68-hero,.cu68-visual,.cu68-meters,.cu68-board,.cu68-log,.cu68-nav{border:2px solid #261b14;border-radius:30px;background:#ffffff;box-shadow:9px 9px 0 #261b14;overflow:hidden}
+.cu68-hero{padding:24px}.cu68-hero p{margin:0;color:#b45309;font-weight:950;letter-spacing:.06em}.cu68-hero h1{margin:10px 0 6px;font-size:48px;line-height:.98;letter-spacing:-.055em}.cu68-hero strong{display:block;color:#261b14;opacity:.72}
+.cu68-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu68-nav span{border:1px solid #fed7aa;border-radius:14px;background:#f7f2ea;padding:12px;font-weight:950;font-size:13px}.cu68-nav span.on{background:#261b14;color:#ffffff}
+.cu68-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu68-meter{border:1px solid #fed7aa;border-radius:16px;padding:13px}.cu68-meter span{display:block;font-size:12px;color:#261b14;opacity:.72}.cu68-meter b{font-size:26px}.cu68-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#b45309;margin-top:8px}
+.cu68-board{padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-content:start}.cu68-board article{border:1px solid #fed7aa;border-radius:16px;background:#f7f2ea;padding:13px;min-height:82px}.cu68-board b{display:block;font-size:13px}.cu68-board span{display:block;margin-top:10px;color:#261b14;opacity:.65;font-size:12px}.cu68-board em{display:block;margin-top:12px;color:#b45309;font-style:normal;font-weight:950}
+.cu68-visual{position:relative;padding:18px}.cu68-log{background:#261b14;color:#fed7aa;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu68-nav{grid-row:1/4}.screen-a .cu68-hero{grid-column:2}.screen-a .cu68-visual{grid-column:2;grid-row:2/4}.screen-a .cu68-meters{grid-column:3;grid-row:1/3}.screen-a .cu68-board{grid-column:3;grid-row:3}.screen-a .cu68-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu68-hero{grid-column:1}.screen-b .cu68-meters{grid-column:2}.screen-b .cu68-visual{grid-column:1/3;grid-row:2}.screen-b .cu68-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu68-board{grid-column:3;grid-row:1/3}.screen-b .cu68-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu68-visual{grid-column:1;grid-row:1/5}.screen-c .cu68-hero{grid-column:2;grid-row:1}.screen-c .cu68-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu68-board{grid-column:2;grid-row:3}.screen-c .cu68-meters{grid-column:2;grid-row:4}.screen-c .cu68-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu68-nav{grid-row:1/3}.screen-d .cu68-board{grid-column:2;grid-row:1}.screen-d .cu68-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu68-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu68-meters{grid-column:2;grid-row:2}.screen-d .cu68-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu68-hero{grid-row:1}.screen-e .cu68-visual{grid-column:2;grid-row:1/4}.screen-e .cu68-log{grid-column:3;grid-row:1/3}.screen-e .cu68-board{grid-column:1;grid-row:2}.screen-e .cu68-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu68-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu68-meters{grid-column:1;grid-row:1/4}.screen-f .cu68-hero{grid-column:2;grid-row:1}.screen-f .cu68-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu68-visual{grid-column:2;grid-row:3}.screen-f .cu68-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu68-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu68-log{grid-row:1/3}.screen-g .cu68-hero{grid-column:2}.screen-g .cu68-visual{grid-column:2;grid-row:2}.screen-g .cu68-board{grid-column:3;grid-row:1}.screen-g .cu68-meters{grid-column:3;grid-row:2}.screen-g .cu68-nav{display:none}
+.cu68-asset{position:absolute;inset:0;background:#261b14;overflow:hidden}.cu68-asset i{position:absolute;left:var(--x);top:var(--y);width:50px;height:54px;border-radius:20px;background:#b45309;opacity:.72}.cu68-asset i.sel{background:#fed7aa;box-shadow:0 0 0 10px #fed7aa33}.cu68-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#261b14;border-radius:999px;padding:12px 15px}
+.cu68-radar{width:100%;height:100%}.cu68-radar circle{fill:none;stroke:#fed7aa;stroke-width:3}.cu68-radar rect{fill:#ffffff;stroke:#261b14;stroke-width:3}.cu68-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#261b14}
+.cu68-supply{width:100%;height:100%;background:#f7f2ea}.cu68-supply path{fill:none;stroke:#b45309;stroke-width:10;stroke-dasharray:14 10}.cu68-supply circle{fill:#ffffff;stroke:#261b14;stroke-width:5}.cu68-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#261b14}
+.cu68-trading{height:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.cu68-trading article{position:relative;border:1px solid #fed7aa;border-radius:16px;background:#f7f2ea;padding:12px}.cu68-trading small{font-weight:950;color:#b45309}.cu68-trading b{display:block;font-size:22px;margin-top:8px}.cu68-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#fed7aa,#b45309)}
+.cu68-stars{width:100%;height:100%;background:#261b14;border-radius:18px}.cu68-stars line{stroke:#fed7aa;stroke-width:1;opacity:.45}.cu68-stars circle{fill:#fed7aa}.cu68-stars circle.hot{fill:#b45309}.cu68-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu68-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu68-document section,.cu68-document aside{border:1px solid #fed7aa;border-radius:18px;background:#f7f2ea;padding:22px}.cu68-document p{height:13px;border-radius:99px;background:#fed7aa;margin:0 0 16px}.cu68-document p.mark{background:#b45309;box-shadow:0 0 0 8px #fed7aa77}.cu68-document b{display:block;border-bottom:1px solid #fed7aa;padding:14px 0;color:#b45309}
+.cu68-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu68-voice>div{display:flex;align-items:center;gap:7px}.cu68-voice i{flex:1;border-radius:99px;background:#b45309}.cu68-voice aside{border:1px solid #fed7aa;border-radius:18px;background:#f7f2ea;padding:16px}.cu68-voice p{border-bottom:1px solid #fed7aa;padding-bottom:12px}.cu68-voice b,.cu68-voice span{display:block}
+.cu68-factory{height:100%;display:grid;grid-template-columns:repeat(11,1fr);gap:9px}.cu68-factory i{border-radius:10px;background:#ffedd5;border:1px solid #fed7aa}.cu68-factory i.warn{background:#f59e0b}.cu68-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu68-people-graph{position:absolute;inset:0;background:#ffffff}.cu68-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #261b14;border-radius:999px;background:#f7f2ea;padding:10px 12px;text-align:center}.cu68-people-graph b{display:block;font-size:12px}.cu68-people-graph span{color:#b45309;font-weight:950}.cu68-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#fed7aa;transform:rotate(var(--r));transform-origin:left center}
+.cu68-control{height:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.cu68-control article{border:1px solid #fed7aa;border-radius:16px;background:#f7f2ea;padding:14px}.cu68-control b,.cu68-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu68 screen-f"><div class="cu68-meters"><article class="cu68-meter"><span>발주량 추천</span><b data-live>67%</b><i style="--w:67%"></i></article><article class="cu68-meter"><span>노출 변경</span><b data-live>76%</b><i style="--w:76%"></i></article><article class="cu68-meter"><span>배차 추천</span><b data-live>85%</b><i style="--w:85%"></i></article></div><div class="cu68-hero"><p>Verse Logistics · CASE 068</p><h1>Inventory Motion Planner</h1><strong>창고 피킹 경로 최적화</strong></div><nav class="cu68-nav"><span class="">주문 로그</span><span class="">센터 재고</span><span class="">배송 SLA</span><span class="on">프로모션</span><span class="">발주량 추천</span></nav><section class="cu68-visual"><svg class="cu68-supply" viewBox="0 0 940 540">
+            <path d="M80 390 C190 90 350 470 480 210 S760 120 850 395" />
+            <g transform="translate(486,143)"><circle r="20"/><text>SKU</text></g><g transform="translate(595,280)"><circle r="28"/><text>센터</text></g><g transform="translate(704,417)"><circle r="36"/><text>노선</text></g><g transform="translate(813,204)"><circle r="20"/><text>발주</text></g><g transform="translate(162,341)"><circle r="28"/><text>SKU</text></g><g transform="translate(271,128)"><circle r="36"/><text>센터</text></g><g transform="translate(380,265)"><circle r="20"/><text>노선</text></g><g transform="translate(489,402)"><circle r="28"/><text>발주</text></g>
+        </svg></section><section class="cu68-board"><article><b>SKU-068-0</b><span>발주량 추천</span><em data-live>87%</em></article><article><b>센터-068-1</b><span>노출 변경</span><em data-live>59%</em></article><article><b>노선-068-2</b><span>배차 추천</span><em data-live>70%</em></article><article><b>발주-068-3</b><span>지연 알림</span><em data-live>81%</em></article><article><b>SKU-068-4</b><span>품절 예상시점</span><em data-live>92%</em></article><article><b>센터-068-5</b><span>과재고 지수</span><em data-live>64%</em></article><article><b>노선-068-6</b><span>센터 이동량</span><em data-live>75%</em></article><article><b>발주-068-7</b><span>대체 SKU</span><em data-live>86%</em></article><article><b>SKU-068-8</b><span>발주량 추천</span><em data-live>58%</em></article></section><aside class="cu68-log" id="cu68log"></aside></main>
+<script>
+
+
+const cu68Live=[...document.querySelectorAll("[data-live]")];
+let cu68Frame=0;
+setInterval(()=>{cu68Frame++;cu68Live.forEach((el,i)=>{el.textContent=(58+((cu68Frame*3+i*7+68)%39))+"%";});},1200);
+
+const cu68Log=document.getElementById("cu68log");
+if(cu68Log){
+  const rows=["품절 예상시점","과재고 지수","센터 이동량","대체 SKU","발주량 추천","노출 변경","배차 추천","지연 알림","주문 로그","센터 재고","배송 SLA","프로모션"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu68Log.prepend(p);while(cu68Log.children.length>18)cu68Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

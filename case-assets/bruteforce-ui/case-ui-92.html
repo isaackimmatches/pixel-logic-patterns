@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-92 | 구독 결제 실패 복구</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#eef7f8;color:#132f33}.cu92-pay{height:100vh;display:grid;grid-template-rows:90px 180px 1fr;grid-template-columns:1fr 360px;gap:18px;padding:22px}.cu92-pay header{grid-column:1/3;border-radius:28px;background:#132f33;color:white;display:flex;align-items:center;gap:22px;padding:0 28px}.cu92-pay h1{font-size:38px;margin:0}.cu92-pay header b{margin-left:auto;color:#a5f3fc}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.cards article,.rail,aside{border:2px solid #132f33;border-radius:26px;background:#fff;box-shadow:8px 8px 0 #132f33}.cards article{padding:18px}.cards span{display:block;color:#0891b2;font-weight:950}.cards b{font-size:44px}.cards i{display:block;height:8px;border-radius:99px;background:#0891b2}.rail{padding:18px;grid-row:3;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.rail div{border:1px solid #a5f3fc;border-radius:18px;padding:14px}.rail b{display:block;color:#0891b2}.rail span{display:block;margin-top:10px}aside{grid-column:2;grid-row:2/4;background:#06151a;color:#a5f3fc;padding:20px;font-family:ui-monospace,Menlo,monospace;line-height:1.8}
+</style>
+</head>
+<body>
+<main class="cu92-pay">
+            <header><h1>Payment Recovery Sequencer</h1><b>구독 결제 실패 복구</b></header>
+            <section class="cards"><article><span>실패 결제</span><b>23</b><i></i></article><article><span>카드 만료</span><b>40</b><i></i></article><article><span>재시도 예약</span><b>57</b><i></i></article><article><span>복구 완료</span><b>74</b><i></i></article></section>
+            <section class="rail"><div><b>D+0</b><span>알림 발송</span></div><div><b>D+1</b><span>담당 배정</span></div><div><b>D+2</b><span>권한 조정</span></div><div><b>D+3</b><span>복구 캠페인</span></div><div><b>D+4</b><span>알림 발송</span></div><div><b>D+5</b><span>담당 배정</span></div><div><b>D+6</b><span>권한 조정</span></div><div><b>D+7</b><span>복구 캠페인</span></div><div><b>D+8</b><span>알림 발송</span></div><div><b>D+9</b><span>담당 배정</span></div></section>
+            <aside id="cu92log"></aside>
+        </main>
+<script>
+const log=document.getElementById("cu92log");const rows=["card.expired detected","retry.window assigned","sms.link issued","payment recovered","invoice state synced"];let i=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[i++%rows.length];log.prepend(p);while(log.children.length>24)log.lastElementChild.remove();},600);
+</script>
+</body>
+</html>

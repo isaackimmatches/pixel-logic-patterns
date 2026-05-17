@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-56 | 브랜드 세이프티 검수</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#f4f6ff;color:#1f2333}
+.cu56{height:100vh;padding:20px;gap:14px;background:radial-gradient(circle at 5% 46%, #c7d2fe66, transparent 28%), linear-gradient(#eef2ff55 1px, transparent 1px), linear-gradient(90deg, #eef2ff55 1px, transparent 1px);background-size:auto,34px 34px,34px 34px}
+.cu56 > *{min-width:0}
+.cu56-hero,.cu56-visual,.cu56-meters,.cu56-board,.cu56-log,.cu56-nav{border:2px solid #1f2333;border-radius:18px;background:#ffffff;box-shadow:7px 7px 0 #1f2333;overflow:hidden}
+.cu56-hero{padding:24px}.cu56-hero p{margin:0;color:#4f46e5;font-weight:950;letter-spacing:.06em}.cu56-hero h1{margin:10px 0 6px;font-size:36px;line-height:.98;letter-spacing:-.055em}.cu56-hero strong{display:block;color:#1f2333;opacity:.72}
+.cu56-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu56-nav span{border:1px solid #c7d2fe;border-radius:14px;background:#f4f6ff;padding:12px;font-weight:950;font-size:13px}.cu56-nav span.on{background:#1f2333;color:#ffffff}
+.cu56-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu56-meter{border:1px solid #c7d2fe;border-radius:16px;padding:13px}.cu56-meter span{display:block;font-size:12px;color:#1f2333;opacity:.72}.cu56-meter b{font-size:26px}.cu56-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#4f46e5;margin-top:8px}
+.cu56-board{padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-content:start}.cu56-board article{border:1px solid #c7d2fe;border-radius:16px;background:#f4f6ff;padding:13px;min-height:104px}.cu56-board b{display:block;font-size:13px}.cu56-board span{display:block;margin-top:10px;color:#1f2333;opacity:.65;font-size:12px}.cu56-board em{display:block;margin-top:12px;color:#4f46e5;font-style:normal;font-weight:950}
+.cu56-visual{position:relative;padding:18px}.cu56-log{background:#1f2333;color:#c7d2fe;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu56-nav{grid-row:1/4}.screen-a .cu56-hero{grid-column:2}.screen-a .cu56-visual{grid-column:2;grid-row:2/4}.screen-a .cu56-meters{grid-column:3;grid-row:1/3}.screen-a .cu56-board{grid-column:3;grid-row:3}.screen-a .cu56-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu56-hero{grid-column:1}.screen-b .cu56-meters{grid-column:2}.screen-b .cu56-visual{grid-column:1/3;grid-row:2}.screen-b .cu56-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu56-board{grid-column:3;grid-row:1/3}.screen-b .cu56-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu56-visual{grid-column:1;grid-row:1/5}.screen-c .cu56-hero{grid-column:2;grid-row:1}.screen-c .cu56-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu56-board{grid-column:2;grid-row:3}.screen-c .cu56-meters{grid-column:2;grid-row:4}.screen-c .cu56-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu56-nav{grid-row:1/3}.screen-d .cu56-board{grid-column:2;grid-row:1}.screen-d .cu56-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu56-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu56-meters{grid-column:2;grid-row:2}.screen-d .cu56-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu56-hero{grid-row:1}.screen-e .cu56-visual{grid-column:2;grid-row:1/4}.screen-e .cu56-log{grid-column:3;grid-row:1/3}.screen-e .cu56-board{grid-column:1;grid-row:2}.screen-e .cu56-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu56-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu56-meters{grid-column:1;grid-row:1/4}.screen-f .cu56-hero{grid-column:2;grid-row:1}.screen-f .cu56-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu56-visual{grid-column:2;grid-row:3}.screen-f .cu56-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu56-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu56-log{grid-row:1/3}.screen-g .cu56-hero{grid-column:2}.screen-g .cu56-visual{grid-column:2;grid-row:2}.screen-g .cu56-board{grid-column:3;grid-row:1}.screen-g .cu56-meters{grid-column:3;grid-row:2}.screen-g .cu56-nav{display:none}
+.cu56-asset{position:absolute;inset:0;background:#1f2333;overflow:hidden}.cu56-asset i{position:absolute;left:var(--x);top:var(--y);width:38px;height:42px;border-radius:8px;background:#4f46e5;opacity:.72}.cu56-asset i.sel{background:#c7d2fe;box-shadow:0 0 0 10px #c7d2fe33}.cu56-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#1f2333;border-radius:999px;padding:12px 15px}
+.cu56-radar{width:100%;height:100%}.cu56-radar circle{fill:none;stroke:#c7d2fe;stroke-width:3}.cu56-radar rect{fill:#ffffff;stroke:#1f2333;stroke-width:3}.cu56-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2333}
+.cu56-supply{width:100%;height:100%;background:#f4f6ff}.cu56-supply path{fill:none;stroke:#4f46e5;stroke-width:10;stroke-dasharray:14 10}.cu56-supply circle{fill:#ffffff;stroke:#1f2333;stroke-width:5}.cu56-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2333}
+.cu56-trading{height:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.cu56-trading article{position:relative;border:1px solid #c7d2fe;border-radius:16px;background:#f4f6ff;padding:12px}.cu56-trading small{font-weight:950;color:#4f46e5}.cu56-trading b{display:block;font-size:22px;margin-top:8px}.cu56-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#c7d2fe,#4f46e5)}
+.cu56-stars{width:100%;height:100%;background:#1f2333;border-radius:18px}.cu56-stars line{stroke:#c7d2fe;stroke-width:1;opacity:.45}.cu56-stars circle{fill:#c7d2fe}.cu56-stars circle.hot{fill:#4f46e5}.cu56-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu56-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu56-document section,.cu56-document aside{border:1px solid #c7d2fe;border-radius:18px;background:#f4f6ff;padding:22px}.cu56-document p{height:13px;border-radius:99px;background:#c7d2fe;margin:0 0 16px}.cu56-document p.mark{background:#4f46e5;box-shadow:0 0 0 8px #c7d2fe77}.cu56-document b{display:block;border-bottom:1px solid #c7d2fe;padding:14px 0;color:#4f46e5}
+.cu56-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu56-voice>div{display:flex;align-items:center;gap:7px}.cu56-voice i{flex:1;border-radius:99px;background:#4f46e5}.cu56-voice aside{border:1px solid #c7d2fe;border-radius:18px;background:#f4f6ff;padding:16px}.cu56-voice p{border-bottom:1px solid #c7d2fe;padding-bottom:12px}.cu56-voice b,.cu56-voice span{display:block}
+.cu56-factory{height:100%;display:grid;grid-template-columns:repeat(9,1fr);gap:9px}.cu56-factory i{border-radius:10px;background:#eef2ff;border:1px solid #c7d2fe}.cu56-factory i.warn{background:#f59e0b}.cu56-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu56-people-graph{position:absolute;inset:0;background:#ffffff}.cu56-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #1f2333;border-radius:999px;background:#f4f6ff;padding:10px 12px;text-align:center}.cu56-people-graph b{display:block;font-size:12px}.cu56-people-graph span{color:#4f46e5;font-weight:950}.cu56-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#c7d2fe;transform:rotate(var(--r));transform-origin:left center}
+.cu56-control{height:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.cu56-control article{border:1px solid #c7d2fe;border-radius:16px;background:#f4f6ff;padding:14px}.cu56-control b,.cu56-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu56 screen-a"><nav class="cu56-nav"><span class="">원본 에셋</span><span class="on">브랜드 가이드</span><span class="">채널 규격</span><span class="">권리 DB</span><span class="">자동 생성</span></nav><div class="cu56-hero"><p>Lattice Retail · CASE 056</p><h1>Creative Asset Forge</h1><strong>브랜드 세이프티 검수</strong></div><section class="cu56-visual"><div class="cu56-asset">
+            <i class="" style="--x:0%;--y:2%"></i><i class="sel" style="--x:37%;--y:55%"></i><i class="" style="--x:74%;--y:30%"></i><i class="" style="--x:23%;--y:5%"></i><i class="" style="--x:60%;--y:58%"></i><i class="" style="--x:9%;--y:33%"></i><i class="sel" style="--x:46%;--y:8%"></i><i class="" style="--x:83%;--y:61%"></i><i class="" style="--x:32%;--y:36%"></i><i class="" style="--x:69%;--y:11%"></i><i class="" style="--x:18%;--y:64%"></i><i class="sel" style="--x:55%;--y:39%"></i><i class="" style="--x:4%;--y:14%"></i><i class="" style="--x:41%;--y:67%"></i><i class="" style="--x:78%;--y:42%"></i><i class="" style="--x:27%;--y:17%"></i><i class="sel" style="--x:64%;--y:70%"></i><i class="" style="--x:13%;--y:45%"></i>
+            <b>자동 생성</b>
+        </div></section><div class="cu56-meters"><article class="cu56-meter"><span>자동 생성</span><b data-live>81%</b><i style="--w:81%"></i></article><article class="cu56-meter"><span>검수 요청</span><b data-live>90%</b><i style="--w:90%"></i></article><article class="cu56-meter"><span>버전 비교</span><b data-live>62%</b><i style="--w:62%"></i></article></div><section class="cu56-board"><article><b>에셋-056-0</b><span>마스킹 경계</span><em data-live>75%</em></article><article><b>레이어-056-1</b><span>프레임 변화</span><em data-live>86%</em></article><article><b>프레임-056-2</b><span>톤 불일치</span><em data-live>58%</em></article><article><b>채널-056-3</b><span>권리 위험</span><em data-live>69%</em></article><article><b>에셋-056-4</b><span>자동 생성</span><em data-live>80%</em></article><article><b>레이어-056-5</b><span>검수 요청</span><em data-live>91%</em></article><article><b>프레임-056-6</b><span>버전 비교</span><em data-live>63%</em></article></section><aside class="cu56-log" id="cu56log"></aside></main>
+<script>
+
+
+const cu56Live=[...document.querySelectorAll("[data-live]")];
+let cu56Frame=0;
+setInterval(()=>{cu56Frame++;cu56Live.forEach((el,i)=>{el.textContent=(58+((cu56Frame*3+i*7+56)%39))+"%";});},1200);
+
+const cu56Log=document.getElementById("cu56log");
+if(cu56Log){
+  const rows=["마스킹 경계","프레임 변화","톤 불일치","권리 위험","자동 생성","검수 요청","버전 비교","배포","원본 에셋","브랜드 가이드","채널 규격","권리 DB"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu56Log.prepend(p);while(cu56Log.children.length>18)cu56Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-07-data | 라이브커머스 질문 라우팅</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#fff7ed;color:#1f2937}.av07d-ledger{height:100vh;display:grid;grid-template-columns:310px 1fr 320px;gap:20px;padding:24px}.left,.middle,.right{border:2px solid #1f2937;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #1f2937}.left,.right{padding:24px}.left h1{font-size:36px;line-height:1.04;margin:0}.left p{color:#f97316;font-weight:950}.left div{border-top:1px solid #ffd3b6;padding:16px 0}.left b{display:block}.left span{color:#1f2937;opacity:.65}.middle{display:grid;grid-template-columns:repeat(7,1fr);align-items:end;gap:10px;padding:22px;background:linear-gradient(180deg,#ffffff,#fff7ed)}.middle i{height:var(--h);border-radius:14px 14px 4px 4px;background:#ffd3b6;border:1px solid #1f293744}.middle i.hot{background:#f97316;box-shadow:0 0 0 6px #ffd3b6}.right h2{font-size:30px;margin:0 0 18px}.av07d-metric{border:1px solid #ffd3b6;border-radius:18px;padding:14px;margin-bottom:12px}.av07d-metric span{display:block;font-size:12px}.av07d-metric b{font-size:28px}.av07d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#f97316;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av07d-ledger">
+        <section class="left"><h1>Conversation Intelligence Desk</h1><p>라이브커머스 질문 라우팅 원천 데이터 스냅샷</p><div><b>상담 녹취</b><span>콜 key-70</span></div><div><b>CRM 프로필</b><span>고객 key-71</span></div><div><b>문의 이력</b><span>의도 key-72</span></div><div><b>지식베이스</b><span>티켓 key-73</span></div></section>
+        <section class="middle"><i class="" style="--h:31px"></i><i class="" style="--h:48px"></i><i class="" style="--h:65px"></i><i class="" style="--h:82px"></i><i class="" style="--h:99px"></i><i class="" style="--h:116px"></i><i class="" style="--h:133px"></i><i class="hot" style="--h:30px"></i><i class="" style="--h:47px"></i><i class="" style="--h:64px"></i><i class="" style="--h:81px"></i><i class="" style="--h:98px"></i><i class="" style="--h:115px"></i><i class="" style="--h:132px"></i><i class="" style="--h:29px"></i><i class="" style="--h:46px"></i><i class="hot" style="--h:63px"></i><i class="" style="--h:80px"></i><i class="" style="--h:97px"></i><i class="" style="--h:114px"></i><i class="" style="--h:131px"></i><i class="" style="--h:28px"></i><i class="" style="--h:45px"></i><i class="" style="--h:62px"></i><i class="" style="--h:79px"></i><i class="hot" style="--h:96px"></i><i class="" style="--h:113px"></i><i class="" style="--h:130px"></i><i class="" style="--h:27px"></i><i class="" style="--h:44px"></i><i class="" style="--h:61px"></i><i class="" style="--h:78px"></i><i class="" style="--h:95px"></i><i class="" style="--h:112px"></i><i class="hot" style="--h:129px"></i><i class="" style="--h:26px"></i><i class="" style="--h:43px"></i><i class="" style="--h:60px"></i><i class="" style="--h:77px"></i><i class="" style="--h:94px"></i><i class="" style="--h:111px"></i><i class="" style="--h:128px"></i></section>
+        <section class="right"><h2>Atlas Works</h2>
+        <article class="av07d-metric">
+            <span>의도 분류</span>
+            <b data-meter>88%</b>
+            <i style="--w:61%"></i>
+        </article>
+        <article class="av07d-metric">
+            <span>감정 변화</span>
+            <b data-meter>70%</b>
+            <i style="--w:74%"></i>
+        </article>
+        <article class="av07d-metric">
+            <span>재문의 확률</span>
+            <b data-meter>81%</b>
+            <i style="--w:87%"></i>
+        </article>
+        <article class="av07d-metric">
+            <span>품질 점수</span>
+            <b data-meter>92%</b>
+            <i style="--w:60%"></i>
+        </article></section>
+    </main>
+<script>
+
+const av07dmeters=[...document.querySelectorAll("[data-meter]")];
+let av07dtick=0;
+setInterval(()=>{
+  av07dtick++;
+  av07dmeters.forEach((el,i)=>el.textContent=(62+((av07dtick*3+i*9+7)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

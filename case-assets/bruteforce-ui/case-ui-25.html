@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-25 | 실시간 재고 예측 로직</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#f8fafc;color:#0f172a}
+.cu25{height:100vh;padding:25px;gap:18px;background:radial-gradient(circle at 74% 45%, #bae6fd66, transparent 28%), linear-gradient(#e0f2fe55 1px, transparent 1px), linear-gradient(90deg, #e0f2fe55 1px, transparent 1px);background-size:auto,45px 45px,45px 45px}
+.cu25 > *{min-width:0}
+.cu25-hero,.cu25-visual,.cu25-meters,.cu25-board,.cu25-log,.cu25-nav{border:2px solid #0f172a;border-radius:29px;background:#ffffff;box-shadow:6px 6px 0 #0f172a;overflow:hidden}
+.cu25-hero{padding:24px}.cu25-hero p{margin:0;color:#0ea5e9;font-weight:950;letter-spacing:.06em}.cu25-hero h1{margin:10px 0 6px;font-size:41px;line-height:.98;letter-spacing:-.055em}.cu25-hero strong{display:block;color:#0f172a;opacity:.72}
+.cu25-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu25-nav span{border:1px solid #bae6fd;border-radius:14px;background:#f8fafc;padding:12px;font-weight:950;font-size:13px}.cu25-nav span.on{background:#0f172a;color:#ffffff}
+.cu25-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu25-meter{border:1px solid #bae6fd;border-radius:16px;padding:13px}.cu25-meter span{display:block;font-size:12px;color:#0f172a;opacity:.72}.cu25-meter b{font-size:26px}.cu25-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#0ea5e9;margin-top:8px}
+.cu25-board{padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-content:start}.cu25-board article{border:1px solid #bae6fd;border-radius:16px;background:#f8fafc;padding:13px;min-height:107px}.cu25-board b{display:block;font-size:13px}.cu25-board span{display:block;margin-top:10px;color:#0f172a;opacity:.65;font-size:12px}.cu25-board em{display:block;margin-top:12px;color:#0ea5e9;font-style:normal;font-weight:950}
+.cu25-visual{position:relative;padding:18px}.cu25-log{background:#0f172a;color:#bae6fd;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu25-nav{grid-row:1/4}.screen-a .cu25-hero{grid-column:2}.screen-a .cu25-visual{grid-column:2;grid-row:2/4}.screen-a .cu25-meters{grid-column:3;grid-row:1/3}.screen-a .cu25-board{grid-column:3;grid-row:3}.screen-a .cu25-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu25-hero{grid-column:1}.screen-b .cu25-meters{grid-column:2}.screen-b .cu25-visual{grid-column:1/3;grid-row:2}.screen-b .cu25-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu25-board{grid-column:3;grid-row:1/3}.screen-b .cu25-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu25-visual{grid-column:1;grid-row:1/5}.screen-c .cu25-hero{grid-column:2;grid-row:1}.screen-c .cu25-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu25-board{grid-column:2;grid-row:3}.screen-c .cu25-meters{grid-column:2;grid-row:4}.screen-c .cu25-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu25-nav{grid-row:1/3}.screen-d .cu25-board{grid-column:2;grid-row:1}.screen-d .cu25-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu25-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu25-meters{grid-column:2;grid-row:2}.screen-d .cu25-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu25-hero{grid-row:1}.screen-e .cu25-visual{grid-column:2;grid-row:1/4}.screen-e .cu25-log{grid-column:3;grid-row:1/3}.screen-e .cu25-board{grid-column:1;grid-row:2}.screen-e .cu25-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu25-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu25-meters{grid-column:1;grid-row:1/4}.screen-f .cu25-hero{grid-column:2;grid-row:1}.screen-f .cu25-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu25-visual{grid-column:2;grid-row:3}.screen-f .cu25-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu25-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu25-log{grid-row:1/3}.screen-g .cu25-hero{grid-column:2}.screen-g .cu25-visual{grid-column:2;grid-row:2}.screen-g .cu25-board{grid-column:3;grid-row:1}.screen-g .cu25-meters{grid-column:3;grid-row:2}.screen-g .cu25-nav{display:none}
+.cu25-asset{position:absolute;inset:0;background:#0f172a;overflow:hidden}.cu25-asset i{position:absolute;left:var(--x);top:var(--y);width:63px;height:35px;border-radius:19px;background:#0ea5e9;opacity:.72}.cu25-asset i.sel{background:#bae6fd;box-shadow:0 0 0 10px #bae6fd33}.cu25-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#0f172a;border-radius:999px;padding:12px 15px}
+.cu25-radar{width:100%;height:100%}.cu25-radar circle{fill:none;stroke:#bae6fd;stroke-width:3}.cu25-radar rect{fill:#ffffff;stroke:#0f172a;stroke-width:3}.cu25-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#0f172a}
+.cu25-supply{width:100%;height:100%;background:#f8fafc}.cu25-supply path{fill:none;stroke:#0ea5e9;stroke-width:10;stroke-dasharray:14 10}.cu25-supply circle{fill:#ffffff;stroke:#0f172a;stroke-width:5}.cu25-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#0f172a}
+.cu25-trading{height:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.cu25-trading article{position:relative;border:1px solid #bae6fd;border-radius:16px;background:#f8fafc;padding:12px}.cu25-trading small{font-weight:950;color:#0ea5e9}.cu25-trading b{display:block;font-size:22px;margin-top:8px}.cu25-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#bae6fd,#0ea5e9)}
+.cu25-stars{width:100%;height:100%;background:#0f172a;border-radius:18px}.cu25-stars line{stroke:#bae6fd;stroke-width:1;opacity:.45}.cu25-stars circle{fill:#bae6fd}.cu25-stars circle.hot{fill:#0ea5e9}.cu25-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu25-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu25-document section,.cu25-document aside{border:1px solid #bae6fd;border-radius:18px;background:#f8fafc;padding:22px}.cu25-document p{height:13px;border-radius:99px;background:#bae6fd;margin:0 0 16px}.cu25-document p.mark{background:#0ea5e9;box-shadow:0 0 0 8px #bae6fd77}.cu25-document b{display:block;border-bottom:1px solid #bae6fd;padding:14px 0;color:#0ea5e9}
+.cu25-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu25-voice>div{display:flex;align-items:center;gap:7px}.cu25-voice i{flex:1;border-radius:99px;background:#0ea5e9}.cu25-voice aside{border:1px solid #bae6fd;border-radius:18px;background:#f8fafc;padding:16px}.cu25-voice p{border-bottom:1px solid #bae6fd;padding-bottom:12px}.cu25-voice b,.cu25-voice span{display:block}
+.cu25-factory{height:100%;display:grid;grid-template-columns:repeat(8,1fr);gap:9px}.cu25-factory i{border-radius:10px;background:#e0f2fe;border:1px solid #bae6fd}.cu25-factory i.warn{background:#f59e0b}.cu25-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu25-people-graph{position:absolute;inset:0;background:#ffffff}.cu25-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #0f172a;border-radius:999px;background:#f8fafc;padding:10px 12px;text-align:center}.cu25-people-graph b{display:block;font-size:12px}.cu25-people-graph span{color:#0ea5e9;font-weight:950}.cu25-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#bae6fd;transform:rotate(var(--r));transform-origin:left center}
+.cu25-control{height:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.cu25-control article{border:1px solid #bae6fd;border-radius:16px;background:#f8fafc;padding:14px}.cu25-control b,.cu25-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu25 screen-e"><div class="cu25-hero"><p>Signal Works · CASE 025</p><h1>Inventory Motion Planner</h1><strong>실시간 재고 예측 로직</strong></div><section class="cu25-visual"><svg class="cu25-supply" viewBox="0 0 940 540">
+            <path d="M80 390 C190 90 350 470 480 210 S760 120 850 395" />
+            <g transform="translate(515,370)"><circle r="20"/><text>SKU</text></g><g transform="translate(624,157)"><circle r="28"/><text>센터</text></g><g transform="translate(733,294)"><circle r="36"/><text>노선</text></g><g transform="translate(842,431)"><circle r="20"/><text>발주</text></g><g transform="translate(191,218)"><circle r="28"/><text>SKU</text></g><g transform="translate(300,355)"><circle r="36"/><text>센터</text></g><g transform="translate(409,142)"><circle r="20"/><text>노선</text></g><g transform="translate(518,279)"><circle r="28"/><text>발주</text></g>
+        </svg></section><aside class="cu25-log" id="cu25log"></aside><section class="cu25-board"><article><b>SKU-025-0</b><span>과재고 지수</span><em data-live>83%</em></article><article><b>센터-025-1</b><span>센터 이동량</span><em data-live>94%</em></article><article><b>노선-025-2</b><span>대체 SKU</span><em data-live>66%</em></article><article><b>발주-025-3</b><span>발주량 추천</span><em data-live>77%</em></article><article><b>SKU-025-4</b><span>노출 변경</span><em data-live>88%</em></article><article><b>센터-025-5</b><span>배차 추천</span><em data-live>60%</em></article></section><nav class="cu25-nav"><span class="on">주문 로그</span><span class="">센터 재고</span><span class="">배송 SLA</span><span class="">프로모션</span><span class="">발주량 추천</span></nav><div class="cu25-meters"><article class="cu25-meter"><span>과재고 지수</span><b data-live>74%</b><i style="--w:74%"></i></article><article class="cu25-meter"><span>센터 이동량</span><b data-live>83%</b><i style="--w:83%"></i></article><article class="cu25-meter"><span>대체 SKU</span><b data-live>92%</b><i style="--w:92%"></i></article><article class="cu25-meter"><span>주문 로그</span><b data-live>64%</b><i style="--w:64%"></i></article></div></main>
+<script>
+
+
+const cu25Live=[...document.querySelectorAll("[data-live]")];
+let cu25Frame=0;
+setInterval(()=>{cu25Frame++;cu25Live.forEach((el,i)=>{el.textContent=(58+((cu25Frame*3+i*7+25)%39))+"%";});},1200);
+
+const cu25Log=document.getElementById("cu25log");
+if(cu25Log){
+  const rows=["품절 예상시점","과재고 지수","센터 이동량","대체 SKU","발주량 추천","노출 변경","배차 추천","지연 알림","주문 로그","센터 재고","배송 SLA","프로모션"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu25Log.prepend(p);while(cu25Log.children.length>18)cu25Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

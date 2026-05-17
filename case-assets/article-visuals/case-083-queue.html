@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-83-queue | 채용 서류 스크리닝</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#2a1721;color:#ffffff}.av83q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#e11d4855,transparent 34%),#2a1721}.av83q-command aside,.av83q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av83q-command aside{padding:22px}. av83q-command h1{font-size:34px;line-height:1.04;margin:0}. av83q-command p{color:#ffc4d1;line-height:1.7}.av83q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av83q-metric b{font-size:26px}. av83q-metric span{display:block}. av83q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#e11d48;margin-top:9px}.av83q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#e11d48;transform-origin:0 0;animation:av83qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#ffc4d1;box-shadow:0 0 0 8px #ffc4d133}@keyframes av83qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av83q-command">
+            <aside><h1>People Ops Prediction Desk</h1><p>채용 서류 스크리닝 실시간 처리 로그</p>
+        <article class="av83q-metric">
+            <span>이탈 위험</span>
+            <b data-meter>69%</b>
+            <i style="--w:57%"></i>
+        </article>
+        <article class="av83q-metric">
+            <span>권한 이상</span>
+            <b data-meter>80%</b>
+            <i style="--w:70%"></i>
+        </article>
+        <article class="av83q-metric">
+            <span>응답 지연</span>
+            <b data-meter>91%</b>
+            <i style="--w:83%"></i>
+        </article>
+        <article class="av83q-metric">
+            <span>리텐션 점수</span>
+            <b data-meter>73%</b>
+            <i style="--w:56%"></i>
+        </article></aside>
+            <main id="av83q-stream"></main>
+            <div class="radar"><i style="--x:39%;--y:35%"></i><i style="--x:62%;--y:66%"></i><i style="--x:23%;--y:33%"></i><i style="--x:46%;--y:64%"></i><i style="--x:69%;--y:31%"></i><i style="--x:30%;--y:62%"></i><i style="--x:53%;--y:29%"></i><i style="--x:76%;--y:60%"></i><i style="--x:37%;--y:27%"></i></div>
+        </section>
+<script>
+const av83qs=document.getElementById("av83q-stream");const av83qlogs=["알림 발송 queued","이탈 위험 threshold crossed","owner=조직/구독 운영팀","sla.check passed","handoff ticket 83-A"];let av83qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av83qlogs[av83qn++%av83qlogs.length];av83qs.prepend(p);while(av83qs.children.length>26)av83qs.lastElementChild.remove();},430);
+const av83qmeters=[...document.querySelectorAll("[data-meter]")];
+let av83qtick=0;
+setInterval(()=>{
+  av83qtick++;
+  av83qmeters.forEach((el,i)=>el.textContent=(62+((av83qtick*3+i*9+83)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

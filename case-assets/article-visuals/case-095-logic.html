@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-95-logic | 프로젝트 리스크 예측</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f7fbff;color:#111827}.av95l-nodes{height:100vh;padding:24px;display:grid;grid-template-rows:90px 1fr;gap:18px}.av95l-nodes header{display:flex;align-items:center;gap:18px;border-radius:28px;background:#111827;color:#ffffff;padding:0 24px}.av95l-nodes h1{font-size:30px;margin:0}.av95l-nodes code{margin-left:auto;background:#ffffff;color:#111827;border-radius:14px;padding:12px 14px}.av95l-nodes section{display:grid;grid-template-columns:1fr 290px;gap:18px}.av95l-nodes svg,.av95l-nodes aside{border:2px solid #111827;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #111827}.av95l-nodes path{fill:none;stroke:#9bd4ff;stroke-width:5;stroke-dasharray:12 10}. av95l-nodes rect{fill:#f7fbff;stroke:#111827;stroke-width:3}. av95l-nodes text{text-anchor:middle;dominant-baseline:middle;font-size:13px;font-weight:950;fill:#111827}.av95l-nodes aside{padding:18px;display:grid;gap:14px;align-content:start}.av95l-metric{border:1px solid #9bd4ff;border-radius:18px;padding:14px}.av95l-metric b{font-size:26px}. av95l-metric span{display:block;font-size:12px}. av95l-metric i{display:block;width:var(--w);height:8px;background:#2563eb;border-radius:99px;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av95l-nodes">
+            <header><b>Finch Logistics</b><h1>People Ops Prediction Desk Logic Builder</h1><code>priority = churn_prob * revenue + access_risk</code></header>
+            <section><svg viewBox="0 0 1080 600">
+                <path d="M120 100 C260 90, 360 180, 430 160" /><path d="M430 100 C510 90, 580 180, 640 160" /><path d="M740 100 C760 90, 800 180, 850 160" /><path d="M120 250 C260 230, 360 310, 430 280" /><path d="M430 250 C510 230, 580 310, 640 280" /><path d="M740 250 C760 230, 800 310, 850 280" /><path d="M120 400 C260 370, 360 440, 430 400" /><path d="M430 400 C510 370, 580 440, 640 400" /><path d="M740 400 C760 370, 800 440, 850 400" /><path d="M120 550 C260 510, 360 570, 430 520" />
+                <g transform="translate(120,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>사용자 프로필</text></g><g transform="translate(430,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>활동 로그</text></g><g transform="translate(740,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>결제 이력</text></g><g transform="translate(120,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>권한 변경</text></g><g transform="translate(430,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>이탈 위험</text></g><g transform="translate(740,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>권한 이상</text></g><g transform="translate(120,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>응답 지연</text></g><g transform="translate(430,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>리텐션 점수</text></g><g transform="translate(740,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>알림 발송</text></g><g transform="translate(120,550)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>담당 배정</text></g>
+            </svg><aside>
+        <article class="av95l-metric">
+            <span>이탈 위험</span>
+            <b data-meter>95%</b>
+            <i style="--w:69%"></i>
+        </article>
+        <article class="av95l-metric">
+            <span>권한 이상</span>
+            <b data-meter>77%</b>
+            <i style="--w:82%"></i>
+        </article>
+        <article class="av95l-metric">
+            <span>응답 지연</span>
+            <b data-meter>88%</b>
+            <i style="--w:55%"></i>
+        </article>
+        <article class="av95l-metric">
+            <span>리텐션 점수</span>
+            <b data-meter>70%</b>
+            <i style="--w:68%"></i>
+        </article></aside></section>
+        </main>
+<script>
+
+const av95lmeters=[...document.querySelectorAll("[data-meter]")];
+let av95ltick=0;
+setInterval(()=>{
+  av95ltick++;
+  av95lmeters.forEach((el,i)=>el.textContent=(62+((av95ltick*3+i*9+95)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

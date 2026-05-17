@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-85-data | 회계 증빙 검수</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#211a36;color:#ffffff}.av85d-api{height:100vh;display:grid;grid-template-rows:70px 1fr;background:radial-gradient(circle at 74% 18%,#7c3aed44,transparent 30%),#211a36}.av85d-api nav{display:flex;align-items:center;gap:18px;border-bottom:1px solid rgba(255,255,255,.14);padding:0 26px}.av85d-api nav b{font-size:21px}.av85d-api nav span{color:#d8b4fe;font-weight:900}.av85d-api nav i{margin-left:auto;font-style:normal;border:1px solid rgba(255,255,255,.18);border-radius:99px;padding:8px 12px}.av85d-api main{display:grid;grid-template-columns:1fr 420px;gap:18px;padding:18px}.contract{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.contract article{border:1px solid rgba(255,255,255,.14);border-radius:26px;background:rgba(255,255,255,.07);padding:24px;animation:av85drise .8s ease both;animation-delay:calc(var(--delay)*.08s)}.contract h2{font-size:32px;margin:0}.contract p{line-height:1.7;color:#d8b4fe}.contract code,.terminal{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.contract code{display:block;border-radius:14px;background:rgba(0,0,0,.24);padding:16px;color:#a7f3d0}.terminal{border:1px solid rgba(255,255,255,.14);border-radius:26px;background:#020617;padding:18px;overflow:hidden;color:#a7f3d0;font-size:13px;line-height:1.85}@keyframes av85drise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="av85d-api">
+            <nav><b>Pioneer Ops</b><span>회계 증빙 검수</span><i>DATA CONTRACT</i></nav>
+            <main>
+                <section class="contract"><article style="--delay:0"><h2>PDF 원본</h2><p>핵심 조항 필드를 batch sync으로 표준화</p><code>{ id:"085-0", latency:80ms }</code></article><article style="--delay:1"><h2>거래처 원장</h2><p>금액 불일치 필드를 event stream으로 표준화</p><code>{ id:"085-1", latency:115ms }</code></article><article style="--delay:2"><h2>승인 이력</h2><p>권한 예외 필드를 batch sync으로 표준화</p><code>{ id:"085-2", latency:150ms }</code></article><article style="--delay:3"><h2>표준 조항집</h2><p>검토 위험도 필드를 event stream으로 표준화</p><code>{ id:"085-3", latency:185ms }</code></article></section>
+                <section class="terminal" id="av85d-terminal"></section>
+            </main>
+        </div>
+<script>
+const av85dterm=document.getElementById("av85d-terminal");const av85dlogs=["schema.validate 문서","stream.join 거래처 원장","dedupe.key 조항_85","quality.gate passed","refresh.window 15m"];let av85di=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av85dlogs[av85di++%av85dlogs.length];av85dterm.prepend(p);while(av85dterm.children.length>22)av85dterm.lastElementChild.remove();},520);
+</script>
+</body>
+</html>

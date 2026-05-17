@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-16 | MD 발주량 추천</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#f4f6ff;color:#1f2333}
+.cu16{height:100vh;padding:25px;gap:16px;background:radial-gradient(circle at 61% 65%, #c7d2fe66, transparent 28%), linear-gradient(#eef2ff55 1px, transparent 1px), linear-gradient(90deg, #eef2ff55 1px, transparent 1px);background-size:auto,36px 36px,36px 36px}
+.cu16 > *{min-width:0}
+.cu16-hero,.cu16-visual,.cu16-meters,.cu16-board,.cu16-log,.cu16-nav{border:2px solid #1f2333;border-radius:20px;background:#ffffff;box-shadow:7px 7px 0 #1f2333;overflow:hidden}
+.cu16-hero{padding:24px}.cu16-hero p{margin:0;color:#4f46e5;font-weight:950;letter-spacing:.06em}.cu16-hero h1{margin:10px 0 6px;font-size:50px;line-height:.98;letter-spacing:-.055em}.cu16-hero strong{display:block;color:#1f2333;opacity:.72}
+.cu16-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu16-nav span{border:1px solid #c7d2fe;border-radius:14px;background:#f4f6ff;padding:12px;font-weight:950;font-size:13px}.cu16-nav span.on{background:#1f2333;color:#ffffff}
+.cu16-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu16-meter{border:1px solid #c7d2fe;border-radius:16px;padding:13px}.cu16-meter span{display:block;font-size:12px;color:#1f2333;opacity:.72}.cu16-meter b{font-size:26px}.cu16-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#4f46e5;margin-top:8px}
+.cu16-board{padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-content:start}.cu16-board article{border:1px solid #c7d2fe;border-radius:16px;background:#f4f6ff;padding:13px;min-height:98px}.cu16-board b{display:block;font-size:13px}.cu16-board span{display:block;margin-top:10px;color:#1f2333;opacity:.65;font-size:12px}.cu16-board em{display:block;margin-top:12px;color:#4f46e5;font-style:normal;font-weight:950}
+.cu16-visual{position:relative;padding:18px}.cu16-log{background:#1f2333;color:#c7d2fe;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu16-nav{grid-row:1/4}.screen-a .cu16-hero{grid-column:2}.screen-a .cu16-visual{grid-column:2;grid-row:2/4}.screen-a .cu16-meters{grid-column:3;grid-row:1/3}.screen-a .cu16-board{grid-column:3;grid-row:3}.screen-a .cu16-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu16-hero{grid-column:1}.screen-b .cu16-meters{grid-column:2}.screen-b .cu16-visual{grid-column:1/3;grid-row:2}.screen-b .cu16-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu16-board{grid-column:3;grid-row:1/3}.screen-b .cu16-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu16-visual{grid-column:1;grid-row:1/5}.screen-c .cu16-hero{grid-column:2;grid-row:1}.screen-c .cu16-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu16-board{grid-column:2;grid-row:3}.screen-c .cu16-meters{grid-column:2;grid-row:4}.screen-c .cu16-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu16-nav{grid-row:1/3}.screen-d .cu16-board{grid-column:2;grid-row:1}.screen-d .cu16-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu16-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu16-meters{grid-column:2;grid-row:2}.screen-d .cu16-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu16-hero{grid-row:1}.screen-e .cu16-visual{grid-column:2;grid-row:1/4}.screen-e .cu16-log{grid-column:3;grid-row:1/3}.screen-e .cu16-board{grid-column:1;grid-row:2}.screen-e .cu16-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu16-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu16-meters{grid-column:1;grid-row:1/4}.screen-f .cu16-hero{grid-column:2;grid-row:1}.screen-f .cu16-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu16-visual{grid-column:2;grid-row:3}.screen-f .cu16-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu16-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu16-log{grid-row:1/3}.screen-g .cu16-hero{grid-column:2}.screen-g .cu16-visual{grid-column:2;grid-row:2}.screen-g .cu16-board{grid-column:3;grid-row:1}.screen-g .cu16-meters{grid-column:3;grid-row:2}.screen-g .cu16-nav{display:none}
+.cu16-asset{position:absolute;inset:0;background:#1f2333;overflow:hidden}.cu16-asset i{position:absolute;left:var(--x);top:var(--y);width:54px;height:50px;border-radius:10px;background:#4f46e5;opacity:.72}.cu16-asset i.sel{background:#c7d2fe;box-shadow:0 0 0 10px #c7d2fe33}.cu16-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#1f2333;border-radius:999px;padding:12px 15px}
+.cu16-radar{width:100%;height:100%}.cu16-radar circle{fill:none;stroke:#c7d2fe;stroke-width:3}.cu16-radar rect{fill:#ffffff;stroke:#1f2333;stroke-width:3}.cu16-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2333}
+.cu16-supply{width:100%;height:100%;background:#f4f6ff}.cu16-supply path{fill:none;stroke:#4f46e5;stroke-width:10;stroke-dasharray:14 10}.cu16-supply circle{fill:#ffffff;stroke:#1f2333;stroke-width:5}.cu16-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2333}
+.cu16-trading{height:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.cu16-trading article{position:relative;border:1px solid #c7d2fe;border-radius:16px;background:#f4f6ff;padding:12px}.cu16-trading small{font-weight:950;color:#4f46e5}.cu16-trading b{display:block;font-size:22px;margin-top:8px}.cu16-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#c7d2fe,#4f46e5)}
+.cu16-stars{width:100%;height:100%;background:#1f2333;border-radius:18px}.cu16-stars line{stroke:#c7d2fe;stroke-width:1;opacity:.45}.cu16-stars circle{fill:#c7d2fe}.cu16-stars circle.hot{fill:#4f46e5}.cu16-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu16-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu16-document section,.cu16-document aside{border:1px solid #c7d2fe;border-radius:18px;background:#f4f6ff;padding:22px}.cu16-document p{height:13px;border-radius:99px;background:#c7d2fe;margin:0 0 16px}.cu16-document p.mark{background:#4f46e5;box-shadow:0 0 0 8px #c7d2fe77}.cu16-document b{display:block;border-bottom:1px solid #c7d2fe;padding:14px 0;color:#4f46e5}
+.cu16-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu16-voice>div{display:flex;align-items:center;gap:7px}.cu16-voice i{flex:1;border-radius:99px;background:#4f46e5}.cu16-voice aside{border:1px solid #c7d2fe;border-radius:18px;background:#f4f6ff;padding:16px}.cu16-voice p{border-bottom:1px solid #c7d2fe;padding-bottom:12px}.cu16-voice b,.cu16-voice span{display:block}
+.cu16-factory{height:100%;display:grid;grid-template-columns:repeat(9,1fr);gap:9px}.cu16-factory i{border-radius:10px;background:#eef2ff;border:1px solid #c7d2fe}.cu16-factory i.warn{background:#f59e0b}.cu16-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu16-people-graph{position:absolute;inset:0;background:#ffffff}.cu16-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #1f2333;border-radius:999px;background:#f4f6ff;padding:10px 12px;text-align:center}.cu16-people-graph b{display:block;font-size:12px}.cu16-people-graph span{color:#4f46e5;font-weight:950}.cu16-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#c7d2fe;transform:rotate(var(--r));transform-origin:left center}
+.cu16-control{height:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.cu16-control article{border:1px solid #c7d2fe;border-radius:16px;background:#f4f6ff;padding:14px}.cu16-control b,.cu16-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu16 screen-c"><section class="cu16-visual"><svg class="cu16-supply" viewBox="0 0 940 540">
+            <path d="M80 390 C190 90 350 470 480 210 S760 120 850 395" />
+            <g transform="translate(362,271)"><circle r="20"/><text>SKU</text></g><g transform="translate(471,408)"><circle r="28"/><text>센터</text></g><g transform="translate(580,195)"><circle r="36"/><text>노선</text></g><g transform="translate(689,332)"><circle r="20"/><text>발주</text></g><g transform="translate(798,119)"><circle r="28"/><text>SKU</text></g><g transform="translate(147,256)"><circle r="36"/><text>센터</text></g><g transform="translate(256,393)"><circle r="20"/><text>노선</text></g><g transform="translate(365,180)"><circle r="28"/><text>발주</text></g>
+        </svg></section><div class="cu16-hero"><p>Pioneer Ops · CASE 016</p><h1>Inventory Motion Planner</h1><strong>MD 발주량 추천</strong></div><nav class="cu16-nav"><span class="">주문 로그</span><span class="on">센터 재고</span><span class="">배송 SLA</span><span class="">프로모션</span><span class="">발주량 추천</span></nav><section class="cu16-board"><article><b>SKU-016-0</b><span>품절 예상시점</span><em data-live>74%</em></article><article><b>센터-016-1</b><span>과재고 지수</span><em data-live>85%</em></article><article><b>노선-016-2</b><span>센터 이동량</span><em data-live>96%</em></article><article><b>발주-016-3</b><span>대체 SKU</span><em data-live>68%</em></article><article><b>SKU-016-4</b><span>발주량 추천</span><em data-live>79%</em></article><article><b>센터-016-5</b><span>노출 변경</span><em data-live>90%</em></article><article><b>노선-016-6</b><span>배차 추천</span><em data-live>62%</em></article></section><div class="cu16-meters"><article class="cu16-meter"><span>주문 로그</span><b data-live>66%</b><i style="--w:66%"></i></article><article class="cu16-meter"><span>센터 재고</span><b data-live>75%</b><i style="--w:75%"></i></article><article class="cu16-meter"><span>배송 SLA</span><b data-live>84%</b><i style="--w:84%"></i></article></div><aside class="cu16-log" id="cu16log"></aside></main>
+<script>
+
+
+const cu16Live=[...document.querySelectorAll("[data-live]")];
+let cu16Frame=0;
+setInterval(()=>{cu16Frame++;cu16Live.forEach((el,i)=>{el.textContent=(58+((cu16Frame*3+i*7+16)%39))+"%";});},1200);
+
+const cu16Log=document.getElementById("cu16log");
+if(cu16Log){
+  const rows=["품절 예상시점","과재고 지수","센터 이동량","대체 SKU","발주량 추천","노출 변경","배차 추천","지연 알림","주문 로그","센터 재고","배송 SLA","프로모션"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu16Log.prepend(p);while(cu16Log.children.length>18)cu16Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-31 | 광고소재 버전 관리</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#fff7ed;color:#1f2937}
+.cu31{height:100vh;padding:22px;gap:17px;background:radial-gradient(circle at 78% 5%, #ffd3b666, transparent 28%), linear-gradient(#ffedd555 1px, transparent 1px), linear-gradient(90deg, #ffedd555 1px, transparent 1px);background-size:auto,37px 37px,37px 37px}
+.cu31 > *{min-width:0}
+.cu31-hero,.cu31-visual,.cu31-meters,.cu31-board,.cu31-log,.cu31-nav{border:2px solid #1f2937;border-radius:21px;background:#ffffff;box-shadow:7px 7px 0 #1f2937;overflow:hidden}
+.cu31-hero{padding:24px}.cu31-hero p{margin:0;color:#f97316;font-weight:950;letter-spacing:.06em}.cu31-hero h1{margin:10px 0 6px;font-size:47px;line-height:.98;letter-spacing:-.055em}.cu31-hero strong{display:block;color:#1f2937;opacity:.72}
+.cu31-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu31-nav span{border:1px solid #ffd3b6;border-radius:14px;background:#fff7ed;padding:12px;font-weight:950;font-size:13px}.cu31-nav span.on{background:#1f2937;color:#ffffff}
+.cu31-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu31-meter{border:1px solid #ffd3b6;border-radius:16px;padding:13px}.cu31-meter span{display:block;font-size:12px;color:#1f2937;opacity:.72}.cu31-meter b{font-size:26px}.cu31-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#f97316;margin-top:8px}
+.cu31-board{padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-content:start}.cu31-board article{border:1px solid #ffd3b6;border-radius:16px;background:#fff7ed;padding:13px;min-height:113px}.cu31-board b{display:block;font-size:13px}.cu31-board span{display:block;margin-top:10px;color:#1f2937;opacity:.65;font-size:12px}.cu31-board em{display:block;margin-top:12px;color:#f97316;font-style:normal;font-weight:950}
+.cu31-visual{position:relative;padding:18px}.cu31-log{background:#1f2937;color:#ffd3b6;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu31-nav{grid-row:1/4}.screen-a .cu31-hero{grid-column:2}.screen-a .cu31-visual{grid-column:2;grid-row:2/4}.screen-a .cu31-meters{grid-column:3;grid-row:1/3}.screen-a .cu31-board{grid-column:3;grid-row:3}.screen-a .cu31-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu31-hero{grid-column:1}.screen-b .cu31-meters{grid-column:2}.screen-b .cu31-visual{grid-column:1/3;grid-row:2}.screen-b .cu31-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu31-board{grid-column:3;grid-row:1/3}.screen-b .cu31-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu31-visual{grid-column:1;grid-row:1/5}.screen-c .cu31-hero{grid-column:2;grid-row:1}.screen-c .cu31-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu31-board{grid-column:2;grid-row:3}.screen-c .cu31-meters{grid-column:2;grid-row:4}.screen-c .cu31-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu31-nav{grid-row:1/3}.screen-d .cu31-board{grid-column:2;grid-row:1}.screen-d .cu31-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu31-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu31-meters{grid-column:2;grid-row:2}.screen-d .cu31-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu31-hero{grid-row:1}.screen-e .cu31-visual{grid-column:2;grid-row:1/4}.screen-e .cu31-log{grid-column:3;grid-row:1/3}.screen-e .cu31-board{grid-column:1;grid-row:2}.screen-e .cu31-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu31-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu31-meters{grid-column:1;grid-row:1/4}.screen-f .cu31-hero{grid-column:2;grid-row:1}.screen-f .cu31-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu31-visual{grid-column:2;grid-row:3}.screen-f .cu31-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu31-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu31-log{grid-row:1/3}.screen-g .cu31-hero{grid-column:2}.screen-g .cu31-visual{grid-column:2;grid-row:2}.screen-g .cu31-board{grid-column:3;grid-row:1}.screen-g .cu31-meters{grid-column:3;grid-row:2}.screen-g .cu31-nav{display:none}
+.cu31-asset{position:absolute;inset:0;background:#1f2937;overflow:hidden}.cu31-asset i{position:absolute;left:var(--x);top:var(--y);width:41px;height:41px;border-radius:11px;background:#f97316;opacity:.72}.cu31-asset i.sel{background:#ffd3b6;box-shadow:0 0 0 10px #ffd3b633}.cu31-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#1f2937;border-radius:999px;padding:12px 15px}
+.cu31-radar{width:100%;height:100%}.cu31-radar circle{fill:none;stroke:#ffd3b6;stroke-width:3}.cu31-radar rect{fill:#ffffff;stroke:#1f2937;stroke-width:3}.cu31-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2937}
+.cu31-supply{width:100%;height:100%;background:#fff7ed}.cu31-supply path{fill:none;stroke:#f97316;stroke-width:10;stroke-dasharray:14 10}.cu31-supply circle{fill:#ffffff;stroke:#1f2937;stroke-width:5}.cu31-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2937}
+.cu31-trading{height:100%;display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.cu31-trading article{position:relative;border:1px solid #ffd3b6;border-radius:16px;background:#fff7ed;padding:12px}.cu31-trading small{font-weight:950;color:#f97316}.cu31-trading b{display:block;font-size:22px;margin-top:8px}.cu31-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#ffd3b6,#f97316)}
+.cu31-stars{width:100%;height:100%;background:#1f2937;border-radius:18px}.cu31-stars line{stroke:#ffd3b6;stroke-width:1;opacity:.45}.cu31-stars circle{fill:#ffd3b6}.cu31-stars circle.hot{fill:#f97316}.cu31-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu31-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu31-document section,.cu31-document aside{border:1px solid #ffd3b6;border-radius:18px;background:#fff7ed;padding:22px}.cu31-document p{height:13px;border-radius:99px;background:#ffd3b6;margin:0 0 16px}.cu31-document p.mark{background:#f97316;box-shadow:0 0 0 8px #ffd3b677}.cu31-document b{display:block;border-bottom:1px solid #ffd3b6;padding:14px 0;color:#f97316}
+.cu31-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu31-voice>div{display:flex;align-items:center;gap:7px}.cu31-voice i{flex:1;border-radius:99px;background:#f97316}.cu31-voice aside{border:1px solid #ffd3b6;border-radius:18px;background:#fff7ed;padding:16px}.cu31-voice p{border-bottom:1px solid #ffd3b6;padding-bottom:12px}.cu31-voice b,.cu31-voice span{display:block}
+.cu31-factory{height:100%;display:grid;grid-template-columns:repeat(9,1fr);gap:9px}.cu31-factory i{border-radius:10px;background:#ffedd5;border:1px solid #ffd3b6}.cu31-factory i.warn{background:#f59e0b}.cu31-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu31-people-graph{position:absolute;inset:0;background:#ffffff}.cu31-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #1f2937;border-radius:999px;background:#fff7ed;padding:10px 12px;text-align:center}.cu31-people-graph b{display:block;font-size:12px}.cu31-people-graph span{color:#f97316;font-weight:950}.cu31-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#ffd3b6;transform:rotate(var(--r));transform-origin:left center}
+.cu31-control{height:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cu31-control article{border:1px solid #ffd3b6;border-radius:16px;background:#fff7ed;padding:14px}.cu31-control b,.cu31-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu31 screen-d"><nav class="cu31-nav"><span class="">원본 에셋</span><span class="on">브랜드 가이드</span><span class="">채널 규격</span><span class="">권리 DB</span><span class="">자동 생성</span></nav><section class="cu31-board"><article><b>에셋-031-0</b><span>배포</span><em data-live>89%</em></article><article><b>레이어-031-1</b><span>마스킹 경계</span><em data-live>61%</em></article><article><b>프레임-031-2</b><span>프레임 변화</span><em data-live>72%</em></article><article><b>채널-031-3</b><span>톤 불일치</span><em data-live>83%</em></article><article><b>에셋-031-4</b><span>권리 위험</span><em data-live>94%</em></article><article><b>레이어-031-5</b><span>자동 생성</span><em data-live>66%</em></article><article><b>프레임-031-6</b><span>검수 요청</span><em data-live>77%</em></article></section><div class="cu31-hero"><p>Ledger Legal · CASE 031</p><h1>Creative Asset Forge</h1><strong>광고소재 버전 관리</strong></div><section class="cu31-visual"><div class="cu31-asset">
+            <i class="" style="--x:77%;--y:61%"></i><i class="sel" style="--x:26%;--y:36%"></i><i class="" style="--x:63%;--y:11%"></i><i class="" style="--x:12%;--y:64%"></i><i class="" style="--x:49%;--y:39%"></i><i class="" style="--x:86%;--y:14%"></i><i class="sel" style="--x:35%;--y:67%"></i><i class="" style="--x:72%;--y:42%"></i><i class="" style="--x:21%;--y:17%"></i><i class="" style="--x:58%;--y:70%"></i><i class="" style="--x:7%;--y:45%"></i><i class="sel" style="--x:44%;--y:20%"></i><i class="" style="--x:81%;--y:73%"></i><i class="" style="--x:30%;--y:48%"></i><i class="" style="--x:67%;--y:23%"></i><i class="" style="--x:16%;--y:76%"></i><i class="sel" style="--x:53%;--y:51%"></i><i class="" style="--x:2%;--y:26%"></i>
+            <b>배포</b>
+        </div></section><div class="cu31-meters"><article class="cu31-meter"><span>권리 DB</span><b data-live>67%</b><i style="--w:67%"></i></article><article class="cu31-meter"><span>자동 생성</span><b data-live>76%</b><i style="--w:76%"></i></article><article class="cu31-meter"><span>검수 요청</span><b data-live>85%</b><i style="--w:85%"></i></article><article class="cu31-meter"><span>버전 비교</span><b data-live>94%</b><i style="--w:94%"></i></article><article class="cu31-meter"><span>배포</span><b data-live>66%</b><i style="--w:66%"></i></article><article class="cu31-meter"><span>마스킹 경계</span><b data-live>75%</b><i style="--w:75%"></i></article></div><aside class="cu31-log" id="cu31log"></aside></main>
+<script>
+
+
+const cu31Live=[...document.querySelectorAll("[data-live]")];
+let cu31Frame=0;
+setInterval(()=>{cu31Frame++;cu31Live.forEach((el,i)=>{el.textContent=(58+((cu31Frame*3+i*7+31)%39))+"%";});},1200);
+
+const cu31Log=document.getElementById("cu31log");
+if(cu31Log){
+  const rows=["마스킹 경계","프레임 변화","톤 불일치","권리 위험","자동 생성","검수 요청","버전 비교","배포","원본 에셋","브랜드 가이드","채널 규격","권리 DB"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu31Log.prepend(p);while(cu31Log.children.length>18)cu31Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-72-data | ERP 품목 마스터 정리</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#effaf5;color:#10251d}.av72d-mapper{height:100vh;padding:26px;display:grid;grid-template-rows:86px 1fr;gap:18px}.av72d-mapper header{display:flex;align-items:center;gap:18px;border:2px solid #10251d;border-radius:24px;background:#ffffff;padding:0 24px;box-shadow:8px 8px 0 #10251d}.av72d-mapper h1{font-size:34px;margin:0;letter-spacing:-.04em}.av72d-mapper strong{color:#10b981}.av72d-mapper header span{margin-left:auto;font-weight:950;letter-spacing:.16em}.av72d-flow{min-height:0;display:grid;grid-template-columns:260px 1fr 280px;gap:18px}.av72d-flow aside, .av72d-table{border:2px solid #10251d;border-radius:26px;background:#ffffff;box-shadow:8px 8px 0 #10251d}.av72d-flow aside{padding:16px;display:grid;gap:10px;align-content:start}.av72d-flow button{height:64px;border:1px solid #b7f3d4;border-radius:16px;background:#effaf5;text-align:left;padding:11px 14px;font-weight:950;color:#10251d}.av72d-flow button em{display:block;font-size:12px;color:#10b981;font-style:normal;margin-top:4px}.av72d-table{overflow:hidden}.head, .av72d-table div:not(.head){display:grid;grid-template-columns:1.1fr 1.1fr 1fr .7fr .7fr}.head{height:58px;background:#10251d;color:#ffffff;align-items:center;padding:0 16px;font-size:12px;text-transform:uppercase}.av72d-table div:not(.head){height:58px;align-items:center;border-bottom:1px solid #b7f3d4;padding:0 16px;color:#10251d}.av72d-table mark{border-radius:999px;background:#b7f3d4;color:#10251d;padding:7px 10px;font-weight:950}.right .av72d-metric{border:1px solid #b7f3d4;border-radius:18px;padding:14px}.right .av72d-metric span{display:block;color:#10251d;opacity:.72;font-size:12px}.right .av72d-metric b{font-size:28px}.right .av72d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#10b981;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av72d-mapper">
+            <header><strong>MUSE CONTENT</strong><h1>ERP 품목 AX Console</h1><span>DATA INTAKE</span></header>
+            <section class="av72d-flow">
+                <aside><button>ERP 로그<em>3864</em></button><button>승인 이력<em>4068</em></button><button>문서 원본<em>4272</em></button><button>상담 데이터<em>4476</em></button></aside>
+                <article class="av72d-table">
+                    <div class="head"><b>source_key</b><b>clean_rule</b><b>owner</b><b>refresh</b><b>status</b></div>
+                    <div><span>문서-720</span><span>이상치</span><span>운영 자동화팀</span><span>realtime</span><mark>review</mark></div><div><span>티켓-721</span><span>우선순위</span><span>운영 자동화팀</span><span>15 min</span><mark>valid</mark></div><div><span>작업-722</span><span>자동 처리율</span><span>운영 자동화팀</span><span>15 min</span><mark>valid</mark></div><div><span>승인-723</span><span>검수 필요</span><span>운영 자동화팀</span><span>realtime</span><mark>valid</mark></div><div><span>문서-724</span><span>이상치</span><span>운영 자동화팀</span><span>15 min</span><mark>review</mark></div><div><span>티켓-725</span><span>우선순위</span><span>운영 자동화팀</span><span>15 min</span><mark>valid</mark></div><div><span>작업-726</span><span>자동 처리율</span><span>운영 자동화팀</span><span>realtime</span><mark>valid</mark></div><div><span>승인-727</span><span>검수 필요</span><span>운영 자동화팀</span><span>15 min</span><mark>valid</mark></div><div><span>문서-728</span><span>이상치</span><span>운영 자동화팀</span><span>15 min</span><mark>review</mark></div>
+                </article>
+                <aside class="right">
+        <article class="av72d-metric">
+            <span>이상치</span>
+            <b data-meter>79%</b>
+            <i style="--w:86%"></i>
+        </article>
+        <article class="av72d-metric">
+            <span>우선순위</span>
+            <b data-meter>90%</b>
+            <i style="--w:59%"></i>
+        </article>
+        <article class="av72d-metric">
+            <span>자동 처리율</span>
+            <b data-meter>72%</b>
+            <i style="--w:72%"></i>
+        </article>
+        <article class="av72d-metric">
+            <span>검수 필요</span>
+            <b data-meter>83%</b>
+            <i style="--w:85%"></i>
+        </article></aside>
+            </section>
+        </main>
+<script>
+
+const av72dmeters=[...document.querySelectorAll("[data-meter]")];
+let av72dtick=0;
+setInterval(()=>{
+  av72dtick++;
+  av72dmeters.forEach((el,i)=>el.textContent=(62+((av72dtick*3+i*9+72)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

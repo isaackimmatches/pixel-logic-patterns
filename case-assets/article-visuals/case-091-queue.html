@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-91-queue | 회원탈퇴 예측</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#0f172a;color:#ffffff}.av91q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#0ea5e955,transparent 34%),#0f172a}.av91q-command aside,.av91q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av91q-command aside{padding:22px}. av91q-command h1{font-size:34px;line-height:1.04;margin:0}. av91q-command p{color:#bae6fd;line-height:1.7}.av91q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av91q-metric b{font-size:26px}. av91q-metric span{display:block}. av91q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#0ea5e9;margin-top:9px}.av91q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#0ea5e9;transform-origin:0 0;animation:av91qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#bae6fd;box-shadow:0 0 0 8px #bae6fd33}@keyframes av91qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av91q-command">
+            <aside><h1>People Ops Prediction Desk</h1><p>회원탈퇴 예측 실시간 처리 로그</p>
+        <article class="av91q-metric">
+            <span>이탈 위험</span>
+            <b data-meter>96%</b>
+            <i style="--w:65%"></i>
+        </article>
+        <article class="av91q-metric">
+            <span>권한 이상</span>
+            <b data-meter>78%</b>
+            <i style="--w:78%"></i>
+        </article>
+        <article class="av91q-metric">
+            <span>응답 지연</span>
+            <b data-meter>89%</b>
+            <i style="--w:91%"></i>
+        </article>
+        <article class="av91q-metric">
+            <span>리텐션 점수</span>
+            <b data-meter>71%</b>
+            <i style="--w:64%"></i>
+        </article></aside>
+            <main id="av91q-stream"></main>
+            <div class="radar"><i style="--x:47%;--y:43%"></i><i style="--x:70%;--y:74%"></i><i style="--x:31%;--y:41%"></i><i style="--x:54%;--y:72%"></i><i style="--x:77%;--y:39%"></i><i style="--x:38%;--y:70%"></i><i style="--x:61%;--y:37%"></i><i style="--x:22%;--y:68%"></i><i style="--x:45%;--y:35%"></i></div>
+        </section>
+<script>
+const av91qs=document.getElementById("av91q-stream");const av91qlogs=["알림 발송 queued","이탈 위험 threshold crossed","owner=조직/구독 운영팀","sla.check passed","handoff ticket 91-A"];let av91qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av91qlogs[av91qn++%av91qlogs.length];av91qs.prepend(p);while(av91qs.children.length>26)av91qs.lastElementChild.remove();},430);
+const av91qmeters=[...document.querySelectorAll("[data-meter]")];
+let av91qtick=0;
+setInterval(()=>{
+  av91qtick++;
+  av91qmeters.forEach((el,i)=>el.textContent=(62+((av91qtick*3+i*9+91)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

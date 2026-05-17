@@ -1,168 +1,5733 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Pixel Logic Pattern Playground</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script defer data-domain="piebro.github.io/pixel-logic-patterns" src="https://plausible.io/js/script.js"></script>
+<title>픽셀앤로직 | AI로 매출을 만드는 AX 구독팀</title>
+<meta name="description" content="픽셀앤로직은 실제 결제와 영업 자동화를 직접 운영하는 팀입니다. AX 구독으로 매달 쌓이는 운영 백로그를 자동화, 개발, 기획으로 줄여드립니다.">
 <style>
-canvas {
-    width:auto;
-    height:auto;
-    max-width: 92vw;
-    max-height: 86vh;
-    margin: auto;
-    display: block;
-    padding-top: 10px;
+:root {
+    color-scheme: dark;
+    --bg: #08080b;
+    --panel: #111318;
+    --panel-2: #15181f;
+    --line: rgba(255, 255, 255, 0.10);
+    --line-strong: rgba(255, 255, 255, 0.16);
+    --white: #ffffff;
+    --text: #e8e9eb;
+    --muted: #b8bdc6;
+    --subtle: #807f86;
+    --green: #5ecfaa;
+    --green-soft: rgba(94, 207, 170, 0.16);
+    --blue-soft: rgba(59, 130, 246, 0.14);
+    --danger: #ff6b6b;
+    --radius: 10px;
+    --scroll-progress: 0;
 }
-#control-container {
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-anchor: none;
+}
+
+[id] {
+    scroll-margin-top: 82px;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, "Wanted Sans Variable", "Wanted Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    letter-spacing: 0;
+    overflow-anchor: none;
+    overflow-x: clip;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img,
+svg,
+canvas,
+video {
+    max-width: 100%;
+}
+
+button {
+    border: 0;
+}
+
+.site {
+    min-height: 100vh;
+    background: var(--bg);
+    overflow-x: clip;
+}
+
+.nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(94, 207, 170, 0.85), rgba(255, 255, 255, 0.56), transparent);
+    opacity: 0.78;
+    transform: scaleX(var(--scroll-progress));
+    transform-origin: left center;
+}
+
+.nav-inner {
+    width: min(1280px, 100%);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: auto;
+    transition: background 180ms ease, border-color 180ms ease;
+}
+
+.nav.scrolled .nav-inner {
+    background: rgba(8, 8, 11, 0.78);
+    border: 1px solid var(--line);
+    border-top: 0;
+    border-radius: 0 0 12px 12px;
+    backdrop-filter: blur(18px);
+}
+
+.logo img {
+    display: block;
+    width: 115px;
+    height: auto;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-links a,
+.nav-links button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    border-radius: 7px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.65);
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 150ms ease, background 150ms ease;
+}
+
+.nav-links a:hover,
+.nav-links button:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-cta {
+    margin-left: 16px;
+    background: #e6e6e6 !important;
+    color: #0a0a0a !important;
+}
+
+.mobile-menu {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.mobile-menu span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin: 5px auto;
+    background: #d0d6e0;
+}
+
+.section {
+    position: relative;
+    padding: 96px 20px;
+}
+
+.motion-ready .reveal-item {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(20px);
+    transition:
+        opacity 560ms ease,
+        filter 560ms ease,
+        transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--reveal-order, 0) * 44ms);
+}
+
+.motion-ready .reveal-item.is-visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+.lift-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        background 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .lift-card:hover {
+        transform:
+            translateY(-3px)
+            rotateX(calc(var(--tilt-y, 0) * 1deg))
+            rotateY(calc(var(--tilt-x, 0) * 1deg));
+        border-color: rgba(255, 255, 255, 0.19);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(94, 207, 170, 0.035);
+    }
+
+    .lift-card:hover .business-shot img,
+    .lift-card:hover .screen-window img {
+        transform: scale(1.018);
+    }
+}
+
+.container {
+    width: min(1280px, 100%);
+    margin: 0 auto;
+}
+
+.hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 96px 20px clamp(118px, 13vh, 168px);
+    text-align: center;
+    overflow-anchor: none;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(94, 207, 170, 0.22), transparent 40%),
+        radial-gradient(circle at 80% 10%, rgba(94, 207, 170, 0.16), transparent 44%),
+        radial-gradient(circle at 50% 100%, rgba(94, 207, 170, 0.10), transparent 46%),
+        #08080b;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 160px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, #08080b);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    width: min(1180px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding-bottom: clamp(28px, 5vh, 72px);
+    overflow-anchor: none;
+}
+
+.eyebrow {
+    margin: 0;
+    color: var(--green);
+    font-size: 17px;
+    line-height: 1.4;
+    font-weight: 700;
+    word-break: keep-all;
+}
+
+.hero h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(38px, 7vw, 72px);
+    line-height: 1.25;
+    font-weight: 800;
+    letter-spacing: 0;
+    word-break: keep-all;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    grid-template-rows: auto 1.35em;
+    width: min(1040px, 100%);
+    min-height: 2.78em;
+    contain: layout paint;
+}
+
+.hero-title-static {
+    display: block;
+}
+
+.hero-type-line {
+    position: relative;
+    display: block;
+    width: min(12em, calc(100vw - 48px));
+    height: 1.35em;
+    min-height: 1.35em;
+    line-height: 1.35;
+    overflow: hidden;
+    overflow-anchor: none;
+    contain: strict;
+}
+
+.hero-type-sizer {
+    display: block;
+    visibility: hidden;
+    white-space: nowrap;
+}
+
+.hero-type-live {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    width: max-content;
+    max-width: 100%;
+    height: 1.35em;
+    transform: translateX(-50%);
+    overflow: hidden;
+}
+
+.hero-typeword {
+    display: inline-block;
+    min-width: 0;
+    color: var(--green);
+    text-align: center;
+    line-height: 1.35;
+    white-space: nowrap;
+    text-shadow: 0 0 28px rgba(94, 207, 170, 0.22);
+}
+
+.hero-caret {
+    display: inline-block;
+    width: 0.08em;
+    height: 0.86em;
+    margin-left: 0.1em;
+    border-radius: 999px;
+    background: var(--green);
+    box-shadow: 0 0 22px rgba(94, 207, 170, 0.36);
+    transform: translateY(0.08em);
+    animation: caretBlink 920ms steps(2, start) infinite;
+}
+
+@keyframes caretBlink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.lead {
+    max-width: 760px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.85;
+    word-break: keep-all;
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    inset: -40% -20%;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--shine-x, 50%) 50%, rgba(255, 255, 255, 0.32), transparent 34%);
+    opacity: 0;
+    transform: translateX(-20%);
+    transition: opacity 160ms ease, transform 260ms ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn:hover::after {
+    opacity: 0.4;
+    transform: translateX(0);
+}
+
+.btn-primary {
+    color: #0a0a0a;
+    background: #e6e6e6;
+}
+
+.btn-ghost {
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.hero-proof {
+    width: min(1120px, 100%);
+    margin-top: 8px;
+}
+
+.proof-title {
+    margin: 0 0 12px;
+}
+
+.proof-title strong {
+    display: block;
+    color: #ffffff;
+    font-size: clamp(20px, 3vw, 28px);
+    line-height: 1.35;
+}
+
+.proof-title span {
+    display: block;
+    margin-top: 4px;
+    color: var(--subtle);
+    font-size: 14px;
+}
+
+.proof-image {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+}
+
+.proof-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.pain-section {
+    padding-block: 82px;
+}
+
+.pain-wrap {
+    display: grid;
+    gap: clamp(26px, 4vw, 42px);
+}
+
+.pain-head {
+    max-width: 920px;
+    margin-inline: auto;
     text-align: center;
 }
-.btn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 8px 16px;
-    font-size: 16px;
-    border: none;
+
+.pain-head .section-title {
+    font-size: clamp(28px, 3.6vw, 46px);
+    line-height: 1.26;
+}
+
+.pain-console {
+    --pain-score: 56;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1fr);
+    gap: clamp(18px, 3vw, 34px);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 14px;
+    background:
+        radial-gradient(circle at 72% 28%, rgba(94, 207, 170, 0.12), transparent 36%),
+        rgba(255, 255, 255, 0.035);
+    padding: clamp(18px, 3vw, 28px);
+}
+
+.pain-console::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.56;
+}
+
+.pain-console > * {
+    position: relative;
+    z-index: 1;
+}
+
+.pain-label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+.pain-list {
+    display: grid;
+    gap: 10px;
+}
+
+.pain-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 64px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 10px;
+    background: rgba(10, 12, 16, 0.68);
+    color: #ffffff;
+    padding: 12px 14px;
+    text-align: left;
     cursor: pointer;
-    outline: none;
+    transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
 }
-.btn:hover {
-    background-color: #3e8e41;
+
+.pain-item:hover,
+.pain-item.is-active {
+    border-color: rgba(94, 207, 170, 0.46);
+    background: rgba(94, 207, 170, 0.11);
 }
-.slider {
-    margin-bottom: -5px;
+
+.pain-item.is-active {
+    transform: translateX(4px);
+}
+
+.pain-item strong {
+    display: block;
+    font-size: 15px;
+    line-height: 1.35;
+}
+
+.pain-item span {
+    display: block;
+    margin-top: 4px;
+    color: #969eac;
+    font-size: 12px;
+}
+
+.pain-item em {
+    color: var(--green);
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.pain-dashboard {
+    display: grid;
+    align-content: stretch;
+    gap: 14px;
+}
+
+.pain-metric {
+    display: grid;
+    gap: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+    background: rgba(8, 8, 11, 0.58);
+    padding: clamp(18px, 3vw, 24px);
+}
+
+.pain-metric-top {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.pain-metric-top strong {
+    color: #ffffff;
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.25;
+}
+
+.pain-metric-top span {
+    color: #8f98a8;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.pain-loss {
+    display: inline-flex;
+    min-height: 34px;
+    align-items: center;
+    border-radius: 999px;
+    background: rgba(255, 107, 107, 0.12);
+    color: #ff9b9b;
+    padding: 0 12px;
+    font-size: 13px;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.pain-meter {
+    display: grid;
+    gap: 8px;
+}
+
+.pain-meter-track {
+    height: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.pain-meter-fill {
+    width: calc(var(--pain-score) * 1%);
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #ff7a7a, #f7c76c, var(--green));
+    transition: width 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pain-meter small {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.pain-flow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 46px minmax(0, 1fr);
+    gap: 10px;
+    align-items: stretch;
+}
+
+.pain-flow-card {
+    min-height: 112px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.045);
+    padding: 14px;
+}
+
+.pain-flow-card span {
+    display: block;
+    color: #8f98a8;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+.pain-flow-card strong {
+    display: block;
+    margin-top: 14px;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.35;
+    word-break: keep-all;
+}
+
+.pain-arrow {
+    display: grid;
+    place-items: center;
+    color: var(--green);
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.pain-pulse {
+    position: relative;
+    min-height: 74px;
+    overflow: hidden;
+    border: 1px solid rgba(94, 207, 170, 0.18);
+    border-radius: 12px;
+    background:
+        linear-gradient(rgba(94, 207, 170, 0.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(94, 207, 170, 0.09) 1px, transparent 1px),
+        rgba(94, 207, 170, 0.055);
+    background-size: 28px 28px;
+}
+
+.pain-pulse::before {
+    content: "";
+    position: absolute;
+    left: -20%;
+    top: 50%;
+    width: 34%;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+    animation: painSignal 2.8s ease-in-out infinite;
+}
+
+.pain-pulse span {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    color: #dffdf4;
+    font-size: 12px;
+    font-weight: 800;
+    transform: translateY(-50%);
+}
+
+@keyframes painSignal {
+    0% { transform: translateX(0); opacity: 0; }
+    18% { opacity: 1; }
+    100% { transform: translateX(360%); opacity: 0; }
+}
+
+.proof-grid {
+    width: min(1120px, 100%);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.proof-card,
+.dark-card,
+.plan-card,
+.faq-item,
+.code-panel,
+.product-screen {
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.proof-card {
+    padding: 20px;
+    text-align: left;
+}
+
+.label {
+    margin: 0;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.proof-card h3,
+.dark-card h3,
+.plan-card h3 {
+    margin: 12px 0 0;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 700;
+    word-break: keep-all;
+}
+
+.proof-card p,
+.dark-card p,
+.plan-card p {
+    margin: 10px 0 0;
+    color: #8f98a8;
+    font-size: 13px;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+
+.owned-systems {
+    display: grid;
+    gap: clamp(34px, 5vw, 56px);
+    align-items: stretch;
+}
+
+.owned-head {
+    max-width: 980px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.owned-head .section-title {
+    font-size: clamp(28px, 3.4vw, 40px);
+    line-height: 1.22;
+    letter-spacing: 0;
+}
+
+.business-stack {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(14px, 2vw, 20px);
+}
+
+.business-card {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: clamp(16px, 2.4vw, 22px);
+    align-items: start;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: clamp(14px, 2vw, 18px);
+}
+
+.business-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.5;
+}
+
+.business-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.business-shot {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.business-shot a {
+    display: block;
+    height: 100%;
+}
+
+.business-shot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.business-shot figcaption {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    display: inline-flex;
+    min-height: 28px;
+    align-items: center;
+    border-radius: 999px;
+    background: rgba(8, 8, 11, 0.80);
+    color: #ffffff;
+    padding: 0 10px;
+    font-size: 11px;
+    font-weight: 800;
+    backdrop-filter: blur(12px);
+}
+
+.business-body h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(17px, 1.25vw, 20px);
+    line-height: 1.35;
+    font-weight: 800;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    text-wrap: balance;
+}
+
+.split {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+    gap: clamp(40px, 6vw, 72px);
+    align-items: center;
+}
+
+.section-kicker {
+    margin: 0 0 8px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 600;
+    word-break: keep-all;
+}
+
+.section-title {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(26px, 4vw, 40px);
+    line-height: 1.4;
+    font-weight: 800;
+    word-break: keep-all;
+}
+
+.copy-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 28px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+    word-break: keep-all;
+}
+
+.copy-stack p {
+    margin: 0;
+}
+
+.copy-stack strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.copy-stack .emphasis-white {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.avatar-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 42px;
+}
+
+.avatar-stack {
+    display: flex;
+    margin-left: 8px;
+}
+
+.avatar {
+    display: block;
+    width: 54px;
+    height: 54px;
+    margin-left: -8px;
+    border: 2px solid #08080b;
+    border-radius: 50%;
+    background: #20242c;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.avatar-caption {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.team-lead {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.team-scroll-section {
+    padding-block: 72px;
+}
+
+.team-scroll-stage {
+    min-height: 210vh;
+}
+
+.team-scroll-panel {
+    position: sticky;
+    top: 88px;
+    min-height: calc(100vh - 112px);
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(420px, 0.82fr);
+    gap: clamp(42px, 6vw, 86px);
+    align-items: center;
+}
+
+.team-copy {
+    max-width: 760px;
+}
+
+.team-avatar-rail {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-left: 8px;
+}
+
+.team-avatar-dot {
+    position: relative;
+    width: 54px;
+    height: 54px;
+    margin-left: -8px;
+    border: 2px solid #08080b;
+    border-radius: 50%;
+    background: #20242c;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.team-avatar-dot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-avatar-dot.is-active {
+    z-index: 3;
+    border-color: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 0 0 4px var(--dot-glow, rgba(94, 207, 170, 0.18));
+    transform: translateY(-4px);
+}
+
+.team-card-stage {
+    position: relative;
+    width: min(620px, 100%);
+    min-height: 600px;
+}
+
+.team-profile-card {
+    --accent: #8f9cff;
+    --glow: rgba(143, 156, 255, 0.24);
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 28px;
+    background:
+        linear-gradient(130deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0) 26%),
+        radial-gradient(circle at 22% 12%, var(--glow), transparent 34%),
+        linear-gradient(140deg, rgba(255, 255, 255, 0.05), transparent 46%),
+        #050608;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+    color: #ffffff;
+    opacity: 0;
+    transform: translate3d(calc(var(--card-x, 0) * 1px), calc(var(--card-y, 0) * 1px), 0) scale(0.95);
+    transition: opacity 160ms ease, transform 160ms ease, border-color 160ms ease;
+    pointer-events: none;
+}
+
+.team-profile-card::before,
+.team-profile-card::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+.team-profile-card::before {
+    inset: -20% -36% auto auto;
+    width: 70%;
+    height: 82%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.015));
+    transform: rotate(44deg);
+}
+
+.team-profile-card::after {
+    left: -16%;
+    bottom: -32%;
+    width: 72%;
+    height: 62%;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.08));
+    transform: rotate(43deg);
+}
+
+.team-profile-card.is-active {
+    z-index: 10;
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    border-color: color-mix(in srgb, var(--accent) 42%, rgba(255, 255, 255, 0.18));
+    pointer-events: auto;
+}
+
+.team-profile-card.is-before,
+.team-profile-card.is-after {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.team-profile-card.is-before {
+    transform: translate3d(-10px, -8px, 0) scale(0.98);
+}
+
+.team-profile-card.is-after {
+    transform: translate3d(10px, 8px, 0) scale(0.98);
+}
+
+.team-card-copy {
+    position: relative;
+    z-index: 2;
+    width: min(62%, 360px);
+    padding: 46px 42px 40px;
+}
+
+.team-card-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.team-card-heading strong {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.team-card-heading span {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.team-career-list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 15px;
+    line-height: 1.38;
+    list-style: none;
+    word-break: keep-all;
+}
+
+.team-card-photo {
+    position: absolute;
+    right: -4%;
+    bottom: -2%;
+    z-index: 1;
+    width: min(56%, 370px);
+    max-height: 76%;
+    object-fit: contain;
+    object-position: right bottom;
+    filter: saturate(0.94) contrast(1.03);
+}
+
+.team-profile-card.compact-photo .team-card-photo {
+    right: 0;
+    bottom: 0;
+    width: min(48%, 300px);
+    max-height: 66%;
+    border-radius: 18px 0 0 0;
+}
+
+.team-card-link {
+    position: absolute;
+    top: 42px;
+    right: 42px;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.44);
+    color: #ffffff;
+    font-size: 26px;
+    transition: transform 160ms ease, background 160ms ease;
+}
+
+.team-card-link:hover {
+    background: var(--accent);
+    color: #050608;
+    transform: translateX(3px);
+}
+
+.team-card-count {
+    position: absolute;
+    left: 42px;
+    bottom: 34px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.team-card-count::before {
+    content: "";
+    width: 42px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--accent);
+}
+
+.code-panel {
+    overflow: hidden;
+    background: #101217;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+}
+
+.code-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dots {
+    display: flex;
+    gap: 6px;
+}
+
+.dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff5f57;
+}
+
+.dots span:nth-child(2) { background: #ffbd2e; }
+.dots span:nth-child(3) { background: #28c840; }
+
+.code-file {
+    color: #8f98a8;
+    font-size: 12px;
+}
+
+.code-body {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+}
+
+.code-lines {
+    padding: 18px;
+    overflow: hidden;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.86;
+    color: #d7dbe3;
+}
+
+.code-lines span {
+    color: #636b78;
+    display: inline-block;
+    width: 28px;
+}
+
+.code-lines mark {
+    background: rgba(94, 207, 170, 0.12);
+    color: #d7dbe3;
+    border-radius: 4px;
+    padding: 1px 4px;
+}
+
+.review-list {
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.review-list h4 {
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-size: 13px;
+}
+
+.review-list p {
+    margin: 0 0 12px;
+    color: #9aa3b2;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.review-list em {
+    color: var(--danger);
+    font-style: normal;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 38px;
+}
+
+.stat-card {
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.026));
+}
+
+.stat-card strong {
+    color: #ffffff;
+    font-size: 42px;
+    line-height: 1;
+}
+
+.stat-card p {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+
+.process {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.step-card {
+    padding: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.step-card span {
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.step-card h3 {
+    margin: 18px 0 0;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.42;
+}
+
+.step-card p {
+    margin: 10px 0 0;
+    color: #8f98a8;
+    font-size: 13px;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+
+.process-cta {
+    justify-content: flex-start;
+    margin-top: 26px;
+}
+
+.subscription-header {
+    max-width: 720px;
+    margin-bottom: 36px;
+}
+
+.plans {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.plan-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 430px;
+    padding: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.028));
+}
+
+.plan-card.recommended {
+    border-color: rgba(94, 207, 170, 0.42);
+    box-shadow: 0 0 0 1px rgba(94, 207, 170, 0.16), 0 24px 80px rgba(94, 207, 170, 0.08);
+}
+
+.badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    border-radius: 999px;
+    background: var(--green-soft);
+    color: var(--green);
+    padding: 5px 9px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.price {
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+.price strong {
+    font-size: 34px;
+    line-height: 1;
+}
+
+.price span {
+    color: #8f98a8;
+    font-size: 13px;
+}
+
+.plan-list {
+    display: grid;
+    gap: 10px;
+    margin: 22px 0 24px;
+    padding: 0;
+    list-style: none;
+}
+
+.plan-list li {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.plan-list li::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    vertical-align: 2px;
+}
+
+.plan-deliverables {
+    display: grid;
+    gap: 8px;
+    margin: 0 0 22px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.035);
+    padding: 14px;
+}
+
+.plan-deliverables span {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+.plan-deliverables strong {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.45;
+    word-break: keep-all;
+}
+
+.plan-deliverables p {
+    margin: 0;
+    color: #8f98a8;
+    font-size: 12px;
+    line-height: 1.6;
+    word-break: keep-all;
+}
+
+.plan-card .btn {
+    width: 100%;
+    margin-top: auto;
+}
+
+.diagnosis-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 0.88fr);
+    gap: clamp(28px, 5vw, 56px);
+    align-items: start;
+}
+
+.diagnosis-panel,
+.diagnosis-result,
+.month-card,
+.roi-box {
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.diagnosis-panel,
+.diagnosis-result {
+    padding: 24px;
+}
+
+.diagnosis-form {
+    display: grid;
+    gap: 22px;
+}
+
+.question-block {
+    display: grid;
+    gap: 10px;
+}
+
+.question-block label,
+.question-title {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.select-wrap {
+    position: relative;
+}
+
+.select-wrap::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid rgba(255, 255, 255, 0.55);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.55);
+    transform: translateY(-68%) rotate(45deg);
+    pointer-events: none;
+}
+
+.diagnosis-select,
+.diagnosis-field input {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.055);
+    color: #ffffff;
+    padding: 0 44px 0 14px;
+    outline: 0;
+    transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.diagnosis-select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.diagnosis-select option {
+    background: #111318;
+    color: #ffffff;
+}
+
+.diagnosis-select:focus,
+.diagnosis-field input:focus {
+    border-color: rgba(94, 207, 170, 0.58);
+    background: rgba(94, 207, 170, 0.10);
+    box-shadow: 0 0 0 3px rgba(94, 207, 170, 0.10);
+}
+
+.diagnosis-contact {
+    display: grid;
+    gap: 14px;
+    margin-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+    padding-top: 22px;
+}
+
+.diagnosis-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.diagnosis-field {
+    display: grid;
+    gap: 8px;
+}
+
+.diagnosis-field label {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.diagnosis-field input {
+    padding-right: 14px;
+}
+
+.diagnosis-submit {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.option-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.option-button {
+    min-height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.045);
+    color: var(--muted);
+    padding: 0 12px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.option-button.is-selected {
+    border-color: rgba(94, 207, 170, 0.58);
+    background: rgba(94, 207, 170, 0.14);
+    color: #ffffff;
+}
+
+.diagnosis-result {
+    position: sticky;
+    top: 86px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 0%, rgba(94, 207, 170, 0.18), transparent 40%),
+        rgba(255, 255, 255, 0.04);
+}
+
+.diagnosis-result h3,
+.roi-box h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 1.38;
+}
+
+.diagnosis-result p,
+.roi-box p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+
+.result-list {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.result-list li {
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    color: #e8ebef;
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.mini-case-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.mini-case-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    border: 1px solid rgba(94, 207, 170, 0.24);
+    border-radius: 999px;
+    background: rgba(94, 207, 170, 0.09);
+    color: #d9fff2;
+    padding: 0 11px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.diagnosis-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.diagnosis-cta-row .btn {
+    min-height: 40px;
+    padding: 0 16px;
+}
+
+.month-roadmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 34px;
+}
+
+.month-card {
+    min-height: 238px;
+    padding: 22px;
+    background:
+        radial-gradient(circle at 18% 0%, rgba(94, 207, 170, 0.12), transparent 38%),
+        rgba(255, 255, 255, 0.035);
+}
+
+.month-card span {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+.month-card h3 {
+    margin: 18px 0 0;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1.35;
+}
+
+.month-card p {
+    color: #9aa2b1;
+    font-size: 13px;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+
+.month-output {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    padding: 0 10px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.ba-interaction {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 78% 20%, rgba(94, 207, 170, 0.18), transparent 34%),
+        radial-gradient(circle at 15% 82%, rgba(116, 198, 255, 0.08), transparent 30%),
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        rgba(255, 255, 255, 0.035);
+    background-size: auto, auto, 30px 30px, 30px 30px, auto;
+    padding: clamp(22px, 3vw, 34px);
+}
+
+.ba-heading {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+    gap: 22px;
+    align-items: end;
+}
+
+.ba-heading .section-title {
+    max-width: 720px;
+    font-size: clamp(27px, 4vw, 44px);
+}
+
+.ba-toggle {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 999px;
+    background: rgba(8, 8, 11, 0.76);
+    padding: 6px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.ba-toggle button {
+    min-height: 42px;
+    border-radius: 999px;
+    background: transparent;
+    color: #8f98a8;
+    font-weight: 900;
+    cursor: pointer;
+    transition: background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.ba-toggle button.is-active {
+    background: #e6e6e6;
+    color: #0a0a0a;
+    box-shadow: 0 12px 36px rgba(94, 207, 170, 0.16);
+}
+
+.ba-scene {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(240px, 0.95fr) minmax(170px, 0.54fr) minmax(300px, 1.15fr);
+    gap: clamp(14px, 2vw, 22px);
+    align-items: stretch;
+    margin-top: 28px;
+}
+
+.ba-scene::before {
+    content: "";
+    position: absolute;
+    left: 19%;
+    right: 16%;
+    top: 50%;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), rgba(94, 207, 170, 0.72), rgba(255, 255, 255, 0.10));
+    transform: translateY(-50%);
+    opacity: 0.34;
+}
+
+.ba-flow-lines {
+    position: absolute;
+    inset: 36px 0 34px;
+    z-index: 0;
+    width: 100%;
+    height: calc(100% - 70px);
+    pointer-events: none;
+    overflow: visible;
+}
+
+.ba-flow-lines path {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    transition: opacity 340ms ease, stroke 340ms ease, stroke-width 340ms ease;
+}
+
+.ba-manual-line {
+    stroke: rgba(255, 255, 255, 0.18);
+    stroke-width: 1.2;
+    stroke-dasharray: 8 12;
+}
+
+.ba-auto-line {
+    stroke: rgba(94, 207, 170, 0.82);
+    stroke-width: 1.8;
+    stroke-dasharray: 18 520;
+    opacity: 0.14;
+    filter: drop-shadow(0 0 8px rgba(94, 207, 170, 0.34));
+}
+
+.ba-panel,
+.ba-router {
+    position: relative;
+    z-index: 1;
+    min-height: 460px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 16px;
+    background: rgba(12, 14, 18, 0.78);
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.24);
+}
+
+.ba-panel {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 18px;
+    padding: clamp(18px, 2vw, 22px);
+    overflow: hidden;
+    transition: border-color 260ms ease, background 260ms ease, opacity 260ms ease, transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ba-panel-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.ba-panel-top span,
+.ba-route-copy span,
+.ba-kpi span {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.ba-panel-top strong,
+.ba-route-copy strong {
+    display: block;
+    margin-top: 8px;
+    color: #ffffff;
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.25;
+    word-break: keep-all;
+    text-wrap: balance;
+}
+
+.ba-status {
+    display: inline-flex;
+    min-height: 28px;
+    align-items: center;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+    color: #c8ced8;
+    padding: 0 10px;
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.ba-source-stack {
+    position: relative;
+    min-height: 330px;
+}
+
+.ba-source-card {
+    position: absolute;
+    width: min(260px, 78%);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035));
+    padding: 15px;
+    color: #ffffff;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.26);
+    transform: translate3d(var(--x), var(--y), 0) rotate(var(--r));
+    transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease, border-color 300ms ease, background 300ms ease;
+}
+
+.ba-source-card:nth-child(1) { --x: 0%; --y: 10px; --r: -2deg; }
+.ba-source-card:nth-child(2) { --x: 32%; --y: 96px; --r: 2.6deg; }
+.ba-source-card:nth-child(3) { --x: 8%; --y: 186px; --r: 1deg; }
+.ba-source-card:nth-child(4) { --x: 42%; --y: 250px; --r: -2deg; }
+
+.ba-source-card b {
+    display: block;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.3;
+}
+
+.ba-source-card em {
+    display: block;
+    margin-top: 8px;
+    color: #99a2b2;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+.ba-source-card small {
+    display: inline-flex;
+    min-height: 24px;
+    align-items: center;
+    margin-top: 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #dfe4ec;
+    padding: 0 8px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.ba-router {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    place-items: center;
+    padding: 22px 14px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(94, 207, 170, 0.18), transparent 45%),
+        rgba(10, 13, 16, 0.86);
+}
+
+.ba-router::before,
+.ba-router::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 24%;
+    bottom: 24%;
+    width: 1px;
+    background: linear-gradient(transparent, rgba(94, 207, 170, 0.70), transparent);
+}
+
+.ba-router::after {
+    width: 120px;
+    height: 120px;
+    top: 50%;
+    bottom: auto;
+    border: 1px solid rgba(94, 207, 170, 0.26);
+    border-radius: 50%;
+    background: rgba(94, 207, 170, 0.05);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 80px rgba(94, 207, 170, 0.18);
+}
+
+.ba-route-copy {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.ba-orbit {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: clamp(88px, 10vw, 124px);
+    height: clamp(88px, 10vw, 124px);
+    border: 1px solid rgba(94, 207, 170, 0.42);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(94, 207, 170, 0.32), rgba(94, 207, 170, 0.08) 58%, rgba(8, 8, 11, 0.78));
+    color: #ffffff;
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 900;
+}
+
+.ba-packet {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 4;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 22px rgba(94, 207, 170, 0.85);
+    transform: translate(-50%, -50%);
+    animation: baPacket 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    opacity: 0;
+}
+
+.ba-rule-list {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: 8px;
+    width: 100%;
+}
+
+.ba-rule-list span {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #dfe4ec;
+    padding: 8px 10px;
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.ba-after-panel {
+    background:
+        radial-gradient(circle at 80% 18%, rgba(94, 207, 170, 0.13), transparent 38%),
+        rgba(12, 14, 18, 0.82);
+}
+
+.ba-screen {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 12px;
+    min-height: 330px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 14px;
+    background: rgba(6, 8, 11, 0.62);
+    padding: 14px;
+}
+
+.ba-screen-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
+}
+
+.ba-screen-bar b {
+    color: #ffffff;
+    font-size: 13px;
+}
+
+.ba-screen-bar span {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.ba-summary-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.ba-summary-strip span {
+    min-height: 56px;
+    border: 1px solid rgba(94, 207, 170, 0.17);
+    border-radius: 9px;
+    background: rgba(94, 207, 170, 0.08);
+    color: #eafff7;
+    padding: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.ba-summary-strip b {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--green);
+    font-size: 14px;
+}
+
+.ba-approval-table {
+    display: grid;
+    align-content: start;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.ba-approval-row {
+    display: grid;
+    grid-template-columns: 78px minmax(0, 1.25fr) minmax(86px, 0.56fr) minmax(110px, 0.64fr);
+    align-items: center;
+    gap: 10px;
+    min-height: 46px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 0 12px;
+    color: #d9dee8;
+    font-size: 12px;
+}
+
+.ba-approval-row:first-child {
+    border-top: 0;
+}
+
+.ba-approval-row.is-head {
+    min-height: 34px;
+    background: rgba(255, 255, 255, 0.045);
+    color: #8f98a8;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.ba-approval-row strong {
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 1.35;
+    word-break: keep-all;
+}
+
+.ba-pill {
+    display: inline-flex;
+    width: max-content;
+    min-height: 22px;
+    align-items: center;
+    border-radius: 999px;
+    background: rgba(94, 207, 170, 0.12);
+    color: #d9fff2;
+    padding: 0 8px;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.ba-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.ba-kpi {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.045);
+    padding: 12px;
+}
+
+.ba-kpi strong {
+    display: block;
+    margin-top: 5px;
+    color: #ffffff;
+    font-size: 21px;
+    line-height: 1.1;
+}
+
+.ba-interaction[data-mode="before"] .ba-after-panel {
+    opacity: 0.42;
+    transform: translateX(12px);
+}
+
+.ba-interaction[data-mode="before"] .ba-approval-row:not(.is-head) {
+    opacity: 0.45;
+    transform: translateY(6px);
+}
+
+.ba-interaction[data-mode="before"] .ba-auto-line {
+    opacity: 0.08;
+}
+
+.ba-interaction[data-mode="after"] .ba-before-panel {
+    opacity: 0.50;
+    transform: translateX(-10px);
+}
+
+.ba-interaction[data-mode="after"] .ba-manual-line {
+    opacity: 0.10;
+}
+
+.ba-interaction[data-mode="after"] .ba-auto-line {
+    opacity: 1;
+    animation: baFlowTrace 2.2s linear infinite;
+}
+
+.ba-interaction[data-mode="after"] .ba-source-card {
+    border-color: rgba(94, 207, 170, 0.22);
+    background: rgba(94, 207, 170, 0.08);
+    opacity: 0.70;
+}
+
+.ba-interaction[data-mode="after"] .ba-source-card:nth-child(1) { transform: translate3d(30%, 36px, 0) scale(0.90) rotate(-1deg); }
+.ba-interaction[data-mode="after"] .ba-source-card:nth-child(2) { transform: translate3d(36%, 108px, 0) scale(0.90) rotate(1deg); }
+.ba-interaction[data-mode="after"] .ba-source-card:nth-child(3) { transform: translate3d(30%, 180px, 0) scale(0.90) rotate(-1deg); }
+.ba-interaction[data-mode="after"] .ba-source-card:nth-child(4) { transform: translate3d(36%, 252px, 0) scale(0.90) rotate(1deg); }
+
+.ba-interaction[data-mode="after"] .ba-packet {
+    opacity: 1;
+}
+
+@keyframes baPacket {
+    0% { transform: translate(calc(-50% - 110px), -50%) scale(0.8); opacity: 0; }
+    18% { opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+    82% { opacity: 1; }
+    100% { transform: translate(calc(-50% + 110px), -50%) scale(0.8); opacity: 0; }
+}
+
+@keyframes baFlowTrace {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -538; }
+}
+
+.roi-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(22px, 4vw, 36px);
+    align-items: start;
+}
+
+.roi-heading {
+    text-align: center;
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+.roi-heading .section-title {
+    margin-inline: auto;
+}
+
+.roi-box {
+    display: grid;
+    gap: 26px;
+    width: min(100%, 1120px);
+    margin-inline: auto;
+    padding: clamp(22px, 4vw, 34px);
+}
+
+.roi-input-grid {
+    display: grid;
+    gap: 18px;
+}
+
+.range-field {
+    display: grid;
+    gap: 10px;
+}
+
+.range-field label {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    color: #ffffff;
+    font-size: clamp(16px, 1.55vw, 20px);
+    font-weight: 800;
+}
+
+.range-field output {
+    color: var(--green);
+    white-space: nowrap;
+}
+
+.range-field input[type="range"] {
+    width: 100%;
+    accent-color: var(--green);
+}
+
+.roi-estimate-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr);
+    gap: clamp(18px, 3vw, 28px);
+    align-items: end;
+    border: 1px solid rgba(94, 207, 170, 0.28);
+    border-radius: 12px;
+    background:
+        radial-gradient(circle at 86% 14%, rgba(94, 207, 170, 0.28), transparent 34%),
+        linear-gradient(135deg, rgba(94, 207, 170, 0.18), rgba(255, 255, 255, 0.055) 46%, rgba(255, 255, 255, 0.025)),
+        rgba(255, 255, 255, 0.035);
+    padding: clamp(20px, 3.6vw, 30px);
+}
+
+.roi-profit-copy {
+    display: grid;
+    gap: 14px;
+}
+
+.roi-profit-copy > span {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+.roi-estimate-card strong {
+    display: block;
+    color: #ffffff;
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1.08;
+    letter-spacing: 0;
+    text-wrap: balance;
+    word-break: keep-all;
+}
+
+.roi-profit-bars {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    gap: 9px;
+    min-height: 126px;
+    padding: 18px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 10px;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        rgba(0, 0, 0, 0.18);
+    background-size: 100% 32px, 32px 100%, auto;
+}
+
+.roi-profit-bars i {
+    width: 26px;
+    height: var(--bar-height);
+    min-height: 34px;
+    border-radius: 999px 999px 7px 7px;
+    background: linear-gradient(180deg, #7df2cd, #4d8cff);
+    box-shadow: 0 10px 30px rgba(94, 207, 170, 0.24);
+}
+
+.roi-profit-bars b {
+    align-self: start;
+    margin-left: 4px;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+}
+
+.roi-estimate-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    grid-column: 1 / -1;
+}
+
+.roi-estimate-meta span {
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.045);
+    padding: 13px 14px;
+    color: #8f98a8;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.5;
+}
+
+.roi-estimate-meta b {
+    display: block;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+@media (max-width: 900px) {
+    .roi-estimate-card {
+        grid-template-columns: 1fr;
+    }
+
+    .roi-profit-bars {
+        justify-content: start;
+        min-height: 112px;
+    }
+}
+
+.outputs {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+    gap: clamp(40px, 6vw, 72px);
+    align-items: center;
+}
+
+.product-screen {
+    position: relative;
+    min-height: 440px;
+    padding: 22px;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(94, 207, 170, 0.24), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.18), transparent 42%),
+        #111318;
+    overflow: hidden;
+}
+
+.screen-window {
+    position: absolute;
+    inset: 42px 7% 42px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    background: #0d1016;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
+}
+
+.screen-window img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.88;
+}
+
+.screen-caption {
+    position: absolute;
+    inset: auto 7% 42px;
+    padding: 70px 18px 18px;
+    background: linear-gradient(to top, rgba(0,0,0,0.94), transparent);
+}
+
+.screen-caption h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 17px;
+}
+
+.screen-caption p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.automation-cases {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-top: 52px;
+}
+
+.automation-card {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.automation-card:nth-child(even) {
+    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+}
+
+.automation-card:nth-child(even) figure {
+    order: 2;
+}
+
+.automation-card figure {
+    position: relative;
+    display: grid;
+    place-items: start center;
+    margin: 0;
+    min-height: 430px;
+    overflow: hidden;
+    padding: 24px;
+    background:
+        radial-gradient(circle at 20% 18%, rgba(94, 207, 170, 0.20), transparent 34%),
+        linear-gradient(135deg, #0c0d12, #15181f 58%, #0a0b0f);
+}
+
+.automation-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 260ms ease, opacity 260ms ease;
+    opacity: 0.88;
+}
+
+.automation-card:hover img {
+    transform: scale(1.035);
+    opacity: 1;
+}
+
+.case-preview {
+    width: 100%;
+    min-height: 430px;
+    height: min(720px, calc(100% - 0px));
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    background: #101218;
+    box-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+    transition: transform 260ms ease;
+}
+
+.automation-card:hover .case-preview {
+    transform: translateY(-4px) scale(1.01);
+}
+
+.case-preview::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 84%);
+}
+
+.case-preview-fnb {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 14px;
+    padding: 18px;
+    background: linear-gradient(145deg, #f6f8fb, #e9edf4);
+    color: #171a22;
+}
+
+.case-preview-fnb::before {
+    background-image:
+        linear-gradient(rgba(17, 24, 39, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17, 24, 39, 0.06) 1px, transparent 1px);
+}
+
+.preview-topbar,
+.preview-row,
+.preview-card,
+.preview-queue,
+.preview-pill {
+    position: relative;
+    z-index: 1;
+}
+
+.preview-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.preview-topbar strong {
+    display: block;
+    color: inherit;
+    font-size: 18px;
+    line-height: 1.25;
+}
+
+.preview-topbar span,
+.preview-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    border-radius: 999px;
+    padding: 0 10px;
+    background: rgba(94, 207, 170, 0.14);
+    color: #16785e;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.fnb-close-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 12px;
+    min-height: 0;
+}
+
+.fnb-table {
+    display: grid;
+    gap: 8px;
+    border: 1px solid rgba(21, 27, 38, 0.10);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.72);
+    padding: 12px;
+}
+
+.fnb-table div {
+    display: grid;
+    grid-template-columns: 0.65fr 1fr 0.55fr;
+    align-items: center;
+    gap: 8px;
+    min-height: 32px;
+    border-radius: 8px;
+    background: #f7f9fd;
+    color: #606978;
+    padding: 0 9px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.fnb-table div:first-child {
+    background: #171a22;
+    color: #ffffff;
+}
+
+.fnb-table b {
+    color: #111827;
+}
+
+.fnb-table div:first-child b {
+    color: #ffffff;
+}
+
+.fnb-risk {
+    display: grid;
+    gap: 10px;
+}
+
+.preview-card {
+    border: 1px solid rgba(21, 27, 38, 0.10);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.82);
+    padding: 13px;
+}
+
+.preview-card span {
+    color: #727b8a;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.preview-card strong {
+    display: block;
+    margin-top: 5px;
+    color: #111827;
+    font-size: 24px;
+    line-height: 1.05;
+}
+
+.fnb-flow {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.fnb-flow span {
+    min-height: 42px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(39, 109, 91, 0.24);
+    border-radius: 8px;
+    background: rgba(94, 207, 170, 0.12);
+    color: #1c735c;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.case-preview-sales {
+    display: grid;
+    grid-template-columns: 0.72fr 1fr;
+    gap: 14px;
+    padding: 18px;
+    background: linear-gradient(145deg, #101827, #07101f);
+}
+
+.sales-sidebar,
+.sales-board,
+.office-pane,
+.office-log {
+    position: relative;
+    z-index: 1;
+}
+
+.sales-sidebar {
+    display: grid;
+    align-content: space-between;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.07);
+    padding: 14px;
+}
+
+.sales-sidebar strong,
+.office-pane strong {
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.25;
+}
+
+.sales-sidebar p {
+    margin: 8px 0 0;
+    color: #9da8bb;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.sales-score {
+    display: grid;
+    gap: 8px;
+}
+
+.sales-score span {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 8px;
+    background: rgba(94, 207, 170, 0.13);
+    color: #d8fff2;
+    padding: 9px 10px;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.sales-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+}
+
+.sales-lane {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+}
+
+.sales-lane b {
+    color: #76e7c4;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+}
+
+.sales-ticket {
+    min-height: 52px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.88);
+    color: #111827;
+    padding: 9px;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.sales-ticket span {
+    display: block;
+    margin-top: 6px;
+    color: #64748b;
+    font-size: 10px;
+}
+
+.case-preview-office {
+    display: grid;
+    grid-template-columns: 1fr 0.72fr;
+    gap: 14px;
+    padding: 18px;
+    background: linear-gradient(145deg, #f7f5ff, #eef3ff);
+    color: #222326;
+}
+
+.case-preview-office::before {
+    background-image:
+        linear-gradient(rgba(79, 70, 229, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 70, 229, 0.06) 1px, transparent 1px);
+}
+
+.office-pane {
+    display: grid;
+    gap: 10px;
+    border: 1px solid rgba(79, 70, 229, 0.13);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.78);
+    padding: 14px;
+}
+
+.office-pane strong {
+    color: #222326;
+}
+
+.office-queue {
+    display: grid;
+    gap: 7px;
+}
+
+.office-queue div {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    min-height: 36px;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(70, 70, 110, 0.08);
+    padding: 0 10px;
+    color: #4b5563;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.office-queue span {
+    color: #6d5dfc;
+}
+
+.office-log {
+    display: grid;
+    align-content: start;
+    gap: 9px;
+    border-radius: 10px;
+    background: #171a22;
+    padding: 14px;
+}
+
+.office-log span {
+    color: #8f9cff;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+}
+
+.office-log p {
+    margin: 0;
+    color: #d7dce8;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+.automation-card-body {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+}
+
+.automation-card h3 {
+    margin: 12px 0 0;
+    color: #ffffff;
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.45;
+    word-break: keep-all;
+}
+
+.automation-card p {
+    margin: 10px 0 18px;
+    color: #8f98a8;
+    font-size: 13px;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+
+.case-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.case-meta span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.055);
+    color: var(--muted);
+    padding: 0 10px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.case-lead {
+    color: var(--muted) !important;
+    font-size: 15px !important;
+    line-height: 1.85 !important;
+}
+
+.case-path {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 18px 0 2px;
+}
+
+.case-path div {
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.035);
+    padding: 13px;
+}
+
+.case-path span {
+    display: block;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+.case-path strong {
+    display: block;
+    margin-top: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 1.45;
+    word-break: keep-all;
+}
+
+.case-path p {
+    margin: 6px 0 0;
+    color: #8f98a8;
+    font-size: 12px;
+    line-height: 1.55;
+    word-break: keep-all;
+}
+
+.logic-map {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.logic-node {
+    min-height: 78px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 12px;
+}
+
+.logic-node span {
+    display: block;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+.logic-node strong {
+    display: block;
+    margin-top: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 1.45;
+    word-break: keep-all;
+}
+
+.formula-box {
+    border: 1px solid rgba(94, 207, 170, 0.22);
+    border-radius: 8px;
+    background: rgba(94, 207, 170, 0.08);
+    padding: 16px;
+}
+
+.formula-box code {
+    display: block;
+    color: #d7fff1;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.75;
+    white-space: normal;
+}
+
+.formula-box p {
+    margin: 10px 0 0;
+    color: #9ebdaf;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.case-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 18px 0 20px;
+}
+
+.case-metric {
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.035);
+    padding: 14px;
+}
+
+.case-metric strong {
+    display: block;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+.case-metric span {
+    display: block;
+    margin-top: 6px;
+    color: #8f98a8;
+    font-size: 12px;
+    line-height: 1.55;
+    word-break: keep-all;
+}
+
+.case-team {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 20px;
+    padding-top: 2px;
+}
+
+.case-team > span {
+    width: 100%;
+    color: var(--subtle);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.case-team a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    border: 1px solid rgba(94, 207, 170, 0.22);
+    border-radius: 999px;
+    background: rgba(94, 207, 170, 0.08);
+    color: #d7fff1;
+    padding: 0 11px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.automation-card .btn {
+    width: 100%;
+    margin-top: auto;
+}
+
+.case-library-cta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 20px;
+    align-items: center;
+    margin-top: 28px;
+    border: 1px solid rgba(94, 207, 170, 0.22);
+    border-radius: 12px;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(94, 207, 170, 0.18), transparent 42%),
+        rgba(255, 255, 255, 0.035);
+    padding: 24px;
+}
+
+.case-library-cta h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+.case-library-cta p {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.cta-band {
+    overflow: hidden;
+    border-radius: 16px;
+    padding: 72px 24px;
+    text-align: center;
+    background:
+        radial-gradient(ellipse 100% 70% at 50% 100%, rgba(94, 207, 170, 0.30), transparent 70%),
+        radial-gradient(ellipse 60% 50% at 20% 70%, rgba(50, 160, 120, 0.15), transparent),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(59, 130, 246, 0.15), transparent),
+        #111318;
+    box-shadow: 0 0 40px rgba(94, 207, 170, 0.06), 0 20px 60px rgba(0, 0, 0, 0.40);
+}
+
+.cta-band p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.cta-band h2 {
+    margin: 20px auto 28px;
+    color: #ffffff;
+    font-size: clamp(26px, 4vw, 40px);
+    line-height: 1.4;
+    word-break: keep-all;
+}
+
+.contact-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    align-items: stretch;
+}
+
+.contact-section.is-open {
+    grid-template-columns: minmax(0, 0.86fr) minmax(340px, 0.72fr);
+}
+
+.contact-copy,
+.demo-form {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(94, 207, 170, 0.16), transparent 36%),
+        rgba(255, 255, 255, 0.035);
+    padding: 32px;
+}
+
+.contact-copy {
+    min-height: 360px;
+    display: grid;
+    align-content: center;
+    justify-items: start;
+}
+
+.contact-copy h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(36px, 6vw, 72px);
+    line-height: 1.28;
+}
+
+.contact-open-btn {
+    position: relative;
+    min-width: min(320px, 100%);
+    min-height: 58px;
+    margin-top: 34px;
+    border-radius: 999px;
+    overflow: hidden;
+    isolation: isolate;
+    font-size: 16px;
+    box-shadow: 0 18px 58px rgba(94, 207, 170, 0.20);
+}
+
+.contact-open-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.0), rgba(94, 207, 170, 0.30), rgba(255, 255, 255, 0.0));
+    transform: translateX(-100%);
+    transition: transform 360ms ease;
+}
+
+.contact-open-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.demo-form {
+    display: grid;
+    gap: 14px;
+    transform-origin: left center;
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.demo-form[hidden] {
+    display: none;
+}
+
+.demo-form h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 1.35;
+}
+
+.demo-form p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.demo-form label {
+    display: grid;
+    gap: 7px;
+    color: #dfe5ee;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.demo-form input,
+.demo-form textarea {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    background: rgba(8, 8, 11, 0.55);
+    color: #ffffff;
+    padding: 13px 14px;
+    outline: 0;
+    transition: border-color 160ms ease, background 160ms ease;
+}
+
+.demo-form textarea {
+    min-height: 96px;
+    resize: vertical;
+}
+
+.demo-form input:focus,
+.demo-form textarea:focus {
+    border-color: rgba(94, 207, 170, 0.66);
+    background: rgba(8, 8, 11, 0.74);
+}
+
+.demo-form .btn {
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.form-note {
+    color: #dfe5ee !important;
+    font-size: 13px !important;
+    font-weight: 800;
+}
+
+.faq {
+    width: min(800px, 100%);
+    margin: 0 auto;
+}
+
+.faq h2 {
+    margin: 0 0 38px;
+    color: #ffffff;
+    font-size: clamp(26px, 4vw, 40px);
+    text-align: center;
+}
+
+.faq-item {
+    border-width: 0 0 1px;
+    border-radius: 0;
+    background: transparent;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 0;
+    background: transparent;
+    color: var(--muted);
+    text-align: left;
+    cursor: pointer;
+}
+
+.faq-question span {
+    font-size: 18px;
+    line-height: 1.45;
+    font-weight: 700;
+    word-break: keep-all;
+}
+
+.faq-question i {
+    position: relative;
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.faq-question i::before,
+.faq-question i::after {
+    content: "";
+    position: absolute;
+    inset: 9px 2px auto;
+    height: 2px;
+    background: #807f86;
+}
+
+.faq-question i::after {
+    transform: rotate(90deg);
+    transition: transform 160ms ease;
+}
+
+.faq-item.open .faq-question {
+    color: #ffffff;
+}
+
+.faq-item.open .faq-question i::after {
+    transform: rotate(0deg);
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 0 24px;
+    color: #8f98a8;
+    font-size: 14px;
+    line-height: 1.8;
+    word-break: keep-all;
+}
+
+.faq-item.open .faq-answer {
+    display: block;
+}
+
+.footer {
+    padding: 80px 20px 120px;
+    background: #08080b;
+}
+
+.footer-inner {
+    width: min(1280px, 100%);
+    margin: 0 auto;
+    display: grid;
+    gap: 28px;
+    color: #babdc4;
+    font-size: 13px;
+}
+
+.footer-line {
+    height: 1px;
+    background: #464f62;
+}
+
+.footer-meta {
+    display: grid;
+    gap: 8px;
+}
+
+.floating-contact {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 60;
+    display: grid;
+    gap: 8px;
+    justify-items: end;
+}
+
+.floating-phone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    border-radius: 999px;
+    background: #e6e6e6;
+    color: #0a0a0a;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+    padding: 0 14px;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.floating-kakao {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #fee500;
+    color: #392020;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.floating-contact {
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.floating-contact.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+}
+
+@media (max-width: 1080px) {
+    .split,
+    .owned-systems,
+    .pain-console,
+    .diagnosis-layout,
+    .roi-layout,
+    .contact-section,
+    .outputs {
+        grid-template-columns: 1fr;
+    }
+
+    .plans,
+    .process,
+    .month-roadmap {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .business-stack {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .business-card {
+        grid-template-columns: 1fr;
+        align-content: start;
+    }
+
+    .business-body h3 {
+        min-height: 2.56em;
+        font-size: clamp(17px, 2.1vw, 20px);
+    }
+
+    .ba-heading,
+    .ba-scene {
+        grid-template-columns: 1fr;
+    }
+
+    .ba-scene::before {
+        left: 50%;
+        right: auto;
+        top: 22%;
+        bottom: 22%;
+        width: 2px;
+        height: auto;
+        transform: translateX(-50%);
+        background: linear-gradient(transparent, rgba(94, 207, 170, 0.70), transparent);
+    }
+
+    .ba-panel,
+    .ba-router {
+        min-height: auto;
+    }
+
+    .ba-source-stack {
+        min-height: 360px;
+    }
+
+    .ba-router {
+        min-height: 260px;
+    }
+
+    .ba-rule-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .diagnosis-result {
+        position: relative;
+        top: auto;
+    }
+
+    .automation-card,
+    .automation-card:nth-child(even) {
+        grid-template-columns: 1fr;
+    }
+
+    .automation-card:nth-child(even) figure {
+        order: 0;
+    }
+
+    .logic-map {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-lead {
+        justify-content: flex-start;
+    }
+
+    .team-scroll-stage {
+        min-height: auto;
+    }
+
+    .team-scroll-panel {
+        position: relative;
+        top: auto;
+        min-height: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .team-card-stage {
+        width: min(620px, 100%);
+    }
+
+    .code-body {
+        grid-template-columns: 1fr;
+    }
+
+    .review-list {
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+}
+
+@media (max-width: 760px) {
+    html,
+    body,
+    .site,
+    main {
+        max-width: 100%;
+        overflow-x: clip;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .nav.open .nav-links {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 64px;
+        display: grid;
+        gap: 4px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(17, 19, 24, 0.96);
+        padding: 10px;
+        backdrop-filter: blur(18px);
+    }
+
+    .nav.open .nav-links a,
+    .nav.open .nav-links button {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .hero {
+        padding-top: 92px;
+    }
+
+    .hero h1 {
+        width: calc(100vw - 32px);
+        font-size: clamp(34px, 10vw, 38px);
+        line-height: 1.26;
+    }
+
+    .hero-type-line {
+        width: min(13em, calc(100vw - 32px));
+    }
+
+    .hero-type-live {
+        width: 100%;
+    }
+
+    .hero-typeword {
+        max-width: calc(100% - 0.28em);
+        overflow: hidden;
+        text-overflow: clip;
+    }
+
+    .proof-grid,
+    .stats-grid,
+    .plans,
+    .process,
+    .month-roadmap,
+    .roi-estimate-meta,
+    .case-metrics,
+    .case-path,
+    .logic-map,
+    .case-library-cta,
+    .contact-methods {
+        grid-template-columns: 1fr;
+    }
+
+    .option-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .diagnosis-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .business-stack {
+        grid-template-columns: 1fr;
+    }
+
+    .business-card {
+        gap: 14px;
+    }
+
+    .business-body h3 {
+        min-height: 0;
+        font-size: clamp(17px, 5.2vw, 20px);
+    }
+
+    .pain-console,
+    .pain-inbox,
+    .pain-list,
+    .pain-dashboard {
+        min-width: 0;
+        overflow: clip;
+    }
+
+    .pain-item.is-active {
+        transform: none;
+    }
+
+    .pain-pulse {
+        overflow: clip;
+    }
+
+    .pain-pulse::before {
+        width: 24%;
+        animation-name: painSignalMobile;
+    }
+
+    .pain-pulse span {
+        left: 14px;
+        right: 14px;
+        font-size: 11px;
+        line-height: 1.42;
+    }
+
+    .pain-flow {
+        grid-template-columns: 1fr;
+    }
+
+    .pain-arrow {
+        min-height: 30px;
+        transform: rotate(90deg);
+    }
+
+    .pain-metric-top {
+        display: grid;
+    }
+
+    .diagnosis-panel,
+    .diagnosis-result,
+    .contact-copy,
+    .demo-form,
+    .roi-box,
+    .ba-interaction {
+        padding: 18px;
+    }
+
+    .ba-heading {
+        gap: 18px;
+    }
+
+    .ba-toggle {
+        max-width: none;
+    }
+
+    .ba-source-stack {
+        min-height: 420px;
+    }
+
+    .ba-source-card {
+        width: min(280px, 86%);
+    }
+
+    .ba-source-card:nth-child(1) { --x: 0%; --y: 6px; --r: -1deg; }
+    .ba-source-card:nth-child(2) { --x: 7%; --y: 104px; --r: 1.8deg; }
+    .ba-source-card:nth-child(3) { --x: 0%; --y: 210px; --r: -1.2deg; }
+    .ba-source-card:nth-child(4) { --x: 7%; --y: 314px; --r: 1deg; }
+
+    .ba-interaction[data-mode="after"] .ba-source-card:nth-child(1) { transform: translate3d(8%, 30px, 0) scale(0.92) rotate(-1deg); }
+    .ba-interaction[data-mode="after"] .ba-source-card:nth-child(2) { transform: translate3d(8%, 120px, 0) scale(0.92) rotate(1deg); }
+    .ba-interaction[data-mode="after"] .ba-source-card:nth-child(3) { transform: translate3d(8%, 210px, 0) scale(0.92) rotate(-1deg); }
+    .ba-interaction[data-mode="after"] .ba-source-card:nth-child(4) { transform: translate3d(8%, 300px, 0) scale(0.92) rotate(1deg); }
+
+    .ba-scene,
+    .ba-panel,
+    .ba-router,
+    .ba-screen {
+        min-width: 0;
+        overflow: clip;
+    }
+
+    .ba-scene {
+        display: block;
+    }
+
+    .ba-router,
+    .ba-after-panel {
+        margin-top: 14px;
+    }
+
+    .ba-flow-lines {
+        display: none;
+    }
+
+    .ba-interaction[data-mode="before"] .ba-after-panel,
+    .ba-interaction[data-mode="after"] .ba-before-panel {
+        transform: none;
+    }
+
+    .ba-summary-strip,
+    .ba-kpi-row,
+    .ba-rule-list {
+        grid-template-columns: 1fr;
+    }
+
+    .ba-approval-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 10px 12px;
+    }
+
+    .ba-approval-row.is-head {
+        display: none;
+    }
+
+    .ba-router::before {
+        display: none;
+    }
+
+    .section {
+        padding-block: 72px;
+    }
+
+    .product-screen {
+        min-height: 340px;
+    }
+
+    .team-profile-card {
+        border-radius: 18px;
+        transform: none !important;
+        contain: paint;
+    }
+
+    .team-profile-card::before,
+    .team-profile-card::after {
+        display: none;
+    }
+
+    .team-scroll-section,
+    .team-scroll-stage,
+    .team-scroll-panel,
+    .team-copy,
+    .team-lead,
+    .team-card-stage {
+        min-width: 0;
+        overflow: clip;
+    }
+
+    .team-copy,
+    .team-lead,
+    .team-card-stage {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .avatar-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-top: 30px;
+        overflow: clip;
+    }
+
+    .team-avatar-rail {
+        max-width: 100%;
+        margin-left: 0;
+        overflow: clip;
+    }
+
+    .team-avatar-dot {
+        width: 48px;
+        height: 48px;
+        margin-left: -6px;
+        flex: 0 0 auto;
+    }
+
+    .team-avatar-dot:first-child {
+        margin-left: 0;
+    }
+
+    .avatar-caption {
+        width: 100%;
+    }
+
+    .team-card-stage {
+        min-height: 590px;
+        flex: 0 1 100%;
+    }
+
+    .team-card-copy {
+        width: 100%;
+        max-width: 100%;
+        padding: 26px 22px 220px;
+    }
+
+    .team-card-heading {
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 18px;
+        padding-right: 56px;
+    }
+
+    .team-card-heading strong {
+        font-size: 26px;
+    }
+
+    .team-card-heading span {
+        font-size: 16px;
+    }
+
+    .team-career-list {
+        gap: 7px;
+        font-size: 13px;
+    }
+
+    .team-card-link {
+        top: 22px;
+        right: 18px;
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+    }
+
+    .team-card-photo,
+    .team-profile-card.compact-photo .team-card-photo {
+        right: 0;
+        bottom: 0;
+        width: min(64%, 238px);
+        max-height: 35%;
+    }
+
+    .team-card-count {
+        left: 24px;
+        bottom: 22px;
+    }
+
+    .screen-window {
+        inset: 28px 5% 32px;
+    }
+
+    .screen-caption {
+        left: 5%;
+        right: 5%;
+        bottom: 32px;
+    }
+
+    .automation-card figure {
+        min-height: 280px;
+    }
+
+    .case-preview {
+        min-height: 320px;
+        height: auto;
+        aspect-ratio: 1.08 / 1;
+    }
+
+    .case-preview-fnb,
+    .case-preview-sales,
+    .case-preview-office,
+    .fnb-close-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sales-board {
+        grid-template-columns: 1fr;
+    }
+
+    .fnb-flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .automation-card-body {
+        padding: 22px;
+    }
+}
+
+@keyframes painSignalMobile {
+    0% { transform: translateX(0); opacity: 0; }
+    18% { opacity: 1; }
+    100% { transform: translateX(420%); opacity: 0; }
 }
 </style>
 </head>
 <body>
-<div id="control-container">
-    <h1>Pixel Logic Pattern Playground</h1>
-    <input type="text" id="functionInput" placeholder="Enter function e.g., (x ^ y) % 5">
-    <input type="range" id="slider" min="0" max="100" value="5" step="1" class="slider">
-    <label for="slider" id="sliderValue">v: 5</label>
-    <button class="btn" id="playPauseBtn" title="Play or pause animation (space-key)">Play</button>
-    <button class="btn" id="randomFuncBtn" title="Load a random function">Random Function</button>
-    <button class="btn" id="downloadBtn" title="Download Image (s-key)">Download</button>
-    <button class="btn" onclick="location.href='https://github.com/piebro/pixel-logic-patterns';" title="About">About</button>
+<div class="site">
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a class="logo" href="#top" aria-label="픽셀앤로직 홈">
+                <img src="images/pixelnlogic-logo.svg" alt="픽셀앤로직 로고">
+            </a>
+            <nav class="nav-links" aria-label="주요 메뉴">
+                <a href="#owned-systems">검증된 사업</a>
+                <a href="#subscription">구독 플랜</a>
+                <a href="#automation-cases">대표 사례</a>
+                <a href="cases.html">사례 블로그</a>
+                <a href="team.html">팀</a>
+                <a href="#contact">연락처</a>
+                <a href="#faq">FAQ</a>
+                <a class="nav-cta" href="#diagnosis">업무 진단하기</a>
+            </nav>
+            <button class="mobile-menu" id="mobileMenu" type="button" aria-label="메뉴 열기">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">AI로 진짜 돈 버는 팀이 있나요?</p>
+                <h1>
+                    <span class="hero-title-static">저희는 이미 AI로 돈 벌고 있는</span>
+                    <span class="hero-type-line">
+                        <span class="hero-type-sizer" aria-hidden="true">디자이너하이어입니다</span>
+                        <span class="hero-type-live">
+                            <span class="hero-typeword" id="heroTypeword">디자이너하이어입니다</span><span class="hero-caret" aria-hidden="true"></span>
+                        </span>
+                    </span>
+                </h1>
+                <p class="lead">자동으로 월 6천만원씩 결제되는 AI 매칭 플랫폼, 디자이너하이어입니다. 저희가 보낸 메일도 매번 사람이 쓰는 게 아닙니다. 실제 매출 현장에서 굴러가는 자동화 흐름을, 고객사의 사업에 맞게 옮겨드립니다.</p>
+                <div class="button-row">
+                    <a class="btn btn-primary" href="#diagnosis">내 업무에 맞는 플랜 보기</a>
+                    <a class="btn btn-ghost" href="#owned-systems">실제 운영 사업 보기</a>
+                </div>
+                <div class="hero-proof">
+                    <p class="proof-title">
+                        <strong>월 6천만원대 결제가 실제로 일어납니다.</strong>
+                        <span>2026년 4월 결제 리포트 기준 매출 68,270,099원</span>
+                    </p>
+                    <div class="proof-image">
+                        <img src="images/proof/toss-sales-dashboard-april.svg" alt="매달 6천만원 결제 플랫폼 결제 리포트">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section pain-section" id="painpoint">
+            <div class="container pain-wrap">
+                <div class="pain-head">
+                    <p class="section-kicker">고객 페인포인트</p>
+                    <h2 class="section-title">단순한 사무 업무로<br>생산성을 방해받고 있진 않나요?</h2>
+                </div>
+
+                <div class="pain-console" data-pain-console>
+                    <div class="pain-inbox">
+                        <span class="pain-label">반복 업무 선택</span>
+                        <div class="pain-list" aria-label="반복 업무 목록">
+                            <button class="pain-item is-active" type="button" data-pain-item data-label="정산 취합" data-detail="카드, 계좌, 세금계산서를 다시 맞춥니다." data-loss="월 37시간" data-score="54" data-next="정산 데이터 자동 검수">
+                                <span><strong>정산 취합</strong><span>카드 · 계좌 · 세금계산서</span></span>
+                                <em>37h</em>
+                            </button>
+                            <button class="pain-item" type="button" data-pain-item data-label="메일 복붙" data-detail="비슷한 답장과 첨부파일을 매번 새로 만듭니다." data-loss="월 28시간" data-score="62" data-next="답장 초안과 첨부 자동 생성">
+                                <span><strong>메일 복붙</strong><span>문의 · 견적 · 팔로업</span></span>
+                                <em>28h</em>
+                            </button>
+                            <button class="pain-item" type="button" data-pain-item data-label="시트 정리" data-detail="여러 시트의 상태값과 담당자를 다시 맞춥니다." data-loss="월 41시간" data-score="49" data-next="운영 화면으로 상태 통합">
+                                <span><strong>시트 정리</strong><span>상태값 · 담당자 · 누락 확인</span></span>
+                                <em>41h</em>
+                            </button>
+                            <button class="pain-item" type="button" data-pain-item data-label="리포트 작성" data-detail="매출, 상담, 처리 내역을 보고서로 옮깁니다." data-loss="월 22시간" data-score="68" data-next="자동 리포트와 다음 액션">
+                                <span><strong>리포트 작성</strong><span>매출 · 상담 · 처리 내역</span></span>
+                                <em>22h</em>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pain-dashboard">
+                        <div class="pain-metric">
+                            <div class="pain-metric-top">
+                                <div>
+                                    <span>현재 병목</span>
+                                    <strong id="painTitle">정산 취합</strong>
+                                </div>
+                                <b class="pain-loss" id="painLoss">월 37시간</b>
+                            </div>
+                            <div class="pain-meter">
+                                <div class="pain-meter-track" aria-hidden="true">
+                                    <div class="pain-meter-fill"></div>
+                                </div>
+                                <small id="painDetail">카드, 계좌, 세금계산서를 다시 맞춥니다.</small>
+                            </div>
+                        </div>
+
+                        <div class="pain-flow" aria-label="반복 업무 전환 흐름">
+                            <div class="pain-flow-card">
+                                <span>AS IS</span>
+                                <strong id="painAsis">정산 취합</strong>
+                            </div>
+                            <div class="pain-arrow" aria-hidden="true">→</div>
+                            <div class="pain-flow-card">
+                                <span>AX</span>
+                                <strong id="painNext">정산 데이터 자동 검수</strong>
+                            </div>
+                        </div>
+
+                        <div class="pain-pulse" aria-hidden="true">
+                            <span>반복 업무가 줄어들수록 팀의 판단 시간이 돌아옵니다.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="owned-systems">
+            <div class="container owned-systems">
+                <div class="owned-head">
+                    <h2 class="section-title">저희 영업이익은<br>AX에서 출발했습니다.</h2>
+                </div>
+
+                <div class="business-stack" aria-label="픽셀앤로직 자체 사업 포트폴리오">
+                    <article class="business-card designerhire">
+                        <figure class="business-shot">
+                            <a href="https://designer-hire.com" target="_blank" rel="noopener">
+                                <img src="images/owned-businesses/designer-hire.png" alt="디자이너하이어 실제 사이트 화면 캡처">
+                            </a>
+                            <figcaption>designer-hire.com</figcaption>
+                        </figure>
+                        <div class="business-body">
+                            <h3>디자이너하이어 · AI 디자이너 매칭 플랫폼</h3>
+                        </div>
+                    </article>
+
+                    <article class="business-card backoffice">
+                        <figure class="business-shot">
+                            <a href="https://100office.kr" target="_blank" rel="noopener">
+                                <img src="images/owned-businesses/100office.png" alt="100오피스 실제 사이트 화면 캡처">
+                            </a>
+                            <figcaption>100office.kr</figcaption>
+                        </figure>
+                        <div class="business-body">
+                            <h3>백오피스랩 · 경영지원 AX 운영 서비스</h3>
+                        </div>
+                    </article>
+
+                    <article class="business-card sendb">
+                        <figure class="business-shot">
+                            <a href="https://sendb.kr" target="_blank" rel="noopener">
+                                <img src="images/owned-businesses/sendb.png" alt="SendB 실제 사이트 화면 캡처">
+                            </a>
+                            <figcaption>sendb.kr</figcaption>
+                        </figure>
+                        <div class="business-body">
+                            <h3>샌드비 · AI 영업 자동화 CRM</h3>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section team-scroll-section" id="team" data-team-scroll>
+            <div class="container team-scroll-stage">
+                <div class="team-scroll-panel">
+                    <div class="team-copy">
+                        <p class="section-kicker">외주사가 아니라 월간 개발팀</p>
+                        <h2 class="section-title">필요한 달마다 새로 설명하지 않아도 되는<br>AX 전담 스쿼드를 붙여드립니다.</h2>
+                        <div class="copy-stack">
+                            <p>구독은 인력만 빌리는 방식이 아닙니다. 매월 쌓이는 운영 백로그를 함께 보고, 무엇을 자동화해야 비용이 줄고 무엇을 개발해야 매출 흐름이 좋아지는지부터 잡습니다.</p>
+                        </div>
+                        <div class="avatar-row">
+                            <div class="team-avatar-rail" aria-label="팀원 카드 선택">
+                                <button class="team-avatar-dot is-active" type="button" data-team-dot="0" style="--dot-glow:rgba(143,156,255,0.24)" aria-label="홍동희 카드 보기"><img src="images/S4/dhhong.png" alt=""></button>
+                                <button class="team-avatar-dot" type="button" data-team-dot="1" style="--dot-glow:rgba(94,207,170,0.24)" aria-label="김이삭 카드 보기"><img src="images/S4/iskim.png" alt=""></button>
+                                <button class="team-avatar-dot" type="button" data-team-dot="2" style="--dot-glow:rgba(255,178,106,0.24)" aria-label="박준규 카드 보기"><img src="images/S4/jkpark.png" alt=""></button>
+                                <button class="team-avatar-dot" type="button" data-team-dot="3" style="--dot-glow:rgba(255,126,166,0.24)" aria-label="이주희 카드 보기"><img src="images/S4/jhlee.png" alt=""></button>
+                                <button class="team-avatar-dot" type="button" data-team-dot="4" style="--dot-glow:rgba(116,198,255,0.24)" aria-label="정재훈 카드 보기"><img src="images/S4/jhjeong-photo-solid.png" alt=""></button>
+                                <button class="team-avatar-dot" type="button" data-team-dot="5" style="--dot-glow:rgba(204,160,255,0.24)" aria-label="이효정 카드 보기"><img src="images/S4/hjlee-photo-solid.png" alt=""></button>
+                            </div>
+                            <p class="avatar-caption">고정 담당자가 맥락을 이어갑니다<br>PM, 개발, 자동화 설계를 한 팀 안에서</p>
+                        </div>
+                    </div>
+
+                    <div class="team-lead" aria-label="AX 구독팀 프로필">
+                        <div class="team-card-stage" data-team-cards>
+                            <article class="team-profile-card is-active" data-team-card style="--accent:#8f9cff;--glow:rgba(143,156,255,0.25)">
+                                <a class="team-card-link" href="team.html#donghee-hong" aria-label="홍동희 프로필 보기">→</a>
+                                <div class="team-card-copy">
+                                    <div class="team-card-heading"><strong>홍동희</strong><span>CTO</span></div>
+                                    <ul class="team-career-list">
+                                        <li>現 픽셀앤로직 CTO</li>
+                                        <li>前 메가존 클라우드 TECH 그룹장</li>
+                                        <li>前 유니티코리아 소프트웨어 엔지니어링 총괄</li>
+                                        <li>前 미소정보기술 기술이사</li>
+                                        <li>前 NIPA XR-Campus 총괄 PM</li>
+                                        <li>前 게임로프트 코리아 TD/CTO</li>
+                                        <li>前 코어어센티 부사장/CTO</li>
+                                    </ul>
+                                </div>
+                                <img class="team-card-photo" src="images/S4/cto-profile.png" alt="홍동희 CTO">
+                                <span class="team-card-count">01 / 06</span>
+                            </article>
+
+                            <article class="team-profile-card" data-team-card style="--accent:#5ecfaa;--glow:rgba(94,207,170,0.24)">
+                                <a class="team-card-link" href="team.html#isaac-kim" aria-label="김이삭 프로필 보기">→</a>
+                                <div class="team-card-copy">
+                                    <div class="team-card-heading"><strong>김이삭</strong><span>CEO</span></div>
+                                    <ul class="team-career-list">
+                                        <li>現 픽셀앤로직 대표</li>
+                                        <li>現 디자이너하이어 운영</li>
+                                        <li>창업 및 매각 경험 2회</li>
+                                        <li>고려대 초기창업패키지 1등 출신</li>
+                                        <li>Google 스타트업 캠퍼스 입주 기업</li>
+                                        <li>기술보증기금 보증 기업</li>
+                                        <li>HR·매칭 비즈니스 모델 설계</li>
+                                    </ul>
+                                </div>
+                                <img class="team-card-photo" src="images/S4/iskim.png" alt="김이삭 대표">
+                                <span class="team-card-count">02 / 06</span>
+                            </article>
+
+                            <article class="team-profile-card" data-team-card style="--accent:#ffb26a;--glow:rgba(255,178,106,0.23)">
+                                <a class="team-card-link" href="team.html#joonkyu-park" aria-label="박준규 프로필 보기">→</a>
+                                <div class="team-card-copy">
+                                    <div class="team-card-heading"><strong>박준규</strong><span>AX 총괄</span></div>
+                                    <ul class="team-career-list">
+                                        <li>現 픽셀앤로직 AX 총괄</li>
+                                        <li>한성과학고등학교 조기졸업</li>
+                                        <li>前 삼성전자 반도체사업부 기준정보시스템 PM</li>
+                                        <li>前 공장 AX 기업 비카누스</li>
+                                        <li>제조·운영 프로세스 자동화 설계</li>
+                                        <li>데이터 인입과 우선순위 로직 설계</li>
+                                    </ul>
+                                </div>
+                                <img class="team-card-photo" src="images/S4/jkpark.png" alt="박준규 AX 총괄">
+                                <span class="team-card-count">03 / 06</span>
+                            </article>
+
+                            <article class="team-profile-card" data-team-card style="--accent:#ff7ea6;--glow:rgba(255,126,166,0.22)">
+                                <a class="team-card-link" href="team.html#juhee-lee" aria-label="이주희 프로필 보기">→</a>
+                                <div class="team-card-copy">
+                                    <div class="team-card-heading"><strong>이주희</strong><span>COO</span></div>
+                                    <ul class="team-career-list">
+                                        <li>現 픽셀앤로직 운영이사</li>
+                                        <li>미국 스타트업 Boldbox 창업자 출신</li>
+                                        <li>프라이머 피투자 이력 보유</li>
+                                        <li>디자이너하이어 UX 핵심 설계</li>
+                                        <li>브랜드·매칭·구독형 운영 설계</li>
+                                        <li>고객 상담 흐름과 온보딩 UX 설계</li>
+                                    </ul>
+                                </div>
+                                <img class="team-card-photo" src="images/S4/jhlee.png" alt="이주희 운영이사">
+                                <span class="team-card-count">04 / 06</span>
+                            </article>
+
+                            <article class="team-profile-card compact-photo" data-team-card style="--accent:#74c6ff;--glow:rgba(116,198,255,0.23)">
+                                <a class="team-card-link" href="team.html#jaehoon-jeong" aria-label="정재훈 프로필 보기">→</a>
+                                <div class="team-card-copy">
+                                    <div class="team-card-heading"><strong>정재훈</strong><span>Full-stack</span></div>
+                                    <ul class="team-career-list">
+                                        <li>現 픽셀앤로직 선임</li>
+                                        <li>前 SK AX</li>
+                                        <li>SI/솔루션 개발 경력 4년</li>
+                                        <li>풀스택 개발자</li>
+                                        <li>POS·CRM·백오피스 연동</li>
+                                        <li>레거시 시스템과 신규 자동화 연결</li>
+                                    </ul>
+                                </div>
+                                <img class="team-card-photo" src="images/S4/jhjeong-photo-solid.png" alt="정재훈 선임">
+                                <span class="team-card-count">05 / 06</span>
+                            </article>
+
+                            <article class="team-profile-card compact-photo" data-team-card style="--accent:#cca0ff;--glow:rgba(204,160,255,0.23)">
+                                <a class="team-card-link" href="team.html#hyojung-lee" aria-label="이효정 프로필 보기">→</a>
+                                <div class="team-card-copy">
+                                    <div class="team-card-heading"><strong>이효정</strong><span>Proof</span></div>
+                                    <ul class="team-career-list">
+                                        <li>現 픽셀앤로직 팀장</li>
+                                        <li>마케팅 기획 및 시장 분석</li>
+                                        <li>실증 기업 발굴 및 매니징</li>
+                                        <li>리드 데이터 분석</li>
+                                        <li>운영 실증 리포트 정리</li>
+                                        <li>고객 인터뷰와 도입 성과 관리</li>
+                                    </ul>
+                                </div>
+                                <img class="team-card-photo" src="images/S4/hjlee-photo-solid.png" alt="이효정 팀장">
+                                <span class="team-card-count">06 / 06</span>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="insight">
+            <div class="container">
+                <div class="subscription-header">
+                    <p class="section-kicker">AI 도구가 없어서 막히는 게 아닙니다</p>
+                    <h2 class="section-title">끝까지 밀고 갈 팀이 없어서 AX가 멈춥니다.</h2>
+                </div>
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <strong data-count="46">0%</strong>
+                        <p>팀 시간이 반복 운영 업무에 묶여 버립니다.</p>
+                    </article>
+                    <article class="stat-card">
+                        <strong data-count="71">0%</strong>
+                        <p>AI PoC가 실제 운영 프로세스까지 이어지지 못합니다.</p>
+                    </article>
+                    <article class="stat-card">
+                        <strong data-count="62">0%</strong>
+                        <p>개발팀 리소스가 긴급 요청과 유지보수에 계속 밀립니다.</p>
+                    </article>
+                </div>
+                <div class="process" id="automation">
+                    <article class="step-card">
+                        <span>01</span>
+                        <h3>월간 백로그 정리</h3>
+                        <p>운영팀, 마케팅팀, 개발팀에 흩어진 자동화 요청과 기능 개선 항목을 한곳에 모읍니다.</p>
+                    </article>
+                    <article class="step-card">
+                        <span>02</span>
+                        <h3>AX 설계와 우선순위</h3>
+                        <p>데이터 위치, 승인 구조, 줄어드는 시간과 전환 효과를 기준으로 순서를 잡습니다.</p>
+                    </article>
+                    <article class="step-card">
+                        <span>03</span>
+                        <h3>스프린트 구현과 배포</h3>
+                        <p>작게 만들고 빠르게 붙여서 실제 운영 환경에서 확인합니다.</p>
+                    </article>
+                    <article class="step-card">
+                        <span>04</span>
+                        <h3>운영 리포트와 다음 사이클</h3>
+                        <p>무엇이 줄었는지 보고, 다음 달에는 어디를 더 가볍게 만들지 정리합니다.</p>
+                    </article>
+                </div>
+                <div class="button-row process-cta">
+                    <a class="btn btn-primary" href="#automation-cases">대표 AX 사례 보기</a>
+                    <a class="btn btn-ghost" href="#subscription">월 구독 플랜 확인</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="before-after">
+            <div class="container">
+                <div class="ba-interaction" data-before-after data-mode="before" aria-label="Before After 자동화 전후 비교">
+                    <div class="ba-heading">
+                        <div>
+                            <p class="section-kicker">Before / After 업무 흐름</p>
+                            <h2 class="section-title">흩어진 업무를<br>승인 가능한 운영 화면으로 바꿉니다.</h2>
+                        </div>
+                        <div class="ba-toggle" aria-label="Before After 선택">
+                            <button class="is-active" type="button" data-ba-mode="before">Before</button>
+                            <button type="button" data-ba-mode="after">After</button>
+                        </div>
+                    </div>
+
+                    <div class="ba-scene">
+                        <svg class="ba-flow-lines" viewBox="0 0 1000 440" preserveAspectRatio="none" aria-hidden="true">
+                            <path class="ba-manual-line" d="M 62 112 C 188 94, 222 160, 364 164" />
+                            <path class="ba-manual-line" d="M 128 226 C 218 216, 260 210, 364 218" />
+                            <path class="ba-manual-line" d="M 72 330 C 190 354, 246 288, 364 260" />
+                            <path class="ba-manual-line" d="M 420 212 C 512 156, 560 156, 646 188" />
+                            <path class="ba-manual-line" d="M 420 230 C 522 288, 570 300, 662 260" />
+                            <path class="ba-auto-line" d="M 86 106 C 204 96, 266 138, 410 198 C 480 230, 526 230, 588 208 C 668 178, 744 182, 922 166" />
+                            <path class="ba-auto-line" d="M 136 226 C 236 226, 310 226, 414 220 C 486 216, 526 226, 588 244 C 676 270, 760 272, 920 254" />
+                            <path class="ba-auto-line" d="M 82 330 C 206 344, 292 286, 414 240 C 486 214, 526 210, 588 222 C 690 242, 766 310, 920 322" />
+                        </svg>
+                        <div class="ba-panel ba-before-panel">
+                            <div class="ba-panel-top">
+                                <div>
+                                    <span>Before</span>
+                                    <strong>채널마다 사람이 다시 확인</strong>
+                                </div>
+                                <div class="ba-status">수동 처리</div>
+                            </div>
+                            <div class="ba-source-stack" aria-label="수동 처리 채널">
+                                <article class="ba-source-card">
+                                    <b>메일 문의</b>
+                                    <em>예산, 납기, 요구사항을 사람이 읽고 분류합니다.</em>
+                                    <small>평균 확인 18분</small>
+                                </article>
+                                <article class="ba-source-card">
+                                    <b>카톡 팔로업</b>
+                                    <em>담당자가 놓친 대화를 다시 찾아 다음 액션을 적습니다.</em>
+                                    <small>누락 위험 높음</small>
+                                </article>
+                                <article class="ba-source-card">
+                                    <b>폼 응답</b>
+                                    <em>제출 데이터가 시트와 CRM에 따로 복사됩니다.</em>
+                                    <small>중복 입력</small>
+                                </article>
+                                <article class="ba-source-card">
+                                    <b>운영 시트</b>
+                                    <em>매일 마감 전에 상태값과 담당자를 다시 맞춥니다.</em>
+                                    <small>수기 검수</small>
+                                </article>
+                            </div>
+                        </div>
+
+                        <div class="ba-router" aria-label="AX 자동화 레이어">
+                            <div class="ba-route-copy">
+                                <span>AX Layer</span>
+                                <strong>분류 · 초안 · 승인조건</strong>
+                            </div>
+                            <div class="ba-orbit">AX</div>
+                            <div class="ba-packet" aria-hidden="true"></div>
+                            <div class="ba-rule-list">
+                                <span>고객/업종 추출</span>
+                                <span>우선순위 계산</span>
+                                <span>담당자 승인 대기</span>
+                            </div>
+                        </div>
+
+                        <div class="ba-panel ba-after-panel">
+                            <div class="ba-panel-top">
+                                <div>
+                                    <span>After</span>
+                                    <strong>하나의 운영 화면에서 승인</strong>
+                                </div>
+                                <div class="ba-status">자동 정리</div>
+                            </div>
+                            <div class="ba-screen" aria-label="자동화 이후 운영 화면">
+                                <div class="ba-screen-bar">
+                                    <b>Ops Approval Queue</b>
+                                    <span>07:12 synced</span>
+                                </div>
+                                <div class="ba-summary-strip" aria-label="자동화 처리 요약">
+                                    <span><b>28건</b>자동 분류 완료</span>
+                                    <span><b>9건</b>담당자 승인 대기</span>
+                                    <span><b>3분</b>평균 검토 시간</span>
+                                </div>
+                                <div class="ba-approval-table" aria-label="자동화 이후 승인 큐">
+                                    <div class="ba-approval-row is-head">
+                                        <span>상태</span>
+                                        <span>업무</span>
+                                        <span>담당</span>
+                                        <span>다음 액션</span>
+                                    </div>
+                                    <div class="ba-approval-row">
+                                        <span class="ba-pill">검토</span>
+                                        <strong>견적 초안 확인</strong>
+                                        <span>영업팀</span>
+                                        <span>승인 후 발송</span>
+                                    </div>
+                                    <div class="ba-approval-row">
+                                        <span class="ba-pill">자동</span>
+                                        <strong>CRM 상태 업데이트</strong>
+                                        <span>AX Bot</span>
+                                        <span>완료</span>
+                                    </div>
+                                    <div class="ba-approval-row">
+                                        <span class="ba-pill">확인</span>
+                                        <strong>고위험 문의 라우팅</strong>
+                                        <span>운영팀</span>
+                                        <span>담당 배정</span>
+                                    </div>
+                                </div>
+                                <div class="ba-kpi-row">
+                                    <div class="ba-kpi"><span>TIME</span><strong>4h → 25m</strong></div>
+                                    <div class="ba-kpi"><span>HANDOFF</span><strong>4번 → 1번</strong></div>
+                                    <div class="ba-kpi"><span>OUTPUT</span><strong>승인 큐</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="roi">
+            <div class="container roi-layout">
+                <div class="roi-heading">
+                    <p class="section-kicker">비용 회수 계산해보기</p>
+                    <h2 class="section-title">저희가 대체할 그 업무로<br>매일 몇 시간 일하세요?</h2>
+                </div>
+                <div class="roi-box">
+                    <div class="roi-input-grid">
+                        <div class="range-field">
+                            <label for="roiDailyHours">매일 반복되는 업무 시간 <output id="roiDailyHoursOut">3시간</output></label>
+                            <input id="roiDailyHours" type="range" min="1" max="12" step="0.5" value="3">
+                        </div>
+                    </div>
+                    <div class="roi-estimate-card">
+                        <div class="roi-profit-copy">
+                            <span>예상 절감</span>
+                            <strong><span id="roiAnnualSaving">연 1,800만원</span> 절감 + α</strong>
+                        </div>
+                        <div class="roi-profit-bars" aria-hidden="true">
+                            <i style="--bar-height: 46%"></i>
+                            <i style="--bar-height: 62%"></i>
+                            <i style="--bar-height: 78%"></i>
+                            <i style="--bar-height: 94%"></i>
+                            <b>+ROI</b>
+                        </div>
+                        <div class="roi-estimate-meta">
+                            <span><b id="roiMonthlySaving">150만원</b> 매달 남는 비용</span>
+                            <span><b id="roiHoursSaved">43시간</b> 매달 되찾는 시간</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="subscription">
+            <div class="container">
+                <div class="subscription-header">
+                    <p class="section-kicker">AX 개발팀 구독 플랜</p>
+                    <h2 class="section-title">채용보다 저렴하지만,<br>빅테크 출신의 강력한 팀이에요.</h2>
+                </div>
+                <div class="plans">
+                    <article class="plan-card">
+                        <p class="label">Standard Ticket</p>
+                        <h3>기획자 보유 팀</h3>
+                        <div class="price"><strong>249만원</strong> <span>월 구독</span></div>
+                        <p>팀 안에 기획자가 있고, 유지보수와 자동화 요청만 빠르게 덜고 싶을 때.</p>
+                        <ul class="plan-list">
+                            <li>티켓 기반 업무 소통</li>
+                            <li>유지보수·오류 수정</li>
+                            <li>반복 업무 자동화</li>
+                            <li>월간 처리 내역 정리</li>
+                        </ul>
+                        <div class="plan-deliverables">
+                            <span>한 달이 지난 뒤</span>
+                            <strong>자동화 티켓 6~10개 · 월간 처리 리포트</strong>
+                            <p>작은 오류 수정, 스크립트, 어드민 개선처럼 바로 덜어낼 일을 처리합니다.</p>
+                        </div>
+                        <a class="btn btn-ghost" href="#contact">데모 미팅 신청</a>
+                    </article>
+
+                    <article class="plan-card recommended">
+                        <span class="badge">추천</span>
+                        <p class="label">Standard Live</p>
+                        <h3>빠른 실행</h3>
+                        <div class="price"><strong>349만원</strong> <span>월 구독</span></div>
+                        <p>실시간 소통과 빠른 업무 처리가 필요한 팀에 맞습니다.</p>
+                        <ul class="plan-list">
+                            <li>실시간 업무 소통</li>
+                            <li>긴급 요청 우선 처리</li>
+                            <li>운영 화면 즉시 개선</li>
+                            <li>자동화·연동 작업 처리</li>
+                        </ul>
+                        <div class="plan-deliverables">
+                            <span>한 달이 지난 뒤</span>
+                            <strong>운영 자동화 8~12개 · 실시간 대응 로그</strong>
+                            <p>급한 운영 병목을 바로 보고, 배포 내역과 다음 작업을 함께 정리합니다.</p>
+                        </div>
+                        <a class="btn btn-primary" href="#contact">데모 미팅 신청</a>
+                    </article>
+
+                    <article class="plan-card">
+                        <p class="label">Product Build</p>
+                        <h3>기획 포함</h3>
+                        <div class="price"><strong>499만원</strong> <span>월 구독</span></div>
+                        <p>자동화뿐 아니라 프로덕트 빌딩과 기획까지 같이 봐야 할 때.</p>
+                        <ul class="plan-list">
+                            <li>AX 백로그 기획</li>
+                            <li>프로덕트 빌딩</li>
+                            <li>AI 자동화 설계·구현</li>
+                            <li>데이터·관리자 화면 고도화</li>
+                        </ul>
+                        <div class="plan-deliverables">
+                            <span>한 달이 지난 뒤</span>
+                            <strong>업무 화면 1~2개 · 봇/연동 1개 · 운영 리포트</strong>
+                            <p>기획부터 화면, 자동화 로직, 배포 후 리포트까지 한 묶음으로 남깁니다.</p>
+                        </div>
+                        <a class="btn btn-ghost" href="#contact">데모 미팅 신청</a>
+                    </article>
+
+                    <article class="plan-card">
+                        <p class="label">Enterprise</p>
+                        <h3>조직 단위 AX</h3>
+                        <div class="price"><strong>999만원부터</strong> <span>월 구독</span></div>
+                        <p>조직 규모에 맞춘 팀 구성과 현장형 AX 설계가 필요할 때.</p>
+                        <ul class="plan-list">
+                            <li>스케일 맞춤 팀 빌딩</li>
+                            <li>주차별 현장 미팅</li>
+                            <li>온톨로지 구축</li>
+                            <li>AI 모델·데이터 아키텍처 설계</li>
+                        </ul>
+                        <div class="plan-deliverables">
+                            <span>한 달이 지난 뒤</span>
+                            <strong>조직 AX 로드맵 · 데이터 구조 설계 · 전담 스쿼드 운영표</strong>
+                            <p>부서 단위로 반복 업무를 묶고, 권한과 데이터 흐름까지 같이 설계합니다.</p>
+                        </div>
+                        <a class="btn btn-ghost" href="#contact">데모 미팅 신청</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="automation-cases">
+            <div class="container">
+                <div class="outputs">
+                    <div class="product-screen" aria-label="AX 구독 산출물 미리보기">
+                        <div class="screen-window">
+                            <img src="images/S5/slide-01.png" alt="운영 자동화 대시보드">
+                        </div>
+                        <div class="screen-caption">
+                            <h3>운영 자동화 대시보드</h3>
+                            <p>수작업 리포트, 승인, 알림을 하나의 운영 흐름으로 연결</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="section-kicker">구독으로 매달 남는 것들</p>
+                        <h2 class="section-title">자동화, 개발, 기획이<br>플랜 안에서 차곡차곡 쌓입니다.</h2>
+                        <div class="copy-stack">
+                            <p>결과물도 문서에서 끝나지 않습니다. <strong>실제 운영 화면, 자동화 흐름, 배포된 기능, 다음 달 백로그</strong>가 함께 남습니다. 구독이 길어질수록 팀의 일하는 방식이 조금씩 가벼워집니다.</p>
+                        </div>
+                        <div style="margin-top:34px">
+                            <a class="btn btn-primary" href="#diagnosis">우리 업무 진단받기</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subscription-header" style="margin-top:72px">
+                    <p class="section-kicker">실제 도입사례</p>
+                    <h2 class="section-title">실제 기업의 문제를 기준으로 정리한<br>대표 AX 도입사례 3선</h2>
+                    <div class="copy-stack">
+                        <p>아래 사례는 기업명과 민감한 운영 수치를 비식별화했습니다. 어떤 플랜으로 시작했고, 첫 달에 무엇을 붙였고, 지금 어떤 운영 흐름을 계속 바꿔가는지 중심으로 정리했습니다.</p>
+                    </div>
+                </div>
+
+                <div class="automation-cases" aria-label="AX 자동화 사례">
+                    <article class="automation-card" id="case-fnb">
+                        <figure aria-label="F&B 일일 마감 자동화 화면 예시">
+                            <div class="case-preview case-preview-fnb" role="img" aria-label="42개 지점 F&B 일일 마감 대시보드">
+                                <div class="preview-topbar">
+                                    <strong>42-Store Close Desk</strong>
+                                    <span>07:12 synced</span>
+                                </div>
+                                <div class="fnb-close-grid">
+                                    <div class="fnb-table">
+                                        <div><b>지점</b><b>상태</b><b>차이</b></div>
+                                        <div><b>강남</b><span>POS · 배달앱 일치</span><b>0.3%</b></div>
+                                        <div><b>홍대</b><span>재고 소진율 경고</span><b>2.1%</b></div>
+                                        <div><b>분당</b><span>수수료 검증 대기</span><b>1.4%</b></div>
+                                        <div><b>송파</b><span>마감 완료</span><b>0.0%</b></div>
+                                    </div>
+                                    <div class="fnb-risk">
+                                        <div class="preview-card"><span>마감 완료</span><strong>39/42</strong></div>
+                                        <div class="preview-card"><span>이상치 알림</span><strong>3건</strong></div>
+                                        <div class="preview-card"><span>다음 발주 추천</span><strong>18 SKU</strong></div>
+                                    </div>
+                                </div>
+                                <div class="fnb-flow">
+                                    <span>POS</span>
+                                    <span>배달앱</span>
+                                    <span>재고</span>
+                                    <span>알림 봇</span>
+                                </div>
+                            </div>
+                        </figure>
+                        <div class="automation-card-body">
+                            <p class="label">ARTICLE 01 · F&B OPERATIONS</p>
+                            <h3>Product Build로 시작한 42개 지점 F&B 일일 마감 자동화</h3>
+                            <div class="case-meta">
+                                <span>Product Build</span>
+                                <span>POS 42개 지점</span>
+                                <span>배달앱 3채널</span>
+                                <span>첫 달 대시보드 배포</span>
+                            </div>
+                            <p class="case-lead">A사는 매일 오전 9시까지 전 지점 매출, 배달 수수료, 재고 소진율을 본사 시트로 모았습니다. 픽셀앤로직은 Product Build로 시작해 첫 달에는 마감 대시보드와 이상치 알림을 붙이고, 이후 발주 추천과 프로모션 우선순위까지 운영 로직을 넓혀가고 있습니다.</p>
+                            <div class="case-path" aria-label="F&B 자동화 플랜 접근">
+                                <div><span>PLAN</span><strong>Product Build</strong><p>업무 화면 1개와 알림 봇을 첫 산출물로 설정</p></div>
+                                <div><span>APPROACH</span><strong>데이터 키부터 통합</strong><p>POS, 배달앱, 재고 로그를 지점·메뉴 기준으로 연결</p></div>
+                                <div><span>NEXT</span><strong>발주 판단 자동화</strong><p>마감 이후 재고와 프로모션 의사결정까지 확장</p></div>
+                            </div>
+                            <div class="logic-map" aria-label="운영 자동화 연결 과정">
+                                <div class="logic-node"><span>WEEK 01</span><strong>마감 업무와 데이터 위치 진단</strong></div>
+                                <div class="logic-node"><span>WEEK 02</span><strong>지점, 메뉴, 채널 기준 키 정렬</strong></div>
+                                <div class="logic-node"><span>WEEK 03</span><strong>본사 대시보드와 알림 봇 구현</strong></div>
+                                <div class="logic-node"><span>WEEK 04</span><strong>운영 리포트와 다음 백로그 확정</strong></div>
+                            </div>
+                            <div class="formula-box">
+                                <code>우선순위 점수 = (반복시간 × 실행빈도 × 오류손실) / 구현복잡도<br>이상치 = |당일 매출 - 4주 이동평균| &gt; 2σ</code>
+                                <p>첫 달은 “마감을 빠르게”가 아니라 “잘못된 마감이 다음 발주를 흔들지 않게” 만드는 데 집중했습니다. 그래서 구독 다음 달의 백로그도 자연스럽게 재고 예측으로 이어졌습니다.</p>
+                            </div>
+                            <div class="case-metrics">
+                                <div class="case-metric"><strong>37시간/주</strong><span>마감 취합 업무 감소</span></div>
+                                <div class="case-metric"><strong>09:00 → 07:12</strong><span>본사 리포트 도착 시간</span></div>
+                                <div class="case-metric"><strong>2.1%</strong><span>정산 누락 탐지율</span></div>
+                            </div>
+                            <div class="case-team" aria-label="담당 스쿼드">
+                                <span>담당 스쿼드</span>
+                                <a href="team.html#joonkyu-park">박준규 · AX 총괄</a>
+                                <a href="team.html#jaehoon-jeong">정재훈 · 풀스택</a>
+                                <a href="team.html#hyojung-lee">이효정 · 실증 매니징</a>
+                            </div>
+                            <a class="btn btn-ghost" href="case-articles/case-025.html">Product Build 도입 과정 보기</a>
+                        </div>
+                    </article>
+                    <article class="automation-card" id="case-sales">
+                        <figure aria-label="B2B 영업 리드 스코어링 화면 예시">
+                            <div class="case-preview case-preview-sales" role="img" aria-label="제조 장비 유통사 리드 스코어링 CRM 화면">
+                                <div class="sales-sidebar">
+                                    <div>
+                                        <strong>Lead Signal Room</strong>
+                                        <p>문의 내용, 예산, 납기, 이전 응답을 합쳐 영업 우선순위를 다시 정렬합니다.</p>
+                                    </div>
+                                    <div class="sales-score">
+                                        <span>고가 장비 문의 <b>92</b></span>
+                                        <span>견적 초안 생성 <b>18</b></span>
+                                        <span>카톡 팔로업 예약 <b>41</b></span>
+                                    </div>
+                                </div>
+                                <div class="sales-board">
+                                    <div class="sales-lane"><b>NEW</b><div class="sales-ticket">예산 8천만<span>담당자 배정 전</span></div><div class="sales-ticket">납기 3주<span>긴급 큐</span></div></div>
+                                    <div class="sales-lane"><b>AI DRAFT</b><div class="sales-ticket">견적 초안<span>메일 생성 완료</span></div><div class="sales-ticket">ROI 자료<span>첨부 추천</span></div></div>
+                                    <div class="sales-lane"><b>NEXT</b><div class="sales-ticket">전화 후속<span>오후 3시</span></div><div class="sales-ticket">CRM 저장<span>자동 기록</span></div></div>
+                                </div>
+                            </div>
+                        </figure>
+                        <div class="automation-card-body">
+                            <p class="label">ARTICLE 02 · B2B SALES</p>
+                            <h3>Standard Live로 붙인 제조 장비 유통사의 리드 스코어링</h3>
+                            <div class="case-meta">
+                                <span>Standard Live</span>
+                                <span>월 문의 1,200건</span>
+                                <span>영업담당 8명</span>
+                                <span>실시간 팔로업 큐</span>
+                            </div>
+                            <p class="case-lead">B사는 문의량은 충분했지만, 고가 장비를 구매할 가능성이 높은 리드가 일반 문의와 같은 큐에 섞였습니다. 픽셀앤로직은 Standard Live로 들어가 영업팀과 실시간으로 기준을 맞추고, 문의 분류와 견적 초안, 카톡 리마인드, CRM 기록을 매주 조금씩 바꿔가고 있습니다.</p>
+                            <div class="case-path" aria-label="B2B 영업 자동화 플랜 접근">
+                                <div><span>PLAN</span><strong>Standard Live</strong><p>영업팀과 실시간으로 소통하며 우선순위를 조정</p></div>
+                                <div><span>APPROACH</span><strong>리드 점수부터 재설계</strong><p>예산, 납기, 업종, 이전 응답을 기준으로 큐 분리</p></div>
+                                <div><span>NEXT</span><strong>CRM 액션 자동화</strong><p>다음 연락, 견적 리마인드, 담당자 알림까지 연결</p></div>
+                            </div>
+                            <div class="logic-map" aria-label="CRM 자동화 연결 과정">
+                                <div class="logic-node"><span>CAPTURE</span><strong>홈페이지 문의 · 카카오 · 이메일 통합</strong></div>
+                                <div class="logic-node"><span>CLASSIFY</span><strong>업종, 예산, 긴급도, 장비군 추출</strong></div>
+                                <div class="logic-node"><span>SCORE</span><strong>전환 가능성과 예상 매출 가중합</strong></div>
+                                <div class="logic-node"><span>ACTION</span><strong>견적 초안, 담당자 배정, 후속 알림</strong></div>
+                            </div>
+                            <div class="formula-box">
+                                <code>Lead Score = 0.35×예산적합도 + 0.25×납기긴급도 + 0.25×업종적합도 + 0.15×이전상호작용<br>Follow-up SLA = max(15분, 120분 - Lead Score×90분)</code>
+                                <p>모든 문의에 같은 속도로 답하지 않았습니다. 구독 기간 동안 영업팀이 실제로 보는 전환 신호를 계속 반영해, 먼저 잡아야 하는 리드가 위로 올라오게 바꿨습니다.</p>
+                            </div>
+                            <div class="case-metrics">
+                                <div class="case-metric"><strong>31%</strong><span>고가 리드 응답 속도 개선</span></div>
+                                <div class="case-metric"><strong>18분</strong><span>견적 초안 평균 생성 시간</span></div>
+                                <div class="case-metric"><strong>1.7배</strong><span>재상담 전환율 상승</span></div>
+                            </div>
+                            <div class="case-team" aria-label="담당 스쿼드">
+                                <span>담당 스쿼드</span>
+                                <a href="team.html#isaac-kim">김이삭 · 사업 설계</a>
+                                <a href="team.html#hyojung-lee">이효정 · 리드 분석</a>
+                                <a href="team.html#jaehoon-jeong">정재훈 · CRM 연동</a>
+                            </div>
+                            <a class="btn btn-ghost" href="case-articles/case-039.html">Standard Live 도입 과정 보기</a>
+                        </div>
+                    </article>
+                    <article class="automation-card" id="case-backoffice">
+                        <figure aria-label="교육 플랫폼 백오피스 검수 화면 예시">
+                            <div class="case-preview case-preview-office" role="img" aria-label="교육 플랫폼 정산과 콘텐츠 검수 백오피스 화면">
+                                <div class="office-pane">
+                                    <div class="preview-topbar">
+                                        <strong>Ops Approval Board</strong>
+                                        <span>AI 71%</span>
+                                    </div>
+                                    <div class="office-queue">
+                                        <div>강사 정산 검수 <span>12건</span></div>
+                                        <div>콘텐츠 누락 확인 <span>5건</span></div>
+                                        <div>지급 승인 대기 <span>8건</span></div>
+                                        <div>감사 로그 저장 <span>완료</span></div>
+                                    </div>
+                                    <div class="preview-pill">권한 · 승인 · 리포트 통합</div>
+                                </div>
+                                <div class="office-log">
+                                    <span>AUDIT TRAIL</span>
+                                    <p>09:11 AI가 증빙 누락 3건을 분류</p>
+                                    <p>09:18 운영자가 지급 보류 승인</p>
+                                    <p>09:24 콘텐츠 검수 결과 리포트 발송</p>
+                                    <p>09:32 다음 백로그: 강사별 예외 룰</p>
+                                </div>
+                            </div>
+                        </figure>
+                        <div class="automation-card-body">
+                            <p class="label">ARTICLE 03 · BACKOFFICE</p>
+                            <h3>Enterprise 전환 전 Product Build로 검증한 교육 플랫폼 백오피스</h3>
+                            <div class="case-meta">
+                                <span>Product Build → Enterprise</span>
+                                <span>강사 380명</span>
+                                <span>월 정산 2회</span>
+                                <span>권한·감사 로그 설계</span>
+                            </div>
+                            <p class="case-lead">C사는 강사 정산과 콘텐츠 검수가 서로 다른 시트에서 관리됐습니다. 처음부터 큰 시스템을 만들지 않고 Product Build로 정산 검수 화면을 먼저 배포한 뒤, 권한 체계와 감사 로그가 맞는지 확인했습니다. 지금은 Enterprise 범위로 넓혀 콘텐츠 검수, 지급 승인, 운영 리포트까지 같은 백오피스로 묶고 있습니다.</p>
+                            <div class="case-path" aria-label="백오피스 자동화 플랜 접근">
+                                <div><span>PLAN</span><strong>Product Build → Enterprise</strong><p>작은 검수 화면으로 시작해 조직 단위 AX로 확장</p></div>
+                                <div><span>APPROACH</span><strong>권한과 로그 먼저 정리</strong><p>정산액보다 누가 무엇을 바꿨는지 추적 가능하게 설계</p></div>
+                                <div><span>NEXT</span><strong>운영 백오피스 통합</strong><p>콘텐츠 검수, 지급 승인, 리포트를 한 화면으로 연결</p></div>
+                            </div>
+                            <div class="logic-map" aria-label="백오피스 자동화 연결 과정">
+                                <div class="logic-node"><span>MODEL</span><strong>강사, 강의, 쿠폰, 환불 이벤트 재정의</strong></div>
+                                <div class="logic-node"><span>SCREEN</span><strong>정산 검수 화면과 예외 큐 먼저 배포</strong></div>
+                                <div class="logic-node"><span>AUDIT</span><strong>변경 전후 값과 작업자 로그 저장</strong></div>
+                                <div class="logic-node"><span>SCALE</span><strong>권한, 콘텐츠, 지급 리포트까지 확장</strong></div>
+                            </div>
+                            <div class="formula-box">
+                                <code>정산액 = 결제액 - 환불액 - 쿠폰부담액 - PG수수료<br>검수위험도 = 변경횟수×0.4 + 환불비율×0.35 + 권한예외×0.25</code>
+                                <p>정산 로직을 화면 뒤에 숨기지 않았습니다. 운영자가 검증 가능한 형태로 열어두고, 매달 반복되는 예외 케이스를 다음 스프린트의 자동화 백로그로 전환했습니다.</p>
+                            </div>
+                            <div class="case-metrics">
+                                <div class="case-metric"><strong>80%</strong><span>월말 검증 시간 감소</span></div>
+                                <div class="case-metric"><strong>6단계</strong><span>권한별 작업 범위 분리</span></div>
+                                <div class="case-metric"><strong>0건</strong><span>수정 이력 미추적 이슈</span></div>
+                            </div>
+                            <div class="case-team" aria-label="담당 스쿼드">
+                                <span>담당 스쿼드</span>
+                                <a href="team.html#donghee-hong">홍동희 · 아키텍처</a>
+                                <a href="team.html#jaehoon-jeong">정재훈 · 풀스택</a>
+                                <a href="team.html#juhee-lee">이주희 · 운영 UX</a>
+                            </div>
+                            <a class="btn btn-ghost" href="case-articles/case-085.html">Enterprise 확장 과정 보기</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="case-library-cta">
+                    <div>
+                        <h3>더 많은 자동화 사례는 따로 모아두었습니다.</h3>
+                    </div>
+                    <a class="btn btn-primary" href="cases.html">97개 AX 사례 읽기</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="diagnosis">
+            <div class="container diagnosis-layout">
+                <div>
+                    <h2 class="section-title">실제로 어떤 개선을 할 수 있을지<br>제안받아보세요.</h2>
+                    <div class="diagnosis-panel">
+                        <form class="diagnosis-form" id="diagnosisLeadForm" aria-label="자동화 우선순위 진단">
+                            <div class="question-block">
+                                <label for="diagnosisIndustry">업종</label>
+                                <div class="select-wrap">
+                                    <select class="diagnosis-select" id="diagnosisIndustry" name="industry" data-diagnosis-select="industry">
+                                        <option value="commerce">커머스/리테일</option>
+                                        <option value="fnb">F&B/프랜차이즈</option>
+                                        <option value="b2b">B2B 영업</option>
+                                        <option value="saas">SaaS/IT 서비스</option>
+                                        <option value="manufacturing">제조/공장</option>
+                                        <option value="logistics">물류/유통</option>
+                                        <option value="education">교육/에듀테크</option>
+                                        <option value="healthcare">병원/헬스케어</option>
+                                        <option value="finance">금융/보험</option>
+                                        <option value="legal">법무/회계/세무</option>
+                                        <option value="hr">인사/채용</option>
+                                        <option value="realestate">부동산/건설</option>
+                                        <option value="marketing">콘텐츠/마케팅</option>
+                                        <option value="public">공공/협회/비영리</option>
+                                        <option value="backoffice">경영지원/백오피스</option>
+                                        <option value="other">기타</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="question-block">
+                                <label for="diagnosisTask">반복 업무</label>
+                                <div class="select-wrap">
+                                    <select class="diagnosis-select" id="diagnosisTask" name="task" data-diagnosis-select="task">
+                                        <option value="report">리포트/대시보드 작성</option>
+                                        <option value="settlement">정산/마감/증빙 취합</option>
+                                        <option value="lead">리드 관리/팔로업</option>
+                                        <option value="outbound">메일·카톡 영업 자동화</option>
+                                        <option value="crm">CRM 기록/담당자 배정</option>
+                                        <option value="support">상담/요청 분류</option>
+                                        <option value="document">문서/OCR/계약서 검토</option>
+                                        <option value="content">콘텐츠/소재 제작</option>
+                                        <option value="inventory">재고/발주/수요 예측</option>
+                                        <option value="purchasing">구매/견적/협력사 관리</option>
+                                        <option value="inspection">품질검수/불량 탐지</option>
+                                        <option value="schedule">예약/배차/일정 조율</option>
+                                        <option value="accounting">회계/세금계산서 매칭</option>
+                                        <option value="hr">채용/근태/평가 업무</option>
+                                        <option value="data">데이터 정리/권한 관리</option>
+                                        <option value="marketing">광고/캠페인 운영</option>
+                                        <option value="other">기타</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="question-block">
+                                <label for="diagnosisVolume">월 처리량</label>
+                                <div class="select-wrap">
+                                    <select class="diagnosis-select" id="diagnosisVolume" name="volume" data-diagnosis-select="volume">
+                                        <option value="low">100건 이하</option>
+                                        <option value="mid" selected>100~1,000건</option>
+                                        <option value="high">1,000~5,000건</option>
+                                        <option value="mass">5,000건 이상</option>
+                                        <option value="enterprise">부서 단위</option>
+                                        <option value="unknown">아직 모름</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="question-block">
+                                <label for="diagnosisTool">현재 쓰는 도구</label>
+                                <div class="select-wrap">
+                                    <select class="diagnosis-select" id="diagnosisTool" name="tool" data-diagnosis-select="tool">
+                                        <option value="sheet">스프레드시트</option>
+                                        <option value="crm">CRM</option>
+                                        <option value="erp">ERP/그룹웨어</option>
+                                        <option value="messenger">카톡/메일</option>
+                                        <option value="notion">Notion/구글드라이브</option>
+                                        <option value="custom">자체 어드민</option>
+                                        <option value="mixed">여러 도구 혼재</option>
+                                        <option value="none">아직 없음</option>
+                                        <option value="other">기타</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="diagnosis-contact">
+                                <p class="question-title">제안 받을 정보</p>
+                                <div class="diagnosis-contact-grid">
+                                    <div class="diagnosis-field">
+                                        <label for="diagnosisCompany">회사명</label>
+                                        <input id="diagnosisCompany" name="company" type="text" placeholder="예: 픽셀앤로직" autocomplete="organization" required>
+                                    </div>
+                                    <div class="diagnosis-field">
+                                        <label for="diagnosisName">성함</label>
+                                        <input id="diagnosisName" name="name" type="text" placeholder="예: 김이삭" autocomplete="name" required>
+                                    </div>
+                                    <div class="diagnosis-field">
+                                        <label for="diagnosisPhone">연락처</label>
+                                        <input id="diagnosisPhone" name="phone" type="tel" placeholder="예: 010-0000-0000" autocomplete="tel" required>
+                                    </div>
+                                    <div class="diagnosis-field">
+                                        <label for="diagnosisEmail">이메일</label>
+                                        <input id="diagnosisEmail" name="email" type="email" placeholder="예: hello@company.com" autocomplete="email" required>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary diagnosis-submit" id="diagnosisSubmitCta" type="submit">개선 제안 받아보기</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <aside class="diagnosis-result" aria-live="polite">
+                    <p class="label">DIAGNOSIS RESULT</p>
+                    <h3 id="diagnosisPlan">추천 플랜: Standard Live</h3>
+                    <p id="diagnosisSummary">반복 리포트와 정산 취합을 먼저 자동화하면 운영팀의 주간 병목을 가장 빠르게 줄일 수 있습니다.</p>
+                    <ul class="result-list" id="diagnosisTasks">
+                        <li>POS/채널 데이터를 같은 키로 정렬합니다.</li>
+                        <li>누락값과 이상치를 자동으로 표시합니다.</li>
+                        <li>마감 리포트와 담당자 알림을 자동 발송합니다.</li>
+                    </ul>
+                    <div class="mini-case-links" id="diagnosisCases">
+                        <a href="case-articles/case-025.html">F&B 마감 자동화</a>
+                        <a href="case-articles/case-085.html">백오피스 검수</a>
+                    </div>
+                    <div class="diagnosis-cta-row">
+                        <a class="btn btn-ghost" href="#subscription">플랜 다시 보기</a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="cta-band">
+                    <p>영업이익을 가장 빠르게 늘리는 AX 구독</p>
+                    <h2>반복 업무 하나만 보내주세요.</h2>
+                    <div class="button-row">
+                        <a class="btn btn-primary" href="#contact">데모 미팅 신청</a>
+                        <a class="btn btn-ghost" href="tel:01080006959">전화하기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="container contact-section">
+                <div class="contact-copy">
+                    <h2>영업이익을 버는 가장 빠른 길.</h2>
+                    <button class="btn btn-primary contact-open-btn" id="contactOpenButton" type="button">지금 신청하기</button>
+                </div>
+
+                <form class="demo-form" id="demoForm" hidden>
+                    <h3>상담신청</h3>
+                    <label>
+                        회사명 / 담당자
+                        <input type="text" name="company" placeholder="예: 픽셀앤로직 김이삭" autocomplete="organization">
+                    </label>
+                    <label>
+                        연락처
+                        <input type="tel" name="phone" placeholder="예: 010-0000-0000" autocomplete="tel">
+                    </label>
+                    <label>
+                        희망 미팅 시간
+                        <input type="text" name="time" placeholder="예: 다음 주 화요일 오후 2시">
+                    </label>
+                    <label>
+                        줄이고 싶은 반복 업무
+                        <textarea name="message" placeholder="예: 리드 분류, 견적 초안, CRM 기록"></textarea>
+                    </label>
+                    <button class="btn btn-primary" type="submit">상담 신청하기</button>
+                    <p class="form-note">즉시 유선상담 번호 : 010-8000-6959</p>
+                </form>
+            </div>
+        </section>
+
+        <section class="section" id="faq">
+            <div class="faq">
+                <h2>자주 묻는 질문</h2>
+                <article class="faq-item">
+                    <button class="faq-question" type="button"><span>AX 구독은 외주 개발과 무엇이 다른가요?</span><i></i></button>
+                    <div class="faq-answer">단건 외주는 프로젝트가 끝나면 맥락이 끊깁니다. AX 구독은 매월 운영 백로그를 함께 보고, 자동화와 개발, 개선을 이어가는 월간 개발팀 모델입니다.</div>
+                </article>
+                <article class="faq-item">
+                    <button class="faq-question" type="button"><span>내부 개발팀이 있어도 사용할 수 있나요?</span><i></i></button>
+                    <div class="faq-answer">네. 내부 개발팀이 핵심 제품 로드맵에 집중하는 동안, 픽셀앤로직은 운영 자동화, 어드민 개선, 데이터 연동, 반복 요청을 맡습니다.</div>
+                </article>
+                <article class="faq-item">
+                    <button class="faq-question" type="button"><span>첫 달에는 무엇부터 진행하나요?</span><i></i></button>
+                    <div class="faq-answer">현재 백로그를 모으고, 줄일 수 있는 반복 업무와 매출 흐름에 가까운 개선점을 먼저 고릅니다. 이후 작은 자동화부터 실제 운영 환경에 붙입니다.</div>
+                </article>
+                <article class="faq-item">
+                    <button class="faq-question" type="button"><span>구독 비용은 어떻게 정해지나요?</span><i></i></button>
+                    <div class="faq-answer">티켓 처리 중심의 Standard Ticket은 월 249만원부터 시작합니다. 실시간 소통, 기획 포함, 조직 단위 AX 설계가 필요하면 범위에 맞춰 플랜을 넓힙니다.</div>
+                </article>
+                <article class="faq-item">
+                    <button class="faq-question" type="button"><span>AI 기능도 실제 서비스에 붙일 수 있나요?</span><i></i></button>
+                    <div class="faq-answer">네. 분류, 요약, 초안 작성, CRM 연동, 백오피스 자동화처럼 실제 운영 흐름에 붙는 AI 기능을 설계하고 배포까지 진행합니다.</div>
+                </article>
+                <article class="faq-item">
+                    <button class="faq-question" type="button"><span>중간에 요청이 바뀌면 어떻게 하나요?</span><i></i></button>
+                    <div class="faq-answer">구독은 매월 우선순위를 다시 잡는 방식에 가깝습니다. 급한 운영 이슈와 다음 달 개선 과제를 함께 보며 범위를 조정합니다.</div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <div class="floating-contact" aria-label="빠른 문의">
+        <a class="floating-phone" href="tel:01080006959">010-8000-6959</a>
+        <a class="floating-kakao" href="http://pf.kakao.com/_Znuan/chat" target="_blank" rel="noopener noreferrer" aria-label="카카오 문의">TALK</a>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <a class="logo" href="#top" aria-label="픽셀앤로직 홈">
+                <img src="images/pixelnlogic-logo.svg" alt="픽셀앤로직 로고">
+            </a>
+            <div class="footer-line"></div>
+            <div class="footer-meta">
+                <div>(주)매치스플랜 | 대표 김이삭 | 사업자등록번호 456-81-03325 | 통신판매신고 제 2022-서울마포-2746호</div>
+                <div>주소 서울특별시 마포구 양화로8길 10, 109동 B101-290호 | 연락처 010-8000-6959</div>
+            </div>
+            <div>COPYRIGHT (주)매치스플랜 All rights reserved.</div>
+        </div>
+    </footer>
 </div>
-<canvas id="playdateScreen" width="1600" height="960"></canvas>
+
 <script>
-const canvas = document.getElementById("playdateScreen");
-const ctx = canvas.getContext("2d");
-const W = canvas.width;
-const H = canvas.height;
-const functionInput = document.getElementById("functionInput");
-const slider = document.getElementById("slider");
-const sliderValueLabel = document.getElementById("sliderValue");
-const playPauseBtn = document.getElementById("playPauseBtn");
-const downloadBtn = document.getElementById("downloadBtn");
-const randomFuncBtn = document.getElementById("randomFuncBtn");
+const nav = document.getElementById("nav");
+const mobileMenu = document.getElementById("mobileMenu");
+const heroTypeword = document.getElementById("heroTypeword");
+const demoForm = document.getElementById("demoForm");
+const diagnosisLeadForm = document.getElementById("diagnosisLeadForm");
+const contactOpenButton = document.getElementById("contactOpenButton");
+const contactSection = document.querySelector(".contact-section");
+const contactArea = document.getElementById("contact");
+const floatingContact = document.querySelector(".floating-contact");
 
-const pixelSize = 4;
-const animationSpeedInMs = 200;
-let v = parseInt(slider.value);
-let animationId = null;
-let lastFunctionIndex = 0;
+function updateNav() {
+    nav.classList.toggle("scrolled", window.scrollY > 12);
+    const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    const progress = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+    document.documentElement.style.setProperty("--scroll-progress", progress.toFixed(4));
+}
 
-const functionList = [
-    "(x ^ y) % v",
-    "(x | y) % v",
-    "(x * y) & v",
-    "(x * y) % v",
-    "((x ^ y) & (v | y)) % 255",
-    "(x * y + x + y) % v",
-    "~((x+4*v) | (y-4*v)) % 255",
-    "(x & v) * (y & v) % 101",
-    "((x >> v % 8) ^ (y >> v % 8)) % 11",
-];
-functionInput.value = functionList[0];
+window.addEventListener("scroll", updateNav, { passive: true });
+updateNav();
 
-function drawPixelsWithCustomFunction(func) {
-    try {
-        const f = new Function("x", "y", "v", `return ${func};`);
-        ctx.fillStyle = "#000";
-        ctx.fillRect(0, 0, W, H);
-        ctx.fillStyle = "#FFF";
-        for (let x = 0; x < W; x += pixelSize) {
-            for (let y = 0; y < H; y += pixelSize) {
-                const p = f(x / pixelSize, y / pixelSize, v);
-                if (p === 0) {
-                    ctx.fillRect(x, y, pixelSize, pixelSize);
-                }
-            }
+mobileMenu.addEventListener("click", () => {
+    nav.classList.toggle("open");
+});
+
+function openContactForm() {
+    if (!demoForm || !contactSection) return;
+    contactSection.classList.add("is-open");
+    demoForm.hidden = false;
+    const firstInput = demoForm.querySelector("input");
+    window.setTimeout(() => firstInput?.focus({ preventScroll: true }), 80);
+}
+
+contactOpenButton?.addEventListener("click", openContactForm);
+
+if (contactArea && floatingContact) {
+    const contactObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            floatingContact.classList.toggle("is-hidden", entry.isIntersecting);
+        });
+    }, { threshold: 0.18 });
+
+    contactObserver.observe(contactArea);
+}
+
+if (demoForm) {
+    demoForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(demoForm);
+        const company = data.get("company") || "미입력";
+        const phone = data.get("phone") || "미입력";
+        const time = data.get("time") || "미입력";
+        const message = data.get("message") || "미입력";
+        const body = [
+            "[픽셀앤로직 데모 미팅 신청]",
+            `회사/담당자: ${company}`,
+            `연락처: ${phone}`,
+            `희망 시간: ${time}`,
+            `반복 업무: ${message}`
+        ].join("\n");
+
+        window.location.href = `sms:01080006959?&body=${encodeURIComponent(body)}`;
+    });
+}
+
+document.querySelectorAll(".nav-links a").forEach((link) => {
+    link.addEventListener("click", () => nav.classList.remove("open"));
+});
+
+function alignHashTarget(behavior = "auto") {
+    if (!window.location.hash) return;
+    const targetId = decodeURIComponent(window.location.hash.slice(1));
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    const offset = 82;
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, targetTop), behavior });
+    window.requestAnimationFrame(() => window.dispatchEvent(new Event("scroll")));
+}
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+        const targetId = decodeURIComponent(link.getAttribute("href").slice(1));
+        const target = document.getElementById(targetId);
+        if (!target) return;
+
+        event.preventDefault();
+        history.pushState(null, "", `#${targetId}`);
+        nav.classList.remove("open");
+
+        const offset = 82;
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - offset;
+        const distance = Math.abs(targetTop - window.scrollY);
+        alignHashTarget(distance > window.innerHeight * 1.5 ? "auto" : "smooth");
+    });
+});
+
+window.addEventListener("load", () => {
+    alignHashTarget("auto");
+    window.setTimeout(() => alignHashTarget("auto"), 320);
+});
+
+window.requestAnimationFrame(() => alignHashTarget("auto"));
+window.setTimeout(() => alignHashTarget("auto"), 120);
+
+window.addEventListener("hashchange", () => {
+    window.setTimeout(() => alignHashTarget("smooth"), 20);
+});
+
+function startHeroTypewriter() {
+    if (!heroTypeword) return;
+
+    const words = [
+        "디자이너하이어입니다",
+        "백오피스랩입니다",
+        "샌드비입니다",
+        "픽셀앤로직입니다",
+    ];
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        heroTypeword.textContent = words[words.length - 1];
+        return;
+    }
+
+    let wordIndex = 0;
+    let charIndex = words[0].length;
+    let deleting = true;
+
+    function tick() {
+        const word = words[wordIndex];
+        heroTypeword.textContent = word.slice(0, charIndex);
+
+        let delay = 46;
+
+        if (!deleting && charIndex < word.length) {
+            charIndex += 1;
+        } else if (!deleting) {
+            deleting = true;
+            delay = 760;
+        } else if (charIndex > 0) {
+            charIndex -= 1;
+            delay = 24;
+        } else {
+            deleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            delay = 150;
         }
+
+        window.setTimeout(tick, delay);
+    }
+
+    window.setTimeout(tick, 520);
+}
+
+startHeroTypewriter();
+
+const painConsole = document.querySelector("[data-pain-console]");
+const painItems = [...document.querySelectorAll("[data-pain-item]")];
+const painTitle = document.getElementById("painTitle");
+const painLoss = document.getElementById("painLoss");
+const painDetail = document.getElementById("painDetail");
+const painAsis = document.getElementById("painAsis");
+const painNext = document.getElementById("painNext");
+let painAutoTimer = null;
+
+function setPainItem(index) {
+    const item = painItems[index];
+    if (!item || !painConsole) return;
+
+    painItems.forEach((button) => button.classList.toggle("is-active", button === item));
+    painConsole.style.setProperty("--pain-score", item.dataset.score || "56");
+
+    if (painTitle) painTitle.textContent = item.dataset.label || "";
+    if (painLoss) painLoss.textContent = item.dataset.loss || "";
+    if (painDetail) painDetail.textContent = item.dataset.detail || "";
+    if (painAsis) painAsis.textContent = item.dataset.label || "";
+    if (painNext) painNext.textContent = item.dataset.next || "";
+}
+
+painItems.forEach((item, index) => {
+    item.addEventListener("click", () => {
+        if (painAutoTimer) {
+            window.clearInterval(painAutoTimer);
+            painAutoTimer = null;
+        }
+        setPainItem(index);
+    });
+});
+
+if (painItems.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    let painIndex = 0;
+    painAutoTimer = window.setInterval(() => {
+        painIndex = (painIndex + 1) % painItems.length;
+        setPainItem(painIndex);
+    }, 2800);
+}
+
+const motionAllowed = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (motionAllowed) {
+    document.documentElement.classList.add("motion-ready");
+
+    const revealSelectors = [
+        ".hero-copy > *",
+        ".hero-proof",
+        ".proof-card",
+        ".pain-head > *",
+        ".pain-console",
+        ".business-card",
+        ".pricing-copy",
+        ".plan-card",
+        ".diagnosis-panel",
+        ".diagnosis-result",
+        ".team-copy > *",
+        ".team-card-stage",
+        ".stat-card",
+        ".step-card",
+        ".month-card",
+        ".roi-box",
+        ".outputs > *",
+        ".automation-card",
+        ".case-library-cta",
+        ".cta-band",
+        ".faq h2",
+        ".faq-item"
+    ];
+
+    const revealItems = [...document.querySelectorAll(revealSelectors.join(","))];
+
+    revealItems.forEach((item, index) => {
+        item.classList.add("reveal-item");
+        item.style.setProperty("--reveal-order", String(index % 6));
+    });
+
+    function revealVisibleItems() {
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        revealItems.forEach((item) => {
+            if (item.classList.contains("is-visible")) return;
+            const rect = item.getBoundingClientRect();
+            if (rect.top < viewportHeight * 0.92 && rect.bottom > 0) {
+                item.classList.add("is-visible");
+            }
+        });
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+    window.addEventListener("scroll", revealVisibleItems, { passive: true });
+    window.addEventListener("resize", revealVisibleItems);
+    revealVisibleItems();
+    window.requestAnimationFrame(revealVisibleItems);
+
+    const liftSelectors = [
+        ".proof-card",
+        ".pain-console",
+        ".business-card",
+        ".plan-card",
+        ".diagnosis-panel",
+        ".stat-card",
+        ".step-card",
+        ".month-card",
+        ".ba-interaction",
+        ".roi-box",
+        ".product-screen",
+        ".automation-card",
+        ".case-library-cta",
+        ".cta-band",
+        ".faq-item"
+    ];
+
+    const liftTargets = [...document.querySelectorAll(liftSelectors.join(","))];
+    const canTilt = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    liftTargets.forEach((card) => {
+        card.classList.add("lift-card");
+        if (!canTilt) return;
+
+        card.addEventListener("pointermove", (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+            const y = ((event.clientY - rect.top) / rect.height - 0.5) * -2;
+            card.style.setProperty("--tilt-x", (x * 1.6).toFixed(2));
+            card.style.setProperty("--tilt-y", (y * 1.6).toFixed(2));
+        });
+
+        card.addEventListener("pointerleave", () => {
+            card.style.setProperty("--tilt-x", "0");
+            card.style.setProperty("--tilt-y", "0");
+        });
+    });
+
+    document.querySelectorAll(".btn").forEach((button) => {
+        button.addEventListener("pointermove", (event) => {
+            const rect = button.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 100;
+            button.style.setProperty("--shine-x", `${x.toFixed(1)}%`);
+        });
+    });
+}
+
+function scrollToCurrentHash() {
+    if (!window.location.hash) return;
+    const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+    if (target) {
+        window.setTimeout(() => {
+            const top = target.getBoundingClientRect().top + window.pageYOffset - 82;
+            window.scrollTo({ top, behavior: "auto" });
+        }, 80);
+    }
+}
+
+window.addEventListener("load", scrollToCurrentHash);
+window.addEventListener("hashchange", scrollToCurrentHash);
+
+document.querySelectorAll(".faq-question").forEach((button) => {
+    button.addEventListener("click", () => {
+        const item = button.closest(".faq-item");
+        item.classList.toggle("open");
+    });
+});
+
+const beforeAfter = document.querySelector("[data-before-after]");
+const beforeAfterButtons = [...document.querySelectorAll("[data-ba-mode]")];
+let beforeAfterAutoTimer = null;
+
+function setBeforeAfterMode(mode) {
+    if (!beforeAfter) return;
+    beforeAfter.dataset.mode = mode;
+    beforeAfterButtons.forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.baMode === mode);
+    });
+}
+
+beforeAfterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (beforeAfterAutoTimer) {
+            window.clearInterval(beforeAfterAutoTimer);
+            beforeAfterAutoTimer = null;
+        }
+        setBeforeAfterMode(button.dataset.baMode);
+    });
+});
+
+if (beforeAfter && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    beforeAfterAutoTimer = window.setInterval(() => {
+        const nextMode = beforeAfter.dataset.mode === "before" ? "after" : "before";
+        setBeforeAfterMode(nextMode);
+    }, 3600);
+}
+
+const diagnosisState = {
+    industry: "commerce",
+    task: "report",
+    volume: "mid",
+    tool: "sheet",
+};
+
+function getDiagnosisLabel(groupName) {
+    const select = document.querySelector(`[data-diagnosis-select="${groupName}"]`);
+    if (!select) return diagnosisState[groupName];
+    return select.options[select.selectedIndex]?.textContent.trim() || diagnosisState[groupName];
+}
+
+const diagnosisProfilesByTask = {
+    report: [
+        "흩어진 매출, 운영, 고객 데이터를 한 화면 기준으로 모읍니다.",
+        "누락값과 이상치를 자동 표시해 담당자 확인 시간을 줄입니다.",
+        "매일 같은 시간에 요약 리포트와 다음 액션을 발송합니다.",
+    ],
+    settlement: [
+        "정산 파일, 증빙, 입금 내역을 같은 거래 키로 묶습니다.",
+        "누락 증빙과 금액 차이를 자동 검출해 검수 큐로 보냅니다.",
+        "마감 완료 리포트와 보류 사유를 담당자별로 남깁니다.",
+    ],
+    lead: [
+        "문의 문장과 예산, 납기, 업종을 분류해 리드 점수를 매깁니다.",
+        "메일과 카톡 팔로업 초안을 자동으로 만들고 응답 상태를 기록합니다.",
+        "전환 가능성이 높은 리드를 담당자에게 먼저 배정합니다.",
+    ],
+    outbound: [
+        "리드 리스트를 업종, 규모, 관심사 기준으로 나눕니다.",
+        "AI가 메일과 카톡 초안을 만들고 발송 타이밍을 추천합니다.",
+        "응답, 미응답, 재접촉 대상을 CRM에 자동 기록합니다.",
+    ],
+    crm: [
+        "문의, 상담, 계약 상태를 같은 파이프라인 단계로 정리합니다.",
+        "담당자 배정과 다음 액션을 자동으로 추천합니다.",
+        "누락된 CRM 기록을 알림으로 되돌려 영업 손실을 줄입니다.",
+    ],
+    support: [
+        "상담, 요청, CS 문장을 유형별로 분류해 담당 큐로 보냅니다.",
+        "반복 답변과 내부 확인이 필요한 예외 케이스를 분리합니다.",
+        "고객 응대 이력과 만족도 신호를 리포트로 남깁니다.",
+    ],
+    document: [
+        "문서, 계약서, 첨부파일을 유형과 중요 조항 기준으로 분류합니다.",
+        "OCR과 요약 결과를 검수 큐로 보내 사람이 확인할 부분만 남깁니다.",
+        "승인 이력과 원문 링크를 함께 저장해 추적 가능성을 확보합니다.",
+    ],
+    content: [
+        "상품, 캠페인, 고객군별 콘텐츠 템플릿을 먼저 정리합니다.",
+        "이미지, 문구, 상세페이지 초안을 자동 생성하고 검수 큐로 넘깁니다.",
+        "성과 데이터를 다시 학습해 다음 소재 우선순위를 고릅니다.",
+    ],
+    inventory: [
+        "주문, 재고, 판매 속도 데이터를 SKU 기준으로 연결합니다.",
+        "품절 위험과 과재고 신호를 자동으로 표시합니다.",
+        "발주 추천과 대체상품 노출 기준을 운영 화면에 붙입니다.",
+    ],
+    purchasing: [
+        "견적서와 협력사 조건을 같은 비교 기준으로 정리합니다.",
+        "가격, 납기, 리스크 점수를 계산해 우선 협상 대상을 추천합니다.",
+        "승인 요청과 변경 이력을 자동으로 남깁니다.",
+    ],
+    inspection: [
+        "검수 사진, 센서 로그, 작업 이력을 불량 유형별로 모읍니다.",
+        "AI가 의심 구간을 표시하고 담당자 확인 큐를 만듭니다.",
+        "불량 원인과 재발 신호를 주간 리포트로 정리합니다.",
+    ],
+    schedule: [
+        "예약, 배차, 담당자 가능 시간을 한 캘린더 기준으로 모읍니다.",
+        "충돌 가능성과 지연 위험을 먼저 표시합니다.",
+        "확정 알림과 변경 이력을 고객과 내부 채널에 자동 발송합니다.",
+    ],
+    accounting: [
+        "세금계산서, 카드 내역, 거래처 정보를 자동 매칭합니다.",
+        "금액 차이와 중복 청구 가능성을 검수 큐로 보냅니다.",
+        "월 마감 리포트와 보류 사유를 담당자별로 남깁니다.",
+    ],
+    hr: [
+        "지원서, 면접 일정, 근태 기록을 같은 사람 기준으로 연결합니다.",
+        "반복 검토 항목을 점수화하고 예외 케이스만 담당자에게 넘깁니다.",
+        "채용·근태 리포트를 자동 생성해 운영 기준을 맞춥니다.",
+    ],
+    data: [
+        "중복 데이터, 권한, 필수값 누락을 자동으로 점검합니다.",
+        "수정이 필요한 항목만 담당자 큐로 보내 재작업을 줄입니다.",
+        "변경 이력과 승인 로그를 남겨 내부 통제 기준을 만듭니다.",
+    ],
+    marketing: [
+        "캠페인 성과와 소재 메타데이터를 한 기준으로 정렬합니다.",
+        "성과가 떨어지는 소재와 예산 이상치를 자동으로 표시합니다.",
+        "다음 실험 후보와 중단할 캠페인을 리포트로 정리합니다.",
+    ],
+    other: [
+        "반복되는 입력, 확인, 전달 업무를 먼저 업무 단위로 쪼갭니다.",
+        "자동 처리할 항목과 사람이 검수할 항목을 나눕니다.",
+        "첫 달에 바로 줄일 수 있는 업무 3개를 백로그로 정리합니다.",
+    ],
+};
+
+const diagnosisCasesByTask = {
+    report: [
+        ["F&B 마감 자동화", "case-articles/case-025.html"],
+        ["백오피스 검수", "case-articles/case-085.html"],
+    ],
+    settlement: [
+        ["회계 증빙 검수", "case-articles/case-085.html"],
+        ["세금계산서 매칭", "case-articles/case-086.html"],
+    ],
+    lead: [
+        ["CRM 리드 스코어링", "case-articles/case-039.html"],
+        ["콜드메일 초안 생성", "case-articles/case-057.html"],
+    ],
+    outbound: [
+        ["콜드메일 초안 생성", "case-articles/case-057.html"],
+        ["CRM 세그먼트 자동 생성", "case-articles/case-039.html"],
+    ],
+    crm: [
+        ["CRM 세그먼트 자동 생성", "case-articles/case-039.html"],
+        ["리드 스캔 자동화", "case-articles/case-045.html"],
+    ],
+    support: [
+        ["AI 상담 에이전트", "case-articles/case-097.html"],
+        ["고객상담 QA 자동화", "case-articles/case-088.html"],
+    ],
+    document: [
+        ["계약서 조항 추출", "case-articles/case-082.html"],
+        ["문서 검색 에이전트", "case-articles/case-094.html"],
+    ],
+    content: [
+        ["광고 소재 버전 관리", "case-articles/case-031.html"],
+        ["상세페이지 로컬라이징", "case-articles/case-059.html"],
+    ],
+    inventory: [
+        ["실시간 재고 예측", "case-articles/case-025.html"],
+        ["품절 대체상품 추천", "case-articles/case-026.html"],
+    ],
+    purchasing: [
+        ["견적서 비교 분석", "case-articles/case-077.html"],
+        ["구매요청 승인 자동화", "case-articles/case-065.html"],
+    ],
+    inspection: [
+        ["불량 픽셀 검출", "case-articles/case-067.html"],
+        ["품질검사 리포트", "case-articles/case-073.html"],
+    ],
+    schedule: [
+        ["병원 예약 콜 요약", "case-articles/case-079.html"],
+        ["운송사 배차 자동화", "case-articles/case-070.html"],
+    ],
+    accounting: [
+        ["회계 증빙 검수", "case-articles/case-085.html"],
+        ["세금계산서 매칭", "case-articles/case-086.html"],
+    ],
+    hr: [
+        ["채용 서류 스크리닝", "case-articles/case-083.html"],
+        ["근태 이상 탐지", "case-articles/case-084.html"],
+    ],
+    data: [
+        ["데이터 권한 관리", "case-articles/case-096.html"],
+        ["ERP 품목 마스터 정리", "case-articles/case-072.html"],
+    ],
+    marketing: [
+        ["배너 CTR 예측", "case-articles/case-048.html"],
+        ["광고비 이상탐지", "case-articles/case-060.html"],
+    ],
+    other: [
+        ["문서 검색 에이전트", "case-articles/case-094.html"],
+        ["내부 헬프데스크 라우팅", "case-articles/case-093.html"],
+    ],
+};
+
+function recommendedPlan() {
+    const enterpriseSignals = ["enterprise", "mass"];
+    const productTasks = ["content", "inventory", "purchasing", "inspection", "document", "accounting", "hr", "data", "marketing"];
+
+    if (enterpriseSignals.includes(diagnosisState.volume) || diagnosisState.tool === "mixed") return "Enterprise";
+    if (productTasks.includes(diagnosisState.task) || ["erp", "custom"].includes(diagnosisState.tool) || diagnosisState.volume === "high") return "Product Build";
+    if (["lead", "outbound", "crm", "support", "schedule"].includes(diagnosisState.task) || ["crm", "messenger"].includes(diagnosisState.tool)) return "Standard Live";
+    return "Standard Ticket";
+}
+
+function updateDiagnosisResult() {
+    const plan = recommendedPlan();
+    const planEl = document.getElementById("diagnosisPlan");
+    const summaryEl = document.getElementById("diagnosisSummary");
+    const tasksEl = document.getElementById("diagnosisTasks");
+    const casesEl = document.getElementById("diagnosisCases");
+    const submitCta = document.getElementById("diagnosisSubmitCta");
+
+    if (!planEl || !summaryEl || !tasksEl || !casesEl) return;
+
+    const industry = getDiagnosisLabel("industry");
+    const task = getDiagnosisLabel("task");
+    const volume = getDiagnosisLabel("volume");
+    const tool = getDiagnosisLabel("tool");
+    const taskProfile = diagnosisProfilesByTask[diagnosisState.task] || diagnosisProfilesByTask.other;
+    const caseProfile = diagnosisCasesByTask[diagnosisState.task] || diagnosisCasesByTask.other;
+
+    planEl.textContent = `추천 플랜: ${plan}`;
+    summaryEl.textContent = `${industry}에서 ${task} 업무가 ${volume} 규모로 반복되고 있고, 현재 ${tool} 중심으로 처리되고 있습니다. 먼저 아래 세 가지를 자동화하는 것이 좋습니다.`;
+    tasksEl.innerHTML = taskProfile.map((taskText) => `<li>${taskText}</li>`).join("");
+    casesEl.innerHTML = caseProfile.map(([label, href]) => `<a href="${href}">${label}</a>`).join("");
+    if (submitCta) submitCta.textContent = `${plan} 개선 제안 받아보기`;
+}
+
+document.querySelectorAll("[data-diagnosis-select]").forEach((select) => {
+    select.addEventListener("change", () => {
+        diagnosisState[select.dataset.diagnosisSelect] = select.value;
+        updateDiagnosisResult();
+    });
+});
+
+updateDiagnosisResult();
+
+if (diagnosisLeadForm) {
+    diagnosisLeadForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(diagnosisLeadForm);
+        const plan = recommendedPlan();
+        const taskProfile = diagnosisProfilesByTask[diagnosisState.task] || diagnosisProfilesByTask.other;
+        const body = [
+            "[픽셀앤로직 자동화 개선 제안 요청]",
+            `회사명: ${data.get("company") || "미입력"}`,
+            `성함: ${data.get("name") || "미입력"}`,
+            `연락처: ${data.get("phone") || "미입력"}`,
+            `이메일: ${data.get("email") || "미입력"}`,
+            "",
+            `업종: ${getDiagnosisLabel("industry")}`,
+            `반복 업무: ${getDiagnosisLabel("task")}`,
+            `월 처리량: ${getDiagnosisLabel("volume")}`,
+            `현재 도구: ${getDiagnosisLabel("tool")}`,
+            `추천 플랜: ${plan}`,
+            "",
+            "먼저 볼 개선 후보:",
+            ...taskProfile.map((item, index) => `${index + 1}. ${item}`),
+        ].join("\n");
+
+        window.location.href = `sms:01080006959?&body=${encodeURIComponent(body)}`;
+    });
+}
+
+const roiDailyHours = document.getElementById("roiDailyHours");
+
+function formatWon(value) {
+    if (value >= 100000000) return `${Math.round(value / 100000000)}억원`;
+    return `${Math.round(value / 10000).toLocaleString("ko-KR")}만원`;
+}
+
+function updateRoi() {
+    if (!roiDailyHours) return;
+    const dailyHours = Number(roiDailyHours.value);
+    const wage = 35000;
+    const monthlyHours = dailyHours * 22;
+    const savedHours = Math.round(monthlyHours * 0.65);
+    const saving = Math.round(savedHours * wage / 10000) * 10000;
+    const annualSaving = saving * 12;
+
+    document.getElementById("roiDailyHoursOut").textContent = `${dailyHours.toLocaleString("ko-KR")}시간`;
+    document.getElementById("roiHoursSaved").textContent = `${savedHours.toLocaleString("ko-KR")}시간`;
+    document.getElementById("roiMonthlySaving").textContent = formatWon(saving);
+    document.getElementById("roiAnnualSaving").textContent = `연 ${formatWon(annualSaving)}`;
+}
+
+roiDailyHours?.addEventListener("input", updateRoi);
+updateRoi();
+
+const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const target = entry.target;
+        const end = Number(target.dataset.count);
+        let current = 0;
+        const tick = () => {
+            current += Math.max(1, Math.ceil((end - current) / 7));
+            if (current >= end) {
+                target.textContent = `${end}%`;
+                return;
+            }
+            target.textContent = `${current}%`;
+            requestAnimationFrame(tick);
+        };
+        tick();
+        statObserver.unobserve(target);
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll("[data-count]").forEach((el) => statObserver.observe(el));
+
+const teamScrollSection = document.querySelector("[data-team-scroll]");
+const teamCards = [...document.querySelectorAll("[data-team-card]")];
+const teamDots = [...document.querySelectorAll("[data-team-dot]")];
+const teamScrollRounds = 2;
+let activeTeamIndex = -1;
+let activeTeamStep = -1;
+let teamFrame = null;
+
+function setActiveTeamCard(index, phase = 0) {
+    if (!teamCards.length) return;
+    const safeIndex = Math.max(0, Math.min(index, teamCards.length - 1));
+    const localProgress = Math.max(0, Math.min(1, phase));
+
+    teamCards.forEach((card, cardIndex) => {
+        const distance = cardIndex - safeIndex;
+        card.classList.toggle("is-active", cardIndex === safeIndex);
+        card.classList.toggle("is-before", cardIndex === safeIndex - 1);
+        card.classList.toggle("is-after", cardIndex === safeIndex + 1);
+        card.style.setProperty("--card-x", String(distance * 18 + (localProgress - 0.5) * 10));
+        card.style.setProperty("--card-y", String(distance * 16 - (localProgress - 0.5) * 8));
+    });
+
+    teamDots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === safeIndex);
+        dot.setAttribute("aria-pressed", dotIndex === safeIndex ? "true" : "false");
+    });
+
+    activeTeamIndex = safeIndex;
+}
+
+function updateTeamCardsByScroll() {
+    if (!teamScrollSection || !teamCards.length) return;
+    const rect = teamScrollSection.getBoundingClientRect();
+    const scrollable = Math.max(rect.height - window.innerHeight, 1);
+    const progress = Math.max(0, Math.min(1, -rect.top / scrollable));
+    const step = Math.floor(progress * 100);
+
+    if (step === activeTeamStep) return;
+    activeTeamStep = step;
+
+    const totalSegments = teamCards.length * teamScrollRounds;
+    const segment = Math.min(totalSegments - 0.001, progress * totalSegments);
+    const segmentIndex = Math.floor(segment);
+    const index = segmentIndex % teamCards.length;
+    const phase = Math.min(1, segment - segmentIndex);
+    setActiveTeamCard(index, phase);
+}
+
+function requestTeamCardUpdate() {
+    if (teamFrame) return;
+    teamFrame = requestAnimationFrame(() => {
+        teamFrame = null;
+        updateTeamCardsByScroll();
+    });
+}
+
+teamDots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+        const nextIndex = Number(dot.dataset.teamDot);
+        setActiveTeamCard(nextIndex, 0.5);
+    });
+});
+
+window.addEventListener("scroll", requestTeamCardUpdate, { passive: true });
+window.addEventListener("resize", requestTeamCardUpdate);
+requestTeamCardUpdate();
+
+let screenWakeLock = null;
+let screenWakeFallback = null;
+let screenWakeFallbackTimer = null;
+
+function startScreenWakeFallback() {
+    if (document.visibilityState !== "visible" || !HTMLCanvasElement.prototype.captureStream) {
+        window.pixelLogicWakeLock = "fallback-unavailable";
+        return;
+    }
+
+    if (screenWakeFallback) {
+        window.pixelLogicWakeLock = screenWakeFallback.paused ? "fallback-retrying" : "fallback-video";
+        screenWakeFallback.play().catch(() => {
+            window.pixelLogicWakeLock = "fallback-blocked";
+        });
+        return;
+    }
+
+    const canvas = document.createElement("canvas");
+    canvas.width = 2;
+    canvas.height = 2;
+    const context = canvas.getContext("2d");
+    const drawFrame = () => {
+        const value = Date.now() % 2 === 0 ? 18 : 28;
+        context.fillStyle = `rgb(${value}, ${value}, ${value})`;
+        context.fillRect(0, 0, 2, 2);
+    };
+    drawFrame();
+    screenWakeFallbackTimer = window.setInterval(drawFrame, 25000);
+
+    const video = document.createElement("video");
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.setAttribute("aria-hidden", "true");
+    video.style.cssText = "position:fixed;left:0;bottom:0;width:1px;height:1px;opacity:0.001;pointer-events:none;z-index:-1;";
+    video.srcObject = canvas.captureStream(1);
+    video.dataset.wakeLock = "fallback-video";
+    document.body.appendChild(video);
+    screenWakeFallback = video;
+    window.pixelLogicWakeLock = "fallback-video-started";
+
+    video.play().then(() => {
+        window.pixelLogicWakeLock = "fallback-video";
+    }).catch(() => {
+        window.pixelLogicWakeLock = "fallback-blocked";
+    });
+}
+
+async function keepScreenAwake() {
+    if (document.visibilityState !== "visible") {
+        return;
+    }
+    if (!("wakeLock" in navigator)) {
+        startScreenWakeFallback();
+        return;
+    }
+    if (screenWakeLock) {
+        return;
+    }
+
+    try {
+        screenWakeLock = await navigator.wakeLock.request("screen");
+        window.pixelLogicWakeLock = "active";
+        screenWakeLock.addEventListener("release", () => {
+            screenWakeLock = null;
+            window.pixelLogicWakeLock = "released";
+        }, { once: true });
     } catch (error) {
-        console.error("Error in function execution:", error);
+        window.pixelLogicWakeLock = "blocked";
+        startScreenWakeFallback();
     }
 }
 
-function animate() {
-    v = (v + 1) % 101; // Increment v and wrap it around at 100
-    slider.value = v;
-    sliderValueLabel.textContent = "v: " + v;
-    drawPixelsWithCustomFunction(functionInput.value);
-    animationId = setTimeout(animate, animationSpeedInMs);
-}
-
-function toggleAnimation() {
-    if (animationId) {
-        // Pause the animation
-        clearTimeout(animationId); // Use clearTimeout here
-        animationId = null;
-        playPauseBtn.textContent = "Play";
-    } else {
-        // Start the animation
-        playPauseBtn.textContent = "Pause";
-        animate();
-    }
-}
-
-function downloadImage() {
-    const dataUrl = canvas.toDataURL("image/png");
-    const link = document.createElement("a");
-    link.download = "pixel-logic-pattern.png";
-    link.href = dataUrl;
-    link.click();
-}
-
-function newRandomFunction() {
-    let randomIndex = Math.floor(Math.random() * (functionList.length - 1));
-    // make sure randomIndex is not the previous index
-    if (randomIndex == lastFunctionIndex) {
-        randomIndex = functionList.length - 1;
-    }
-    lastFunctionIndex = randomIndex;
-
-    const selectedFunction = functionList[randomIndex];
-    functionInput.value = selectedFunction;
-    drawPixelsWithCustomFunction(selectedFunction);
-}
-
-playPauseBtn.addEventListener("click", toggleAnimation);
-functionInput.addEventListener("input", () => {
-    drawPixelsWithCustomFunction(functionInput.value);
-});
-slider.addEventListener("input", () => {
-    v = parseInt(slider.value);
-    sliderValueLabel.textContent = "v: " + v;
-    drawPixelsWithCustomFunction(functionInput.value);
-});
-randomFuncBtn.addEventListener("click", newRandomFunction);
-downloadBtn.addEventListener("click", downloadImage);
-
-document.addEventListener("keydown", function (event) {
-    if (event.code === "Space") {
-        event.preventDefault();
-        toggleAnimation();
-    } else if (event.code === "KeyS") {
-        event.preventDefault();
-        downloadImage();
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+        keepScreenAwake();
     }
 });
 
-drawPixelsWithCustomFunction(functionInput.value);
+window.addEventListener("pointerdown", keepScreenAwake, { passive: true });
+window.addEventListener("touchstart", keepScreenAwake, { passive: true });
+window.addEventListener("keydown", keepScreenAwake);
+keepScreenAwake();
 </script>
-    
 </body>
 </html>

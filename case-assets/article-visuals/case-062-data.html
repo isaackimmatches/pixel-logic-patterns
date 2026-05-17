@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-62-data | 설비 이상신호 탐지</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f7fbff;color:#111827}.av62d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#9bd4ff66 1px,transparent 1px),linear-gradient(90deg,#9bd4ff66 1px,transparent 1px);background-size:42px 42px}.av62d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av62d-hub header p{margin:0;color:#2563eb;font-weight:950}.av62d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av62d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av62d-hub path{stroke:#2563eb;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av62d-hub circle{fill:#ffffff;stroke:#111827;stroke-width:4}.core{fill:#2563eb!important}. av62d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#111827}.av62d-hub .core+text{fill:#ffffff;font-size:18px}.av62d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #111827;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #111827;padding:18px;display:grid;gap:14px;align-content:start}.av62d-metric{border:1px solid #9bd4ff;border-radius:18px;padding:16px}.av62d-metric span{display:block;color:#111827;opacity:.72}.av62d-metric b{font-size:30px}.av62d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#2563eb;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av62d-hub">
+            <header><p>Orion Finance</p><h1>Factory Signal Monitor</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L886 168" /><path d="M600 350 L983 239" /><path d="M600 350 L1080 310" /><path d="M600 350 L147 381" /><path d="M600 350 L244 452" /><path d="M600 350 L341 523" /><path d="M600 350 L438 594" /><path d="M600 350 L535 665" /><path d="M600 350 L632 156" /><path d="M600 350 L729 227" /><path d="M600 350 L826 298" /><path d="M600 350 L923 369" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">라인</text>
+                <g transform="translate(886,168)"><circle r="30" /><text>MES 로그</text></g><g transform="translate(983,239)"><circle r="36" /><text>센서 스트림</text></g><g transform="translate(1080,310)"><circle r="42" /><text>검사 이미지</text></g><g transform="translate(147,381)"><circle r="48" /><text>작업지시서</text></g><g transform="translate(244,452)"><circle r="30" /><text>MES 로그</text></g><g transform="translate(341,523)"><circle r="36" /><text>센서 스트림</text></g><g transform="translate(438,594)"><circle r="42" /><text>검사 이미지</text></g><g transform="translate(535,665)"><circle r="48" /><text>작업지시서</text></g><g transform="translate(632,156)"><circle r="30" /><text>MES 로그</text></g><g transform="translate(729,227)"><circle r="36" /><text>센서 스트림</text></g><g transform="translate(826,298)"><circle r="42" /><text>검사 이미지</text></g><g transform="translate(923,369)"><circle r="48" /><text>작업지시서</text></g>
+            </svg>
+            <aside>
+        <article class="av62d-metric">
+            <span>설비 편차</span>
+            <b data-meter>96%</b>
+            <i style="--w:76%"></i>
+        </article>
+        <article class="av62d-metric">
+            <span>불량 픽셀</span>
+            <b data-meter>78%</b>
+            <i style="--w:89%"></i>
+        </article>
+        <article class="av62d-metric">
+            <span>라인 병목</span>
+            <b data-meter>89%</b>
+            <i style="--w:62%"></i>
+        </article>
+        <article class="av62d-metric">
+            <span>정비 우선순위</span>
+            <b data-meter>71%</b>
+            <i style="--w:75%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av62dmeters=[...document.querySelectorAll("[data-meter]")];
+let av62dtick=0;
+setInterval(()=>{
+  av62dtick++;
+  av62dmeters.forEach((el,i)=>el.textContent=(62+((av62dtick*3+i*9+62)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

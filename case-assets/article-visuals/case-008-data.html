@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-08-data | 쿠폰 비용 최적화</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f5f3ff;color:#211a36}.av08d-mapper{height:100vh;padding:26px;display:grid;grid-template-rows:86px 1fr;gap:18px}.av08d-mapper header{display:flex;align-items:center;gap:18px;border:2px solid #211a36;border-radius:24px;background:#ffffff;padding:0 24px;box-shadow:8px 8px 0 #211a36}.av08d-mapper h1{font-size:34px;margin:0;letter-spacing:-.04em}.av08d-mapper strong{color:#7c3aed}.av08d-mapper header span{margin-left:auto;font-weight:950;letter-spacing:.16em}.av08d-flow{min-height:0;display:grid;grid-template-columns:260px 1fr 280px;gap:18px}.av08d-flow aside, .av08d-table{border:2px solid #211a36;border-radius:26px;background:#ffffff;box-shadow:8px 8px 0 #211a36}.av08d-flow aside{padding:16px;display:grid;gap:10px;align-content:start}.av08d-flow button{height:64px;border:1px solid #d8b4fe;border-radius:16px;background:#f5f3ff;text-align:left;padding:11px 14px;font-weight:950;color:#211a36}.av08d-flow button em{display:block;font-size:12px;color:#7c3aed;font-style:normal;margin-top:4px}.av08d-table{overflow:hidden}.head, .av08d-table div:not(.head){display:grid;grid-template-columns:1.1fr 1.1fr 1fr .7fr .7fr}.head{height:58px;background:#211a36;color:#ffffff;align-items:center;padding:0 16px;font-size:12px;text-transform:uppercase}.av08d-table div:not(.head){height:58px;align-items:center;border-bottom:1px solid #d8b4fe;padding:0 16px;color:#211a36}.av08d-table mark{border-radius:999px;background:#d8b4fe;color:#211a36;padding:7px 10px;font-weight:950}.right .av08d-metric{border:1px solid #d8b4fe;border-radius:18px;padding:14px}.right .av08d-metric span{display:block;color:#211a36;opacity:.72;font-size:12px}.right .av08d-metric b{font-size:28px}.right .av08d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#7c3aed;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av08d-mapper">
+            <header><strong>Orion Finance</strong><h1>Performance Control Tower</h1><span>DATA INTAKE</span></header>
+            <section class="av08d-flow">
+                <aside><button>광고 API<em>1496</em></button><button>전환 이벤트<em>1700</em></button><button>소재 버전<em>1904</em></button><button>예산 캡<em>2108</em></button></aside>
+                <article class="av08d-table">
+                    <div class="head"><b>source_key</b><b>clean_rule</b><b>owner</b><b>refresh</b><b>status</b></div>
+                    <div><span>키워드-80</span><span>CTR 예측</span><span>퍼포먼스 마케팅팀</span><span>realtime</span><mark>review</mark></div><div><span>소재-81</span><span>CPC 변동</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>valid</mark></div><div><span>세그먼트-82</span><span>피로도</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>valid</mark></div><div><span>예산-83</span><span>증분 ROAS</span><span>퍼포먼스 마케팅팀</span><span>realtime</span><mark>valid</mark></div><div><span>키워드-84</span><span>CTR 예측</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>review</mark></div><div><span>소재-85</span><span>CPC 변동</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>valid</mark></div><div><span>세그먼트-86</span><span>피로도</span><span>퍼포먼스 마케팅팀</span><span>realtime</span><mark>valid</mark></div><div><span>예산-87</span><span>증분 ROAS</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>valid</mark></div><div><span>키워드-88</span><span>CTR 예측</span><span>퍼포먼스 마케팅팀</span><span>15 min</span><mark>review</mark></div>
+                </article>
+                <aside class="right">
+        <article class="av08d-metric">
+            <span>CTR 예측</span>
+            <b data-meter>95%</b>
+            <i style="--w:62%"></i>
+        </article>
+        <article class="av08d-metric">
+            <span>CPC 변동</span>
+            <b data-meter>77%</b>
+            <i style="--w:75%"></i>
+        </article>
+        <article class="av08d-metric">
+            <span>피로도</span>
+            <b data-meter>88%</b>
+            <i style="--w:88%"></i>
+        </article>
+        <article class="av08d-metric">
+            <span>증분 ROAS</span>
+            <b data-meter>70%</b>
+            <i style="--w:61%"></i>
+        </article></aside>
+            </section>
+        </main>
+<script>
+
+const av08dmeters=[...document.querySelectorAll("[data-meter]")];
+let av08dtick=0;
+setInterval(()=>{
+  av08dtick++;
+  av08dmeters.forEach((el,i)=>el.textContent=(62+((av08dtick*3+i*9+8)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-29-queue | 제품 속성 자동 추출</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f4f6ff;color:#1f2333}.av29q-tickets{height:100vh;display:grid;grid-template-rows:80px 1fr;grid-template-columns:1fr 310px;gap:18px;padding:22px}.av29q-tickets header{grid-column:1/3;border:2px solid #1f2333;border-radius:24px;background:#ffffff;box-shadow:8px 8px 0 #1f2333;display:flex;align-items:center;gap:18px;padding:0 22px}.av29q-tickets h1{font-size:32px;margin:0}.av29q-tickets header span{margin-left:auto;color:#4f46e5;font-weight:950}.av29q-tickets main{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}. av29q-tickets article,.av29q-tickets aside{border:2px solid #1f2333;border-radius:22px;background:#ffffff;box-shadow:6px 6px 0 #1f2333}.av29q-tickets article{padding:16px}. av29q-tickets article.urgent{background:#c7d2fe}.av29q-tickets article b{display:block;font-size:15px}. av29q-tickets article span{display:block;color:#1f2333;opacity:.68;margin:12px 0}. av29q-tickets article em{font-style:normal;color:#4f46e5;font-weight:950}.av29q-tickets aside{padding:18px}.av29q-metric{border:1px solid #c7d2fe;border-radius:18px;padding:14px;margin-bottom:12px}.av29q-metric b{font-size:28px}. av29q-metric span{display:block}. av29q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#4f46e5;margin-top:9px}
+</style>
+</head>
+<body>
+<div class="av29q-tickets">
+        <header><h1>제품 속성 AX Console Ticket Router</h1><span>커머스 운영팀</span></header>
+        <main><article class="urgent"><b>SKU-029-0</b><span>이상치</span><em>자동 실행</em></article><article class=""><b>주문-029-1</b><span>우선순위</span><em>담당자 검수</em></article><article class=""><b>리뷰-029-2</b><span>자동 처리율</span><em>승인 요청</em></article><article class=""><b>매장-029-3</b><span>검수 필요</span><em>리포트 발행</em></article><article class=""><b>SKU-029-4</b><span>이상치</span><em>자동 실행</em></article><article class="urgent"><b>주문-029-5</b><span>우선순위</span><em>담당자 검수</em></article><article class=""><b>리뷰-029-6</b><span>자동 처리율</span><em>승인 요청</em></article><article class=""><b>매장-029-7</b><span>검수 필요</span><em>리포트 발행</em></article><article class=""><b>SKU-029-8</b><span>이상치</span><em>자동 실행</em></article><article class=""><b>주문-029-9</b><span>우선순위</span><em>담당자 검수</em></article><article class="urgent"><b>리뷰-029-10</b><span>자동 처리율</span><em>승인 요청</em></article><article class=""><b>매장-029-11</b><span>검수 필요</span><em>리포트 발행</em></article><article class=""><b>SKU-029-12</b><span>이상치</span><em>자동 실행</em></article><article class=""><b>주문-029-13</b><span>우선순위</span><em>담당자 검수</em></article><article class=""><b>리뷰-029-14</b><span>자동 처리율</span><em>승인 요청</em></article><article class="urgent"><b>매장-029-15</b><span>검수 필요</span><em>리포트 발행</em></article><article class=""><b>SKU-029-16</b><span>이상치</span><em>자동 실행</em></article><article class=""><b>주문-029-17</b><span>우선순위</span><em>담당자 검수</em></article></main>
+        <aside>
+        <article class="av29q-metric">
+            <span>이상치</span>
+            <b data-meter>68%</b>
+            <i style="--w:83%"></i>
+        </article>
+        <article class="av29q-metric">
+            <span>우선순위</span>
+            <b data-meter>79%</b>
+            <i style="--w:56%"></i>
+        </article>
+        <article class="av29q-metric">
+            <span>자동 처리율</span>
+            <b data-meter>90%</b>
+            <i style="--w:69%"></i>
+        </article>
+        <article class="av29q-metric">
+            <span>검수 필요</span>
+            <b data-meter>72%</b>
+            <i style="--w:82%"></i>
+        </article></aside>
+    </div>
+<script>
+
+const av29qmeters=[...document.querySelectorAll("[data-meter]")];
+let av29qtick=0;
+setInterval(()=>{
+  av29qtick++;
+  av29qmeters.forEach((el,i)=>el.textContent=(62+((av29qtick*3+i*9+29)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

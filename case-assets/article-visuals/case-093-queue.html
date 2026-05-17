@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-93-queue | 내부 헬프데스크 라우팅</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f7fbff;color:#111827}.av93q-tickets{height:100vh;display:grid;grid-template-rows:80px 1fr;grid-template-columns:1fr 310px;gap:18px;padding:22px}.av93q-tickets header{grid-column:1/3;border:2px solid #111827;border-radius:24px;background:#ffffff;box-shadow:8px 8px 0 #111827;display:flex;align-items:center;gap:18px;padding:0 22px}.av93q-tickets h1{font-size:32px;margin:0}.av93q-tickets header span{margin-left:auto;color:#2563eb;font-weight:950}.av93q-tickets main{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}. av93q-tickets article,.av93q-tickets aside{border:2px solid #111827;border-radius:22px;background:#ffffff;box-shadow:6px 6px 0 #111827}.av93q-tickets article{padding:16px}. av93q-tickets article.urgent{background:#9bd4ff}.av93q-tickets article b{display:block;font-size:15px}. av93q-tickets article span{display:block;color:#111827;opacity:.68;margin:12px 0}. av93q-tickets article em{font-style:normal;color:#2563eb;font-weight:950}.av93q-tickets aside{padding:18px}.av93q-metric{border:1px solid #9bd4ff;border-radius:18px;padding:14px;margin-bottom:12px}.av93q-metric b{font-size:28px}. av93q-metric span{display:block}. av93q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#2563eb;margin-top:9px}
+</style>
+</head>
+<body>
+<div class="av93q-tickets">
+        <header><h1>Conversation Intelligence Desk Ticket Router</h1><span>CX 운영팀</span></header>
+        <main><article class="urgent"><b>콜-093-0</b><span>의도 분류</span><em>상담 요약</em></article><article class=""><b>고객-093-1</b><span>감정 변화</span><em>답변 추천</em></article><article class=""><b>의도-093-2</b><span>재문의 확률</span><em>QA 샘플링</em></article><article class=""><b>티켓-093-3</b><span>품질 점수</span><em>후속 티켓</em></article><article class=""><b>콜-093-4</b><span>의도 분류</span><em>상담 요약</em></article><article class="urgent"><b>고객-093-5</b><span>감정 변화</span><em>답변 추천</em></article><article class=""><b>의도-093-6</b><span>재문의 확률</span><em>QA 샘플링</em></article><article class=""><b>티켓-093-7</b><span>품질 점수</span><em>후속 티켓</em></article><article class=""><b>콜-093-8</b><span>의도 분류</span><em>상담 요약</em></article><article class=""><b>고객-093-9</b><span>감정 변화</span><em>답변 추천</em></article><article class="urgent"><b>의도-093-10</b><span>재문의 확률</span><em>QA 샘플링</em></article><article class=""><b>티켓-093-11</b><span>품질 점수</span><em>후속 티켓</em></article><article class=""><b>콜-093-12</b><span>의도 분류</span><em>상담 요약</em></article><article class=""><b>고객-093-13</b><span>감정 변화</span><em>답변 추천</em></article><article class=""><b>의도-093-14</b><span>재문의 확률</span><em>QA 샘플링</em></article><article class="urgent"><b>티켓-093-15</b><span>품질 점수</span><em>후속 티켓</em></article><article class=""><b>콜-093-16</b><span>의도 분류</span><em>상담 요약</em></article><article class=""><b>고객-093-17</b><span>감정 변화</span><em>답변 추천</em></article></main>
+        <aside>
+        <article class="av93q-metric">
+            <span>의도 분류</span>
+            <b data-meter>81%</b>
+            <i style="--w:67%"></i>
+        </article>
+        <article class="av93q-metric">
+            <span>감정 변화</span>
+            <b data-meter>92%</b>
+            <i style="--w:80%"></i>
+        </article>
+        <article class="av93q-metric">
+            <span>재문의 확률</span>
+            <b data-meter>74%</b>
+            <i style="--w:93%"></i>
+        </article>
+        <article class="av93q-metric">
+            <span>품질 점수</span>
+            <b data-meter>85%</b>
+            <i style="--w:66%"></i>
+        </article></aside>
+    </div>
+<script>
+
+const av93qmeters=[...document.querySelectorAll("[data-meter]")];
+let av93qtick=0;
+setInterval(()=>{
+  av93qtick++;
+  av93qmeters.forEach((el,i)=>el.textContent=(62+((av93qtick*3+i*9+93)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

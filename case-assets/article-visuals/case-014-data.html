@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-14-data | 리뷰 요약과 답글 초안</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#fff7ed;color:#1f2937}.av14d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#ffd3b666 1px,transparent 1px),linear-gradient(90deg,#ffd3b666 1px,transparent 1px);background-size:42px 42px}.av14d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av14d-hub header p{margin:0;color:#f97316;font-weight:950}.av14d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av14d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av14d-hub path{stroke:#f97316;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av14d-hub circle{fill:#ffffff;stroke:#1f2937;stroke-width:4}.core{fill:#f97316!important}. av14d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#1f2937}.av14d-hub .core+text{fill:#ffffff;font-size:18px}.av14d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #1f2937;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #1f2937;padding:18px;display:grid;gap:14px;align-content:start}.av14d-metric{border:1px solid #ffd3b6;border-radius:18px;padding:16px}.av14d-metric span{display:block;color:#1f2937;opacity:.72}.av14d-metric b{font-size:30px}.av14d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#f97316;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av14d-hub">
+            <header><p>Sable Factory</p><h1>Review Defect Sentinel</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L262 516" /><path d="M600 350 L359 587" /><path d="M600 350 L456 658" /><path d="M600 350 L553 149" /><path d="M600 350 L650 220" /><path d="M600 350 L747 291" /><path d="M600 350 L844 362" /><path d="M600 350 L941 433" /><path d="M600 350 L1038 504" /><path d="M600 350 L105 575" /><path d="M600 350 L202 646" /><path d="M600 350 L299 137" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">리뷰</text>
+                <g transform="translate(262,516)"><circle r="30" /><text>상품평 원문</text></g><g transform="translate(359,587)"><circle r="36" /><text>반품 사유</text></g><g transform="translate(456,658)"><circle r="42" /><text>SKU 로트</text></g><g transform="translate(553,149)"><circle r="48" /><text>이미지 증거</text></g><g transform="translate(650,220)"><circle r="30" /><text>상품평 원문</text></g><g transform="translate(747,291)"><circle r="36" /><text>반품 사유</text></g><g transform="translate(844,362)"><circle r="42" /><text>SKU 로트</text></g><g transform="translate(941,433)"><circle r="48" /><text>이미지 증거</text></g><g transform="translate(1038,504)"><circle r="30" /><text>상품평 원문</text></g><g transform="translate(105,575)"><circle r="36" /><text>반품 사유</text></g><g transform="translate(202,646)"><circle r="42" /><text>SKU 로트</text></g><g transform="translate(299,137)"><circle r="48" /><text>이미지 증거</text></g>
+            </svg>
+            <aside>
+        <article class="av14d-metric">
+            <span>부정 키워드 급증</span>
+            <b data-meter>79%</b>
+            <i style="--w:68%"></i>
+        </article>
+        <article class="av14d-metric">
+            <span>동일 로트 반복</span>
+            <b data-meter>90%</b>
+            <i style="--w:81%"></i>
+        </article>
+        <article class="av14d-metric">
+            <span>불량 확률</span>
+            <b data-meter>72%</b>
+            <i style="--w:54%"></i>
+        </article>
+        <article class="av14d-metric">
+            <span>회수 우선순위</span>
+            <b data-meter>83%</b>
+            <i style="--w:67%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av14dmeters=[...document.querySelectorAll("[data-meter]")];
+let av14dtick=0;
+setInterval(()=>{
+  av14dtick++;
+  av14dmeters.forEach((el,i)=>el.textContent=(62+((av14dtick*3+i*9+14)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

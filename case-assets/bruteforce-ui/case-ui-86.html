@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-86 | 세금계산서 매칭</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#f4f6ff;color:#1f2333}
+.cu86{height:100vh;padding:23px;gap:16px;background:radial-gradient(circle at 33% 27%, #c7d2fe66, transparent 28%), linear-gradient(#eef2ff55 1px, transparent 1px), linear-gradient(90deg, #eef2ff55 1px, transparent 1px);background-size:auto,36px 36px,36px 36px}
+.cu86 > *{min-width:0}
+.cu86-hero,.cu86-visual,.cu86-meters,.cu86-board,.cu86-log,.cu86-nav{border:2px solid #1f2333;border-radius:20px;background:#ffffff;box-shadow:7px 7px 0 #1f2333;overflow:hidden}
+.cu86-hero{padding:24px}.cu86-hero p{margin:0;color:#4f46e5;font-weight:950;letter-spacing:.06em}.cu86-hero h1{margin:10px 0 6px;font-size:48px;line-height:.98;letter-spacing:-.055em}.cu86-hero strong{display:block;color:#1f2333;opacity:.72}
+.cu86-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu86-nav span{border:1px solid #c7d2fe;border-radius:14px;background:#f4f6ff;padding:12px;font-weight:950;font-size:13px}.cu86-nav span.on{background:#1f2333;color:#ffffff}
+.cu86-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu86-meter{border:1px solid #c7d2fe;border-radius:16px;padding:13px}.cu86-meter span{display:block;font-size:12px;color:#1f2333;opacity:.72}.cu86-meter b{font-size:26px}.cu86-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#4f46e5;margin-top:8px}
+.cu86-board{padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-content:start}.cu86-board article{border:1px solid #c7d2fe;border-radius:16px;background:#f4f6ff;padding:13px;min-height:100px}.cu86-board b{display:block;font-size:13px}.cu86-board span{display:block;margin-top:10px;color:#1f2333;opacity:.65;font-size:12px}.cu86-board em{display:block;margin-top:12px;color:#4f46e5;font-style:normal;font-weight:950}
+.cu86-visual{position:relative;padding:18px}.cu86-log{background:#1f2333;color:#c7d2fe;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu86-nav{grid-row:1/4}.screen-a .cu86-hero{grid-column:2}.screen-a .cu86-visual{grid-column:2;grid-row:2/4}.screen-a .cu86-meters{grid-column:3;grid-row:1/3}.screen-a .cu86-board{grid-column:3;grid-row:3}.screen-a .cu86-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu86-hero{grid-column:1}.screen-b .cu86-meters{grid-column:2}.screen-b .cu86-visual{grid-column:1/3;grid-row:2}.screen-b .cu86-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu86-board{grid-column:3;grid-row:1/3}.screen-b .cu86-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu86-visual{grid-column:1;grid-row:1/5}.screen-c .cu86-hero{grid-column:2;grid-row:1}.screen-c .cu86-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu86-board{grid-column:2;grid-row:3}.screen-c .cu86-meters{grid-column:2;grid-row:4}.screen-c .cu86-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu86-nav{grid-row:1/3}.screen-d .cu86-board{grid-column:2;grid-row:1}.screen-d .cu86-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu86-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu86-meters{grid-column:2;grid-row:2}.screen-d .cu86-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu86-hero{grid-row:1}.screen-e .cu86-visual{grid-column:2;grid-row:1/4}.screen-e .cu86-log{grid-column:3;grid-row:1/3}.screen-e .cu86-board{grid-column:1;grid-row:2}.screen-e .cu86-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu86-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu86-meters{grid-column:1;grid-row:1/4}.screen-f .cu86-hero{grid-column:2;grid-row:1}.screen-f .cu86-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu86-visual{grid-column:2;grid-row:3}.screen-f .cu86-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu86-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu86-log{grid-row:1/3}.screen-g .cu86-hero{grid-column:2}.screen-g .cu86-visual{grid-column:2;grid-row:2}.screen-g .cu86-board{grid-column:3;grid-row:1}.screen-g .cu86-meters{grid-column:3;grid-row:2}.screen-g .cu86-nav{display:none}
+.cu86-asset{position:absolute;inset:0;background:#1f2333;overflow:hidden}.cu86-asset i{position:absolute;left:var(--x);top:var(--y);width:40px;height:48px;border-radius:10px;background:#4f46e5;opacity:.72}.cu86-asset i.sel{background:#c7d2fe;box-shadow:0 0 0 10px #c7d2fe33}.cu86-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#1f2333;border-radius:999px;padding:12px 15px}
+.cu86-radar{width:100%;height:100%}.cu86-radar circle{fill:none;stroke:#c7d2fe;stroke-width:3}.cu86-radar rect{fill:#ffffff;stroke:#1f2333;stroke-width:3}.cu86-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2333}
+.cu86-supply{width:100%;height:100%;background:#f4f6ff}.cu86-supply path{fill:none;stroke:#4f46e5;stroke-width:10;stroke-dasharray:14 10}.cu86-supply circle{fill:#ffffff;stroke:#1f2333;stroke-width:5}.cu86-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2333}
+.cu86-trading{height:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cu86-trading article{position:relative;border:1px solid #c7d2fe;border-radius:16px;background:#f4f6ff;padding:12px}.cu86-trading small{font-weight:950;color:#4f46e5}.cu86-trading b{display:block;font-size:22px;margin-top:8px}.cu86-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#c7d2fe,#4f46e5)}
+.cu86-stars{width:100%;height:100%;background:#1f2333;border-radius:18px}.cu86-stars line{stroke:#c7d2fe;stroke-width:1;opacity:.45}.cu86-stars circle{fill:#c7d2fe}.cu86-stars circle.hot{fill:#4f46e5}.cu86-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu86-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu86-document section,.cu86-document aside{border:1px solid #c7d2fe;border-radius:18px;background:#f4f6ff;padding:22px}.cu86-document p{height:13px;border-radius:99px;background:#c7d2fe;margin:0 0 16px}.cu86-document p.mark{background:#4f46e5;box-shadow:0 0 0 8px #c7d2fe77}.cu86-document b{display:block;border-bottom:1px solid #c7d2fe;padding:14px 0;color:#4f46e5}
+.cu86-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu86-voice>div{display:flex;align-items:center;gap:7px}.cu86-voice i{flex:1;border-radius:99px;background:#4f46e5}.cu86-voice aside{border:1px solid #c7d2fe;border-radius:18px;background:#f4f6ff;padding:16px}.cu86-voice p{border-bottom:1px solid #c7d2fe;padding-bottom:12px}.cu86-voice b,.cu86-voice span{display:block}
+.cu86-factory{height:100%;display:grid;grid-template-columns:repeat(9,1fr);gap:9px}.cu86-factory i{border-radius:10px;background:#eef2ff;border:1px solid #c7d2fe}.cu86-factory i.warn{background:#f59e0b}.cu86-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu86-people-graph{position:absolute;inset:0;background:#ffffff}.cu86-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #1f2333;border-radius:999px;background:#f4f6ff;padding:10px 12px;text-align:center}.cu86-people-graph b{display:block;font-size:12px}.cu86-people-graph span{color:#4f46e5;font-weight:950}.cu86-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#c7d2fe;transform:rotate(var(--r));transform-origin:left center}
+.cu86-control{height:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.cu86-control article{border:1px solid #c7d2fe;border-radius:16px;background:#f4f6ff;padding:14px}.cu86-control b,.cu86-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu86 screen-c"><section class="cu86-visual"><div class="cu86-document">
+            <section><p class="" style="width:92%"></p><p class="" style="width:85%"></p><p class="mark" style="width:78%"></p><p class="" style="width:71%"></p><p class="" style="width:64%"></p><p class="" style="width:57%"></p><p class="mark" style="width:92%"></p><p class="" style="width:85%"></p><p class="" style="width:78%"></p><p class="" style="width:71%"></p><p class="mark" style="width:64%"></p><p class="" style="width:57%"></p><p class="" style="width:92%"></p></section>
+            <aside><b>01 핵심 조항</b><b>02 금액 불일치</b><b>03 권한 예외</b><b>04 검토 위험도</b></aside>
+        </div></section><div class="cu86-hero"><p>Careline Health · CASE 086</p><h1>Document Risk Workbench</h1><strong>세금계산서 매칭</strong></div><nav class="cu86-nav"><span class="">PDF 원본</span><span class="on">거래처 원장</span><span class="">승인 이력</span><span class="">표준 조항집</span><span class="">조항 추출</span></nav><section class="cu86-board"><article><b>문서-086-0</b><span>반려 사유</span><em data-live>66%</em></article><article><b>조항-086-1</b><span>승인 큐</span><em data-live>77%</em></article><article><b>금액-086-2</b><span>핵심 조항</span><em data-live>88%</em></article><article><b>거래처-086-3</b><span>금액 불일치</span><em data-live>60%</em></article><article><b>문서-086-4</b><span>권한 예외</span><em data-live>71%</em></article><article><b>조항-086-5</b><span>검토 위험도</span><em data-live>82%</em></article><article><b>금액-086-6</b><span>조항 추출</span><em data-live>93%</em></article></section><div class="cu86-meters"><article class="cu86-meter"><span>권한 예외</span><b data-live>83%</b><i style="--w:83%"></i></article><article class="cu86-meter"><span>검토 위험도</span><b data-live>92%</b><i style="--w:92%"></i></article><article class="cu86-meter"><span>PDF 원본</span><b data-live>64%</b><i style="--w:64%"></i></article><article class="cu86-meter"><span>거래처 원장</span><b data-live>73%</b><i style="--w:73%"></i></article><article class="cu86-meter"><span>승인 이력</span><b data-live>82%</b><i style="--w:82%"></i></article></div><aside class="cu86-log" id="cu86log"></aside></main>
+<script>
+
+
+const cu86Live=[...document.querySelectorAll("[data-live]")];
+let cu86Frame=0;
+setInterval(()=>{cu86Frame++;cu86Live.forEach((el,i)=>{el.textContent=(58+((cu86Frame*3+i*7+86)%39))+"%";});},1200);
+
+const cu86Log=document.getElementById("cu86log");
+if(cu86Log){
+  const rows=["핵심 조항","금액 불일치","권한 예외","검토 위험도","조항 추출","검토자 지정","반려 사유","승인 큐","PDF 원본","거래처 원장","승인 이력","표준 조항집"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu86Log.prepend(p);while(cu86Log.children.length>18)cu86Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

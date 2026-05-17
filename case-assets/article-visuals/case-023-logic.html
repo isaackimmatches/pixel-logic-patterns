@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-23-logic | 리퍼·중고 검수 라벨링</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f8fafc;color:#0f172a}.av23l-nodes{height:100vh;padding:24px;display:grid;grid-template-rows:90px 1fr;gap:18px}.av23l-nodes header{display:flex;align-items:center;gap:18px;border-radius:28px;background:#0f172a;color:#ffffff;padding:0 24px}.av23l-nodes h1{font-size:30px;margin:0}.av23l-nodes code{margin-left:auto;background:#ffffff;color:#0f172a;border-radius:14px;padding:12px 14px}.av23l-nodes section{display:grid;grid-template-columns:1fr 290px;gap:18px}.av23l-nodes svg,.av23l-nodes aside{border:2px solid #0f172a;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #0f172a}.av23l-nodes path{fill:none;stroke:#bae6fd;stroke-width:5;stroke-dasharray:12 10}. av23l-nodes rect{fill:#f8fafc;stroke:#0f172a;stroke-width:3}. av23l-nodes text{text-anchor:middle;dominant-baseline:middle;font-size:13px;font-weight:950;fill:#0f172a}.av23l-nodes aside{padding:18px;display:grid;gap:14px;align-content:start}.av23l-metric{border:1px solid #bae6fd;border-radius:18px;padding:14px}.av23l-metric b{font-size:26px}. av23l-metric span{display:block;font-size:12px}. av23l-metric i{display:block;width:var(--w);height:8px;background:#0ea5e9;border-radius:99px;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av23l-nodes">
+            <header><b>Finch Logistics</b><h1>리퍼 중고 AX Console Logic Builder</h1><code>score = w1*x_source + w2*x_signal - w3*risk</code></header>
+            <section><svg viewBox="0 0 1080 600">
+                <path d="M120 100 C260 90, 360 180, 430 160" /><path d="M430 100 C510 90, 580 180, 640 160" /><path d="M740 100 C760 90, 800 180, 850 160" /><path d="M120 250 C260 230, 360 310, 430 280" /><path d="M430 250 C510 230, 580 310, 640 280" /><path d="M740 250 C760 230, 800 310, 850 280" /><path d="M120 400 C260 370, 360 440, 430 400" /><path d="M430 400 C510 370, 580 440, 640 400" /><path d="M740 400 C760 370, 800 440, 850 400" /><path d="M120 550 C260 510, 360 570, 430 520" />
+                <g transform="translate(120,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>상품 DB</text></g><g transform="translate(430,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>주문 로그</text></g><g transform="translate(740,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>리뷰 텍스트</text></g><g transform="translate(120,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>재고 원장</text></g><g transform="translate(430,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>이상치</text></g><g transform="translate(740,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>우선순위</text></g><g transform="translate(120,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>자동 처리율</text></g><g transform="translate(430,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>검수 필요</text></g><g transform="translate(740,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>자동 실행</text></g><g transform="translate(120,550)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>담당자 검수</text></g>
+            </svg><aside>
+        <article class="av23l-metric">
+            <span>이상치</span>
+            <b data-meter>84%</b>
+            <i style="--w:77%"></i>
+        </article>
+        <article class="av23l-metric">
+            <span>우선순위</span>
+            <b data-meter>95%</b>
+            <i style="--w:90%"></i>
+        </article>
+        <article class="av23l-metric">
+            <span>자동 처리율</span>
+            <b data-meter>77%</b>
+            <i style="--w:63%"></i>
+        </article>
+        <article class="av23l-metric">
+            <span>검수 필요</span>
+            <b data-meter>88%</b>
+            <i style="--w:76%"></i>
+        </article></aside></section>
+        </main>
+<script>
+
+const av23lmeters=[...document.querySelectorAll("[data-meter]")];
+let av23ltick=0;
+setInterval(()=>{
+  av23ltick++;
+  av23lmeters.forEach((el,i)=>el.textContent=(62+((av23ltick*3+i*9+23)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

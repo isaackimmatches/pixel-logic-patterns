@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-80 | 교육 수강 리텐션 예측</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#f7fbff;color:#101828}
+.cu80{height:100vh;padding:26px;gap:17px;background:radial-gradient(circle at 31% 47%, #9bd4ff66, transparent 28%), linear-gradient(#dbeafe55 1px, transparent 1px), linear-gradient(90deg, #dbeafe55 1px, transparent 1px);background-size:auto,44px 44px,44px 44px}
+.cu80 > *{min-width:0}
+.cu80-hero,.cu80-visual,.cu80-meters,.cu80-board,.cu80-log,.cu80-nav{border:2px solid #101828;border-radius:28px;background:#ffffff;box-shadow:6px 6px 0 #101828;overflow:hidden}
+.cu80-hero{padding:24px}.cu80-hero p{margin:0;color:#2563eb;font-weight:950;letter-spacing:.06em}.cu80-hero h1{margin:10px 0 6px;font-size:42px;line-height:.98;letter-spacing:-.055em}.cu80-hero strong{display:block;color:#101828;opacity:.72}
+.cu80-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu80-nav span{border:1px solid #9bd4ff;border-radius:14px;background:#f7fbff;padding:12px;font-weight:950;font-size:13px}.cu80-nav span.on{background:#101828;color:#ffffff}
+.cu80-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu80-meter{border:1px solid #9bd4ff;border-radius:16px;padding:13px}.cu80-meter span{display:block;font-size:12px;color:#101828;opacity:.72}.cu80-meter b{font-size:26px}.cu80-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#2563eb;margin-top:8px}
+.cu80-board{padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-content:start}.cu80-board article{border:1px solid #9bd4ff;border-radius:16px;background:#f7fbff;padding:13px;min-height:94px}.cu80-board b{display:block;font-size:13px}.cu80-board span{display:block;margin-top:10px;color:#101828;opacity:.65;font-size:12px}.cu80-board em{display:block;margin-top:12px;color:#2563eb;font-style:normal;font-weight:950}
+.cu80-visual{position:relative;padding:18px}.cu80-log{background:#101828;color:#9bd4ff;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu80-nav{grid-row:1/4}.screen-a .cu80-hero{grid-column:2}.screen-a .cu80-visual{grid-column:2;grid-row:2/4}.screen-a .cu80-meters{grid-column:3;grid-row:1/3}.screen-a .cu80-board{grid-column:3;grid-row:3}.screen-a .cu80-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu80-hero{grid-column:1}.screen-b .cu80-meters{grid-column:2}.screen-b .cu80-visual{grid-column:1/3;grid-row:2}.screen-b .cu80-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu80-board{grid-column:3;grid-row:1/3}.screen-b .cu80-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu80-visual{grid-column:1;grid-row:1/5}.screen-c .cu80-hero{grid-column:2;grid-row:1}.screen-c .cu80-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu80-board{grid-column:2;grid-row:3}.screen-c .cu80-meters{grid-column:2;grid-row:4}.screen-c .cu80-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu80-nav{grid-row:1/3}.screen-d .cu80-board{grid-column:2;grid-row:1}.screen-d .cu80-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu80-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu80-meters{grid-column:2;grid-row:2}.screen-d .cu80-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu80-hero{grid-row:1}.screen-e .cu80-visual{grid-column:2;grid-row:1/4}.screen-e .cu80-log{grid-column:3;grid-row:1/3}.screen-e .cu80-board{grid-column:1;grid-row:2}.screen-e .cu80-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu80-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu80-meters{grid-column:1;grid-row:1/4}.screen-f .cu80-hero{grid-column:2;grid-row:1}.screen-f .cu80-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu80-visual{grid-column:2;grid-row:3}.screen-f .cu80-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu80-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu80-log{grid-row:1/3}.screen-g .cu80-hero{grid-column:2}.screen-g .cu80-visual{grid-column:2;grid-row:2}.screen-g .cu80-board{grid-column:3;grid-row:1}.screen-g .cu80-meters{grid-column:3;grid-row:2}.screen-g .cu80-nav{display:none}
+.cu80-asset{position:absolute;inset:0;background:#101828;overflow:hidden}.cu80-asset i{position:absolute;left:var(--x);top:var(--y);width:62px;height:42px;border-radius:18px;background:#2563eb;opacity:.72}.cu80-asset i.sel{background:#9bd4ff;box-shadow:0 0 0 10px #9bd4ff33}.cu80-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#101828;border-radius:999px;padding:12px 15px}
+.cu80-radar{width:100%;height:100%}.cu80-radar circle{fill:none;stroke:#9bd4ff;stroke-width:3}.cu80-radar rect{fill:#ffffff;stroke:#101828;stroke-width:3}.cu80-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#101828}
+.cu80-supply{width:100%;height:100%;background:#f7fbff}.cu80-supply path{fill:none;stroke:#2563eb;stroke-width:10;stroke-dasharray:14 10}.cu80-supply circle{fill:#ffffff;stroke:#101828;stroke-width:5}.cu80-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#101828}
+.cu80-trading{height:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.cu80-trading article{position:relative;border:1px solid #9bd4ff;border-radius:16px;background:#f7fbff;padding:12px}.cu80-trading small{font-weight:950;color:#2563eb}.cu80-trading b{display:block;font-size:22px;margin-top:8px}.cu80-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#9bd4ff,#2563eb)}
+.cu80-stars{width:100%;height:100%;background:#101828;border-radius:18px}.cu80-stars line{stroke:#9bd4ff;stroke-width:1;opacity:.45}.cu80-stars circle{fill:#9bd4ff}.cu80-stars circle.hot{fill:#2563eb}.cu80-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu80-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu80-document section,.cu80-document aside{border:1px solid #9bd4ff;border-radius:18px;background:#f7fbff;padding:22px}.cu80-document p{height:13px;border-radius:99px;background:#9bd4ff;margin:0 0 16px}.cu80-document p.mark{background:#2563eb;box-shadow:0 0 0 8px #9bd4ff77}.cu80-document b{display:block;border-bottom:1px solid #9bd4ff;padding:14px 0;color:#2563eb}
+.cu80-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu80-voice>div{display:flex;align-items:center;gap:7px}.cu80-voice i{flex:1;border-radius:99px;background:#2563eb}.cu80-voice aside{border:1px solid #9bd4ff;border-radius:18px;background:#f7fbff;padding:16px}.cu80-voice p{border-bottom:1px solid #9bd4ff;padding-bottom:12px}.cu80-voice b,.cu80-voice span{display:block}
+.cu80-factory{height:100%;display:grid;grid-template-columns:repeat(8,1fr);gap:9px}.cu80-factory i{border-radius:10px;background:#dbeafe;border:1px solid #9bd4ff}.cu80-factory i.warn{background:#f59e0b}.cu80-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu80-people-graph{position:absolute;inset:0;background:#ffffff}.cu80-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #101828;border-radius:999px;background:#f7fbff;padding:10px 12px;text-align:center}.cu80-people-graph b{display:block;font-size:12px}.cu80-people-graph span{color:#2563eb;font-weight:950}.cu80-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#9bd4ff;transform:rotate(var(--r));transform-origin:left center}
+.cu80-control{height:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.cu80-control article{border:1px solid #9bd4ff;border-radius:16px;background:#f7fbff;padding:14px}.cu80-control b,.cu80-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu80 screen-d"><nav class="cu80-nav"><span class="on">사용자 프로필</span><span class="">활동 로그</span><span class="">결제 이력</span><span class="">권한 변경</span><span class="">알림 발송</span></nav><section class="cu80-board"><article><b>사용자-080-0</b><span>이탈 위험</span><em data-live>60%</em></article><article><b>권한-080-1</b><span>권한 이상</span><em data-live>71%</em></article><article><b>결제-080-2</b><span>응답 지연</span><em data-live>82%</em></article><article><b>프로젝트-080-3</b><span>리텐션 점수</span><em data-live>93%</em></article><article><b>사용자-080-4</b><span>알림 발송</span><em data-live>65%</em></article><article><b>권한-080-5</b><span>담당 배정</span><em data-live>76%</em></article></section><div class="cu80-hero"><p>Anvil Commerce · CASE 080</p><h1>People Ops Prediction Desk</h1><strong>교육 수강 리텐션 예측</strong></div><section class="cu80-visual"><div class="cu80-people-graph">
+            <section style="--x:20%;--y:18%"><b>사용자</b><span data-live>78%</span></section><section style="--x:39%;--y:47%"><b>권한</b><span data-live>86%</span></section><section style="--x:58%;--y:76%"><b>결제</b><span data-live>94%</span></section><section style="--x:77%;--y:33%"><b>프로젝트</b><span data-live>69%</span></section><section style="--x:24%;--y:62%"><b>사용자</b><span data-live>77%</span></section><section style="--x:43%;--y:19%"><b>권한</b><span data-live>85%</span></section><section style="--x:62%;--y:48%"><b>결제</b><span data-live>93%</span></section><section style="--x:81%;--y:77%"><b>프로젝트</b><span data-live>68%</span></section><section style="--x:28%;--y:34%"><b>사용자</b><span data-live>76%</span></section><section style="--x:47%;--y:63%"><b>권한</b><span data-live>84%</span></section>
+            <i style="--r:320deg;--l:180px"></i><i style="--r:343deg;--l:214px"></i><i style="--r:6deg;--l:248px"></i><i style="--r:29deg;--l:282px"></i><i style="--r:52deg;--l:316px"></i><i style="--r:75deg;--l:350px"></i><i style="--r:98deg;--l:384px"></i><i style="--r:121deg;--l:418px"></i>
+        </div></section><div class="cu80-meters"><article class="cu80-meter"><span>알림 발송</span><b data-live>90%</b><i style="--w:90%"></i></article><article class="cu80-meter"><span>담당 배정</span><b data-live>62%</b><i style="--w:62%"></i></article><article class="cu80-meter"><span>권한 조정</span><b data-live>71%</b><i style="--w:71%"></i></article></div><aside class="cu80-log" id="cu80log"></aside></main>
+<script>
+
+
+const cu80Live=[...document.querySelectorAll("[data-live]")];
+let cu80Frame=0;
+setInterval(()=>{cu80Frame++;cu80Live.forEach((el,i)=>{el.textContent=(58+((cu80Frame*3+i*7+80)%39))+"%";});},1200);
+
+const cu80Log=document.getElementById("cu80log");
+if(cu80Log){
+  const rows=["이탈 위험","권한 이상","응답 지연","리텐션 점수","알림 발송","담당 배정","권한 조정","복구 캠페인","사용자 프로필","활동 로그","결제 이력","권한 변경"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu80Log.prepend(p);while(cu80Log.children.length>18)cu80Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

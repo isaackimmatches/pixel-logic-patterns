@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-11 | 시즌 재고 알림</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#fff7ed;color:#1f2937}
+.cu11{height:100vh;padding:20px;gap:18px;background:radial-gradient(circle at 55% 25%, #ffd3b666, transparent 28%), linear-gradient(#ffedd555 1px, transparent 1px), linear-gradient(90deg, #ffedd555 1px, transparent 1px);background-size:auto,45px 45px,45px 45px}
+.cu11 > *{min-width:0}
+.cu11-hero,.cu11-visual,.cu11-meters,.cu11-board,.cu11-log,.cu11-nav{border:2px solid #1f2937;border-radius:29px;background:#ffffff;box-shadow:7px 7px 0 #1f2937;overflow:hidden}
+.cu11-hero{padding:24px}.cu11-hero p{margin:0;color:#f97316;font-weight:950;letter-spacing:.06em}.cu11-hero h1{margin:10px 0 6px;font-size:45px;line-height:.98;letter-spacing:-.055em}.cu11-hero strong{display:block;color:#1f2937;opacity:.72}
+.cu11-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu11-nav span{border:1px solid #ffd3b6;border-radius:14px;background:#fff7ed;padding:12px;font-weight:950;font-size:13px}.cu11-nav span.on{background:#1f2937;color:#ffffff}
+.cu11-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu11-meter{border:1px solid #ffd3b6;border-radius:16px;padding:13px}.cu11-meter span{display:block;font-size:12px;color:#1f2937;opacity:.72}.cu11-meter b{font-size:26px}.cu11-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#f97316;margin-top:8px}
+.cu11-board{padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-content:start}.cu11-board article{border:1px solid #ffd3b6;border-radius:16px;background:#fff7ed;padding:13px;min-height:93px}.cu11-board b{display:block;font-size:13px}.cu11-board span{display:block;margin-top:10px;color:#1f2937;opacity:.65;font-size:12px}.cu11-board em{display:block;margin-top:12px;color:#f97316;font-style:normal;font-weight:950}
+.cu11-visual{position:relative;padding:18px}.cu11-log{background:#1f2937;color:#ffd3b6;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu11-nav{grid-row:1/4}.screen-a .cu11-hero{grid-column:2}.screen-a .cu11-visual{grid-column:2;grid-row:2/4}.screen-a .cu11-meters{grid-column:3;grid-row:1/3}.screen-a .cu11-board{grid-column:3;grid-row:3}.screen-a .cu11-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu11-hero{grid-column:1}.screen-b .cu11-meters{grid-column:2}.screen-b .cu11-visual{grid-column:1/3;grid-row:2}.screen-b .cu11-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu11-board{grid-column:3;grid-row:1/3}.screen-b .cu11-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu11-visual{grid-column:1;grid-row:1/5}.screen-c .cu11-hero{grid-column:2;grid-row:1}.screen-c .cu11-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu11-board{grid-column:2;grid-row:3}.screen-c .cu11-meters{grid-column:2;grid-row:4}.screen-c .cu11-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu11-nav{grid-row:1/3}.screen-d .cu11-board{grid-column:2;grid-row:1}.screen-d .cu11-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu11-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu11-meters{grid-column:2;grid-row:2}.screen-d .cu11-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu11-hero{grid-row:1}.screen-e .cu11-visual{grid-column:2;grid-row:1/4}.screen-e .cu11-log{grid-column:3;grid-row:1/3}.screen-e .cu11-board{grid-column:1;grid-row:2}.screen-e .cu11-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu11-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu11-meters{grid-column:1;grid-row:1/4}.screen-f .cu11-hero{grid-column:2;grid-row:1}.screen-f .cu11-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu11-visual{grid-column:2;grid-row:3}.screen-f .cu11-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu11-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu11-log{grid-row:1/3}.screen-g .cu11-hero{grid-column:2}.screen-g .cu11-visual{grid-column:2;grid-row:2}.screen-g .cu11-board{grid-column:3;grid-row:1}.screen-g .cu11-meters{grid-column:3;grid-row:2}.screen-g .cu11-nav{display:none}
+.cu11-asset{position:absolute;inset:0;background:#1f2937;overflow:hidden}.cu11-asset i{position:absolute;left:var(--x);top:var(--y);width:49px;height:45px;border-radius:19px;background:#f97316;opacity:.72}.cu11-asset i.sel{background:#ffd3b6;box-shadow:0 0 0 10px #ffd3b633}.cu11-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#1f2937;border-radius:999px;padding:12px 15px}
+.cu11-radar{width:100%;height:100%}.cu11-radar circle{fill:none;stroke:#ffd3b6;stroke-width:3}.cu11-radar rect{fill:#ffffff;stroke:#1f2937;stroke-width:3}.cu11-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2937}
+.cu11-supply{width:100%;height:100%;background:#fff7ed}.cu11-supply path{fill:none;stroke:#f97316;stroke-width:10;stroke-dasharray:14 10}.cu11-supply circle{fill:#ffffff;stroke:#1f2937;stroke-width:5}.cu11-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#1f2937}
+.cu11-trading{height:100%;display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.cu11-trading article{position:relative;border:1px solid #ffd3b6;border-radius:16px;background:#fff7ed;padding:12px}.cu11-trading small{font-weight:950;color:#f97316}.cu11-trading b{display:block;font-size:22px;margin-top:8px}.cu11-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#ffd3b6,#f97316)}
+.cu11-stars{width:100%;height:100%;background:#1f2937;border-radius:18px}.cu11-stars line{stroke:#ffd3b6;stroke-width:1;opacity:.45}.cu11-stars circle{fill:#ffd3b6}.cu11-stars circle.hot{fill:#f97316}.cu11-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu11-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu11-document section,.cu11-document aside{border:1px solid #ffd3b6;border-radius:18px;background:#fff7ed;padding:22px}.cu11-document p{height:13px;border-radius:99px;background:#ffd3b6;margin:0 0 16px}.cu11-document p.mark{background:#f97316;box-shadow:0 0 0 8px #ffd3b677}.cu11-document b{display:block;border-bottom:1px solid #ffd3b6;padding:14px 0;color:#f97316}
+.cu11-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu11-voice>div{display:flex;align-items:center;gap:7px}.cu11-voice i{flex:1;border-radius:99px;background:#f97316}.cu11-voice aside{border:1px solid #ffd3b6;border-radius:18px;background:#fff7ed;padding:16px}.cu11-voice p{border-bottom:1px solid #ffd3b6;padding-bottom:12px}.cu11-voice b,.cu11-voice span{display:block}
+.cu11-factory{height:100%;display:grid;grid-template-columns:repeat(9,1fr);gap:9px}.cu11-factory i{border-radius:10px;background:#ffedd5;border:1px solid #ffd3b6}.cu11-factory i.warn{background:#f59e0b}.cu11-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu11-people-graph{position:absolute;inset:0;background:#ffffff}.cu11-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #1f2937;border-radius:999px;background:#fff7ed;padding:10px 12px;text-align:center}.cu11-people-graph b{display:block;font-size:12px}.cu11-people-graph span{color:#f97316;font-weight:950}.cu11-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#ffd3b6;transform:rotate(var(--r));transform-origin:left center}
+.cu11-control{height:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cu11-control article{border:1px solid #ffd3b6;border-radius:16px;background:#fff7ed;padding:14px}.cu11-control b,.cu11-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu11 screen-e"><div class="cu11-hero"><p>Verse Logistics · CASE 011</p><h1>Inventory Motion Planner</h1><strong>시즌 재고 알림</strong></div><section class="cu11-visual"><svg class="cu11-supply" viewBox="0 0 940 540">
+            <path d="M80 390 C190 90 350 470 480 210 S760 120 850 395" />
+            <g transform="translate(277,216)"><circle r="20"/><text>SKU</text></g><g transform="translate(386,353)"><circle r="28"/><text>센터</text></g><g transform="translate(495,140)"><circle r="36"/><text>노선</text></g><g transform="translate(604,277)"><circle r="20"/><text>발주</text></g><g transform="translate(713,414)"><circle r="28"/><text>SKU</text></g><g transform="translate(822,201)"><circle r="36"/><text>센터</text></g><g transform="translate(171,338)"><circle r="20"/><text>노선</text></g><g transform="translate(280,125)"><circle r="28"/><text>발주</text></g>
+        </svg></section><aside class="cu11-log" id="cu11log"></aside><section class="cu11-board"><article><b>SKU-011-0</b><span>대체 SKU</span><em data-live>69%</em></article><article><b>센터-011-1</b><span>발주량 추천</span><em data-live>80%</em></article><article><b>노선-011-2</b><span>노출 변경</span><em data-live>91%</em></article><article><b>발주-011-3</b><span>배차 추천</span><em data-live>63%</em></article><article><b>SKU-011-4</b><span>지연 알림</span><em data-live>74%</em></article><article><b>센터-011-5</b><span>품절 예상시점</span><em data-live>85%</em></article><article><b>노선-011-6</b><span>과재고 지수</span><em data-live>96%</em></article></section><nav class="cu11-nav"><span class="">주문 로그</span><span class="on">센터 재고</span><span class="">배송 SLA</span><span class="">프로모션</span><span class="">발주량 추천</span></nav><div class="cu11-meters"><article class="cu11-meter"><span>지연 알림</span><b data-live>78%</b><i style="--w:78%"></i></article><article class="cu11-meter"><span>품절 예상시점</span><b data-live>87%</b><i style="--w:87%"></i></article><article class="cu11-meter"><span>과재고 지수</span><b data-live>96%</b><i style="--w:96%"></i></article><article class="cu11-meter"><span>센터 이동량</span><b data-live>68%</b><i style="--w:68%"></i></article><article class="cu11-meter"><span>대체 SKU</span><b data-live>77%</b><i style="--w:77%"></i></article><article class="cu11-meter"><span>주문 로그</span><b data-live>86%</b><i style="--w:86%"></i></article></div></main>
+<script>
+
+
+const cu11Live=[...document.querySelectorAll("[data-live]")];
+let cu11Frame=0;
+setInterval(()=>{cu11Frame++;cu11Live.forEach((el,i)=>{el.textContent=(58+((cu11Frame*3+i*7+11)%39))+"%";});},1200);
+
+const cu11Log=document.getElementById("cu11log");
+if(cu11Log){
+  const rows=["품절 예상시점","과재고 지수","센터 이동량","대체 SKU","발주량 추천","노출 변경","배차 추천","지연 알림","주문 로그","센터 재고","배송 SLA","프로모션"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu11Log.prepend(p);while(cu11Log.children.length>18)cu11Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-27-queue | 매장별 진열 최적화</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#2a1721;color:#ffffff}.av27q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#e11d4855,transparent 34%),#2a1721}.av27q-command aside,.av27q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av27q-command aside{padding:22px}. av27q-command h1{font-size:34px;line-height:1.04;margin:0}. av27q-command p{color:#ffc4d1;line-height:1.7}.av27q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av27q-metric b{font-size:26px}. av27q-metric span{display:block}. av27q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#e11d48;margin-top:9px}.av27q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#e11d48;transform-origin:0 0;animation:av27qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#ffc4d1;box-shadow:0 0 0 8px #ffc4d133}@keyframes av27qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av27q-command">
+            <aside><h1>매장별 진열 AX Console</h1><p>매장별 진열 최적화 실시간 처리 로그</p>
+        <article class="av27q-metric">
+            <span>이상치</span>
+            <b data-meter>83%</b>
+            <i style="--w:81%"></i>
+        </article>
+        <article class="av27q-metric">
+            <span>우선순위</span>
+            <b data-meter>94%</b>
+            <i style="--w:54%"></i>
+        </article>
+        <article class="av27q-metric">
+            <span>자동 처리율</span>
+            <b data-meter>76%</b>
+            <i style="--w:67%"></i>
+        </article>
+        <article class="av27q-metric">
+            <span>검수 필요</span>
+            <b data-meter>87%</b>
+            <i style="--w:80%"></i>
+        </article></aside>
+            <main id="av27q-stream"></main>
+            <div class="radar"><i style="--x:45%;--y:43%"></i><i style="--x:68%;--y:74%"></i><i style="--x:29%;--y:41%"></i><i style="--x:52%;--y:72%"></i><i style="--x:75%;--y:39%"></i><i style="--x:36%;--y:70%"></i><i style="--x:59%;--y:37%"></i><i style="--x:20%;--y:68%"></i><i style="--x:43%;--y:35%"></i></div>
+        </section>
+<script>
+const av27qs=document.getElementById("av27q-stream");const av27qlogs=["자동 실행 queued","이상치 threshold crossed","owner=커머스 운영팀","sla.check passed","handoff ticket 27-A"];let av27qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av27qlogs[av27qn++%av27qlogs.length];av27qs.prepend(p);while(av27qs.children.length>26)av27qs.lastElementChild.remove();},430);
+const av27qmeters=[...document.querySelectorAll("[data-meter]")];
+let av27qtick=0;
+setInterval(()=>{
+  av27qtick++;
+  av27qmeters.forEach((el,i)=>el.textContent=(62+((av27qtick*3+i*9+27)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

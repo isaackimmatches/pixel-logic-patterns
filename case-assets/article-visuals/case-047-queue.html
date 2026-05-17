@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-47-queue | UTM 품질관리</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#10251d;color:#ffffff}.av47q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#10b98155,transparent 34%),#10251d}.av47q-command aside,.av47q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av47q-command aside{padding:22px}. av47q-command h1{font-size:34px;line-height:1.04;margin:0}. av47q-command p{color:#b7f3d4;line-height:1.7}.av47q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av47q-metric b{font-size:26px}. av47q-metric span{display:block}. av47q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#10b981;margin-top:9px}.av47q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#10b981;transform-origin:0 0;animation:av47qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#b7f3d4;box-shadow:0 0 0 8px #b7f3d433}@keyframes av47qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av47q-command">
+            <aside><h1>Factory Signal Monitor</h1><p>UTM 품질관리 실시간 처리 로그</p>
+        <article class="av47q-metric">
+            <span>설비 편차</span>
+            <b data-meter>78%</b>
+            <i style="--w:61%"></i>
+        </article>
+        <article class="av47q-metric">
+            <span>불량 픽셀</span>
+            <b data-meter>89%</b>
+            <i style="--w:74%"></i>
+        </article>
+        <article class="av47q-metric">
+            <span>라인 병목</span>
+            <b data-meter>71%</b>
+            <i style="--w:87%"></i>
+        </article>
+        <article class="av47q-metric">
+            <span>정비 우선순위</span>
+            <b data-meter>82%</b>
+            <i style="--w:60%"></i>
+        </article></aside>
+            <main id="av47q-stream"></main>
+            <div class="radar"><i style="--x:65%;--y:63%"></i><i style="--x:26%;--y:30%"></i><i style="--x:49%;--y:61%"></i><i style="--x:72%;--y:28%"></i><i style="--x:33%;--y:59%"></i><i style="--x:56%;--y:26%"></i><i style="--x:79%;--y:57%"></i><i style="--x:40%;--y:24%"></i><i style="--x:63%;--y:55%"></i></div>
+        </section>
+<script>
+const av47qs=document.getElementById("av47q-stream");const av47qlogs=["작업지시 추천 queued","설비 편차 threshold crossed","owner=공장 운영팀","sla.check passed","handoff ticket 47-A"];let av47qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av47qlogs[av47qn++%av47qlogs.length];av47qs.prepend(p);while(av47qs.children.length>26)av47qs.lastElementChild.remove();},430);
+const av47qmeters=[...document.querySelectorAll("[data-meter]")];
+let av47qtick=0;
+setInterval(()=>{
+  av47qtick++;
+  av47qmeters.forEach((el,i)=>el.textContent=(62+((av47qtick*3+i*9+47)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

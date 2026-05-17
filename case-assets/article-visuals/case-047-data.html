@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-47-data | UTM 품질관리</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f4f6ff;color:#1f2333}.av47d-ledger{height:100vh;display:grid;grid-template-columns:310px 1fr 320px;gap:20px;padding:24px}.left,.middle,.right{border:2px solid #1f2333;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #1f2333}.left,.right{padding:24px}.left h1{font-size:36px;line-height:1.04;margin:0}.left p{color:#4f46e5;font-weight:950}.left div{border-top:1px solid #c7d2fe;padding:16px 0}.left b{display:block}.left span{color:#1f2333;opacity:.65}.middle{display:grid;grid-template-columns:repeat(7,1fr);align-items:end;gap:10px;padding:22px;background:linear-gradient(180deg,#ffffff,#f4f6ff)}.middle i{height:var(--h);border-radius:14px 14px 4px 4px;background:#c7d2fe;border:1px solid #1f233344}.middle i.hot{background:#4f46e5;box-shadow:0 0 0 6px #c7d2fe}.right h2{font-size:30px;margin:0 0 18px}.av47d-metric{border:1px solid #c7d2fe;border-radius:18px;padding:14px;margin-bottom:12px}.av47d-metric span{display:block;font-size:12px}.av47d-metric b{font-size:28px}.av47d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#4f46e5;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av47d-ledger">
+        <section class="left"><h1>Factory Signal Monitor</h1><p>UTM 품질관리 원천 데이터 스냅샷</p><div><b>MES 로그</b><span>라인 key-470</span></div><div><b>센서 스트림</b><span>설비 key-471</span></div><div><b>검사 이미지</b><span>LOT key-472</span></div><div><b>작업지시서</b><span>검사 key-473</span></div></section>
+        <section class="middle"><i class="" style="--h:71px"></i><i class="" style="--h:88px"></i><i class="hot" style="--h:105px"></i><i class="" style="--h:122px"></i><i class="" style="--h:139px"></i><i class="" style="--h:36px"></i><i class="" style="--h:53px"></i><i class="" style="--h:70px"></i><i class="" style="--h:87px"></i><i class="" style="--h:104px"></i><i class="" style="--h:121px"></i><i class="hot" style="--h:138px"></i><i class="" style="--h:35px"></i><i class="" style="--h:52px"></i><i class="" style="--h:69px"></i><i class="" style="--h:86px"></i><i class="" style="--h:103px"></i><i class="" style="--h:120px"></i><i class="" style="--h:137px"></i><i class="" style="--h:34px"></i><i class="hot" style="--h:51px"></i><i class="" style="--h:68px"></i><i class="" style="--h:85px"></i><i class="" style="--h:102px"></i><i class="" style="--h:119px"></i><i class="" style="--h:136px"></i><i class="" style="--h:33px"></i><i class="" style="--h:50px"></i><i class="" style="--h:67px"></i><i class="hot" style="--h:84px"></i><i class="" style="--h:101px"></i><i class="" style="--h:118px"></i><i class="" style="--h:135px"></i><i class="" style="--h:32px"></i><i class="" style="--h:49px"></i><i class="" style="--h:66px"></i><i class="" style="--h:83px"></i><i class="" style="--h:100px"></i><i class="hot" style="--h:117px"></i><i class="" style="--h:134px"></i><i class="" style="--h:31px"></i><i class="" style="--h:48px"></i></section>
+        <section class="right"><h2>Studio Round</h2>
+        <article class="av47d-metric">
+            <span>설비 편차</span>
+            <b data-meter>78%</b>
+            <i style="--w:61%"></i>
+        </article>
+        <article class="av47d-metric">
+            <span>불량 픽셀</span>
+            <b data-meter>89%</b>
+            <i style="--w:74%"></i>
+        </article>
+        <article class="av47d-metric">
+            <span>라인 병목</span>
+            <b data-meter>71%</b>
+            <i style="--w:87%"></i>
+        </article>
+        <article class="av47d-metric">
+            <span>정비 우선순위</span>
+            <b data-meter>82%</b>
+            <i style="--w:60%"></i>
+        </article></section>
+    </main>
+<script>
+
+const av47dmeters=[...document.querySelectorAll("[data-meter]")];
+let av47dtick=0;
+setInterval(()=>{
+  av47dtick++;
+  av47dmeters.forEach((el,i)=>el.textContent=(62+((av47dtick*3+i*9+47)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

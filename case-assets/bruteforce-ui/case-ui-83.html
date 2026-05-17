@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-83 | 채용 서류 스크리닝</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#effaf5;color:#10251d}
+.cu83{height:100vh;padding:20px;gap:20px;background:radial-gradient(circle at 32% 87%, #b7f3d466, transparent 28%), linear-gradient(#dcfce755 1px, transparent 1px), linear-gradient(90deg, #dcfce755 1px, transparent 1px);background-size:auto,47px 47px,47px 47px}
+.cu83 > *{min-width:0}
+.cu83-hero,.cu83-visual,.cu83-meters,.cu83-board,.cu83-log,.cu83-nav{border:2px solid #10251d;border-radius:31px;background:#ffffff;box-shadow:9px 9px 0 #10251d;overflow:hidden}
+.cu83-hero{padding:24px}.cu83-hero p{margin:0;color:#10b981;font-weight:950;letter-spacing:.06em}.cu83-hero h1{margin:10px 0 6px;font-size:45px;line-height:.98;letter-spacing:-.055em}.cu83-hero strong{display:block;color:#10251d;opacity:.72}
+.cu83-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu83-nav span{border:1px solid #b7f3d4;border-radius:14px;background:#effaf5;padding:12px;font-weight:950;font-size:13px}.cu83-nav span.on{background:#10251d;color:#ffffff}
+.cu83-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu83-meter{border:1px solid #b7f3d4;border-radius:16px;padding:13px}.cu83-meter span{display:block;font-size:12px;color:#10251d;opacity:.72}.cu83-meter b{font-size:26px}.cu83-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#10b981;margin-top:8px}
+.cu83-board{padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-content:start}.cu83-board article{border:1px solid #b7f3d4;border-radius:16px;background:#effaf5;padding:13px;min-height:97px}.cu83-board b{display:block;font-size:13px}.cu83-board span{display:block;margin-top:10px;color:#10251d;opacity:.65;font-size:12px}.cu83-board em{display:block;margin-top:12px;color:#10b981;font-style:normal;font-weight:950}
+.cu83-visual{position:relative;padding:18px}.cu83-log{background:#10251d;color:#b7f3d4;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu83-nav{grid-row:1/4}.screen-a .cu83-hero{grid-column:2}.screen-a .cu83-visual{grid-column:2;grid-row:2/4}.screen-a .cu83-meters{grid-column:3;grid-row:1/3}.screen-a .cu83-board{grid-column:3;grid-row:3}.screen-a .cu83-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu83-hero{grid-column:1}.screen-b .cu83-meters{grid-column:2}.screen-b .cu83-visual{grid-column:1/3;grid-row:2}.screen-b .cu83-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu83-board{grid-column:3;grid-row:1/3}.screen-b .cu83-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu83-visual{grid-column:1;grid-row:1/5}.screen-c .cu83-hero{grid-column:2;grid-row:1}.screen-c .cu83-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu83-board{grid-column:2;grid-row:3}.screen-c .cu83-meters{grid-column:2;grid-row:4}.screen-c .cu83-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu83-nav{grid-row:1/3}.screen-d .cu83-board{grid-column:2;grid-row:1}.screen-d .cu83-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu83-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu83-meters{grid-column:2;grid-row:2}.screen-d .cu83-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu83-hero{grid-row:1}.screen-e .cu83-visual{grid-column:2;grid-row:1/4}.screen-e .cu83-log{grid-column:3;grid-row:1/3}.screen-e .cu83-board{grid-column:1;grid-row:2}.screen-e .cu83-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu83-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu83-meters{grid-column:1;grid-row:1/4}.screen-f .cu83-hero{grid-column:2;grid-row:1}.screen-f .cu83-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu83-visual{grid-column:2;grid-row:3}.screen-f .cu83-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu83-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu83-log{grid-row:1/3}.screen-g .cu83-hero{grid-column:2}.screen-g .cu83-visual{grid-column:2;grid-row:2}.screen-g .cu83-board{grid-column:3;grid-row:1}.screen-g .cu83-meters{grid-column:3;grid-row:2}.screen-g .cu83-nav{display:none}
+.cu83-asset{position:absolute;inset:0;background:#10251d;overflow:hidden}.cu83-asset i{position:absolute;left:var(--x);top:var(--y);width:65px;height:45px;border-radius:21px;background:#10b981;opacity:.72}.cu83-asset i.sel{background:#b7f3d4;box-shadow:0 0 0 10px #b7f3d433}.cu83-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#10251d;border-radius:999px;padding:12px 15px}
+.cu83-radar{width:100%;height:100%}.cu83-radar circle{fill:none;stroke:#b7f3d4;stroke-width:3}.cu83-radar rect{fill:#ffffff;stroke:#10251d;stroke-width:3}.cu83-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#10251d}
+.cu83-supply{width:100%;height:100%;background:#effaf5}.cu83-supply path{fill:none;stroke:#10b981;stroke-width:10;stroke-dasharray:14 10}.cu83-supply circle{fill:#ffffff;stroke:#10251d;stroke-width:5}.cu83-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#10251d}
+.cu83-trading{height:100%;display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.cu83-trading article{position:relative;border:1px solid #b7f3d4;border-radius:16px;background:#effaf5;padding:12px}.cu83-trading small{font-weight:950;color:#10b981}.cu83-trading b{display:block;font-size:22px;margin-top:8px}.cu83-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#b7f3d4,#10b981)}
+.cu83-stars{width:100%;height:100%;background:#10251d;border-radius:18px}.cu83-stars line{stroke:#b7f3d4;stroke-width:1;opacity:.45}.cu83-stars circle{fill:#b7f3d4}.cu83-stars circle.hot{fill:#10b981}.cu83-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu83-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu83-document section,.cu83-document aside{border:1px solid #b7f3d4;border-radius:18px;background:#effaf5;padding:22px}.cu83-document p{height:13px;border-radius:99px;background:#b7f3d4;margin:0 0 16px}.cu83-document p.mark{background:#10b981;box-shadow:0 0 0 8px #b7f3d477}.cu83-document b{display:block;border-bottom:1px solid #b7f3d4;padding:14px 0;color:#10b981}
+.cu83-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu83-voice>div{display:flex;align-items:center;gap:7px}.cu83-voice i{flex:1;border-radius:99px;background:#10b981}.cu83-voice aside{border:1px solid #b7f3d4;border-radius:18px;background:#effaf5;padding:16px}.cu83-voice p{border-bottom:1px solid #b7f3d4;padding-bottom:12px}.cu83-voice b,.cu83-voice span{display:block}
+.cu83-factory{height:100%;display:grid;grid-template-columns:repeat(11,1fr);gap:9px}.cu83-factory i{border-radius:10px;background:#dcfce7;border:1px solid #b7f3d4}.cu83-factory i.warn{background:#f59e0b}.cu83-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu83-people-graph{position:absolute;inset:0;background:#ffffff}.cu83-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #10251d;border-radius:999px;background:#effaf5;padding:10px 12px;text-align:center}.cu83-people-graph b{display:block;font-size:12px}.cu83-people-graph span{color:#10b981;font-weight:950}.cu83-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#b7f3d4;transform:rotate(var(--r));transform-origin:left center}
+.cu83-control{height:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cu83-control article{border:1px solid #b7f3d4;border-radius:16px;background:#effaf5;padding:14px}.cu83-control b,.cu83-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu83 screen-g"><aside class="cu83-log" id="cu83log"></aside><div class="cu83-hero"><p>Prism Edu · CASE 083</p><h1>People Ops Prediction Desk</h1><strong>채용 서류 스크리닝</strong></div><section class="cu83-visual"><div class="cu83-people-graph">
+            <section style="--x:23%;--y:21%"><b>사용자</b><span data-live>81%</span></section><section style="--x:42%;--y:50%"><b>권한</b><span data-live>89%</span></section><section style="--x:61%;--y:79%"><b>결제</b><span data-live>64%</span></section><section style="--x:80%;--y:36%"><b>프로젝트</b><span data-live>72%</span></section><section style="--x:27%;--y:65%"><b>사용자</b><span data-live>80%</span></section><section style="--x:46%;--y:22%"><b>권한</b><span data-live>88%</span></section><section style="--x:65%;--y:51%"><b>결제</b><span data-live>96%</span></section><section style="--x:12%;--y:80%"><b>프로젝트</b><span data-live>71%</span></section><section style="--x:31%;--y:37%"><b>사용자</b><span data-live>79%</span></section><section style="--x:50%;--y:66%"><b>권한</b><span data-live>87%</span></section>
+            <i style="--r:332deg;--l:180px"></i><i style="--r:355deg;--l:214px"></i><i style="--r:18deg;--l:248px"></i><i style="--r:41deg;--l:282px"></i><i style="--r:64deg;--l:316px"></i><i style="--r:87deg;--l:350px"></i><i style="--r:110deg;--l:384px"></i><i style="--r:133deg;--l:418px"></i>
+        </div></section><section class="cu83-board"><article><b>사용자-083-0</b><span>리텐션 점수</span><em data-live>63%</em></article><article><b>권한-083-1</b><span>알림 발송</span><em data-live>74%</em></article><article><b>결제-083-2</b><span>담당 배정</span><em data-live>85%</em></article><article><b>프로젝트-083-3</b><span>권한 조정</span><em data-live>96%</em></article><article><b>사용자-083-4</b><span>복구 캠페인</span><em data-live>68%</em></article><article><b>권한-083-5</b><span>이탈 위험</span><em data-live>79%</em></article><article><b>결제-083-6</b><span>권한 이상</span><em data-live>90%</em></article><article><b>프로젝트-083-7</b><span>응답 지연</span><em data-live>62%</em></article><article><b>사용자-083-8</b><span>리텐션 점수</span><em data-live>73%</em></article></section><div class="cu83-meters"><article class="cu83-meter"><span>복구 캠페인</span><b data-live>68%</b><i style="--w:68%"></i></article><article class="cu83-meter"><span>이탈 위험</span><b data-live>77%</b><i style="--w:77%"></i></article><article class="cu83-meter"><span>권한 이상</span><b data-live>86%</b><i style="--w:86%"></i></article><article class="cu83-meter"><span>응답 지연</span><b data-live>95%</b><i style="--w:95%"></i></article><article class="cu83-meter"><span>리텐션 점수</span><b data-live>67%</b><i style="--w:67%"></i></article><article class="cu83-meter"><span>사용자 프로필</span><b data-live>76%</b><i style="--w:76%"></i></article></div><nav class="cu83-nav"><span class="">사용자 프로필</span><span class="">활동 로그</span><span class="">결제 이력</span><span class="on">권한 변경</span><span class="">알림 발송</span></nav></main>
+<script>
+
+
+const cu83Live=[...document.querySelectorAll("[data-live]")];
+let cu83Frame=0;
+setInterval(()=>{cu83Frame++;cu83Live.forEach((el,i)=>{el.textContent=(58+((cu83Frame*3+i*7+83)%39))+"%";});},1200);
+
+const cu83Log=document.getElementById("cu83log");
+if(cu83Log){
+  const rows=["이탈 위험","권한 이상","응답 지연","리텐션 점수","알림 발송","담당 배정","권한 조정","복구 캠페인","사용자 프로필","활동 로그","결제 이력","권한 변경"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu83Log.prepend(p);while(cu83Log.children.length>18)cu83Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

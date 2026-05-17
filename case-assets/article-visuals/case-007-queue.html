@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-07-queue | 라이브커머스 질문 라우팅</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#0f172a;color:#ffffff}.av07q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#0ea5e955,transparent 34%),#0f172a}.av07q-command aside,.av07q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av07q-command aside{padding:22px}. av07q-command h1{font-size:34px;line-height:1.04;margin:0}. av07q-command p{color:#bae6fd;line-height:1.7}.av07q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av07q-metric b{font-size:26px}. av07q-metric span{display:block}. av07q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#0ea5e9;margin-top:9px}.av07q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#0ea5e9;transform-origin:0 0;animation:av07qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#bae6fd;box-shadow:0 0 0 8px #bae6fd33}@keyframes av07qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av07q-command">
+            <aside><h1>Conversation Intelligence Desk</h1><p>라이브커머스 질문 라우팅 실시간 처리 로그</p>
+        <article class="av07q-metric">
+            <span>의도 분류</span>
+            <b data-meter>88%</b>
+            <i style="--w:61%"></i>
+        </article>
+        <article class="av07q-metric">
+            <span>감정 변화</span>
+            <b data-meter>70%</b>
+            <i style="--w:74%"></i>
+        </article>
+        <article class="av07q-metric">
+            <span>재문의 확률</span>
+            <b data-meter>81%</b>
+            <i style="--w:87%"></i>
+        </article>
+        <article class="av07q-metric">
+            <span>품질 점수</span>
+            <b data-meter>92%</b>
+            <i style="--w:60%"></i>
+        </article></aside>
+            <main id="av07q-stream"></main>
+            <div class="radar"><i style="--x:25%;--y:23%"></i><i style="--x:48%;--y:54%"></i><i style="--x:71%;--y:21%"></i><i style="--x:32%;--y:52%"></i><i style="--x:55%;--y:19%"></i><i style="--x:78%;--y:50%"></i><i style="--x:39%;--y:17%"></i><i style="--x:62%;--y:48%"></i><i style="--x:23%;--y:79%"></i></div>
+        </section>
+<script>
+const av07qs=document.getElementById("av07q-stream");const av07qlogs=["상담 요약 queued","의도 분류 threshold crossed","owner=CX 운영팀","sla.check passed","handoff ticket 7-A"];let av07qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av07qlogs[av07qn++%av07qlogs.length];av07qs.prepend(p);while(av07qs.children.length>26)av07qs.lastElementChild.remove();},430);
+const av07qmeters=[...document.querySelectorAll("[data-meter]")];
+let av07qtick=0;
+setInterval(()=>{
+  av07qtick++;
+  av07qmeters.forEach((el,i)=>el.textContent=(62+((av07qtick*3+i*9+7)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

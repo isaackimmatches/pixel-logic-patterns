@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-97-logic | 고객 상담 음성 데이터 자산화</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f5f3ff;color:#211a36}.av97l-compiler{height:100vh;display:grid;grid-template-columns:360px 1fr 300px;gap:18px;padding:22px}.editor,.preview,.weights{border:2px solid #211a36;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #211a36}.editor{padding:24px}.editor h1{font-size:32px;line-height:1.04;margin:0 0 18px}.editor p{border:1px solid #d8b4fe;border-radius:16px;padding:14px}.editor b{display:block;color:#7c3aed}.editor span{display:block}.preview{display:grid;place-items:center;overflow:hidden}.preview canvas{width:100%;height:100%}.weights{padding:20px}.weights label{display:block;margin-bottom:28px;font-weight:950}.weights input{display:block;width:100%;accent-color:#7c3aed;margin-top:12px}
+</style>
+</head>
+<body>
+<main class="av97l-compiler">
+            <section class="editor"><h1>Conversation Intelligence Desk Rule Compiler</h1><p><b>rule.1</b><span>when 의도 분류 then 상담 요약</span></p><p><b>rule.2</b><span>when 감정 변화 then 답변 추천</span></p><p><b>rule.3</b><span>when 재문의 확률 then QA 샘플링</span></p><p><b>rule.4</b><span>when 품질 점수 then 후속 티켓</span></p></section>
+            <section class="preview"><canvas id="av97l-canvas" width="780" height="560"></canvas></section>
+            <section class="weights"><label>상담 녹취<input type="range" value="92" disabled></label><label>CRM 프로필<input type="range" value="59" disabled></label><label>문의 이력<input type="range" value="76" disabled></label><label>지식베이스<input type="range" value="93" disabled></label></section>
+        </main>
+<script>
+const c=document.getElementById("av97l-canvas"),ctx=c.getContext("2d");let t=0;function draw(){t+=.03;ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle="#f5f3ff";ctx.fillRect(0,0,c.width,c.height);for(let i=0;i<10;i++){ctx.beginPath();ctx.arc(90+i*70,290+Math.sin(t+i)*130,26+i%3*7,0,Math.PI*2);ctx.fillStyle=i%2?"#d8b4fe":"#7c3aed";ctx.fill();ctx.strokeStyle="#211a36";ctx.lineWidth=4;ctx.stroke();}ctx.fillStyle="#211a36";ctx.font="800 34px Inter";ctx.fillText("콜 decision surface",42,68);requestAnimationFrame(draw)}draw();
+</script>
+</body>
+</html>

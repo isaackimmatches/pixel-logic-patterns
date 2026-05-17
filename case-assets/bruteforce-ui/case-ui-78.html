@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-78 | 보험청구 분류</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#f7f2ea;color:#261b14}
+.cu78{height:100vh;padding:24px;gap:15px;background:radial-gradient(circle at 24% 66%, #fed7aa66, transparent 28%), linear-gradient(#ffedd555 1px, transparent 1px), linear-gradient(90deg, #ffedd555 1px, transparent 1px);background-size:auto,42px 42px,42px 42px}
+.cu78 > *{min-width:0}
+.cu78-hero,.cu78-visual,.cu78-meters,.cu78-board,.cu78-log,.cu78-nav{border:2px solid #261b14;border-radius:26px;background:#ffffff;box-shadow:9px 9px 0 #261b14;overflow:hidden}
+.cu78-hero{padding:24px}.cu78-hero p{margin:0;color:#b45309;font-weight:950;letter-spacing:.06em}.cu78-hero h1{margin:10px 0 6px;font-size:40px;line-height:.98;letter-spacing:-.055em}.cu78-hero strong{display:block;color:#261b14;opacity:.72}
+.cu78-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu78-nav span{border:1px solid #fed7aa;border-radius:14px;background:#f7f2ea;padding:12px;font-weight:950;font-size:13px}.cu78-nav span.on{background:#261b14;color:#ffffff}
+.cu78-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu78-meter{border:1px solid #fed7aa;border-radius:16px;padding:13px}.cu78-meter span{display:block;font-size:12px;color:#261b14;opacity:.72}.cu78-meter b{font-size:26px}.cu78-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#b45309;margin-top:8px}
+.cu78-board{padding:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;align-content:start}.cu78-board article{border:1px solid #fed7aa;border-radius:16px;background:#f7f2ea;padding:13px;min-height:92px}.cu78-board b{display:block;font-size:13px}.cu78-board span{display:block;margin-top:10px;color:#261b14;opacity:.65;font-size:12px}.cu78-board em{display:block;margin-top:12px;color:#b45309;font-style:normal;font-weight:950}
+.cu78-visual{position:relative;padding:18px}.cu78-log{background:#261b14;color:#fed7aa;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu78-nav{grid-row:1/4}.screen-a .cu78-hero{grid-column:2}.screen-a .cu78-visual{grid-column:2;grid-row:2/4}.screen-a .cu78-meters{grid-column:3;grid-row:1/3}.screen-a .cu78-board{grid-column:3;grid-row:3}.screen-a .cu78-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu78-hero{grid-column:1}.screen-b .cu78-meters{grid-column:2}.screen-b .cu78-visual{grid-column:1/3;grid-row:2}.screen-b .cu78-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu78-board{grid-column:3;grid-row:1/3}.screen-b .cu78-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu78-visual{grid-column:1;grid-row:1/5}.screen-c .cu78-hero{grid-column:2;grid-row:1}.screen-c .cu78-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu78-board{grid-column:2;grid-row:3}.screen-c .cu78-meters{grid-column:2;grid-row:4}.screen-c .cu78-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu78-nav{grid-row:1/3}.screen-d .cu78-board{grid-column:2;grid-row:1}.screen-d .cu78-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu78-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu78-meters{grid-column:2;grid-row:2}.screen-d .cu78-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu78-hero{grid-row:1}.screen-e .cu78-visual{grid-column:2;grid-row:1/4}.screen-e .cu78-log{grid-column:3;grid-row:1/3}.screen-e .cu78-board{grid-column:1;grid-row:2}.screen-e .cu78-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu78-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu78-meters{grid-column:1;grid-row:1/4}.screen-f .cu78-hero{grid-column:2;grid-row:1}.screen-f .cu78-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu78-visual{grid-column:2;grid-row:3}.screen-f .cu78-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu78-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu78-log{grid-row:1/3}.screen-g .cu78-hero{grid-column:2}.screen-g .cu78-visual{grid-column:2;grid-row:2}.screen-g .cu78-board{grid-column:3;grid-row:1}.screen-g .cu78-meters{grid-column:3;grid-row:2}.screen-g .cu78-nav{display:none}
+.cu78-asset{position:absolute;inset:0;background:#261b14;overflow:hidden}.cu78-asset i{position:absolute;left:var(--x);top:var(--y);width:60px;height:40px;border-radius:16px;background:#b45309;opacity:.72}.cu78-asset i.sel{background:#fed7aa;box-shadow:0 0 0 10px #fed7aa33}.cu78-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#261b14;border-radius:999px;padding:12px 15px}
+.cu78-radar{width:100%;height:100%}.cu78-radar circle{fill:none;stroke:#fed7aa;stroke-width:3}.cu78-radar rect{fill:#ffffff;stroke:#261b14;stroke-width:3}.cu78-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#261b14}
+.cu78-supply{width:100%;height:100%;background:#f7f2ea}.cu78-supply path{fill:none;stroke:#b45309;stroke-width:10;stroke-dasharray:14 10}.cu78-supply circle{fill:#ffffff;stroke:#261b14;stroke-width:5}.cu78-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#261b14}
+.cu78-trading{height:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cu78-trading article{position:relative;border:1px solid #fed7aa;border-radius:16px;background:#f7f2ea;padding:12px}.cu78-trading small{font-weight:950;color:#b45309}.cu78-trading b{display:block;font-size:22px;margin-top:8px}.cu78-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#fed7aa,#b45309)}
+.cu78-stars{width:100%;height:100%;background:#261b14;border-radius:18px}.cu78-stars line{stroke:#fed7aa;stroke-width:1;opacity:.45}.cu78-stars circle{fill:#fed7aa}.cu78-stars circle.hot{fill:#b45309}.cu78-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu78-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu78-document section,.cu78-document aside{border:1px solid #fed7aa;border-radius:18px;background:#f7f2ea;padding:22px}.cu78-document p{height:13px;border-radius:99px;background:#fed7aa;margin:0 0 16px}.cu78-document p.mark{background:#b45309;box-shadow:0 0 0 8px #fed7aa77}.cu78-document b{display:block;border-bottom:1px solid #fed7aa;padding:14px 0;color:#b45309}
+.cu78-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu78-voice>div{display:flex;align-items:center;gap:7px}.cu78-voice i{flex:1;border-radius:99px;background:#b45309}.cu78-voice aside{border:1px solid #fed7aa;border-radius:18px;background:#f7f2ea;padding:16px}.cu78-voice p{border-bottom:1px solid #fed7aa;padding-bottom:12px}.cu78-voice b,.cu78-voice span{display:block}
+.cu78-factory{height:100%;display:grid;grid-template-columns:repeat(11,1fr);gap:9px}.cu78-factory i{border-radius:10px;background:#ffedd5;border:1px solid #fed7aa}.cu78-factory i.warn{background:#f59e0b}.cu78-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu78-people-graph{position:absolute;inset:0;background:#ffffff}.cu78-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #261b14;border-radius:999px;background:#f7f2ea;padding:10px 12px;text-align:center}.cu78-people-graph b{display:block;font-size:12px}.cu78-people-graph span{color:#b45309;font-weight:950}.cu78-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#fed7aa;transform:rotate(var(--r));transform-origin:left center}
+.cu78-control{height:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.cu78-control article{border:1px solid #fed7aa;border-radius:16px;background:#f7f2ea;padding:14px}.cu78-control b,.cu78-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu78 screen-b"><div class="cu78-hero"><p>Cobalt Market · CASE 078</p><h1>Document Risk Workbench</h1><strong>보험청구 분류</strong></div><div class="cu78-meters"><article class="cu78-meter"><span>승인 이력</span><b data-live>80%</b><i style="--w:80%"></i></article><article class="cu78-meter"><span>표준 조항집</span><b data-live>89%</b><i style="--w:89%"></i></article><article class="cu78-meter"><span>조항 추출</span><b data-live>61%</b><i style="--w:61%"></i></article><article class="cu78-meter"><span>검토자 지정</span><b data-live>70%</b><i style="--w:70%"></i></article><article class="cu78-meter"><span>반려 사유</span><b data-live>79%</b><i style="--w:79%"></i></article></div><section class="cu78-visual"><div class="cu78-document">
+            <section><p class="" style="width:92%"></p><p class="" style="width:85%"></p><p class="mark" style="width:78%"></p><p class="" style="width:71%"></p><p class="" style="width:64%"></p><p class="" style="width:57%"></p><p class="mark" style="width:92%"></p><p class="" style="width:85%"></p><p class="" style="width:78%"></p><p class="" style="width:71%"></p><p class="mark" style="width:64%"></p><p class="" style="width:57%"></p><p class="" style="width:92%"></p></section>
+            <aside><b>01 핵심 조항</b><b>02 금액 불일치</b><b>03 권한 예외</b><b>04 검토 위험도</b></aside>
+        </div></section><nav class="cu78-nav"><span class="">PDF 원본</span><span class="">거래처 원장</span><span class="">승인 이력</span><span class="on">표준 조항집</span><span class="">조항 추출</span></nav><section class="cu78-board"><article><b>문서-078-0</b><span>반려 사유</span><em data-live>58%</em></article><article><b>조항-078-1</b><span>승인 큐</span><em data-live>69%</em></article><article><b>금액-078-2</b><span>핵심 조항</span><em data-live>80%</em></article><article><b>거래처-078-3</b><span>금액 불일치</span><em data-live>91%</em></article><article><b>문서-078-4</b><span>권한 예외</span><em data-live>63%</em></article><article><b>조항-078-5</b><span>검토 위험도</span><em data-live>74%</em></article><article><b>금액-078-6</b><span>조항 추출</span><em data-live>85%</em></article><article><b>거래처-078-7</b><span>검토자 지정</span><em data-live>96%</em></article><article><b>문서-078-8</b><span>반려 사유</span><em data-live>68%</em></article></section><aside class="cu78-log" id="cu78log"></aside></main>
+<script>
+
+
+const cu78Live=[...document.querySelectorAll("[data-live]")];
+let cu78Frame=0;
+setInterval(()=>{cu78Frame++;cu78Live.forEach((el,i)=>{el.textContent=(58+((cu78Frame*3+i*7+78)%39))+"%";});},1200);
+
+const cu78Log=document.getElementById("cu78log");
+if(cu78Log){
+  const rows=["핵심 조항","금액 불일치","권한 예외","검토 위험도","조항 추출","검토자 지정","반려 사유","승인 큐","PDF 원본","거래처 원장","승인 이력","표준 조항집"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu78Log.prepend(p);while(cu78Log.children.length>18)cu78Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

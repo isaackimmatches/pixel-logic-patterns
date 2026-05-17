@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-49-logic | 앱푸시 발송 타이밍</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#effaf5;color:#10251d}.av49l-compiler{height:100vh;display:grid;grid-template-columns:360px 1fr 300px;gap:18px;padding:22px}.editor,.preview,.weights{border:2px solid #10251d;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #10251d}.editor{padding:24px}.editor h1{font-size:32px;line-height:1.04;margin:0 0 18px}.editor p{border:1px solid #b7f3d4;border-radius:16px;padding:14px}.editor b{display:block;color:#10b981}.editor span{display:block}.preview{display:grid;place-items:center;overflow:hidden}.preview canvas{width:100%;height:100%}.weights{padding:20px}.weights label{display:block;margin-bottom:28px;font-weight:950}.weights input{display:block;width:100%;accent-color:#10b981;margin-top:12px}
+</style>
+</head>
+<body>
+<main class="av49l-compiler">
+            <section class="editor"><h1>Performance Control Tower Rule Compiler</h1><p><b>rule.1</b><span>when CTR 예측 then 입찰 조정</span></p><p><b>rule.2</b><span>when CPC 변동 then 소재 교체</span></p><p><b>rule.3</b><span>when 피로도 then 예산 이동</span></p><p><b>rule.4</b><span>when 증분 ROAS then 제외 오디언스</span></p></section>
+            <section class="preview"><canvas id="av49l-canvas" width="780" height="560"></canvas></section>
+            <section class="weights"><label>광고 API<input type="range" value="94" disabled></label><label>전환 이벤트<input type="range" value="61" disabled></label><label>소재 버전<input type="range" value="78" disabled></label><label>예산 캡<input type="range" value="45" disabled></label></section>
+        </main>
+<script>
+const c=document.getElementById("av49l-canvas"),ctx=c.getContext("2d");let t=0;function draw(){t+=.03;ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle="#effaf5";ctx.fillRect(0,0,c.width,c.height);for(let i=0;i<10;i++){ctx.beginPath();ctx.arc(90+i*70,290+Math.sin(t+i)*130,26+i%3*7,0,Math.PI*2);ctx.fillStyle=i%2?"#b7f3d4":"#10b981";ctx.fill();ctx.strokeStyle="#10251d";ctx.lineWidth=4;ctx.stroke();}ctx.fillStyle="#10251d";ctx.font="800 34px Inter";ctx.fillText("키워드 decision surface",42,68);requestAnimationFrame(draw)}draw();
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-23-queue | 리퍼·중고 검수 라벨링</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#111827;color:#ffffff}.av23q-command{height:100vh;display:grid;grid-template-columns:320px 1fr 420px;gap:18px;padding:22px;background:radial-gradient(circle at 76% 30%,#2563eb55,transparent 34%),#111827}.av23q-command aside,.av23q-command main,.radar{border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.06)}.av23q-command aside{padding:22px}. av23q-command h1{font-size:34px;line-height:1.04;margin:0}. av23q-command p{color:#9bd4ff;line-height:1.7}.av23q-metric{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;margin-top:12px}. av23q-metric b{font-size:26px}. av23q-metric span{display:block}. av23q-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#2563eb;margin-top:9px}.av23q-command main{padding:18px;font-family:ui-monospace,Menlo,monospace;color:#a7f3d0;line-height:1.8;overflow:hidden}.radar{position:relative;overflow:hidden;background-image:repeating-radial-gradient(circle at center,transparent 0 55px,rgba(255,255,255,.15) 56px 58px)}.radar:after{content:"";position:absolute;left:50%;top:50%;width:2px;height:50%;background:#2563eb;transform-origin:0 0;animation:av23qscan 4s linear infinite}.radar i{position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;border-radius:50%;background:#9bd4ff;box-shadow:0 0 0 8px #9bd4ff33}@keyframes av23qscan{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<section class="av23q-command">
+            <aside><h1>리퍼 중고 AX Console</h1><p>리퍼·중고 검수 라벨링 실시간 처리 로그</p>
+        <article class="av23q-metric">
+            <span>이상치</span>
+            <b data-meter>84%</b>
+            <i style="--w:77%"></i>
+        </article>
+        <article class="av23q-metric">
+            <span>우선순위</span>
+            <b data-meter>95%</b>
+            <i style="--w:90%"></i>
+        </article>
+        <article class="av23q-metric">
+            <span>자동 처리율</span>
+            <b data-meter>77%</b>
+            <i style="--w:63%"></i>
+        </article>
+        <article class="av23q-metric">
+            <span>검수 필요</span>
+            <b data-meter>88%</b>
+            <i style="--w:76%"></i>
+        </article></aside>
+            <main id="av23q-stream"></main>
+            <div class="radar"><i style="--x:41%;--y:39%"></i><i style="--x:64%;--y:70%"></i><i style="--x:25%;--y:37%"></i><i style="--x:48%;--y:68%"></i><i style="--x:71%;--y:35%"></i><i style="--x:32%;--y:66%"></i><i style="--x:55%;--y:33%"></i><i style="--x:78%;--y:64%"></i><i style="--x:39%;--y:31%"></i></div>
+        </section>
+<script>
+const av23qs=document.getElementById("av23q-stream");const av23qlogs=["자동 실행 queued","이상치 threshold crossed","owner=커머스 운영팀","sla.check passed","handoff ticket 23-A"];let av23qn=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av23qlogs[av23qn++%av23qlogs.length];av23qs.prepend(p);while(av23qs.children.length>26)av23qs.lastElementChild.remove();},430);
+const av23qmeters=[...document.querySelectorAll("[data-meter]")];
+let av23qtick=0;
+setInterval(()=>{
+  av23qtick++;
+  av23qmeters.forEach((el,i)=>el.textContent=(62+((av23qtick*3+i*9+23)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

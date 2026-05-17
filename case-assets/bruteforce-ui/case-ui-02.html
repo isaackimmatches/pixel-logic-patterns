@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-02 | 상세페이지 이미지 품질 검수</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#f5f3ff;color:#211a36}
+.cu02{height:100vh;padding:20px;gap:16px;background:radial-gradient(circle at 53% 45%, #d8b4fe66, transparent 28%), linear-gradient(#ede9fe55 1px, transparent 1px), linear-gradient(90deg, #ede9fe55 1px, transparent 1px);background-size:auto,36px 36px,36px 36px}
+.cu02 > *{min-width:0}
+.cu02-hero,.cu02-visual,.cu02-meters,.cu02-board,.cu02-log,.cu02-nav{border:2px solid #211a36;border-radius:20px;background:#ffffff;box-shadow:8px 8px 0 #211a36;overflow:hidden}
+.cu02-hero{padding:24px}.cu02-hero p{margin:0;color:#7c3aed;font-weight:950;letter-spacing:.06em}.cu02-hero h1{margin:10px 0 6px;font-size:36px;line-height:.98;letter-spacing:-.055em}.cu02-hero strong{display:block;color:#211a36;opacity:.72}
+.cu02-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu02-nav span{border:1px solid #d8b4fe;border-radius:14px;background:#f5f3ff;padding:12px;font-weight:950;font-size:13px}.cu02-nav span.on{background:#211a36;color:#ffffff}
+.cu02-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu02-meter{border:1px solid #d8b4fe;border-radius:16px;padding:13px}.cu02-meter span{display:block;font-size:12px;color:#211a36;opacity:.72}.cu02-meter b{font-size:26px}.cu02-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#7c3aed;margin-top:8px}
+.cu02-board{padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-content:start}.cu02-board article{border:1px solid #d8b4fe;border-radius:16px;background:#f5f3ff;padding:13px;min-height:84px}.cu02-board b{display:block;font-size:13px}.cu02-board span{display:block;margin-top:10px;color:#211a36;opacity:.65;font-size:12px}.cu02-board em{display:block;margin-top:12px;color:#7c3aed;font-style:normal;font-weight:950}
+.cu02-visual{position:relative;padding:18px}.cu02-log{background:#211a36;color:#d8b4fe;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu02-nav{grid-row:1/4}.screen-a .cu02-hero{grid-column:2}.screen-a .cu02-visual{grid-column:2;grid-row:2/4}.screen-a .cu02-meters{grid-column:3;grid-row:1/3}.screen-a .cu02-board{grid-column:3;grid-row:3}.screen-a .cu02-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu02-hero{grid-column:1}.screen-b .cu02-meters{grid-column:2}.screen-b .cu02-visual{grid-column:1/3;grid-row:2}.screen-b .cu02-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu02-board{grid-column:3;grid-row:1/3}.screen-b .cu02-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu02-visual{grid-column:1;grid-row:1/5}.screen-c .cu02-hero{grid-column:2;grid-row:1}.screen-c .cu02-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu02-board{grid-column:2;grid-row:3}.screen-c .cu02-meters{grid-column:2;grid-row:4}.screen-c .cu02-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu02-nav{grid-row:1/3}.screen-d .cu02-board{grid-column:2;grid-row:1}.screen-d .cu02-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu02-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu02-meters{grid-column:2;grid-row:2}.screen-d .cu02-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu02-hero{grid-row:1}.screen-e .cu02-visual{grid-column:2;grid-row:1/4}.screen-e .cu02-log{grid-column:3;grid-row:1/3}.screen-e .cu02-board{grid-column:1;grid-row:2}.screen-e .cu02-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu02-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu02-meters{grid-column:1;grid-row:1/4}.screen-f .cu02-hero{grid-column:2;grid-row:1}.screen-f .cu02-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu02-visual{grid-column:2;grid-row:3}.screen-f .cu02-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu02-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu02-log{grid-row:1/3}.screen-g .cu02-hero{grid-column:2}.screen-g .cu02-visual{grid-column:2;grid-row:2}.screen-g .cu02-board{grid-column:3;grid-row:1}.screen-g .cu02-meters{grid-column:3;grid-row:2}.screen-g .cu02-nav{display:none}
+.cu02-asset{position:absolute;inset:0;background:#211a36;overflow:hidden}.cu02-asset i{position:absolute;left:var(--x);top:var(--y);width:40px;height:36px;border-radius:10px;background:#7c3aed;opacity:.72}.cu02-asset i.sel{background:#d8b4fe;box-shadow:0 0 0 10px #d8b4fe33}.cu02-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#211a36;border-radius:999px;padding:12px 15px}
+.cu02-radar{width:100%;height:100%}.cu02-radar circle{fill:none;stroke:#d8b4fe;stroke-width:3}.cu02-radar rect{fill:#ffffff;stroke:#211a36;stroke-width:3}.cu02-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#211a36}
+.cu02-supply{width:100%;height:100%;background:#f5f3ff}.cu02-supply path{fill:none;stroke:#7c3aed;stroke-width:10;stroke-dasharray:14 10}.cu02-supply circle{fill:#ffffff;stroke:#211a36;stroke-width:5}.cu02-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#211a36}
+.cu02-trading{height:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cu02-trading article{position:relative;border:1px solid #d8b4fe;border-radius:16px;background:#f5f3ff;padding:12px}.cu02-trading small{font-weight:950;color:#7c3aed}.cu02-trading b{display:block;font-size:22px;margin-top:8px}.cu02-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#d8b4fe,#7c3aed)}
+.cu02-stars{width:100%;height:100%;background:#211a36;border-radius:18px}.cu02-stars line{stroke:#d8b4fe;stroke-width:1;opacity:.45}.cu02-stars circle{fill:#d8b4fe}.cu02-stars circle.hot{fill:#7c3aed}.cu02-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu02-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu02-document section,.cu02-document aside{border:1px solid #d8b4fe;border-radius:18px;background:#f5f3ff;padding:22px}.cu02-document p{height:13px;border-radius:99px;background:#d8b4fe;margin:0 0 16px}.cu02-document p.mark{background:#7c3aed;box-shadow:0 0 0 8px #d8b4fe77}.cu02-document b{display:block;border-bottom:1px solid #d8b4fe;padding:14px 0;color:#7c3aed}
+.cu02-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu02-voice>div{display:flex;align-items:center;gap:7px}.cu02-voice i{flex:1;border-radius:99px;background:#7c3aed}.cu02-voice aside{border:1px solid #d8b4fe;border-radius:18px;background:#f5f3ff;padding:16px}.cu02-voice p{border-bottom:1px solid #d8b4fe;padding-bottom:12px}.cu02-voice b,.cu02-voice span{display:block}
+.cu02-factory{height:100%;display:grid;grid-template-columns:repeat(10,1fr);gap:9px}.cu02-factory i{border-radius:10px;background:#ede9fe;border:1px solid #d8b4fe}.cu02-factory i.warn{background:#f59e0b}.cu02-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu02-people-graph{position:absolute;inset:0;background:#ffffff}.cu02-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #211a36;border-radius:999px;background:#f5f3ff;padding:10px 12px;text-align:center}.cu02-people-graph b{display:block;font-size:12px}.cu02-people-graph span{color:#7c3aed;font-weight:950}.cu02-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#d8b4fe;transform:rotate(var(--r));transform-origin:left center}
+.cu02-control{height:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.cu02-control article{border:1px solid #d8b4fe;border-radius:16px;background:#f5f3ff;padding:14px}.cu02-control b,.cu02-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu02 screen-c"><section class="cu02-visual"><div class="cu02-asset">
+            <i class="" style="--x:22%;--y:14%"></i><i class="" style="--x:59%;--y:67%"></i><i class="sel" style="--x:8%;--y:42%"></i><i class="" style="--x:45%;--y:17%"></i><i class="" style="--x:82%;--y:70%"></i><i class="" style="--x:31%;--y:45%"></i><i class="" style="--x:68%;--y:20%"></i><i class="sel" style="--x:17%;--y:73%"></i><i class="" style="--x:54%;--y:48%"></i><i class="" style="--x:3%;--y:23%"></i><i class="" style="--x:40%;--y:76%"></i><i class="" style="--x:77%;--y:51%"></i><i class="sel" style="--x:26%;--y:26%"></i><i class="" style="--x:63%;--y:1%"></i><i class="" style="--x:12%;--y:54%"></i><i class="" style="--x:49%;--y:29%"></i><i class="" style="--x:86%;--y:4%"></i><i class="sel" style="--x:35%;--y:57%"></i>
+            <b>버전 비교</b>
+        </div></section><div class="cu02-hero"><p>Cobalt Market · CASE 002</p><h1>Creative Asset Forge</h1><strong>상세페이지 이미지 품질 검수</strong></div><nav class="cu02-nav"><span class="">원본 에셋</span><span class="">브랜드 가이드</span><span class="on">채널 규격</span><span class="">권리 DB</span><span class="">자동 생성</span></nav><section class="cu02-board"><article><b>에셋-002-0</b><span>톤 불일치</span><em data-live>60%</em></article><article><b>레이어-002-1</b><span>권리 위험</span><em data-live>71%</em></article><article><b>프레임-002-2</b><span>자동 생성</span><em data-live>82%</em></article><article><b>채널-002-3</b><span>검수 요청</span><em data-live>93%</em></article><article><b>에셋-002-4</b><span>버전 비교</span><em data-live>65%</em></article><article><b>레이어-002-5</b><span>배포</span><em data-live>76%</em></article><article><b>프레임-002-6</b><span>마스킹 경계</span><em data-live>87%</em></article><article><b>채널-002-7</b><span>프레임 변화</span><em data-live>59%</em></article></section><div class="cu02-meters"><article class="cu02-meter"><span>톤 불일치</span><b data-live>70%</b><i style="--w:70%"></i></article><article class="cu02-meter"><span>권리 위험</span><b data-live>79%</b><i style="--w:79%"></i></article><article class="cu02-meter"><span>원본 에셋</span><b data-live>88%</b><i style="--w:88%"></i></article><article class="cu02-meter"><span>브랜드 가이드</span><b data-live>60%</b><i style="--w:60%"></i></article><article class="cu02-meter"><span>채널 규격</span><b data-live>69%</b><i style="--w:69%"></i></article></div><aside class="cu02-log" id="cu02log"></aside></main>
+<script>
+
+
+const cu02Live=[...document.querySelectorAll("[data-live]")];
+let cu02Frame=0;
+setInterval(()=>{cu02Frame++;cu02Live.forEach((el,i)=>{el.textContent=(58+((cu02Frame*3+i*7+2)%39))+"%";});},1200);
+
+const cu02Log=document.getElementById("cu02log");
+if(cu02Log){
+  const rows=["마스킹 경계","프레임 변화","톤 불일치","권리 위험","자동 생성","검수 요청","버전 비교","배포","원본 에셋","브랜드 가이드","채널 규격","권리 DB"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu02Log.prepend(p);while(cu02Log.children.length>18)cu02Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

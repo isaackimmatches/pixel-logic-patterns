@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-30-data | 온·오프라인 재고 통합</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#effaf5;color:#10251d}.av30d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#b7f3d466 1px,transparent 1px),linear-gradient(90deg,#b7f3d466 1px,transparent 1px);background-size:42px 42px}.av30d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av30d-hub header p{margin:0;color:#10b981;font-weight:950}.av30d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av30d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av30d-hub path{stroke:#10b981;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av30d-hub circle{fill:#ffffff;stroke:#10251d;stroke-width:4}.core{fill:#10b981!important}. av30d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#10251d}.av30d-hub .core+text{fill:#ffffff;font-size:18px}.av30d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #10251d;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #10251d;padding:18px;display:grid;gap:14px;align-content:start}.av30d-metric{border:1px solid #b7f3d4;border-radius:18px;padding:16px}.av30d-metric span{display:block;color:#10251d;opacity:.72}.av30d-metric b{font-size:30px}.av30d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#10b981;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av30d-hub">
+            <header><p>Nova CX</p><h1>Inventory Forecast Console</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L470 400" /><path d="M600 350 L567 471" /><path d="M600 350 L664 542" /><path d="M600 350 L761 613" /><path d="M600 350 L858 684" /><path d="M600 350 L955 175" /><path d="M600 350 L1052 246" /><path d="M600 350 L119 317" /><path d="M600 350 L216 388" /><path d="M600 350 L313 459" /><path d="M600 350 L410 530" /><path d="M600 350 L507 601" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">SKU</text>
+                <g transform="translate(470,400)"><circle r="30" /><text>주문 로그</text></g><g transform="translate(567,471)"><circle r="36" /><text>센터 재고</text></g><g transform="translate(664,542)"><circle r="42" /><text>배송 SLA</text></g><g transform="translate(761,613)"><circle r="48" /><text>프로모션 캘린더</text></g><g transform="translate(858,684)"><circle r="30" /><text>주문 로그</text></g><g transform="translate(955,175)"><circle r="36" /><text>센터 재고</text></g><g transform="translate(1052,246)"><circle r="42" /><text>배송 SLA</text></g><g transform="translate(119,317)"><circle r="48" /><text>프로모션 캘린더</text></g><g transform="translate(216,388)"><circle r="30" /><text>주문 로그</text></g><g transform="translate(313,459)"><circle r="36" /><text>센터 재고</text></g><g transform="translate(410,530)"><circle r="42" /><text>배송 SLA</text></g><g transform="translate(507,601)"><circle r="48" /><text>프로모션 캘린더</text></g>
+            </svg>
+            <aside>
+        <article class="av30d-metric">
+            <span>품절 예상시점</span>
+            <b data-meter>75%</b>
+            <i style="--w:84%"></i>
+        </article>
+        <article class="av30d-metric">
+            <span>과재고 지수</span>
+            <b data-meter>86%</b>
+            <i style="--w:57%"></i>
+        </article>
+        <article class="av30d-metric">
+            <span>대체 SKU</span>
+            <b data-meter>68%</b>
+            <i style="--w:70%"></i>
+        </article>
+        <article class="av30d-metric">
+            <span>센터 간 이동량</span>
+            <b data-meter>79%</b>
+            <i style="--w:83%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av30dmeters=[...document.querySelectorAll("[data-meter]")];
+let av30dtick=0;
+setInterval(()=>{
+  av30dtick++;
+  av30dmeters.forEach((el,i)=>el.textContent=(62+((av30dtick*3+i*9+30)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

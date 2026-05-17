@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-58-data | 페르소나 실험 설계</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#effaf5;color:#10251d}.av58d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#b7f3d466 1px,transparent 1px),linear-gradient(90deg,#b7f3d466 1px,transparent 1px);background-size:42px 42px}.av58d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av58d-hub header p{margin:0;color:#10b981;font-weight:950}.av58d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av58d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av58d-hub path{stroke:#10b981;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av58d-hub circle{fill:#ffffff;stroke:#10251d;stroke-width:4}.core{fill:#10b981!important}. av58d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#10251d}.av58d-hub .core+text{fill:#ffffff;font-size:18px}.av58d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #10251d;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #10251d;padding:18px;display:grid;gap:14px;align-content:start}.av58d-metric{border:1px solid #b7f3d4;border-radius:18px;padding:16px}.av58d-metric span{display:block;color:#10251d;opacity:.72}.av58d-metric b{font-size:30px}.av58d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#10b981;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av58d-hub">
+            <header><p>Modo Beauty</p><h1>페르소나 실험 AX Console</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L834 632" /><path d="M600 350 L931 123" /><path d="M600 350 L1028 194" /><path d="M600 350 L95 265" /><path d="M600 350 L192 336" /><path d="M600 350 L289 407" /><path d="M600 350 L386 478" /><path d="M600 350 L483 549" /><path d="M600 350 L580 620" /><path d="M600 350 L677 111" /><path d="M600 350 L774 182" /><path d="M600 350 L871 253" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">캠페인</text>
+                <g transform="translate(834,632)"><circle r="30" /><text>광고 API</text></g><g transform="translate(931,123)"><circle r="36" /><text>CRM 이벤트</text></g><g transform="translate(1028,194)"><circle r="42" /><text>콘텐츠 메타</text></g><g transform="translate(95,265)"><circle r="48" /><text>검색 로그</text></g><g transform="translate(192,336)"><circle r="30" /><text>광고 API</text></g><g transform="translate(289,407)"><circle r="36" /><text>CRM 이벤트</text></g><g transform="translate(386,478)"><circle r="42" /><text>콘텐츠 메타</text></g><g transform="translate(483,549)"><circle r="48" /><text>검색 로그</text></g><g transform="translate(580,620)"><circle r="30" /><text>광고 API</text></g><g transform="translate(677,111)"><circle r="36" /><text>CRM 이벤트</text></g><g transform="translate(774,182)"><circle r="42" /><text>콘텐츠 메타</text></g><g transform="translate(871,253)"><circle r="48" /><text>검색 로그</text></g>
+            </svg>
+            <aside>
+        <article class="av58d-metric">
+            <span>이상치</span>
+            <b data-meter>68%</b>
+            <i style="--w:72%"></i>
+        </article>
+        <article class="av58d-metric">
+            <span>우선순위</span>
+            <b data-meter>79%</b>
+            <i style="--w:85%"></i>
+        </article>
+        <article class="av58d-metric">
+            <span>자동 처리율</span>
+            <b data-meter>90%</b>
+            <i style="--w:58%"></i>
+        </article>
+        <article class="av58d-metric">
+            <span>검수 필요</span>
+            <b data-meter>72%</b>
+            <i style="--w:71%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av58dmeters=[...document.querySelectorAll("[data-meter]")];
+let av58dtick=0;
+setInterval(()=>{
+  av58dtick++;
+  av58dmeters.forEach((el,i)=>el.textContent=(62+((av58dtick*3+i*9+58)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

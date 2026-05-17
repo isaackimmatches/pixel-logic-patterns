@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-24-data | VIP 구매 패턴 분석</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#fff1f4;color:#2a1721}.av24d-mapper{height:100vh;padding:26px;display:grid;grid-template-rows:86px 1fr;gap:18px}.av24d-mapper header{display:flex;align-items:center;gap:18px;border:2px solid #2a1721;border-radius:24px;background:#ffffff;padding:0 24px;box-shadow:8px 8px 0 #2a1721}.av24d-mapper h1{font-size:34px;margin:0;letter-spacing:-.04em}.av24d-mapper strong{color:#e11d48}.av24d-mapper header span{margin-left:auto;font-weight:950;letter-spacing:.16em}.av24d-flow{min-height:0;display:grid;grid-template-columns:260px 1fr 280px;gap:18px}.av24d-flow aside, .av24d-table{border:2px solid #2a1721;border-radius:26px;background:#ffffff;box-shadow:8px 8px 0 #2a1721}.av24d-flow aside{padding:16px;display:grid;gap:10px;align-content:start}.av24d-flow button{height:64px;border:1px solid #ffc4d1;border-radius:16px;background:#fff1f4;text-align:left;padding:11px 14px;font-weight:950;color:#2a1721}.av24d-flow button em{display:block;font-size:12px;color:#e11d48;font-style:normal;margin-top:4px}.av24d-table{overflow:hidden}.head, .av24d-table div:not(.head){display:grid;grid-template-columns:1.1fr 1.1fr 1fr .7fr .7fr}.head{height:58px;background:#2a1721;color:#ffffff;align-items:center;padding:0 16px;font-size:12px;text-transform:uppercase}.av24d-table div:not(.head){height:58px;align-items:center;border-bottom:1px solid #ffc4d1;padding:0 16px;color:#2a1721}.av24d-table mark{border-radius:999px;background:#ffc4d1;color:#2a1721;padding:7px 10px;font-weight:950}.right .av24d-metric{border:1px solid #ffc4d1;border-radius:18px;padding:14px}.right .av24d-metric span{display:block;color:#2a1721;opacity:.72;font-size:12px}.right .av24d-metric b{font-size:28px}.right .av24d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#e11d48;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av24d-mapper">
+            <header><strong>Nori Edu</strong><h1>VIP 구매 AX Console</h1><span>DATA INTAKE</span></header>
+            <section class="av24d-flow">
+                <aside><button>상품 DB<em>2088</em></button><button>주문 로그<em>2292</em></button><button>리뷰 텍스트<em>2496</em></button><button>재고 원장<em>2700</em></button></aside>
+                <article class="av24d-table">
+                    <div class="head"><b>source_key</b><b>clean_rule</b><b>owner</b><b>refresh</b><b>status</b></div>
+                    <div><span>SKU-240</span><span>이상치</span><span>커머스 운영팀</span><span>realtime</span><mark>review</mark></div><div><span>주문-241</span><span>우선순위</span><span>커머스 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>리뷰-242</span><span>자동 처리율</span><span>커머스 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>매장-243</span><span>검수 필요</span><span>커머스 운영팀</span><span>realtime</span><mark>valid</mark></div><div><span>SKU-244</span><span>이상치</span><span>커머스 운영팀</span><span>15 min</span><mark>review</mark></div><div><span>주문-245</span><span>우선순위</span><span>커머스 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>리뷰-246</span><span>자동 처리율</span><span>커머스 운영팀</span><span>realtime</span><mark>valid</mark></div><div><span>매장-247</span><span>검수 필요</span><span>커머스 운영팀</span><span>15 min</span><mark>valid</mark></div><div><span>SKU-248</span><span>이상치</span><span>커머스 운영팀</span><span>15 min</span><mark>review</mark></div>
+                </article>
+                <aside class="right">
+        <article class="av24d-metric">
+            <span>이상치</span>
+            <b data-meter>91%</b>
+            <i style="--w:78%"></i>
+        </article>
+        <article class="av24d-metric">
+            <span>우선순위</span>
+            <b data-meter>73%</b>
+            <i style="--w:91%"></i>
+        </article>
+        <article class="av24d-metric">
+            <span>자동 처리율</span>
+            <b data-meter>84%</b>
+            <i style="--w:64%"></i>
+        </article>
+        <article class="av24d-metric">
+            <span>검수 필요</span>
+            <b data-meter>95%</b>
+            <i style="--w:77%"></i>
+        </article></aside>
+            </section>
+        </main>
+<script>
+
+const av24dmeters=[...document.querySelectorAll("[data-meter]")];
+let av24dtick=0;
+setInterval(()=>{
+  av24dtick++;
+  av24dmeters.forEach((el,i)=>el.textContent=(62+((av24dtick*3+i*9+24)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

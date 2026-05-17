@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-59 | 다국어 상세페이지 로컬라이징</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#eef7f8;color:#132f33}
+.cu59{height:100vh;padding:23px;gap:17px;background:radial-gradient(circle at 12% 26%, #a5f3fc66, transparent 28%), linear-gradient(#cffafe55 1px, transparent 1px), linear-gradient(90deg, #cffafe55 1px, transparent 1px);background-size:auto,37px 37px,37px 37px}
+.cu59 > *{min-width:0}
+.cu59-hero,.cu59-visual,.cu59-meters,.cu59-board,.cu59-log,.cu59-nav{border:2px solid #132f33;border-radius:21px;background:#ffffff;box-shadow:10px 10px 0 #132f33;overflow:hidden}
+.cu59-hero{padding:24px}.cu59-hero p{margin:0;color:#0891b2;font-weight:950;letter-spacing:.06em}.cu59-hero h1{margin:10px 0 6px;font-size:39px;line-height:.98;letter-spacing:-.055em}.cu59-hero strong{display:block;color:#132f33;opacity:.72}
+.cu59-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu59-nav span{border:1px solid #a5f3fc;border-radius:14px;background:#eef7f8;padding:12px;font-weight:950;font-size:13px}.cu59-nav span.on{background:#132f33;color:#ffffff}
+.cu59-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu59-meter{border:1px solid #a5f3fc;border-radius:16px;padding:13px}.cu59-meter span{display:block;font-size:12px;color:#132f33;opacity:.72}.cu59-meter b{font-size:26px}.cu59-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#0891b2;margin-top:8px}
+.cu59-board{padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-content:start}.cu59-board article{border:1px solid #a5f3fc;border-radius:16px;background:#eef7f8;padding:13px;min-height:107px}.cu59-board b{display:block;font-size:13px}.cu59-board span{display:block;margin-top:10px;color:#132f33;opacity:.65;font-size:12px}.cu59-board em{display:block;margin-top:12px;color:#0891b2;font-style:normal;font-weight:950}
+.cu59-visual{position:relative;padding:18px}.cu59-log{background:#132f33;color:#a5f3fc;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu59-nav{grid-row:1/4}.screen-a .cu59-hero{grid-column:2}.screen-a .cu59-visual{grid-column:2;grid-row:2/4}.screen-a .cu59-meters{grid-column:3;grid-row:1/3}.screen-a .cu59-board{grid-column:3;grid-row:3}.screen-a .cu59-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu59-hero{grid-column:1}.screen-b .cu59-meters{grid-column:2}.screen-b .cu59-visual{grid-column:1/3;grid-row:2}.screen-b .cu59-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu59-board{grid-column:3;grid-row:1/3}.screen-b .cu59-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu59-visual{grid-column:1;grid-row:1/5}.screen-c .cu59-hero{grid-column:2;grid-row:1}.screen-c .cu59-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu59-board{grid-column:2;grid-row:3}.screen-c .cu59-meters{grid-column:2;grid-row:4}.screen-c .cu59-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu59-nav{grid-row:1/3}.screen-d .cu59-board{grid-column:2;grid-row:1}.screen-d .cu59-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu59-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu59-meters{grid-column:2;grid-row:2}.screen-d .cu59-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu59-hero{grid-row:1}.screen-e .cu59-visual{grid-column:2;grid-row:1/4}.screen-e .cu59-log{grid-column:3;grid-row:1/3}.screen-e .cu59-board{grid-column:1;grid-row:2}.screen-e .cu59-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu59-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu59-meters{grid-column:1;grid-row:1/4}.screen-f .cu59-hero{grid-column:2;grid-row:1}.screen-f .cu59-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu59-visual{grid-column:2;grid-row:3}.screen-f .cu59-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu59-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu59-log{grid-row:1/3}.screen-g .cu59-hero{grid-column:2}.screen-g .cu59-visual{grid-column:2;grid-row:2}.screen-g .cu59-board{grid-column:3;grid-row:1}.screen-g .cu59-meters{grid-column:3;grid-row:2}.screen-g .cu59-nav{display:none}
+.cu59-asset{position:absolute;inset:0;background:#132f33;overflow:hidden}.cu59-asset i{position:absolute;left:var(--x);top:var(--y);width:41px;height:45px;border-radius:11px;background:#0891b2;opacity:.72}.cu59-asset i.sel{background:#a5f3fc;box-shadow:0 0 0 10px #a5f3fc33}.cu59-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#132f33;border-radius:999px;padding:12px 15px}
+.cu59-radar{width:100%;height:100%}.cu59-radar circle{fill:none;stroke:#a5f3fc;stroke-width:3}.cu59-radar rect{fill:#ffffff;stroke:#132f33;stroke-width:3}.cu59-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#132f33}
+.cu59-supply{width:100%;height:100%;background:#eef7f8}.cu59-supply path{fill:none;stroke:#0891b2;stroke-width:10;stroke-dasharray:14 10}.cu59-supply circle{fill:#ffffff;stroke:#132f33;stroke-width:5}.cu59-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#132f33}
+.cu59-trading{height:100%;display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.cu59-trading article{position:relative;border:1px solid #a5f3fc;border-radius:16px;background:#eef7f8;padding:12px}.cu59-trading small{font-weight:950;color:#0891b2}.cu59-trading b{display:block;font-size:22px;margin-top:8px}.cu59-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#a5f3fc,#0891b2)}
+.cu59-stars{width:100%;height:100%;background:#132f33;border-radius:18px}.cu59-stars line{stroke:#a5f3fc;stroke-width:1;opacity:.45}.cu59-stars circle{fill:#a5f3fc}.cu59-stars circle.hot{fill:#0891b2}.cu59-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu59-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu59-document section,.cu59-document aside{border:1px solid #a5f3fc;border-radius:18px;background:#eef7f8;padding:22px}.cu59-document p{height:13px;border-radius:99px;background:#a5f3fc;margin:0 0 16px}.cu59-document p.mark{background:#0891b2;box-shadow:0 0 0 8px #a5f3fc77}.cu59-document b{display:block;border-bottom:1px solid #a5f3fc;padding:14px 0;color:#0891b2}
+.cu59-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu59-voice>div{display:flex;align-items:center;gap:7px}.cu59-voice i{flex:1;border-radius:99px;background:#0891b2}.cu59-voice aside{border:1px solid #a5f3fc;border-radius:18px;background:#eef7f8;padding:16px}.cu59-voice p{border-bottom:1px solid #a5f3fc;padding-bottom:12px}.cu59-voice b,.cu59-voice span{display:block}
+.cu59-factory{height:100%;display:grid;grid-template-columns:repeat(12,1fr);gap:9px}.cu59-factory i{border-radius:10px;background:#cffafe;border:1px solid #a5f3fc}.cu59-factory i.warn{background:#f59e0b}.cu59-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu59-people-graph{position:absolute;inset:0;background:#ffffff}.cu59-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #132f33;border-radius:999px;background:#eef7f8;padding:10px 12px;text-align:center}.cu59-people-graph b{display:block;font-size:12px}.cu59-people-graph span{color:#0891b2;font-weight:950}.cu59-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#a5f3fc;transform:rotate(var(--r));transform-origin:left center}
+.cu59-control{height:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cu59-control article{border:1px solid #a5f3fc;border-radius:16px;background:#eef7f8;padding:14px}.cu59-control b,.cu59-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu59 screen-d"><nav class="cu59-nav"><span class="">원본 에셋</span><span class="">브랜드 가이드</span><span class="">채널 규격</span><span class="">권리 DB</span><span class="on">자동 생성</span></nav><section class="cu59-board"><article><b>에셋-059-0</b><span>권리 위험</span><em data-live>78%</em></article><article><b>레이어-059-1</b><span>자동 생성</span><em data-live>89%</em></article><article><b>프레임-059-2</b><span>검수 요청</span><em data-live>61%</em></article><article><b>채널-059-3</b><span>버전 비교</span><em data-live>72%</em></article><article><b>에셋-059-4</b><span>배포</span><em data-live>83%</em></article><article><b>레이어-059-5</b><span>마스킹 경계</span><em data-live>94%</em></article><article><b>프레임-059-6</b><span>프레임 변화</span><em data-live>66%</em></article><article><b>채널-059-7</b><span>톤 불일치</span><em data-live>77%</em></article><article><b>에셋-059-8</b><span>권리 위험</span><em data-live>88%</em></article><article><b>레이어-059-9</b><span>자동 생성</span><em data-live>60%</em></article></section><div class="cu59-hero"><p>Cobalt Market · CASE 059</p><h1>Creative Asset Forge</h1><strong>다국어 상세페이지 로컬라이징</strong></div><section class="cu59-visual"><div class="cu59-asset">
+            <i class="" style="--x:33%;--y:23%"></i><i class="" style="--x:70%;--y:76%"></i><i class="" style="--x:19%;--y:51%"></i><i class="" style="--x:56%;--y:26%"></i><i class="sel" style="--x:5%;--y:1%"></i><i class="" style="--x:42%;--y:54%"></i><i class="" style="--x:79%;--y:29%"></i><i class="" style="--x:28%;--y:4%"></i><i class="" style="--x:65%;--y:57%"></i><i class="sel" style="--x:14%;--y:32%"></i><i class="" style="--x:51%;--y:7%"></i><i class="" style="--x:0%;--y:60%"></i><i class="" style="--x:37%;--y:35%"></i><i class="" style="--x:74%;--y:10%"></i><i class="sel" style="--x:23%;--y:63%"></i><i class="" style="--x:60%;--y:38%"></i><i class="" style="--x:9%;--y:13%"></i><i class="" style="--x:46%;--y:66%"></i>
+            <b>배포</b>
+        </div></section><div class="cu59-meters"><article class="cu59-meter"><span>배포</span><b data-live>96%</b><i style="--w:96%"></i></article><article class="cu59-meter"><span>마스킹 경계</span><b data-live>68%</b><i style="--w:68%"></i></article><article class="cu59-meter"><span>프레임 변화</span><b data-live>77%</b><i style="--w:77%"></i></article><article class="cu59-meter"><span>톤 불일치</span><b data-live>86%</b><i style="--w:86%"></i></article><article class="cu59-meter"><span>권리 위험</span><b data-live>95%</b><i style="--w:95%"></i></article><article class="cu59-meter"><span>원본 에셋</span><b data-live>67%</b><i style="--w:67%"></i></article></div><aside class="cu59-log" id="cu59log"></aside></main>
+<script>
+
+
+const cu59Live=[...document.querySelectorAll("[data-live]")];
+let cu59Frame=0;
+setInterval(()=>{cu59Frame++;cu59Live.forEach((el,i)=>{el.textContent=(58+((cu59Frame*3+i*7+59)%39))+"%";});},1200);
+
+const cu59Log=document.getElementById("cu59log");
+if(cu59Log){
+  const rows=["마스킹 경계","프레임 변화","톤 불일치","권리 위험","자동 생성","검수 요청","버전 비교","배포","원본 에셋","브랜드 가이드","채널 규격","권리 DB"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu59Log.prepend(p);while(cu59Log.children.length>18)cu59Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

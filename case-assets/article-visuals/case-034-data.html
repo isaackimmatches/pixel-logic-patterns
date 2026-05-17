@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-34-data | 영상 프레임 하이라이트 자동 추출</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#f7fbff;color:#111827}.av34d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#9bd4ff66 1px,transparent 1px),linear-gradient(90deg,#9bd4ff66 1px,transparent 1px);background-size:42px 42px}.av34d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av34d-hub header p{margin:0;color:#2563eb;font-weight:950}.av34d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av34d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av34d-hub path{stroke:#2563eb;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av34d-hub circle{fill:#ffffff;stroke:#111827;stroke-width:4}.core{fill:#2563eb!important}. av34d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#111827}.av34d-hub .core+text{fill:#ffffff;font-size:18px}.av34d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #111827;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #111827;padding:18px;display:grid;gap:14px;align-content:start}.av34d-metric{border:1px solid #9bd4ff;border-radius:18px;padding:16px}.av34d-metric span{display:block;color:#111827;opacity:.72}.av34d-metric b{font-size:30px}.av34d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#2563eb;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av34d-hub">
+            <header><p>Cobalt Market</p><h1>Creative Asset Studio</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L522 516" /><path d="M600 350 L619 587" /><path d="M600 350 L716 658" /><path d="M600 350 L813 149" /><path d="M600 350 L910 220" /><path d="M600 350 L1007 291" /><path d="M600 350 L1104 362" /><path d="M600 350 L171 433" /><path d="M600 350 L268 504" /><path d="M600 350 L365 575" /><path d="M600 350 L462 646" /><path d="M600 350 L559 137" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">이미지</text>
+                <g transform="translate(522,516)"><circle r="30" /><text>원본 에셋</text></g><g transform="translate(619,587)"><circle r="36" /><text>브랜드 가이드</text></g><g transform="translate(716,658)"><circle r="42" /><text>채널 규격</text></g><g transform="translate(813,149)"><circle r="48" /><text>권리 DB</text></g><g transform="translate(910,220)"><circle r="30" /><text>원본 에셋</text></g><g transform="translate(1007,291)"><circle r="36" /><text>브랜드 가이드</text></g><g transform="translate(1104,362)"><circle r="42" /><text>채널 규격</text></g><g transform="translate(171,433)"><circle r="48" /><text>권리 DB</text></g><g transform="translate(268,504)"><circle r="30" /><text>원본 에셋</text></g><g transform="translate(365,575)"><circle r="36" /><text>브랜드 가이드</text></g><g transform="translate(462,646)"><circle r="42" /><text>채널 규격</text></g><g transform="translate(559,137)"><circle r="48" /><text>권리 DB</text></g>
+            </svg>
+            <aside>
+        <article class="av34d-metric">
+            <span>피사체 경계</span>
+            <b data-meter>74%</b>
+            <i style="--w:88%"></i>
+        </article>
+        <article class="av34d-metric">
+            <span>프레임 변화</span>
+            <b data-meter>85%</b>
+            <i style="--w:61%"></i>
+        </article>
+        <article class="av34d-metric">
+            <span>톤 불일치</span>
+            <b data-meter>96%</b>
+            <i style="--w:74%"></i>
+        </article>
+        <article class="av34d-metric">
+            <span>저작권 위험</span>
+            <b data-meter>78%</b>
+            <i style="--w:87%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av34dmeters=[...document.querySelectorAll("[data-meter]")];
+let av34dtick=0;
+setInterval(()=>{
+  av34dtick++;
+  av34dmeters.forEach((el,i)=>el.textContent=(62+((av34dtick*3+i*9+34)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

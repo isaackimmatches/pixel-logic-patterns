@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>구독 결제 실패 복구 | 픽셀앤로직 AX 사례 블로그</title>
+<meta name="description" content="물류 센터에서 반복적으로 발생하는 구독 결제 실패 복구 업무를 Standard Live 플랜으로 시작해 운영 데이터, 담당자 큐, 다음 백로그까지 연결한 사례입니다. Standard Live 플랜으로 접근한 방식과 첫 달 산출물, 다음 백로그를 다룬 픽셀앤로직 AX 사례 아티클입니다.">
+<style>
+:root { color-scheme: dark; --bg:#08080b; --panel:#111318; --line:rgba(255,255,255,.11); --text:#e8e9eb; --muted:#aeb5c1; --green:#5ecfaa; --green-soft:rgba(94,207,170,.14); }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+[id] { scroll-margin-top:82px; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:Inter,"Wanted Sans Variable","Wanted Sans",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; letter-spacing:0; }
+a { color:inherit; text-decoration:none; }
+img { max-width:100%; display:block; }
+h1,h2,h3,p { word-break:keep-all; }
+.site { min-height:100vh; overflow-x:clip; background:radial-gradient(circle at 14% 4%, rgba(94,207,170,.22), transparent 32%), #08080b; }
+.nav { position:sticky; top:0; z-index:30; border-bottom:1px solid var(--line); background:rgba(8,8,11,.82); backdrop-filter:blur(18px); }
+.nav-inner { width:min(1180px,100%); height:58px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0 20px; }
+.logo img { width:116px; }
+.nav-links { display:flex; align-items:center; gap:4px; }
+.nav-links a { min-height:34px; display:inline-flex; align-items:center; border-radius:7px; color:rgba(255,255,255,.68); padding:0 12px; font-size:14px; font-weight:700; }
+.nav-links a:hover,.nav-links a.active { color:#fff; background:rgba(255,255,255,.06); }
+.nav-cta { margin-left:10px; background:#e6e6e6!important; color:#0a0a0a!important; }
+.post { width:min(1120px,100%); margin:0 auto; padding:86px 20px 120px; }
+.post-hero { max-width:930px; }
+.post-kicker { display:flex; flex-wrap:wrap; gap:10px; color:var(--green); font-size:12px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+h1 { margin:18px 0 0; color:#fff; font-size:clamp(42px,7vw,76px); line-height:1.13; font-weight:900; }
+.dek { max-width:780px; margin:24px 0 0; color:var(--muted); font-size:18px; line-height:1.9; }
+.post-meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+.post-meta span,.label { color:#d7fff1; }
+.post-meta span,.prototype-link { min-height:30px; display:inline-flex; align-items:center; border:1px solid rgba(94,207,170,.22); border-radius:999px; background:var(--green-soft); padding:0 11px; font-size:12px; font-weight:900; }
+.prototype-link { background:#e6e6e6; color:#0a0a0a; border-color:#e6e6e6; }
+.author-strip,.author-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.author-strip { margin-top:28px; }
+.author-card { min-height:126px; display:grid; grid-template-columns:56px 1fr; gap:13px; align-items:start; border:1px solid var(--line); border-radius:12px; background:rgba(255,255,255,.045); padding:13px; }
+.author-card img { width:56px; height:56px; border-radius:10px; object-fit:cover; background:#151920; }
+.author-card strong,.author-card em,.author-card small { display:block; }
+.author-card strong { color:#fff; font-size:15px; }
+.author-card em { margin-top:4px; color:#d7fff1; font-style:normal; font-size:12px; font-weight:800; }
+.author-card small { margin-top:7px; color:#9da6b4; font-size:12px; line-height:1.5; }
+.post-cover { margin:42px 0 0; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:rgba(255,255,255,.035); }
+.post-cover img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+.post-layout { display:grid; grid-template-columns:260px minmax(0,1fr); gap:42px; margin-top:46px; align-items:start; }
+.post-aside { position:sticky; top:82px; display:grid; gap:12px; }
+.toc-card { border:1px solid var(--line); border-radius:12px; background:rgba(255,255,255,.045); padding:16px; }
+.toc-card strong { display:block; color:#fff; font-size:14px; margin-bottom:10px; }
+.toc-card a { display:block; color:#c5cbd5; font-size:13px; padding:8px 0; }
+.toc-card p { margin:0; color:#a7afbd; font-size:13px; line-height:1.65; }
+.btn { display:inline-flex!important; align-items:center; justify-content:center; width:100%; min-height:38px; border-radius:7px; margin-top:12px; color:#0a0a0a!important; background:#e6e6e6; font-size:13px; font-weight:900; }
+.post-content { min-width:0; max-width:760px; }
+.post-content h2 { margin:44px 0 14px; color:#fff; font-size:27px; line-height:1.42; }
+.post-content h2:first-child { margin-top:0; }
+.post-content p,.post-content li { color:#c8ced8; font-size:16px; line-height:2.02; }
+.post-content p { margin:0 0 17px; }
+.subscription-path { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:0 0 34px; }
+.subscription-path div,.article-cta { border:1px solid var(--line); border-radius:13px; background:rgba(255,255,255,.045); padding:16px; }
+.subscription-path span,.article-cta span { display:block; color:var(--green); font-size:11px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+.subscription-path strong,.article-cta strong { display:block; margin-top:9px; color:#fff; font-size:16px; line-height:1.45; }
+.subscription-path p,.article-cta p { margin:8px 0 0; color:#aeb5c1; font-size:13px; line-height:1.65; }
+.article-cta { margin:34px 0 0; background:linear-gradient(135deg, rgba(94,207,170,.13), rgba(255,255,255,.04)); border-color:rgba(94,207,170,.26); }
+.article-cta strong { font-size:24px; }
+.article-cta a { display:inline-flex; align-items:center; justify-content:center; min-height:40px; border-radius:8px; margin-top:16px; background:#e6e6e6; color:#0a0a0a; padding:0 16px; font-size:13px; font-weight:900; }
+.article-visual { margin:28px 0 34px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:rgba(255,255,255,.035); }
+.article-visual img { width:100%; height:auto; object-fit:contain; background:#08080b; }
+.logic-map,.metric-grid { display:grid; gap:10px; margin:20px 0 26px; }
+.logic-map { grid-template-columns:repeat(4,1fr); }
+.logic-node,.metric,.formula-box { border:1px solid var(--line); border-radius:10px; background:rgba(255,255,255,.045); padding:16px; }
+.logic-node span { color:var(--green); font-size:11px; font-weight:900; letter-spacing:.06em; }
+.logic-node strong { display:block; margin-top:10px; color:#fff; font-size:14px; line-height:1.5; }
+.formula-box { margin:20px 0 26px; background:rgba(94,207,170,.08); border-color:rgba(94,207,170,.25); }
+.formula-box code { color:#d7fff1; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; font-size:14px; line-height:1.8; white-space:normal; }
+.metric-grid { grid-template-columns:repeat(3,1fr); }
+.metric strong { display:block; color:#fff; font-size:24px; }
+.metric span { display:block; margin-top:7px; color:#aeb5c1; font-size:13px; line-height:1.55; }
+.author-bottom,.related { margin-top:64px; border-top:1px solid var(--line); padding-top:34px; }
+.author-bottom { display:grid; grid-template-columns:minmax(0,.7fr) minmax(0,1fr); gap:28px; align-items:start; }
+.label { margin:0; font-size:12px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+.author-bottom h2,.related h2 { margin:8px 0 0; color:#fff; font-size:30px; line-height:1.35; }
+.author-bottom p:not(.label) { color:#aeb5c1; line-height:1.8; }
+.related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:20px; }
+.related-grid a { display:grid; gap:10px; border:1px solid var(--line); border-radius:12px; background:rgba(255,255,255,.04); overflow:hidden; padding-bottom:14px; }
+.related-grid img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+.related-grid span,.related-grid strong { margin-inline:14px; }
+.related-grid span { color:#d7fff1; font-size:11px; font-weight:900; text-transform:uppercase; }
+.related-grid strong { color:#fff; font-size:16px; line-height:1.45; }
+.floating-contact { position:fixed; right:24px; bottom:24px; z-index:40; display:grid; gap:8px; justify-items:end; }
+.floating-phone { display:inline-flex; align-items:center; justify-content:center; min-height:38px; border-radius:999px; background:#e6e6e6; color:#0a0a0a; box-shadow:0 16px 34px rgba(0,0,0,.22); padding:0 14px; font-size:12px; font-weight:900; }
+.floating-kakao { display:grid; place-items:center; width:56px; height:56px; border-radius:50%; background:#fee500; color:#392020; box-shadow:0 16px 34px rgba(0,0,0,.28); font-size:12px; font-weight:900; }
+@media (max-width: 920px) {
+    .nav-links { gap:0; }
+    .nav-links a:not(.nav-cta) { display:none; }
+    .post-layout,.author-bottom { grid-template-columns:1fr; }
+    .post-aside { position:static; order:2; }
+    .author-strip,.author-grid,.related-grid,.logic-map,.metric-grid,.subscription-path { grid-template-columns:1fr; }
+}
+body { background:#ffffff; color:#222326; }
+.site { background:#ffffff; }
+.nav { background:rgba(255,255,255,.86); border-bottom:1px solid #eceef4; }
+.nav-links a { color:#6f737b; }
+.nav-links a:hover,.nav-links a.active { color:#1f2024; background:#f4f5f8; }
+.post-kicker,.post-meta span,.label { color:#5562d6; }
+h1,.post-content h2,.author-bottom h2,.related h2,.author-card strong,.related-grid strong,.toc-card strong { color:#222326; }
+.dek,.post-content p,.post-content li,.author-bottom p:not(.label),.toc-card p { color:#5f6673; }
+.post-meta span { background:#f1f4ff; border-color:#dfe5ff; color:#5562d6; }
+.prototype-link { background:#222326; border-color:#222326; color:#fff; }
+.author-card,.post-cover,.article-visual,.toc-card,.logic-node,.metric,.formula-box,.related-grid a,.subscription-path div,.article-cta { background:#ffffff; border-color:#e9ebf0; box-shadow:0 18px 52px rgba(40,45,70,.07); }
+.author-card em,.logic-node span,.formula-box code { color:#5562d6; }
+.subscription-path span,.article-cta span { color:#5562d6; }
+.subscription-path strong,.article-cta strong { color:#222326; }
+.subscription-path p,.article-cta p { color:#6f737b; }
+.author-card small,.metric span,.related-grid span,.toc-card a { color:#7a818d; }
+.metric strong { color:#222326; }
+.formula-box { background:#f6f7ff; }
+.floating-phone,.floating-kakao { box-shadow:0 18px 50px rgba(40,45,70,.18); }
+</style>
+</head>
+<body>
+<div class="site">
+    <header class="nav">
+        <div class="nav-inner">
+            <a class="logo" href="../index.html#top" aria-label="픽셀앤로직 홈"><img src="../images/pixelnlogic-logo.svg" alt="픽셀앤로직 로고"></a>
+            <nav class="nav-links" aria-label="주요 메뉴">
+                <a href="../index.html#subscription">구독 플랜</a>
+                <a class="active" href="../cases.html">사례 블로그</a>
+                <a href="../team.html">팀</a>
+                <a class="nav-cta" href="../index.html#contact">데모 미팅 신청</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <article class="post">
+            <section class="post-hero">
+                <div class="post-kicker"><a href="../cases.html">AX Case Library</a><span>/</span><span>#092 Operations</span></div>
+                <h1>구독 결제 실패 복구</h1>
+                <p class="dek">물류 센터에서 반복적으로 발생하는 구독 결제 실패 복구 업무를 Standard Live 플랜으로 시작해 운영 데이터, 담당자 큐, 다음 백로그까지 연결한 사례입니다. 실제 프로젝트 리뷰처럼 어떤 플랜으로 시작했고, 첫 달에 무엇을 남겼고, 다음 달에는 무엇을 바꿔가는지까지 풀었습니다.</p>
+                <div class="post-meta">
+                    <span>2026.05.05</span>
+                    <span>11분 읽기</span>
+                    <span>Standard Live</span>
+                    <span>본문 4,431자</span>
+                    <span>처리 SLA 42% 개선</span>
+                    <a class="prototype-link" href="../case-assets/bruteforce-ui/case-ui-92.html">캡처 UI 원본 보기</a>
+                </div>
+                <div class="author-strip" aria-label="상단 작성자 카드">
+                    <a class="author-card" href="../team.html#donghee-hong">
+            <img src="../images/S4/dhhong.png" alt="홍동희 프로필">
+            <span>
+                <strong>홍동희</strong>
+                <em>CTO · 아키텍처</em>
+                <small>Unity Korea 기술 총괄과 메가존클라우드 Tech 그룹장 경험을 바탕으로 데이터 연동, 권한, 확장 가능한 백엔드 구조를 설계합니다.</small>
+            </span>
+        </a><a class="author-card" href="../team.html#joonkyu-park">
+            <img src="../images/S4/jkpark.png" alt="박준규 프로필">
+            <span>
+                <strong>박준규</strong>
+                <em>AX 총괄 · 프로세스</em>
+                <small>삼성전자 기준정보시스템 PM 경험을 기반으로 현장 프로세스를 데이터 모델과 운영 화면으로 번역합니다.</small>
+            </span>
+        </a><a class="author-card" href="../team.html#jaehoon-jeong">
+            <img src="../images/S4/jhjeong-photo-solid.png" alt="정재훈 프로필">
+            <span>
+                <strong>정재훈</strong>
+                <em>선임 개발자 · 풀스택</em>
+                <small>SK AX와 SI·솔루션 구축 경험을 바탕으로 CRM, ERP, 백오피스, 자동화 워크플로를 실제 서비스로 연결합니다.</small>
+            </span>
+        </a>
+                </div>
+            </section>
+
+            <figure class="post-cover">
+                <img src="../images/generated/bruteforce-ui/case-capture-92.png" alt="구독 결제 실패 복구 썸네일">
+            </figure>
+
+            <section class="post-layout">
+                <aside class="post-aside">
+                    <div class="toc-card">
+                        <strong>Article Index</strong>
+                        <a href="#problem">문제 정의</a>
+                        <a href="#logic">판단 로직</a>
+                        <a href="#result">결과 지표</a>
+                        <a href="#authors">담당 팀</a>
+                    </div>
+                    <div class="toc-card">
+                        <strong>추천 플랜 · Standard Live</strong>
+                        <p>첫 달 산출물은 운영 자동화 8~12개 · 실시간 대응 로그입니다. 이후 다음 흐름으로 이어갑니다. 담당자 알림, 예외 큐, CRM/업무툴 기록까지 확장.</p>
+                        <a class="btn" href="../index.html#contact">Standard Live 상담하기</a>
+                    </div>
+                </aside>
+                <div class="post-content" id="problem">
+                    <section class="subscription-path" aria-label="AX 구독 접근 요약">
+            <div><span>PLAN</span><strong>Standard Live</strong><p>물류 센터의 구독 결제 실패 복구 업무를 매일 움직이는 영업·운영 큐에 바로 붙는 방식으로 정리</p></div>
+            <div><span>FIRST MONTH</span><strong>운영 자동화 8~12개 · 실시간 대응 로그</strong><p>운영팀과 실시간으로 기준을 맞추며 급한 병목부터 배포합니다.</p></div>
+            <div><span>NEXT BACKLOG</span><strong>다음 달에 바꿔가는 것</strong><p>담당자 알림, 예외 큐, CRM/업무툴 기록까지 확장</p></div>
+        </section><h2>1. 문제 정의: 물류 센터의 병목은 어디에서 시작됐나</h2><p>구독 결제 실패 복구 프로젝트는 단순히 AI 기능 하나를 붙이는 일이 아니었습니다. 물류 센터의 운영팀은 이미 여러 도구를 쓰고 있었지만, 의사결정은 여전히 엑셀, 메신저, 수기 확인에 기대고 있었습니다. 픽셀앤로직은 이 사례를 Standard Live 플랜 범위로 시작했습니다. 첫 달 산출물은 다음과 같이 정했습니다. 운영 자동화 8~12개 · 실시간 대응 로그.</p><p>초기 인터뷰에서는 담당자의 불만을 기능 요청으로 바로 바꾸지 않았습니다. 요청을 반복 시간, 발생 빈도, 오류가 만들 수 있는 손실, 그리고 자동화 후 재사용 가능성으로 나누었습니다. 구독 결제 실패 복구의 경우 핵심 병목은 데이터 입력 자체보다 입력 이후 검증과 승인에 있었습니다. 그래서 첫 접근은 물류 센터의 구독 결제 실패 복구 업무를 매일 움직이는 영업·운영 큐에 바로 붙는 방식으로 정리하는 것이었습니다. 다음 달 백로그도 함께 정했습니다. 담당자 알림, 예외 큐, CRM/업무툴 기록까지 확장. 이 항목을 기준으로 후속 개선이 이어지도록 설계했습니다.</p><figure class="article-visual">
+            <img src="../images/generated/bruteforce-ui/case-capture-92-data.png" alt="구독 결제 실패 복구 데이터 연결 화면 캡처">
+        </figure><h2>2. 데이터 연결: 흩어진 시스템을 하나의 판단 단위로 묶기</h2><p>이 사례에서 우선 연결한 원천 데이터는 다음 네 가지였습니다. ERP·MES 로그, 문서·계약서, 상담 녹취, 승인·정산 기록. 중요한 것은 모든 데이터를 한 번에 끌어오는 것이 아니라, 의사결정에 필요한 최소 단위를 먼저 정의하는 일이었습니다. 예를 들어 고객, 주문, 상품, 문서, 상담, 승인 이력은 서로 다른 시스템에 존재하지만 현장에서는 하나의 업무로 소비됩니다. 픽셀앤로직은 각 데이터에 공통 키를 부여하고, 시간 단위와 상태값을 맞춘 뒤, 누락이나 중복을 먼저 검사하는 정규화 레이어를 만들었습니다.</p><div class="logic-map">
+            <div class="logic-node"><span>INPUT</span><strong>ERP·MES 로그</strong></div>
+            <div class="logic-node"><span>NORMALIZE</span><strong>업무 키와 시간 단위 정렬</strong></div>
+            <div class="logic-node"><span>LOGIC</span><strong>우선순위와 이상치 계산</strong></div>
+            <div class="logic-node"><span>OUTPUT</span><strong>대시보드, 알림, 승인 큐</strong></div>
+        </div><p>연결 구조는 API가 있는 곳과 없는 곳을 구분해 설계했습니다. API가 안정적인 시스템은 주기적 동기화로 처리하고, 파일 업로드나 메일 첨부처럼 비정형적인 입력은 파서와 검수 큐를 분리했습니다. AI가 만든 결과를 곧바로 업무 시스템에 밀어 넣으면 빠르지만 위험하고, 모든 건을 사람이 다시 검수하면 자동화 효과가 사라집니다. 그래서 신뢰도가 높은 건은 자동 반영하고, 애매한 건만 사람에게 넘기는 하이브리드 구조를 잡았습니다.</p><h2 id="logic">3. 판단 로직: 감으로 정하던 우선순위를 수식으로 바꾸기</h2><div class="formula-box"><code>Automation Score = (반복시간 × 실행빈도 × 오류손실 × 재사용성) / 구현복잡도<br>Risk Gate = 데이터누락률 + 권한예외 + 민감정보위험<br>실행 우선순위 = Automation Score - Risk Gate</code></div><figure class="article-visual">
+            <img src="../images/generated/bruteforce-ui/case-capture-92-logic.png" alt="구독 결제 실패 복구 판단 로직 화면 캡처">
+        </figure><p>구독 결제 실패 복구에서 가장 먼저 만든 것은 멋진 화면이 아니라 우선순위 계산식이었습니다. 반복 시간이 길어도 한 달에 한 번만 일어나는 업무는 뒤로 밀릴 수 있습니다. 반대로 한 번의 오류가 정산, 고객 경험, 법무 검토에 영향을 주는 업무는 짧은 반복이라도 먼저 처리해야 합니다. 이 수식은 고객사와 함께 백로그 회의에서 사용됐고, “왜 이번 달에 이 기능을 먼저 만드는가”를 팀 전체가 납득하게 만들었습니다.</p><p>정량화는 완벽한 예측을 의미하지 않습니다. 오히려 불확실성을 드러내는 도구입니다. 구현복잡도는 연동 난이도, 권한 정책, 기존 데이터 품질, 현장 교육 비용을 합산해 추정했습니다. 오류손실은 금전 손실뿐 아니라 고객 응답 지연, 담당자 재작업, 보고 신뢰도 하락까지 포함했습니다. 이처럼 수식을 만들면 논의가 취향이 아니라 가정의 검증으로 이동합니다.</p><h2>4. 구현 순서: 한 번에 크게 만들지 않고 운영 리듬에 붙이기</h2><figure class="article-visual">
+            <img src="../images/generated/bruteforce-ui/case-capture-92-queue.png" alt="구독 결제 실패 복구 운영 큐 화면 캡처">
+        </figure><p>첫 번째 스프린트에서는 데이터 연결과 검증 화면을 만들었습니다. 이 단계의 목표는 자동화율을 높이는 것이 아니라 “현재 데이터가 믿을 만한가”를 확인하는 것이었습니다. Standard Live 플랜에서 중요한 것은 첫 달부터 모든 것을 완성하는 것이 아니라, 산출물을 실제로 확인 가능한 형태로 남기는 일입니다. 이 경우 산출물 목록은 운영 자동화 8~12개 · 실시간 대응 로그입니다. 두 번째 스프린트에서는 승인, 알림, 예외 처리 큐를 추가했습니다. 세 번째 스프린트에서는 운영자가 수정한 결과가 다시 학습 데이터와 룰 개선으로 돌아오도록 피드백 루프를 붙였습니다.</p><p>또한 담당자 권한을 세분화했습니다. 조회만 가능한 사용자, 승인 가능한 사용자, 룰을 수정할 수 있는 사용자, 관리자 권한을 가진 사용자를 분리했습니다. 물류 센터처럼 여러 부서가 같은 데이터를 보는 환경에서는 권한 설계가 자동화의 품질을 좌우합니다. 권한이 과도하면 사고가 나고, 권한이 부족하면 다시 메신저 승인으로 돌아갑니다. 그래서 화면보다 먼저 권한 테이블과 감사 로그를 설계했습니다.</p><h2 id="result">5. 결과 지표: 효용은 시간을 줄인 것만으로 판단하지 않는다</h2><div class="metric-grid">
+            <div class="metric"><strong>처리 SLA 42% 개선</strong><span>핵심 효용 지표</span></div>
+            <div class="metric"><strong>14일</strong><span>첫 운영 배포까지 걸린 시간</span></div>
+            <div class="metric"><strong>3단계</strong><span>입력, 검증, 승인 흐름 분리</span></div>
+        </div><figure class="article-visual">
+            <img src="../images/generated/bruteforce-ui/case-capture-92-roi.png" alt="구독 결제 실패 복구 ROI 리포트 화면 캡처">
+        </figure><p>도입 후 가장 먼저 확인한 지표는 처리 시간, 오류 탐지율, 담당자 재작업률이었습니다. 하지만 픽셀앤로직은 여기에 하나를 더 봅니다. 자동화 이후 팀이 더 빠르게 의사결정하는가입니다. 이 사례의 효과는 핵심 지표(처리 SLA 42% 개선)에서 확인할 수 있지만, 실제 가치는 다음 달 백로그가 분명해졌다는 점에 있었습니다. 다음 단계는 “담당자 알림, 예외 큐, CRM/업무툴 기록까지 확장”입니다. 이전에는 문제를 발견하는 데 시간이 들었고, 이제는 발견된 문제 중 무엇을 먼저 고칠지 논의할 수 있게 됐습니다.</p><p>현장의 승인, 검수, 예외 처리, 책임 추적을 하나의 운영 리듬으로 묶는 데 초점을 맞췄습니다. 고객사 내부에서는 자동화 화면이 단순한 대시보드가 아니라 운영 회의의 기준점으로 쓰이기 시작했습니다. 담당자는 단순 취합에서 벗어나 예외를 보고, 이상치를 확인하고, 다음 액션을 결정하는 역할로 이동했습니다.</p><h2>6. 운영 거버넌스: AI가 틀렸을 때를 먼저 설계하기</h2><p>AI 또는 자동화 로직이 항상 맞는다는 전제로 설계하면 현장 도입은 오래가지 않습니다. 픽셀앤로직은 각 결과에 신뢰도와 근거 데이터를 함께 표시했습니다. 자동 처리된 항목, 검수 대기 항목, 반려된 항목을 분리하고, 담당자가 수정한 값은 이후 룰 개선의 후보로 남겼습니다. 이렇게 하면 운영자는 결과를 맹신하지 않으면서도 반복 검수에 모든 시간을 쓰지 않게 됩니다.</p><p>또한 장애 상황을 위한 수동 우회 경로를 남겼습니다. 연동 실패, API 제한, 문서 형식 변경, 권한 오류가 발생했을 때 업무가 멈추지 않도록 임시 업로드와 재처리 큐를 두었습니다. 좋은 자동화는 평소에 빨라야 하지만, 문제가 생겼을 때 복구가 쉬워야 합니다. 이 기준이 있어야 월간 구독 모델에서 매달 기능을 쌓아도 운영 안정성이 유지됩니다.</p><h2>7. 담당 스쿼드와 다음 확장</h2><p>담당 스쿼드는 다음 역할로 구성했습니다. 홍동희 · CTO, 박준규 · AX 총괄, 정재훈 · 선임 개발자. 사업 모델과 우선순위, 데이터 아키텍처, 풀스택 구현, 운영 UX를 분리해 보았기 때문에 각 의사결정이 한 사람의 감에 묶이지 않았습니다. 다음 단계에서는 이 자동화 흐름을 다른 팀 또는 다른 지점으로 확장하고, 예외 처리 데이터를 기반으로 예측 로직을 고도화할 수 있습니다.</p><p>이 사례는 거대한 AI 전환 프로젝트가 아니라 Standard Live 플랜으로 작게 시작한 AX 운영 개선입니다. 그러나 작은 업무라도 데이터 연결, 판단 수식, 권한, 검수, 리포트까지 갖추면 조직의 일하는 방식이 바뀝니다. 픽셀앤로직이 AX 구독에서 반복적으로 강조하는 것은 바로 이 지점입니다. 상상이 아니라 로직으로 시작하고, 한 번의 구축이 아니라 매달 개선되는 시스템으로 남기는 것. 구독 결제 실패 복구 업무에 그 원칙을 적용한 기록입니다.</p><div class="article-cta">
+            <span>Standard Live</span>
+            <strong>Standard Live 상담하기</strong>
+            <p>첫 달 산출물은 운영 자동화 8~12개 · 실시간 대응 로그입니다. 이후 다음 흐름으로 이어갑니다. 담당자 알림, 예외 큐, CRM/업무툴 기록까지 확장.</p>
+            <a href="../index.html#contact">데모 미팅 신청 남기기</a>
+        </div>
+                </div>
+            </section>
+
+            <section class="author-bottom" id="authors" aria-label="하단 작성자 카드">
+                <div>
+                    <p class="label">Written and built by</p>
+                    <h2>이 사례를 설계한 픽셀앤로직 팀</h2>
+                    <p>아티클의 작성자는 한 명의 필자가 아니라, 사업 우선순위와 데이터 구조, 운영 UX, 실제 구현을 함께 본 스쿼드입니다.</p>
+                </div>
+                <div class="author-grid"><a class="author-card" href="../team.html#donghee-hong">
+            <img src="../images/S4/dhhong.png" alt="홍동희 프로필">
+            <span>
+                <strong>홍동희</strong>
+                <em>CTO · 아키텍처</em>
+                <small>Unity Korea 기술 총괄과 메가존클라우드 Tech 그룹장 경험을 바탕으로 데이터 연동, 권한, 확장 가능한 백엔드 구조를 설계합니다.</small>
+            </span>
+        </a><a class="author-card" href="../team.html#joonkyu-park">
+            <img src="../images/S4/jkpark.png" alt="박준규 프로필">
+            <span>
+                <strong>박준규</strong>
+                <em>AX 총괄 · 프로세스</em>
+                <small>삼성전자 기준정보시스템 PM 경험을 기반으로 현장 프로세스를 데이터 모델과 운영 화면으로 번역합니다.</small>
+            </span>
+        </a><a class="author-card" href="../team.html#jaehoon-jeong">
+            <img src="../images/S4/jhjeong-photo-solid.png" alt="정재훈 프로필">
+            <span>
+                <strong>정재훈</strong>
+                <em>선임 개발자 · 풀스택</em>
+                <small>SK AX와 SI·솔루션 구축 경험을 바탕으로 CRM, ERP, 백오피스, 자동화 워크플로를 실제 서비스로 연결합니다.</small>
+            </span>
+        </a></div>
+            </section>
+
+            <section class="related">
+                <p class="label">Related Articles</p>
+                <h2>같은 카테고리의 다음 사례</h2>
+                <div class="related-grid">
+                    <a href="case-061.html">
+                        <img src="../images/generated/bruteforce-ui/case-capture-61.png" alt="생산일보 자동화 썸네일">
+                        <span>#061 · Operations</span>
+                        <strong>생산일보 자동화</strong>
+                    </a><a href="case-062.html">
+                        <img src="../images/generated/bruteforce-ui/case-capture-62.png" alt="설비 이상신호 탐지 썸네일">
+                        <span>#062 · Operations</span>
+                        <strong>설비 이상신호 탐지</strong>
+                    </a><a href="case-063.html">
+                        <img src="../images/generated/bruteforce-ui/case-capture-63.png" alt="안전점검 OCR 썸네일">
+                        <span>#063 · Operations</span>
+                        <strong>안전점검 OCR</strong>
+                    </a>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <div class="floating-contact" aria-label="빠른 문의">
+        <a class="floating-phone" href="tel:01080006959">010-8000-6959</a>
+        <a class="floating-kakao" href="http://pf.kakao.com/_Znuan/chat" target="_blank" rel="noopener noreferrer" aria-label="카카오 문의">TALK</a>
+    </div>
+</div>
+</body>
+</html>

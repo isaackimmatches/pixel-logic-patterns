@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-01-data | AI 기반 자동 누끼 및 배경 생성</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#211a36;color:#ffffff}.av01d-api{height:100vh;display:grid;grid-template-rows:70px 1fr;background:radial-gradient(circle at 74% 18%,#7c3aed44,transparent 30%),#211a36}.av01d-api nav{display:flex;align-items:center;gap:18px;border-bottom:1px solid rgba(255,255,255,.14);padding:0 26px}.av01d-api nav b{font-size:21px}.av01d-api nav span{color:#d8b4fe;font-weight:900}.av01d-api nav i{margin-left:auto;font-style:normal;border:1px solid rgba(255,255,255,.18);border-radius:99px;padding:8px 12px}.av01d-api main{display:grid;grid-template-columns:1fr 420px;gap:18px;padding:18px}.contract{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.contract article{border:1px solid rgba(255,255,255,.14);border-radius:26px;background:rgba(255,255,255,.07);padding:24px;animation:av01drise .8s ease both;animation-delay:calc(var(--delay)*.08s)}.contract h2{font-size:32px;margin:0}.contract p{line-height:1.7;color:#d8b4fe}.contract code,.terminal{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.contract code{display:block;border-radius:14px;background:rgba(0,0,0,.24);padding:16px;color:#a7f3d0}.terminal{border:1px solid rgba(255,255,255,.14);border-radius:26px;background:#020617;padding:18px;overflow:hidden;color:#a7f3d0;font-size:13px;line-height:1.85}@keyframes av01drise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="av01d-api">
+            <nav><b>Lattice Retail</b><span>AI 기반 자동 누끼 및 배경 생성</span><i>DATA CONTRACT</i></nav>
+            <main>
+                <section class="contract"><article style="--delay:0"><h2>원본 에셋</h2><p>피사체 경계 필드를 batch sync으로 표준화</p><code>{ id:"001-0", latency:80ms }</code></article><article style="--delay:1"><h2>브랜드 가이드</h2><p>프레임 변화 필드를 event stream으로 표준화</p><code>{ id:"001-1", latency:115ms }</code></article><article style="--delay:2"><h2>채널 규격</h2><p>톤 불일치 필드를 batch sync으로 표준화</p><code>{ id:"001-2", latency:150ms }</code></article><article style="--delay:3"><h2>권리 DB</h2><p>저작권 위험 필드를 event stream으로 표준화</p><code>{ id:"001-3", latency:185ms }</code></article></section>
+                <section class="terminal" id="av01d-terminal"></section>
+            </main>
+        </div>
+<script>
+const av01dterm=document.getElementById("av01d-terminal");const av01dlogs=["schema.validate 이미지","stream.join 브랜드 가이드","dedupe.key 프레임_1","quality.gate passed","refresh.window 15m"];let av01di=0;setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+av01dlogs[av01di++%av01dlogs.length];av01dterm.prepend(p);while(av01dterm.children.length>22)av01dterm.lastElementChild.remove();},520);
+</script>
+</body>
+</html>

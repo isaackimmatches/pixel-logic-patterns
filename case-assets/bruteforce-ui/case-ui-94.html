@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-94 | 문서 검색 에이전트</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#fff1f4;color:#2a1721}
+.cu94{height:100vh;padding:22px;gap:17px;background:radial-gradient(circle at 43% 27%, #ffc4d166, transparent 28%), linear-gradient(#ffe4e655 1px, transparent 1px), linear-gradient(90deg, #ffe4e655 1px, transparent 1px);background-size:auto,44px 44px,44px 44px}
+.cu94 > *{min-width:0}
+.cu94-hero,.cu94-visual,.cu94-meters,.cu94-board,.cu94-log,.cu94-nav{border:2px solid #2a1721;border-radius:28px;background:#ffffff;box-shadow:10px 10px 0 #2a1721;overflow:hidden}
+.cu94-hero{padding:24px}.cu94-hero p{margin:0;color:#e11d48;font-weight:950;letter-spacing:.06em}.cu94-hero h1{margin:10px 0 6px;font-size:38px;line-height:.98;letter-spacing:-.055em}.cu94-hero strong{display:block;color:#2a1721;opacity:.72}
+.cu94-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu94-nav span{border:1px solid #ffc4d1;border-radius:14px;background:#fff1f4;padding:12px;font-weight:950;font-size:13px}.cu94-nav span.on{background:#2a1721;color:#ffffff}
+.cu94-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu94-meter{border:1px solid #ffc4d1;border-radius:16px;padding:13px}.cu94-meter span{display:block;font-size:12px;color:#2a1721;opacity:.72}.cu94-meter b{font-size:26px}.cu94-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#e11d48;margin-top:8px}
+.cu94-board{padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-content:start}.cu94-board article{border:1px solid #ffc4d1;border-radius:16px;background:#fff1f4;padding:13px;min-height:108px}.cu94-board b{display:block;font-size:13px}.cu94-board span{display:block;margin-top:10px;color:#2a1721;opacity:.65;font-size:12px}.cu94-board em{display:block;margin-top:12px;color:#e11d48;font-style:normal;font-weight:950}
+.cu94-visual{position:relative;padding:18px}.cu94-log{background:#2a1721;color:#ffc4d1;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu94-nav{grid-row:1/4}.screen-a .cu94-hero{grid-column:2}.screen-a .cu94-visual{grid-column:2;grid-row:2/4}.screen-a .cu94-meters{grid-column:3;grid-row:1/3}.screen-a .cu94-board{grid-column:3;grid-row:3}.screen-a .cu94-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu94-hero{grid-column:1}.screen-b .cu94-meters{grid-column:2}.screen-b .cu94-visual{grid-column:1/3;grid-row:2}.screen-b .cu94-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu94-board{grid-column:3;grid-row:1/3}.screen-b .cu94-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu94-visual{grid-column:1;grid-row:1/5}.screen-c .cu94-hero{grid-column:2;grid-row:1}.screen-c .cu94-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu94-board{grid-column:2;grid-row:3}.screen-c .cu94-meters{grid-column:2;grid-row:4}.screen-c .cu94-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu94-nav{grid-row:1/3}.screen-d .cu94-board{grid-column:2;grid-row:1}.screen-d .cu94-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu94-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu94-meters{grid-column:2;grid-row:2}.screen-d .cu94-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu94-hero{grid-row:1}.screen-e .cu94-visual{grid-column:2;grid-row:1/4}.screen-e .cu94-log{grid-column:3;grid-row:1/3}.screen-e .cu94-board{grid-column:1;grid-row:2}.screen-e .cu94-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu94-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu94-meters{grid-column:1;grid-row:1/4}.screen-f .cu94-hero{grid-column:2;grid-row:1}.screen-f .cu94-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu94-visual{grid-column:2;grid-row:3}.screen-f .cu94-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu94-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu94-log{grid-row:1/3}.screen-g .cu94-hero{grid-column:2}.screen-g .cu94-visual{grid-column:2;grid-row:2}.screen-g .cu94-board{grid-column:3;grid-row:1}.screen-g .cu94-meters{grid-column:3;grid-row:2}.screen-g .cu94-nav{display:none}
+.cu94-asset{position:absolute;inset:0;background:#2a1721;overflow:hidden}.cu94-asset i{position:absolute;left:var(--x);top:var(--y);width:48px;height:56px;border-radius:18px;background:#e11d48;opacity:.72}.cu94-asset i.sel{background:#ffc4d1;box-shadow:0 0 0 10px #ffc4d133}.cu94-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#2a1721;border-radius:999px;padding:12px 15px}
+.cu94-radar{width:100%;height:100%}.cu94-radar circle{fill:none;stroke:#ffc4d1;stroke-width:3}.cu94-radar rect{fill:#ffffff;stroke:#2a1721;stroke-width:3}.cu94-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#2a1721}
+.cu94-supply{width:100%;height:100%;background:#fff1f4}.cu94-supply path{fill:none;stroke:#e11d48;stroke-width:10;stroke-dasharray:14 10}.cu94-supply circle{fill:#ffffff;stroke:#2a1721;stroke-width:5}.cu94-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#2a1721}
+.cu94-trading{height:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cu94-trading article{position:relative;border:1px solid #ffc4d1;border-radius:16px;background:#fff1f4;padding:12px}.cu94-trading small{font-weight:950;color:#e11d48}.cu94-trading b{display:block;font-size:22px;margin-top:8px}.cu94-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#ffc4d1,#e11d48)}
+.cu94-stars{width:100%;height:100%;background:#2a1721;border-radius:18px}.cu94-stars line{stroke:#ffc4d1;stroke-width:1;opacity:.45}.cu94-stars circle{fill:#ffc4d1}.cu94-stars circle.hot{fill:#e11d48}.cu94-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu94-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu94-document section,.cu94-document aside{border:1px solid #ffc4d1;border-radius:18px;background:#fff1f4;padding:22px}.cu94-document p{height:13px;border-radius:99px;background:#ffc4d1;margin:0 0 16px}.cu94-document p.mark{background:#e11d48;box-shadow:0 0 0 8px #ffc4d177}.cu94-document b{display:block;border-bottom:1px solid #ffc4d1;padding:14px 0;color:#e11d48}
+.cu94-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu94-voice>div{display:flex;align-items:center;gap:7px}.cu94-voice i{flex:1;border-radius:99px;background:#e11d48}.cu94-voice aside{border:1px solid #ffc4d1;border-radius:18px;background:#fff1f4;padding:16px}.cu94-voice p{border-bottom:1px solid #ffc4d1;padding-bottom:12px}.cu94-voice b,.cu94-voice span{display:block}
+.cu94-factory{height:100%;display:grid;grid-template-columns:repeat(12,1fr);gap:9px}.cu94-factory i{border-radius:10px;background:#ffe4e6;border:1px solid #ffc4d1}.cu94-factory i.warn{background:#f59e0b}.cu94-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu94-people-graph{position:absolute;inset:0;background:#ffffff}.cu94-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #2a1721;border-radius:999px;background:#fff1f4;padding:10px 12px;text-align:center}.cu94-people-graph b{display:block;font-size:12px}.cu94-people-graph span{color:#e11d48;font-weight:950}.cu94-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#ffc4d1;transform:rotate(var(--r));transform-origin:left center}
+.cu94-control{height:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.cu94-control article{border:1px solid #ffc4d1;border-radius:16px;background:#fff1f4;padding:14px}.cu94-control b,.cu94-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu94 screen-d"><nav class="cu94-nav"><span class="">PDF 원본</span><span class="">거래처 원장</span><span class="">승인 이력</span><span class="">표준 조항집</span><span class="on">조항 추출</span></nav><section class="cu94-board"><article><b>문서-094-0</b><span>반려 사유</span><em data-live>74%</em></article><article><b>조항-094-1</b><span>승인 큐</span><em data-live>85%</em></article><article><b>금액-094-2</b><span>핵심 조항</span><em data-live>96%</em></article><article><b>거래처-094-3</b><span>금액 불일치</span><em data-live>68%</em></article><article><b>문서-094-4</b><span>권한 예외</span><em data-live>79%</em></article><article><b>조항-094-5</b><span>검토 위험도</span><em data-live>90%</em></article><article><b>금액-094-6</b><span>조항 추출</span><em data-live>62%</em></article><article><b>거래처-094-7</b><span>검토자 지정</span><em data-live>73%</em></article><article><b>문서-094-8</b><span>반려 사유</span><em data-live>84%</em></article><article><b>조항-094-9</b><span>승인 큐</span><em data-live>95%</em></article></section><div class="cu94-hero"><p>Lattice Retail · CASE 094</p><h1>Document Risk Workbench</h1><strong>문서 검색 에이전트</strong></div><section class="cu94-visual"><div class="cu94-document">
+            <section><p class="" style="width:92%"></p><p class="" style="width:85%"></p><p class="mark" style="width:78%"></p><p class="" style="width:71%"></p><p class="" style="width:64%"></p><p class="" style="width:57%"></p><p class="mark" style="width:92%"></p><p class="" style="width:85%"></p><p class="" style="width:78%"></p><p class="" style="width:71%"></p><p class="mark" style="width:64%"></p><p class="" style="width:57%"></p><p class="" style="width:92%"></p></section>
+            <aside><b>01 핵심 조항</b><b>02 금액 불일치</b><b>03 권한 예외</b><b>04 검토 위험도</b></aside>
+        </div></section><div class="cu94-meters"><article class="cu94-meter"><span>반려 사유</span><b data-live>86%</b><i style="--w:86%"></i></article><article class="cu94-meter"><span>승인 큐</span><b data-live>95%</b><i style="--w:95%"></i></article><article class="cu94-meter"><span>핵심 조항</span><b data-live>67%</b><i style="--w:67%"></i></article><article class="cu94-meter"><span>금액 불일치</span><b data-live>76%</b><i style="--w:76%"></i></article><article class="cu94-meter"><span>권한 예외</span><b data-live>85%</b><i style="--w:85%"></i></article></div><aside class="cu94-log" id="cu94log"></aside></main>
+<script>
+
+
+const cu94Live=[...document.querySelectorAll("[data-live]")];
+let cu94Frame=0;
+setInterval(()=>{cu94Frame++;cu94Live.forEach((el,i)=>{el.textContent=(58+((cu94Frame*3+i*7+94)%39))+"%";});},1200);
+
+const cu94Log=document.getElementById("cu94log");
+if(cu94Log){
+  const rows=["핵심 조항","금액 불일치","권한 예외","검토 위험도","조항 추출","검토자 지정","반려 사유","승인 큐","PDF 원본","거래처 원장","승인 이력","표준 조항집"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu94Log.prepend(p);while(cu94Log.children.length>18)cu94Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

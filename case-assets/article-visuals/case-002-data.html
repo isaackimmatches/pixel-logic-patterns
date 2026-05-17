@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-02-data | 상세페이지 이미지 품질 검수</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#effaf5;color:#10251d}.av02d-hub{height:100vh;position:relative;overflow:hidden;background-image:linear-gradient(#b7f3d466 1px,transparent 1px),linear-gradient(90deg,#b7f3d466 1px,transparent 1px);background-size:42px 42px}.av02d-hub header{position:absolute;left:30px;top:26px;z-index:2}.av02d-hub header p{margin:0;color:#10b981;font-weight:950}.av02d-hub h1{font-size:42px;margin:6px 0 0;letter-spacing:-.05em}.av02d-hub svg{position:absolute;left:40px;top:100px;width:calc(100% - 380px);height:calc(100% - 120px)}.av02d-hub path{stroke:#10b981;stroke-width:3;stroke-dasharray:8 10;opacity:.5}.av02d-hub circle{fill:#ffffff;stroke:#10251d;stroke-width:4}.core{fill:#10b981!important}. av02d-hub text{font-size:13px;text-anchor:middle;dominant-baseline:middle;font-weight:950;fill:#10251d}.av02d-hub .core+text{fill:#ffffff;font-size:18px}.av02d-hub aside{position:absolute;right:26px;top:26px;bottom:26px;width:300px;border:2px solid #10251d;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #10251d;padding:18px;display:grid;gap:14px;align-content:start}.av02d-metric{border:1px solid #b7f3d4;border-radius:18px;padding:16px}.av02d-metric span{display:block;color:#10251d;opacity:.72}.av02d-metric b{font-size:30px}.av02d-metric i{display:block;width:var(--w);height:8px;border-radius:99px;background:#10b981;margin-top:10px}
+</style>
+</head>
+<body>
+<section class="av02d-hub">
+            <header><p>Brewline Foods</p><h1>Creative Asset Studio</h1></header>
+            <svg viewBox="0 0 1200 700">
+                <path d="M600 350 L106 168" /><path d="M600 350 L203 239" /><path d="M600 350 L300 310" /><path d="M600 350 L397 381" /><path d="M600 350 L494 452" /><path d="M600 350 L591 523" /><path d="M600 350 L688 594" /><path d="M600 350 L785 665" /><path d="M600 350 L882 156" /><path d="M600 350 L979 227" /><path d="M600 350 L1076 298" /><path d="M600 350 L143 369" />
+                <circle class="core" cx="600" cy="350" r="74" />
+                <text x="600" y="357">이미지</text>
+                <g transform="translate(106,168)"><circle r="30" /><text>원본 에셋</text></g><g transform="translate(203,239)"><circle r="36" /><text>브랜드 가이드</text></g><g transform="translate(300,310)"><circle r="42" /><text>채널 규격</text></g><g transform="translate(397,381)"><circle r="48" /><text>권리 DB</text></g><g transform="translate(494,452)"><circle r="30" /><text>원본 에셋</text></g><g transform="translate(591,523)"><circle r="36" /><text>브랜드 가이드</text></g><g transform="translate(688,594)"><circle r="42" /><text>채널 규격</text></g><g transform="translate(785,665)"><circle r="48" /><text>권리 DB</text></g><g transform="translate(882,156)"><circle r="30" /><text>원본 에셋</text></g><g transform="translate(979,227)"><circle r="36" /><text>브랜드 가이드</text></g><g transform="translate(1076,298)"><circle r="42" /><text>채널 규격</text></g><g transform="translate(143,369)"><circle r="48" /><text>권리 DB</text></g>
+            </svg>
+            <aside>
+        <article class="av02d-metric">
+            <span>피사체 경계</span>
+            <b data-meter>82%</b>
+            <i style="--w:56%"></i>
+        </article>
+        <article class="av02d-metric">
+            <span>프레임 변화</span>
+            <b data-meter>93%</b>
+            <i style="--w:69%"></i>
+        </article>
+        <article class="av02d-metric">
+            <span>톤 불일치</span>
+            <b data-meter>75%</b>
+            <i style="--w:82%"></i>
+        </article>
+        <article class="av02d-metric">
+            <span>저작권 위험</span>
+            <b data-meter>86%</b>
+            <i style="--w:55%"></i>
+        </article></aside>
+        </section>
+<script>
+
+const av02dmeters=[...document.querySelectorAll("[data-meter]")];
+let av02dtick=0;
+setInterval(()=>{
+  av02dtick++;
+  av02dmeters.forEach((el,i)=>el.textContent=(62+((av02dtick*3+i*9+2)%34))+"%");
+},1100);
+</script>
+</body>
+</html>

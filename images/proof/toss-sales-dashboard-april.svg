@@ -1,0 +1,85 @@
+<svg width="2048" height="820" viewBox="0 0 2048 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="2048" height="820" fill="#FFFFFF"/>
+  <rect width="238" height="820" fill="#F6F8FB"/>
+  <rect width="2048" height="54" fill="#06434B"/>
+  <circle cx="22" cy="27" r="7" fill="#87B4BC"/>
+  <path d="M54 27H206" stroke="#D7E5EA" stroke-width="7" stroke-linecap="round"/>
+  <rect x="250" y="54" width="1798" height="766" fill="#FFFFFF"/>
+  <g font-family="Arial, 'Noto Sans KR', sans-serif">
+    <text x="16" y="105" fill="#98A2B3" font-size="15" font-weight="700">결제조회</text>
+    <text x="48" y="136" fill="#667085" font-size="15">통합결제</text>
+    <text x="48" y="174" fill="#667085" font-size="15">신용·체크카드</text>
+    <text x="16" y="245" fill="#98A2B3" font-size="15" font-weight="700">결제위젯</text>
+    <text x="48" y="279" fill="#667085" font-size="15">결제 UI 설정</text>
+    <text x="48" y="315" fill="#667085" font-size="15">약관 설정</text>
+    <text x="16" y="394" fill="#98A2B3" font-size="15" font-weight="700">계약·운영</text>
+    <text x="48" y="428" fill="#667085" font-size="15">회사정보</text>
+    <text x="48" y="466" fill="#667085" font-size="15">이용정보</text>
+    <text x="16" y="548" fill="#98A2B3" font-size="15" font-weight="700">개발자센터</text>
+    <text x="16" y="584" fill="#667085" font-size="15">자주 묻는 질문</text>
+    <text x="268" y="104" fill="#8A94A6" font-size="16" font-weight="700">4월 매출액</text>
+    <text x="268" y="134" fill="#1F2937" font-size="22" font-weight="800">68,270,099 원</text>
+    <text x="722" y="104" fill="#8A94A6" font-size="16" font-weight="700">4월 입금 정산액</text>
+    <text x="722" y="134" fill="#1F2937" font-size="22" font-weight="800">59,875,577 원</text>
+    <text x="1178" y="104" fill="#8A94A6" font-size="16" font-weight="700">오늘 입금 정산액</text>
+    <text x="1178" y="134" fill="#1F2937" font-size="22" font-weight="800">0 원</text>
+    <text x="1628" y="104" fill="#8A94A6" font-size="16" font-weight="700">입금 예정 정산액</text>
+    <text x="1628" y="134" fill="#1F2937" font-size="22" font-weight="800">20,909,210 원</text>
+  </g>
+  <path d="M700 72V146M1154 72V146M1604 72V146" stroke="#E6EAF0"/>
+  <path d="M250 164H2048" stroke="#E6EAF0"/>
+  <g font-family="Arial, 'Noto Sans KR', sans-serif" font-size="15" font-weight="700">
+    <circle cx="276" cy="198" r="6" fill="#3182F6"/><text x="292" y="204" fill="#667085">매출액</text>
+    <circle cx="344" cy="198" r="6" fill="#10B981"/><text x="360" y="204" fill="#667085">입금 정산액</text>
+    <circle cx="452" cy="198" r="6" fill="#AEB7C2"/><text x="468" y="204" fill="#667085">입금 예정 정산액</text>
+  </g>
+  <g stroke="#EEF2F6">
+    <path d="M250 226H2048"/>
+    <path d="M250 336H2048"/>
+    <path d="M250 446H2048"/>
+    <path d="M250 556H2048"/>
+    <path d="M250 666H2048"/>
+    <path d="M500 226V704"/>
+    <path d="M754 226V704"/>
+    <path d="M1008 226V704"/>
+    <path d="M1262 226V704"/>
+    <path d="M1516 226V704"/>
+    <path d="M1770 226V704"/>
+  </g>
+  <g font-family="Arial, 'Noto Sans KR', sans-serif">
+    <text x="282" y="250" fill="#667085" font-size="15" font-weight="700">일</text>
+    <text x="536" y="250" fill="#667085" font-size="15" font-weight="700">월</text>
+    <text x="790" y="250" fill="#667085" font-size="15" font-weight="700">화</text>
+    <text x="1044" y="250" fill="#667085" font-size="15" font-weight="700">수</text>
+    <text x="1298" y="250" fill="#667085" font-size="15" font-weight="700">목</text>
+    <text x="1552" y="250" fill="#667085" font-size="15" font-weight="700">금</text>
+    <text x="1806" y="250" fill="#667085" font-size="15" font-weight="700">토</text>
+  </g>
+  <g font-family="Arial, 'Noto Sans KR', sans-serif" font-size="16">
+    <text x="536" y="314" fill="#73A6FF">2,425,000</text><text x="536" y="336" fill="#5EE0A3">14,917,778</text>
+    <text x="790" y="314" fill="#4E8CFF">7,547,826</text><text x="790" y="336" fill="#12B981">0</text>
+    <text x="1044" y="314" fill="#73A6FF">3,080,000</text><text x="1044" y="336" fill="#12B981">0</text>
+    <text x="1298" y="314" fill="#73A6FF">5,115,000</text><text x="1298" y="336" fill="#12B981">0</text>
+    <text x="536" y="404" fill="#4E8CFF">7,700,000</text><text x="536" y="426" fill="#12B981">10,818,500</text>
+    <text x="790" y="404" fill="#73A6FF">207,273</text><text x="790" y="426" fill="#12B981">0</text>
+    <text x="1044" y="404" fill="#73A6FF">1,120,000</text><text x="1044" y="426" fill="#12B981">0</text>
+    <text x="1298" y="404" fill="#4E8CFF">4,400,000</text><text x="1298" y="426" fill="#12B981">0</text>
+    <text x="1552" y="404" fill="#4E8CFF">2,600,000</text><text x="1552" y="426" fill="#12B981">0</text>
+    <text x="536" y="494" fill="#4E8CFF">7,000,000</text><text x="536" y="516" fill="#12B981">17,868,057</text>
+    <text x="790" y="494" fill="#4E8CFF">1,300,000</text><text x="790" y="516" fill="#12B981">0</text>
+    <text x="1044" y="494" fill="#4E8CFF">2,000,000</text><text x="1044" y="516" fill="#12B981">0</text>
+    <text x="1298" y="494" fill="#4E8CFF">2,600,000</text><text x="1298" y="516" fill="#12B981">0</text>
+    <text x="1552" y="494" fill="#4E8CFF">2,785,000</text><text x="1552" y="516" fill="#12B981">0</text>
+    <text x="536" y="584" fill="#4E8CFF">-2,885,000</text><text x="536" y="606" fill="#12B981">15,762,822</text>
+    <text x="790" y="584" fill="#4E8CFF">7,750,000</text><text x="790" y="606" fill="#12B981">0</text>
+    <text x="1044" y="584" fill="#4E8CFF">3,800,000</text><text x="1044" y="606" fill="#12B981">0</text>
+    <text x="1552" y="584" fill="#4E8CFF">2,480,000</text><text x="1552" y="606" fill="#12B981">0</text>
+    <text x="536" y="674" fill="#4E8CFF">7,200,000</text><text x="536" y="696" fill="#12B981">15,426,198</text>
+    <text x="790" y="674" fill="#4E8CFF">2,470,000</text><text x="790" y="696" fill="#12B981">0</text>
+    <text x="1552" y="674" fill="#4E8CFF">1,300,000</text><text x="1552" y="696" fill="#12B981">0</text>
+  </g>
+  <g font-family="Arial, 'Noto Sans KR', sans-serif" font-size="14" fill="#667085">
+    <text x="310" y="758" font-weight="800">정산달력의 매출액은 결제일을 기준으로 표시해요.</text>
+    <text x="310" y="788">매출액을 정산액 입금일 또는 매출일 기준으로 확인하려면 정산내역 메뉴를 이용해주세요.</text>
+  </g>
+</svg>

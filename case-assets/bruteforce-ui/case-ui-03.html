@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>case-ui-03 | SKU 이미지 누락·중복 탐지</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+
+body{background:#effaf5;color:#10251d}
+.cu03{height:100vh;padding:21px;gap:17px;background:radial-gradient(circle at 55% 25%, #b7f3d466, transparent 28%), linear-gradient(#dcfce755 1px, transparent 1px), linear-gradient(90deg, #dcfce755 1px, transparent 1px);background-size:auto,37px 37px,37px 37px}
+.cu03 > *{min-width:0}
+.cu03-hero,.cu03-visual,.cu03-meters,.cu03-board,.cu03-log,.cu03-nav{border:2px solid #10251d;border-radius:21px;background:#ffffff;box-shadow:9px 9px 0 #10251d;overflow:hidden}
+.cu03-hero{padding:24px}.cu03-hero p{margin:0;color:#10b981;font-weight:950;letter-spacing:.06em}.cu03-hero h1{margin:10px 0 6px;font-size:37px;line-height:.98;letter-spacing:-.055em}.cu03-hero strong{display:block;color:#10251d;opacity:.72}
+.cu03-nav{padding:13px;display:grid;gap:10px;align-content:start}.cu03-nav span{border:1px solid #b7f3d4;border-radius:14px;background:#effaf5;padding:12px;font-weight:950;font-size:13px}.cu03-nav span.on{background:#10251d;color:#ffffff}
+.cu03-meters{padding:16px;display:grid;gap:12px;align-content:start}.cu03-meter{border:1px solid #b7f3d4;border-radius:16px;padding:13px}.cu03-meter span{display:block;font-size:12px;color:#10251d;opacity:.72}.cu03-meter b{font-size:26px}.cu03-meter i{display:block;width:var(--w);height:8px;border-radius:99px;background:#10b981;margin-top:8px}
+.cu03-board{padding:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;align-content:start}.cu03-board article{border:1px solid #b7f3d4;border-radius:16px;background:#effaf5;padding:13px;min-height:85px}.cu03-board b{display:block;font-size:13px}.cu03-board span{display:block;margin-top:10px;color:#10251d;opacity:.65;font-size:12px}.cu03-board em{display:block;margin-top:12px;color:#10b981;font-style:normal;font-weight:950}
+.cu03-visual{position:relative;padding:18px}.cu03-log{background:#10251d;color:#b7f3d4;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.75}
+.screen-a{display:grid;grid-template-columns:250px 1fr 310px;grid-template-rows:170px 1fr 220px}.screen-a .cu03-nav{grid-row:1/4}.screen-a .cu03-hero{grid-column:2}.screen-a .cu03-visual{grid-column:2;grid-row:2/4}.screen-a .cu03-meters{grid-column:3;grid-row:1/3}.screen-a .cu03-board{grid-column:3;grid-row:3}.screen-a .cu03-log{display:none}
+.screen-b{display:grid;grid-template-columns:1.2fr .8fr 310px;grid-template-rows:180px 1fr 72px}.screen-b .cu03-hero{grid-column:1}.screen-b .cu03-meters{grid-column:2}.screen-b .cu03-visual{grid-column:1/3;grid-row:2}.screen-b .cu03-nav{grid-column:1/3;grid-row:3;grid-auto-flow:column}.screen-b .cu03-board{grid-column:3;grid-row:1/3}.screen-b .cu03-log{grid-column:3;grid-row:3}
+.screen-c{display:grid;grid-template-columns:1fr 330px;grid-template-rows:150px 72px 1fr 180px}.screen-c .cu03-visual{grid-column:1;grid-row:1/5}.screen-c .cu03-hero{grid-column:2;grid-row:1}.screen-c .cu03-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-c .cu03-board{grid-column:2;grid-row:3}.screen-c .cu03-meters{grid-column:2;grid-row:4}.screen-c .cu03-log{display:none}
+.screen-d{display:grid;grid-template-columns:220px 1fr;grid-template-rows:1fr 210px}.screen-d .cu03-nav{grid-row:1/3}.screen-d .cu03-board{grid-column:2;grid-row:1}.screen-d .cu03-hero{position:absolute;left:268px;top:38px;width:430px;z-index:2}.screen-d .cu03-visual{grid-column:2;grid-row:1;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 22%)}.screen-d .cu03-meters{grid-column:2;grid-row:2}.screen-d .cu03-log{display:none}
+.screen-e{display:grid;grid-template-columns:380px 1fr 280px;grid-template-rows:1fr 210px 72px}.screen-e .cu03-hero{grid-row:1}.screen-e .cu03-visual{grid-column:2;grid-row:1/4}.screen-e .cu03-log{grid-column:3;grid-row:1/3}.screen-e .cu03-board{grid-column:1;grid-row:2}.screen-e .cu03-nav{grid-column:1;grid-row:3;grid-auto-flow:column}.screen-e .cu03-meters{grid-column:3;grid-row:3}
+.screen-f{display:grid;grid-template-columns:300px 1fr;grid-template-rows:145px 66px 1fr}.screen-f .cu03-meters{grid-column:1;grid-row:1/4}.screen-f .cu03-hero{grid-column:2;grid-row:1}.screen-f .cu03-nav{grid-column:2;grid-row:2;grid-auto-flow:column}.screen-f .cu03-visual{grid-column:2;grid-row:3}.screen-f .cu03-board{position:absolute;right:36px;bottom:36px;width:520px;max-height:220px}.screen-f .cu03-log{display:none}
+.screen-g{display:grid;grid-template-columns:320px 1fr 310px;grid-template-rows:150px 1fr}.screen-g .cu03-log{grid-row:1/3}.screen-g .cu03-hero{grid-column:2}.screen-g .cu03-visual{grid-column:2;grid-row:2}.screen-g .cu03-board{grid-column:3;grid-row:1}.screen-g .cu03-meters{grid-column:3;grid-row:2}.screen-g .cu03-nav{display:none}
+.cu03-asset{position:absolute;inset:0;background:#10251d;overflow:hidden}.cu03-asset i{position:absolute;left:var(--x);top:var(--y);width:41px;height:37px;border-radius:11px;background:#10b981;opacity:.72}.cu03-asset i.sel{background:#b7f3d4;box-shadow:0 0 0 10px #b7f3d433}.cu03-asset b{position:absolute;left:26px;bottom:24px;background:#ffffff;color:#10251d;border-radius:999px;padding:12px 15px}
+.cu03-radar{width:100%;height:100%}.cu03-radar circle{fill:none;stroke:#b7f3d4;stroke-width:3}.cu03-radar rect{fill:#ffffff;stroke:#10251d;stroke-width:3}.cu03-radar text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#10251d}
+.cu03-supply{width:100%;height:100%;background:#effaf5}.cu03-supply path{fill:none;stroke:#10b981;stroke-width:10;stroke-dasharray:14 10}.cu03-supply circle{fill:#ffffff;stroke:#10251d;stroke-width:5}.cu03-supply text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:950;fill:#10251d}
+.cu03-trading{height:100%;display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.cu03-trading article{position:relative;border:1px solid #b7f3d4;border-radius:16px;background:#effaf5;padding:12px}.cu03-trading small{font-weight:950;color:#10b981}.cu03-trading b{display:block;font-size:22px;margin-top:8px}.cu03-trading i{position:absolute;left:12px;right:12px;bottom:10px;border-radius:10px;background:linear-gradient(180deg,#b7f3d4,#10b981)}
+.cu03-stars{width:100%;height:100%;background:#10251d;border-radius:18px}.cu03-stars line{stroke:#b7f3d4;stroke-width:1;opacity:.45}.cu03-stars circle{fill:#b7f3d4}.cu03-stars circle.hot{fill:#10b981}.cu03-stars text{fill:#ffffff;font-weight:950;font-size:24px}
+.cu03-document{height:100%;display:grid;grid-template-columns:1fr 280px;gap:18px}.cu03-document section,.cu03-document aside{border:1px solid #b7f3d4;border-radius:18px;background:#effaf5;padding:22px}.cu03-document p{height:13px;border-radius:99px;background:#b7f3d4;margin:0 0 16px}.cu03-document p.mark{background:#10b981;box-shadow:0 0 0 8px #b7f3d477}.cu03-document b{display:block;border-bottom:1px solid #b7f3d4;padding:14px 0;color:#10b981}
+.cu03-voice{height:100%;display:grid;grid-template-columns:1fr 320px;gap:18px}.cu03-voice>div{display:flex;align-items:center;gap:7px}.cu03-voice i{flex:1;border-radius:99px;background:#10b981}.cu03-voice aside{border:1px solid #b7f3d4;border-radius:18px;background:#effaf5;padding:16px}.cu03-voice p{border-bottom:1px solid #b7f3d4;padding-bottom:12px}.cu03-voice b,.cu03-voice span{display:block}
+.cu03-factory{height:100%;display:grid;grid-template-columns:repeat(11,1fr);gap:9px}.cu03-factory i{border-radius:10px;background:#dcfce7;border:1px solid #b7f3d4}.cu03-factory i.warn{background:#f59e0b}.cu03-factory i.bad{background:#ef4444;box-shadow:0 0 0 5px #fecaca}
+.cu03-people-graph{position:absolute;inset:0;background:#ffffff}.cu03-people-graph section{position:absolute;left:var(--x);top:var(--y);min-width:96px;border:2px solid #10251d;border-radius:999px;background:#effaf5;padding:10px 12px;text-align:center}.cu03-people-graph b{display:block;font-size:12px}.cu03-people-graph span{color:#10b981;font-weight:950}.cu03-people-graph i{position:absolute;left:50%;top:50%;width:var(--l);height:2px;background:#b7f3d4;transform:rotate(var(--r));transform-origin:left center}
+.cu03-control{height:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cu03-control article{border:1px solid #b7f3d4;border-radius:16px;background:#effaf5;padding:14px}.cu03-control b,.cu03-control span{display:block}
+
+</style>
+</head>
+<body>
+<main class="cu03 screen-d"><nav class="cu03-nav"><span class="">원본 에셋</span><span class="">브랜드 가이드</span><span class="">채널 규격</span><span class="on">권리 DB</span><span class="">자동 생성</span></nav><section class="cu03-board"><article><b>에셋-003-0</b><span>권리 위험</span><em data-live>61%</em></article><article><b>레이어-003-1</b><span>자동 생성</span><em data-live>72%</em></article><article><b>프레임-003-2</b><span>검수 요청</span><em data-live>83%</em></article><article><b>채널-003-3</b><span>버전 비교</span><em data-live>94%</em></article><article><b>에셋-003-4</b><span>배포</span><em data-live>66%</em></article><article><b>레이어-003-5</b><span>마스킹 경계</span><em data-live>77%</em></article><article><b>프레임-003-6</b><span>프레임 변화</span><em data-live>88%</em></article><article><b>채널-003-7</b><span>톤 불일치</span><em data-live>60%</em></article><article><b>에셋-003-8</b><span>권리 위험</span><em data-live>71%</em></article></section><div class="cu03-hero"><p>Velo Foods · CASE 003</p><h1>Creative Asset Forge</h1><strong>SKU 이미지 누락·중복 탐지</strong></div><section class="cu03-visual"><div class="cu03-asset">
+            <i class="" style="--x:33%;--y:21%"></i><i class="" style="--x:70%;--y:74%"></i><i class="" style="--x:19%;--y:49%"></i><i class="sel" style="--x:56%;--y:24%"></i><i class="" style="--x:5%;--y:77%"></i><i class="" style="--x:42%;--y:52%"></i><i class="" style="--x:79%;--y:27%"></i><i class="" style="--x:28%;--y:2%"></i><i class="sel" style="--x:65%;--y:55%"></i><i class="" style="--x:14%;--y:30%"></i><i class="" style="--x:51%;--y:5%"></i><i class="" style="--x:0%;--y:58%"></i><i class="" style="--x:37%;--y:33%"></i><i class="sel" style="--x:74%;--y:8%"></i><i class="" style="--x:23%;--y:61%"></i><i class="" style="--x:60%;--y:36%"></i><i class="" style="--x:9%;--y:11%"></i><i class="" style="--x:46%;--y:64%"></i>
+            <b>배포</b>
+        </div></section><div class="cu03-meters"><article class="cu03-meter"><span>권리 위험</span><b data-live>75%</b><i style="--w:75%"></i></article><article class="cu03-meter"><span>원본 에셋</span><b data-live>84%</b><i style="--w:84%"></i></article><article class="cu03-meter"><span>브랜드 가이드</span><b data-live>93%</b><i style="--w:93%"></i></article><article class="cu03-meter"><span>채널 규격</span><b data-live>65%</b><i style="--w:65%"></i></article><article class="cu03-meter"><span>권리 DB</span><b data-live>74%</b><i style="--w:74%"></i></article><article class="cu03-meter"><span>자동 생성</span><b data-live>83%</b><i style="--w:83%"></i></article></div><aside class="cu03-log" id="cu03log"></aside></main>
+<script>
+
+
+const cu03Live=[...document.querySelectorAll("[data-live]")];
+let cu03Frame=0;
+setInterval(()=>{cu03Frame++;cu03Live.forEach((el,i)=>{el.textContent=(58+((cu03Frame*3+i*7+3)%39))+"%";});},1200);
+
+const cu03Log=document.getElementById("cu03log");
+if(cu03Log){
+  const rows=["마스킹 경계","프레임 변화","톤 불일치","권리 위험","자동 생성","검수 요청","버전 비교","배포","원본 에셋","브랜드 가이드","채널 규격","권리 DB"];
+  let idx=0;
+  setInterval(()=>{const p=document.createElement("p");p.textContent="["+new Date().toLocaleTimeString("ko-KR",{hour12:false})+"] "+rows[idx++%rows.length]+" synced";cu03Log.prepend(p);while(cu03Log.children.length>18)cu03Log.lastElementChild.remove();},700);
+}
+
+</script>
+</body>
+</html>

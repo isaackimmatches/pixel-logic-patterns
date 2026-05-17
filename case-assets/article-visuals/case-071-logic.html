@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-scene-71-logic | 입출고 차이 탐지</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,"Wanted Sans Variable","Pretendard",system-ui,sans-serif}
+body{background:#fff1f4;color:#2a1721}.av71l-nodes{height:100vh;padding:24px;display:grid;grid-template-rows:90px 1fr;gap:18px}.av71l-nodes header{display:flex;align-items:center;gap:18px;border-radius:28px;background:#2a1721;color:#ffffff;padding:0 24px}.av71l-nodes h1{font-size:30px;margin:0}.av71l-nodes code{margin-left:auto;background:#ffffff;color:#2a1721;border-radius:14px;padding:12px 14px}.av71l-nodes section{display:grid;grid-template-columns:1fr 290px;gap:18px}.av71l-nodes svg,.av71l-nodes aside{border:2px solid #2a1721;border-radius:28px;background:#ffffff;box-shadow:8px 8px 0 #2a1721}.av71l-nodes path{fill:none;stroke:#ffc4d1;stroke-width:5;stroke-dasharray:12 10}. av71l-nodes rect{fill:#fff1f4;stroke:#2a1721;stroke-width:3}. av71l-nodes text{text-anchor:middle;dominant-baseline:middle;font-size:13px;font-weight:950;fill:#2a1721}.av71l-nodes aside{padding:18px;display:grid;gap:14px;align-content:start}.av71l-metric{border:1px solid #ffc4d1;border-radius:18px;padding:14px}.av71l-metric b{font-size:26px}. av71l-metric span{display:block;font-size:12px}. av71l-metric i{display:block;width:var(--w);height:8px;background:#e11d48;border-radius:99px;margin-top:9px}
+</style>
+</head>
+<body>
+<main class="av71l-nodes">
+            <header><b>Signal Goods</b><h1>Inventory Forecast Console Logic Builder</h1><code>q* = demand_mu + z*sigma - on_hand + promo_lift</code></header>
+            <section><svg viewBox="0 0 1080 600">
+                <path d="M120 100 C260 90, 360 180, 430 160" /><path d="M430 100 C510 90, 580 180, 640 160" /><path d="M740 100 C760 90, 800 180, 850 160" /><path d="M120 250 C260 230, 360 310, 430 280" /><path d="M430 250 C510 230, 580 310, 640 280" /><path d="M740 250 C760 230, 800 310, 850 280" /><path d="M120 400 C260 370, 360 440, 430 400" /><path d="M430 400 C510 370, 580 440, 640 400" /><path d="M740 400 C760 370, 800 440, 850 400" /><path d="M120 550 C260 510, 360 570, 430 520" />
+                <g transform="translate(120,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>주문 로그</text></g><g transform="translate(430,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>센터 재고</text></g><g transform="translate(740,100)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>배송 SLA</text></g><g transform="translate(120,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>프로모션 캘린더</text></g><g transform="translate(430,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>품절 예상시점</text></g><g transform="translate(740,250)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>과재고 지수</text></g><g transform="translate(120,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>대체 SKU</text></g><g transform="translate(430,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>센터 간 이동량</text></g><g transform="translate(740,400)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>발주량 추천</text></g><g transform="translate(120,550)"><rect x="-82" y="-32" width="164" height="64" rx="18"/><text>대체상품 노출</text></g>
+            </svg><aside>
+        <article class="av71l-metric">
+            <span>품절 예상시점</span>
+            <b data-meter>72%</b>
+            <i style="--w:85%"></i>
+        </article>
+        <article class="av71l-metric">
+            <span>과재고 지수</span>
+            <b data-meter>83%</b>
+            <i style="--w:58%"></i>
+        </article>
+        <article class="av71l-metric">
+            <span>대체 SKU</span>
+            <b data-meter>94%</b>
+            <i style="--w:71%"></i>
+        </article>
+        <article class="av71l-metric">
+            <span>센터 간 이동량</span>
+            <b data-meter>76%</b>
+            <i style="--w:84%"></i>
+        </article></aside></section>
+        </main>
+<script>
+
+const av71lmeters=[...document.querySelectorAll("[data-meter]")];
+let av71ltick=0;
+setInterval(()=>{
+  av71ltick++;
+  av71lmeters.forEach((el,i)=>el.textContent=(62+((av71ltick*3+i*9+71)%34))+"%");
+},1100);
+</script>
+</body>
+</html>
